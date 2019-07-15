@@ -11,8 +11,6 @@ We recommend to have a scientific Python distribution like Anaconda with the (Nu
 conda update -n base -c default conda 
 ```
 
-* Python (tested in 2.7, will not work in Python 3.6)
-
 How to install it
 =================
 To download and install the minibrain package:
