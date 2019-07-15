@@ -21,7 +21,7 @@ import os
 import numpy as np
 import matplotlib.pyplot as plt
 
-class DataLoader(object):
+class EphysLoader(object):
     """
     A class to load extracellular recordings acquired
     with 64 probes silicon probes from Cambridge Neurotech 

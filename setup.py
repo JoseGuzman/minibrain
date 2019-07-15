@@ -27,7 +27,7 @@ with open(op.join(curdir, 'README.md')) as f:
     myreadme = f.read()
 
 # Find version number from `__init__.py` without executing it.
-filename = op.join(curdir, 'miniscope/__init__.py')
+filename = op.join(curdir, 'minibrain/__init__.py')
 with open(filename, 'r') as f:
     myversion = re.search(r"__version__ = '([^']+)'", f.read()).group(1)
 
@@ -36,7 +36,7 @@ setup(
     name = 'minibrain', # application name
     version = myversion,# application version
     license = 'LICENSE',
-    description = 'minisbrain analysis module',
+    description = 'minibrain analysis module',
     long_description = myreadme,
     author ='Jose Guzman',
     author_email = 'jguzman at guzman-lab.com',
