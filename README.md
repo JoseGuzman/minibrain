@@ -4,7 +4,7 @@ A python module to analyze electrophysiology and calcium imaging in minibrains.
 
 Requirements
 ============
-The module only works for Python3. We recommend to have a package manager like Anaconda with standard scientific modules for data handling (ipython, pandas), analysis (Scipy, NumPy, Scikit-learn) and visualization (matplotlib). Assuming that you don have an environment already, you can simply type:
+The module only works for Python3. We recommend to have a package manager like Anaconda with standard scientific modules for data handling (ipython, pandas), analysis (Scipy, NumPy, Scikit-learn) and visualization (matplotlib). Assuming that you don have an environment already, you can download `this file https://github.com/JoseGuzman/minibrain/blob/master/minibrain.yml>` and type:
 
 ```bash
 conda env create -n minibrain -f minibrain.yml
