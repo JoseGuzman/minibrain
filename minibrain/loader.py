@@ -76,7 +76,7 @@ class EphysLoader(object):
         gain = 0.195 # 0.195 uV per bit
         return gain*self._samples[channel].T # traspose to create 1D- Numpy
 
-    def plot_insets(self, spk_times, shankID):
+    def fig_insets(self, spk_times, shankID):
         """
         Plots the average voltage of the probe at the times given.
 
@@ -84,6 +84,8 @@ class EphysLoader(object):
         ----------
         spk_times (list)  -- sampling points to take
         shankID (char)  -- 'A', 'B', 'C', or 'D'
+
+        Returns the figure to plot
         
         """
         time = np.linspace(start = 0, stop = 5, num = 5/self.dt)
@@ -94,7 +96,7 @@ class EphysLoader(object):
         mysubplot = 1
         for ch in self.shank[shankID]:
             uvolt = self.ADC(ch)
-            avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
+            avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times.astype(int)],0)
             ax = plt.subplot(8,1,mysubplot)
             if not ch%2: 
                 ax.plot(time, avg, color = self.color[shankID])
@@ -113,7 +115,8 @@ class EphysLoader(object):
         ax.text(s='50 $\mu$V', y= -25, x=4.5, verticalalignment='center')
         ax.text(s='2 ms', y=-70, x=3, horizontalalignment='center')
 
-        fig.show()
+        return( fig )
+
     
     # getter for the ADC channels
     ADC = property(lambda self: self.get_channel)
