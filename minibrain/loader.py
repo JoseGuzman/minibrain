@@ -76,9 +76,9 @@ class EphysLoader(object):
         gain = 0.195 # 0.195 uV per bit
         return gain*self._samples[channel].T # traspose to create 1D- Numpy
 
-    def fig_insets(self, spk_times, shankID):
+    def fig_waveform(self, spk_times, channelID):
         """
-        Plots the average voltage of the probe at the times given.
+        Plots 2 ms of average voltage of the channel at the times given.
 
         Arguments:
         ----------
@@ -88,6 +88,52 @@ class EphysLoader(object):
         Returns the figure to plot
         
         """
+
+        tmax = 2 
+        spk_times = spk_times.astype(int) # cast to int
+        time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
+        phalf = int((tmax/2)/self.dt)
+
+        uvolt = self.ADC(channelID)
+        avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
+
+        # plot average waveform
+        fig = plt.figure(figsize = (5,6))
+        ax = plt.subplot(111)
+
+        # take 11 random waveforms
+        #for peak in np.random.choice(spk_times, 10):
+        #    wave = uvolt[peak-phalf:peak+phalf]
+        #    ax.plot(time, wave, lw=0.5, color='gray')
+
+        ax.plot(time, avg, color = 'k', lw=2) 
+        ax.set_ylim(top = 30, bottom = -90)
+        ax.axis('off')
+
+        # plot scalebar
+        # horizontal (time)
+        ax.hlines(y=-50, xmin=1.2, xmax=2.2, lw=2, color='k') # 2 ms
+        ax.text(s='1 ms', y=-60, x=1.7, horizontalalignment='center')
+        # vertical (voltage)
+        ax.vlines(x = 2.2, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
+        ax.text(s='50 $\mu$V', y= -25, x=2.5, verticalalignment='center')
+
+        return( fig )
+        
+        
+    def fig_insets(self, spk_times, shankID):
+        """
+        Plots 5 ms of average voltage of the probe at the times given.
+
+        Arguments:
+        ----------
+        spk_times (list)  -- sampling points to take
+        shankID (char)  -- 'A', 'B', 'C', or 'D'
+
+        Returns the figure to plot
+        
+        """
+        spk_times = spk_times.astype(int) # cast to int
         time = np.linspace(start = 0, stop = 5, num = 5/self.dt)
         phalf = int(2.5/self.dt)
 
@@ -96,7 +142,7 @@ class EphysLoader(object):
         mysubplot = 1
         for ch in self.shank[shankID]:
             uvolt = self.ADC(ch)
-            avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times.astype(int)],0)
+            avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
             ax = plt.subplot(8,1,mysubplot)
             if not ch%2: 
                 ax.plot(time, avg, color = self.color[shankID])
