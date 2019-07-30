@@ -19,3 +19,4 @@ __email__ = 'jose.guzman at guzman-lab.com'
 # Imports
 #-------------------------------------------------------------------------
 from minibrain.loader import EphysLoader # from minibrain import EphysLoader
+from minibrain.spikes import UnitsLoader # from minibrain import EphysLoader
