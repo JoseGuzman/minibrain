@@ -94,7 +94,7 @@ class EphysLoader(object):
         time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
         phalf = int((tmax/2)/self.dt)
 
-        uvolt = self.ADC(channelID)
+        uvolt = self.channel(channelID)
         avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
 
         # plot average waveform
@@ -141,7 +141,7 @@ class EphysLoader(object):
 
         mysubplot = 1
         for ch in self.shank[shankID]:
-            uvolt = self.ADC(ch)
+            uvolt = self.channel(ch)
             avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
             ax = plt.subplot(8,1,mysubplot)
             if not ch%2: 
@@ -165,5 +165,5 @@ class EphysLoader(object):
 
     
     # getter for the ADC channels
-    ADC = property(lambda self: self.get_channel)
+    channel = property(lambda self: self.get_channel)
 
