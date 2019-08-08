@@ -26,7 +26,7 @@ Basic usage
 In Python:
 
 ```python
-from misybtanibrain import EphysLoader
+from minibrain import EphysLoader
 myrec = EphysLoader('continuous.dat')
 ```
 
