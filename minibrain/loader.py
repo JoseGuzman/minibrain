@@ -40,25 +40,25 @@ class EphysLoader(object):
     dt = 1/30 # in ms
 
 
-    def __init__(self, fname, numchan = 67 ):
+    def __init__(self, fname, nchan = 67 ):
         """
         Reads binary data from Open Ephys 
 
         Arguments:
         ----------
         fname (str) -- filename (e.g., 'continuous.dat')
-        numchan (int)   -- number of channels in recording. It
+        nchan (int)   -- number of channels in recording. It
             is 67 by default (64 ADC + 3 AUX from Intan RHD2000).
         """
 
         fp = open(fname, 'rb')
-        nsamples = os.fstat(fp.fileno()).st_size // (numchan*2)
+        nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
 
-        samples = np.memmap(fp, np.dtype('i2'), mode = 'r', 
-            shape = (nsamples, numchan))
+        self.data = np.memmap(fp, np.dtype('i2'), mode = 'r', 
+            shape = (nsamples, nchan))
 
         # binary saved privately here
-        self._samples = np.transpose( samples )
+        self._data = np.transpose( self.data )
         fp.close()
 
     def get_channel(self, channel):
@@ -74,7 +74,7 @@ class EphysLoader(object):
         A 1D Numpy array with voltage in microVolts
         """
         gain = 0.195 # 0.195 uV per bit
-        return gain*self._samples[channel].T # traspose to create 1D- Numpy
+        return gain*self._data[channel].T # traspose to create 1D- Numpy
 
     def fig_waveform(self, spk_times, channelID):
         """

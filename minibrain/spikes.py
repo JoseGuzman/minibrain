@@ -80,37 +80,41 @@ class UnitsLoader(object):
         n_units = len(df_units)
         spm_avg = 0
 
-        units, spk = list(), list()
+        unit_dict = dict()
+        spk = list()
         if n_units: # read in spikes per minute
             spm = df_units['n_spikes'].values/(self.duration/60000)
             np.savetxt(shank + '.spm', spm, fmt='%f')
             spm_avg = spm.mean()
             print('%2d extracellular units in %s: %2.4f spk/min'
             %(n_units, shank,spm_avg) )
+
             # read spike times
             spike_times = np.load( shank + wcpath + 'spike_times.npy')
             spike_clusters = np.load( shank + wcpath + 'spike_clusters.npy')
             for i in df_units['id'].values:
-                mydict = {}
                 spk_times = spike_times[np.where(spike_clusters == i)]
-                mydict[i] = spk_times
-                spk.append(spk_times)
-                units.append(mydict)
+                unit_dict[i] = spk_times # create new key for dictionary 
+                spk.append(spk_times) 
         
-        return( df_units, units, spk )
+        return( df_units, unit_dict, spk )
 
     # getters to avoid owerwriting
     duration = property(lambda self: self._duration)
+
+    # DataFrame object with unit properties
     dfA = property(lambda self: self._dfA)
     dfB = property(lambda self: self._dfB)
     dfC = property(lambda self: self._dfC)
     dfD = property(lambda self: self._dfD)
 
+    # a dictionary with ['id'] and spike times of a unit
     unitA = property(lambda self: self._unitA)
     unitB = property(lambda self: self._unitB)
     unitC = property(lambda self: self._unitC)
     unitD = property(lambda self: self._unitD)
 
+    # a list with all spike times of the units in a shank
     spkA = property(lambda self: self._spkA)
     spkB = property(lambda self: self._spkB)
     spkC = property(lambda self: self._spkC)
