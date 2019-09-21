@@ -71,7 +71,7 @@ class EphysLoader(object):
         self._data = np.transpose( self._memmap )
         fp.close()
 
-    def savemove(self, height = 1000, distance = 5):
+    def savemove(self, channel = None, height = 1000, distance = 5):
         """
         Creates a new binary file when removing 
         the artifacts from the file. Artifacts are negative
@@ -79,6 +79,7 @@ class EphysLoader(object):
 
         Arguments
         ---------
+        channel (list) the channels to 
         fname (str) -- filename (e.g., 'cl_continuous.dat')
         height (float) -- threshold for detecting artifacts (default 1000 uV)
         distance (float) -- minimal distance (default 5 ms)
@@ -94,8 +95,12 @@ class EphysLoader(object):
 
         mydata = np.transpose( self._memmap )
 
+        if channel is None:
+            mychannel = range(self._nchan)
+        else:
+            mychannel = channel
         
-        for channel in range(self._nchan):
+        for channel in mychannel:
             mych = mydata[channel].T # now reads bytes from memory
             peaks = find_peaks(-mych, height=myheight, distance = mydist)[0]
             print('%3d artifacts found in channel %3d'
