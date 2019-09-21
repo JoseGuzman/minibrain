@@ -10,7 +10,7 @@ A python module to analyze electrophysiology and calcium imaging in minibrains
 #-------------------------------------------------------------------------
 # Global variables
 #-------------------------------------------------------------------------
-__version__ = '0.3a1'
+__version__ = '0.4a1'
 __author__ = 'Jose Guzman'
 __email__ = 'jose.guzman at guzman-lab.com'
 

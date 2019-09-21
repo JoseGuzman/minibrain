@@ -20,6 +20,7 @@ Example:
 import os
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.signal import find_peaks
 
 class EphysLoader(object):
     """
@@ -37,12 +38,16 @@ class EphysLoader(object):
              'C': '#FF9933',
              'D': '#00AA00' 
             }
-    dt = 1/30 # in ms
+
+    dt = 1/30       # in ms
+    sf = 30000      # number of samples per second
+    gain = 0.195    # uVolts per bit (from Intant) 
 
 
     def __init__(self, fname, nchan = 67 ):
         """
-        Reads binary data from Open Ephys 
+        Reads binary data from Open Ephys acquired with
+        the Intan 512ch Recording controller.
 
         Arguments:
         ----------
@@ -51,15 +56,62 @@ class EphysLoader(object):
             is 67 by default (64 ADC + 3 AUX from Intan RHD2000).
         """
 
+        self._nchan = nchan
+        self._fname = fname 
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
 
-        self.data = np.memmap(fp, np.dtype('i2'), mode = 'r', 
+        # accesss without reading the whole file 
+        # np.int16 is Integer (-32768 to 32767)
+        self._memmap = np.memmap(fp, np.dtype('i2'), mode = 'r', 
             shape = (nsamples, nchan))
 
-        # binary saved privately here
-        self._data = np.transpose( self.data )
+        # we transpose the map to handle 1D NumPy decently 
+        # this is the data we will use in the object
+        self._data = np.transpose( self._memmap )
         fp.close()
+
+    def savemove(self, height = 1000, distance = 5):
+        """
+        Creates a new binary file when removing 
+        the artifacts from the file. Artifacts are negative
+        deflections within a distance entered by the user.
+
+        Arguments
+        ---------
+        fname (str) -- filename (e.g., 'cl_continuous.dat')
+        height (float) -- threshold for detecting artifacts (default 1000 uV)
+        distance (float) -- minimal distance (default 5 ms)
+
+        Returns
+        -------
+        A raw binary file (prefix clean_) with cleaned artefacts
+        """
+
+        # transform uV into bits (0.195 uV/bit from Intan)
+        myheight   = int( height/self.gain )
+        mydist = int( distance/self.dt ) # distance in ms
+
+        mydata = np.transpose( self._memmap )
+
+        
+        for channel in range(self._nchan):
+            mych = mydata[channel].T # now reads bytes from memory
+            peaks = find_peaks(-mych, height=myheight, distance = mydist)[0]
+            print('%3d artifacts found in channel %3d'
+                %(peaks.size, channel))
+
+            if peaks.size >=1:
+                shift = np.arange(len(peaks))*mydist*2
+                peaks = peaks - shift
+                for p in peaks:
+                    pstart, pend = p - mydist, p + mydist
+                    mydata = np.delete(mydata, np.s_[pstart: pend], axis=1)
+        
+        # save new binary (in bytes)
+        newdata = mydata.T
+        newdata.astype('int16').tofile('clean_' + self._fname)
+        print('new raw binary saved as %s '%('clean_' + self._fname))
 
     def get_channel(self, channel):
         """
@@ -73,8 +125,8 @@ class EphysLoader(object):
         --------
         A 1D Numpy array with voltage in microVolts
         """
-        gain = 0.195 # 0.195 uV per bit
-        return gain*self._data[channel].T # traspose to create 1D- Numpy
+        # traspose to have 1D Numpy
+        return self.gain*self._data[channel].T 
 
     def fig_waveform(self, spk_times, channelID):
         """
@@ -89,7 +141,7 @@ class EphysLoader(object):
         
         """
 
-        tmax = 2 
+        tmax = 2 # in ms
         spk_times = spk_times.astype(int) # cast to int
         time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
         phalf = int((tmax/2)/self.dt)
