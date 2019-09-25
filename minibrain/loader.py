@@ -39,7 +39,7 @@ class EphysLoader(object):
              'D': '#00AA00' 
             }
 
-    dt = 1/30       # in ms
+    dt = 1/30.       # in ms
     sf = 30000      # number of samples per second
     gain = 0.195    # uVolts per bit (from Intant) 
 
@@ -60,6 +60,7 @@ class EphysLoader(object):
         self._fname = fname 
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
+        print('Recording duration = %2.4f sec.'%(nsamples/self.sf) )
 
         # accesss without reading the whole file 
         # np.int16 is Integer (-32768 to 32767)
@@ -71,38 +72,39 @@ class EphysLoader(object):
         self._data = np.transpose( self._memmap )
         fp.close()
 
-    def savemove(self, channel = None, height = 1000, distance = 5):
+    def savemove(self, ch_list = None, height = 1000, distance = 5):
         """
         Creates a new binary file when removing 
-        the artifacts from the file. Artifacts are negative
+        the artifacts from the file. Artifacts are positive 
         deflections within a distance entered by the user.
 
         Arguments
         ---------
-        channel (list) the channels to 
-        fname (str) -- filename (e.g., 'cl_continuous.dat')
-        height (float) -- threshold for detecting artifacts (default 1000 uV)
+        ch_list (list) the channels to be cleaned.
+        height (float) -- threshold for deleting artifacts (default 1000 uV)
+    
         distance (float) -- minimal distance (default 5 ms)
 
         Returns
         -------
-        A raw binary file (prefix clean_) with cleaned artefacts
+        A raw binary file (prefix cl_) with cleaned artefacts. The 
+        artifacts are removed 2x the enter distance (10 ms by default).
         """
 
         # transform uV into bits (0.195 uV/bit from Intan)
         myheight   = int( height/self.gain )
-        mydist = int( distance/self.dt ) # distance in ms
+        mydist = int( distance/self.dt ) # distance in sampling points 
 
         mydata = np.transpose( self._memmap )
 
-        if channel is None:
+        if ch_list is None:
             mychannel = range(self._nchan)
         else:
-            mychannel = channel
+            mychannel = ch_list
         
         for channel in mychannel:
-            mych = mydata[channel].T # now reads bytes from memory
-            peaks = find_peaks(-mych, height=myheight, distance = mydist)[0]
+            trace = mydata[channel].T # now reads bytes from memory
+            peaks = find_peaks(trace,height=myheight,distance = mydist)[0]
             print('%3d artifacts found in channel %3d'
                 %(peaks.size, channel))
 
@@ -111,12 +113,15 @@ class EphysLoader(object):
                 peaks = peaks - shift
                 for p in peaks:
                     pstart, pend = p - mydist, p + mydist
+                    print('Remove t = %2.4f sec.'%(pstart/self.sf))
+                    # rewrite mydata
                     mydata = np.delete(mydata, np.s_[pstart: pend], axis=1)
         
         # save new binary (in bytes)
         newdata = mydata.T
-        newdata.astype('int16').tofile('clean_' + self._fname)
-        print('new raw binary saved as %s '%('clean_' + self._fname))
+        myfname = 'cl_' + self._fname
+        newdata.astype('int16').tofile( myfname )
+        print('new raw binary saved as %s '%myfname )
 
     def get_channel(self, channel):
         """
