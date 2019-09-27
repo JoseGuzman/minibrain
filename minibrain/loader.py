@@ -138,14 +138,15 @@ class EphysLoader(object):
         # traspose to have 1D Numpy
         return self.gain*self._data[channel].T 
 
-    def fig_waveform(self, spk_times, channelID):
+    def fig_waveform(self, spk_times, nrandom, channel):
         """
         Plots 2 ms of average voltage of the channel at the times given.
 
         Arguments:
         ----------
         spk_times (list)  -- sampling points to take
-        shankID (char)  -- 'A', 'B', 'C', or 'D'
+        nrandom (int) -- the number of single random waveforms to plot
+        channel (int)  -- the channel to plot 
 
         Returns the figure to plot
         
@@ -156,17 +157,17 @@ class EphysLoader(object):
         time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
         phalf = int((tmax/2)/self.dt)
 
-        uvolt = self.channel(channelID)
+        uvolt = self.channel(channel)
         avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
 
         # plot average waveform
         fig = plt.figure(figsize = (5,6))
         ax = plt.subplot(111)
 
-        # take 11 random waveforms
-        #for peak in np.random.choice(spk_times, 10):
-        #    wave = uvolt[peak-phalf:peak+phalf]
-        #    ax.plot(time, wave, lw=0.5, color='gray')
+        # take n random waveforms
+        for peak in np.random.choice(spk_times, nrandom):
+            wave = uvolt[peak-phalf:peak+phalf]
+            ax.plot(time, wave, lw=0.5, color='gray')
 
         ax.plot(time, avg, color = 'k', lw=2) 
         ax.set_ylim(top = 30, bottom = -90)
