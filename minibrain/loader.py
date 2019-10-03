@@ -167,7 +167,7 @@ class EphysLoader(object):
         # take n random waveforms
         for peak in np.random.choice(spk_times, nrandom):
             wave = uvolt[peak-phalf:peak+phalf]
-            ax.plot(time, wave, lw=0.5, color='gray')
+            ax.plot(time, wave, lw=0.5, color='#999999')
 
         ax.plot(time, avg, color = 'k', lw=2) 
         ax.set_ylim(top = 30, bottom = -90)
