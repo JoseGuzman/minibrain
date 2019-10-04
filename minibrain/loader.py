@@ -184,9 +184,9 @@ class EphysLoader(object):
         return( fig )
         
         
-    def fig_insets(self, spk_times, shankID):
+    def fig_shank(self, spk_times, shankID):
         """
-        Plots 5 ms of average voltage of the probe at the times given.
+        Plots 5 ms of average voltage of the shank at the times given.
 
         Arguments:
         ----------
