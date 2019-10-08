@@ -65,7 +65,7 @@ class ISImedian(IPlugin):
             computes the percentage of spikes within the
             refractory period.
             """
-            pass
+            pass#TODO
 
         # will appear in ClusterView and SimilarityView
         controller.cluster_metrics['ISI.median'] = \
@@ -73,7 +73,7 @@ class ISImedian(IPlugin):
 
 class SpikeSplitter(IPlugin):
     """
-    This Pluging select single spikes to be splitted 
+    This Plugin select single spikes to be splitted 
     """
     def attach_to_controller(self, controller):
         """
@@ -81,14 +81,14 @@ class SpikeSplitter(IPlugin):
         creation of the supervisor object (s) which controls  
         ClusterView and SimilarityView.
         """
-        @connect(sender=controller)
+        @connect(sender = controller)
         def on_gui_ready(sender, gui):
             """
             Called when the GUI and all objects are fully loaded.
             It makes sure that controller.supervisor is properly defined.
             """
             #------------------------------------------
-            # File->Display message
+            # in File->Display message
             #------------------------------------------
             gui.file_actions.separator()
             @gui.file_actions.add()
@@ -103,23 +103,21 @@ class SpikeSplitter(IPlugin):
             # in Select->MyPlugins:
             #------------------------------------------
             gui.select_actions.separator()
-            myparams = dict(submenu='MyPlugins', shortcut = 'alt+p',
-                prompt=True, prompt_default=lambda: 0)
+            myparams = dict(submenu = 'MyPlugins', shortcut = 'alt+p',
+                prompt = True, prompt_default = lambda: 0)
             @gui.select_actions.add( **myparams )
             def split_spike(time):
                 """
                 split the spike next to the time entered
                 """
-                #@controller.supervisor.cluster_view.get_ids
-                pspike = int(time * 30000)
                 # get id from selected cluster
-                mycluster_id = controller.supervisor.selected
+                sel = controller.supervisor.selected
                 # get the sample of the first spike
-                t = controller.get_spike_times(mycluster_id[0])
-                p = controller.get_spike_ids(mycluster_id[0])
-                x = np.argmax(t>time) 
+                t = controller.get_spike_times( sel[0] )
+                p = controller.get_spike_ids( sel[0] )
+                x = np.argmax( t>time ) 
                 # remove this p[x]
-                #emit('action', s.action_creator, 'split', list(p[x]))
+                emit('split_spike', s.action_creator, 'split', list(p[x]))
                 gui.status_message = 'Spike id: %s'%p[x]
 
         
