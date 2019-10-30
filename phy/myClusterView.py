@@ -81,7 +81,8 @@ class SpikeSplitter(IPlugin):
         creation of the supervisor object (s) which controls  
         ClusterView and SimilarityView.
         """
-        @connect(sender = controller)
+        #@connect(sender = controller)
+        @connect
         def on_gui_ready(sender, gui):
             """
             Called when the GUI and all objects are fully loaded.
@@ -116,8 +117,10 @@ class SpikeSplitter(IPlugin):
                 t = controller.get_spike_times( sel[0] )
                 p = controller.get_spike_ids( sel[0] )
                 x = np.argmax( t>time ) 
+                print(x)
                 # remove this p[x]
-                emit('split_spike', s.action_creator, 'split', list(p[x]))
+                controller.supervisor.actions.split(list(p[x]))
+                #emit('action', s.action_creator, 'split', list(p[x]))
                 gui.status_message = 'Spike id: %s'%p[x]
 
         

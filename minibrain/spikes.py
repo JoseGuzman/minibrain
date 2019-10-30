@@ -10,7 +10,7 @@ Cambride Neurotech silicon probes, sorted with spyking-circus
 and curated with phy.
 
 Example:
->>> from spikes import UnitsLoader 
+>>> from minibrain  import UnitsLoader 
 >>> myrec = DataLoader('./') # will load shankA, shankB, shankC and shankD
 """
 
@@ -19,103 +19,50 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 myshank = {1.0:'A', 2.0:'B', 3.0:'C', 4.0:'D'}
-read_shank = lambda x: myshank[x]
+read_shank = lambda key: myshank[key]
 
-class UnitsLoader(object):
+class Units(object):
     """
     A class to load extracellular units recordings acquired
-    with 64 probes silicon probes from Cambridge Neurotech.
+    with silicon probes from Cambridge Neurotech.
     """
 
-	# A dictionary with shanks ID and colors
-    shank = {'A': range(16),
-        'B': range(16,32),
-        'C': range(32,48),
-        'D': range(48,64)
-        }
-    color = {'A': '#A52A2A',
-        'B': '#0095FF',
-        'C': '#FF9933',
-        'D': '#00AA00' 
-        }
-
-    def __init__(self, mytime, path = ""):
+    def __init__(self, path = "./continuous/Bandpass_Filter-102_100.0/", shank = 'ABCD'):
         """
-        Reads phy files with sorted probes 
-
-        Arguments:
-        ----------
-        mytime (tuple) containing minutes, seconds and miliseconds
+        Reads all good isolated units from the probes and returns them in a dataframe
+        and dictionary
+    
+        Arguments
+        ---------
+        path (str):
+            the path to look for spike_times.npy and spike_clusters.npy 
+        shank (str):
+            the shank of the silicon probe to read 
+        """
+    
+        df_list = list() # a list with dfs for different shanks
+        dict_unit = dict() # a dictionary with all units from different shanks 
+        for myshank in shank:
+            mypath = path + '/shank' + myshank + '/continuous.GUI/'
+            myfile = mypath + 'cluster_info.tsv'
+            df = pd.read_csv(myfile, sep = '\t')
+            df['shank'] = df['shank'].apply(read_shank) # map probes
         
-        """
-        # set duration of recording
-        tmin, tsec, tms = mytime
-        self._duration = tmin*60000 + tsec*1000 + tms
-
-        # load phy files with units and sorted spikes
-        self._dfA, self._unitA, self._spkA = self._read_phy(path + 'shankA')
-        self._dfB, self._unitB, self._spkB = self._read_phy(path + 'shankB')
-        self._dfC, self._unitC, self._spkC = self._read_phy(path + 'shankC')
-        self._dfD, self._unitD, self._spkD = self._read_phy(path + 'shankD')
-
-
-    def _read_phy(self, shank):
-        """
-        Loads phy generated files. It will generate a pandas DataFrame
-        with all information of the units (e.g. myrec.dfA for probeA)
-        and a list with units 'ids' and spike times (myrec.unitA for probeA)
-        and list with all spike times of the probe (self.spkA).
+            # choose good units
+            df_unit = df[ (df['group']=='good') ]
         
-        Arguments:
-        ----------
-        shank (str) 'shankA', 'shankB', 'shankC' or 'shankD'
-        """
-        wcpath = '/wc_continuous.GUI/'
-        df = pd.read_csv( shank + wcpath + 'cluster_info.tsv', sep='\t')
-        # substitute number by shank type 'A', 'B','C' or 'D'
-        df['shank'] = df['shank'].apply(read_shank)
-
-        # select well isolated units
-        df_units = df[df['group'] == 'good']
-        n_units = len(df_units)
-        spm_avg = 0
-
-        unit_dict = dict()
-        spk = list()
-        if n_units: # read in spikes per minute
-            spm = df_units['n_spikes'].values/(self.duration/60000)
-            np.savetxt(shank + '.spm', spm, fmt='%f')
-            spm_avg = spm.mean()
-            print('%2d extracellular units in %s: %2.4f spk/min'
-            %(n_units, shank,spm_avg) )
-
-            # read spike times
-            spike_times = np.load( shank + wcpath + 'spike_times.npy')
-            spike_clusters = np.load( shank + wcpath + 'spike_clusters.npy')
-            for i in df_units['id'].values:
-                spk_times = spike_times[np.where(spike_clusters == i)]
-                unit_dict[i] = spk_times # create new key for dictionary 
-                spk.append(spk_times) 
+            # read good units
+            spike_times = np.load(mypath + 'spike_times.npy')
+            spike_clusters = np.load(mypath + 'spike_clusters.npy')
         
-        return( df_units, unit_dict, spk )
-
-    # getters to avoid owerwriting
-    duration = property(lambda self: self._duration)
-
-    # DataFrame object with unit properties
-    dfA = property(lambda self: self._dfA)
-    dfB = property(lambda self: self._dfB)
-    dfC = property(lambda self: self._dfC)
-    dfD = property(lambda self: self._dfD)
-
-    # a dictionary with ['id'] and spike times of a unit
-    unitA = property(lambda self: self._unitA)
-    unitB = property(lambda self: self._unitB)
-    unitC = property(lambda self: self._unitC)
-    unitD = property(lambda self: self._unitD)
-
-    # a list with all spike times of the units in a shank
-    spkA = property(lambda self: self._spkA)
-    spkB = property(lambda self: self._spkB)
-    spkC = property(lambda self: self._spkC)
-    spkD = property(lambda self: self._spkD)
+            for i in df_unit['id'].values:
+                mykey = str(i) + myshank
+                dict_unit[ mykey] =  spike_times[ np.where(spike_clusters==i) ] 
+            
+            df_unit['id'] = df_unit['id'].apply(lambda x: str(x) + myshank) # change to have unique identifiers
+            df_list.append(df_unit)
+        
+        self.df = pd.concat(df_list).reset_index(drop=True)
+        self.id = dict_unit
+        print('%d units found'%len(self.df))
+    
