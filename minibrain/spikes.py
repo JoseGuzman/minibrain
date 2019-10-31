@@ -62,7 +62,8 @@ class Units(object):
                 dict_unit[mykey] = spike_times[np.where(spike_clusters==i)] 
 
             # change to have unique identifiers
-            df_unit['id'] = df_unit['id'].apply(lambda x: str(x) + myshank)             df_list.append(df_unit)
+            df_unit['id'] = df_unit['id'].apply(lambda x: str(x)+myshank)
+            df_list.append(df_unit)
         
         self.df = pd.concat(df_list).reset_index(drop=True)
         self.unit = dict_unit
