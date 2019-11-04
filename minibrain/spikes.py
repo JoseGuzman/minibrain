@@ -11,7 +11,6 @@ and curated with phy.
 
 Example:
 >>> from minibrain  import UnitsLoader 
->>> myrec = DataLoader('./') # will load shankA, shankB, shankC and shankD
 """
 
 import copy 
@@ -30,8 +29,8 @@ class Units(object):
 
     def __init__(self, path = "./continuous/Bandpass_Filter-102_100.0/", shank = 'ABCD'):
         """
-        Reads all good isolated units from the probes and returns them in a dataframe
-        and dictionary
+        Reads all good isolated units from the probes and returns them 
+        in a dataframe and dictionary
     
         Arguments
         ---------
@@ -91,9 +90,9 @@ class Units(object):
             for p in pulse:
                 start, end = p
                 spk_times = np.array(values)
-                x = np.logical_and(spk_times>start, spk_times<end)
-                if not spk_times[x].size == 0:
-                    newval = spk_times[x].tolist()
+                select = np.logical_and(spk_times>start, spk_times<end)
+                if not spk_times[select].size == 0:
+                    newval = spk_times[select].tolist()
                     mytimes.extend( newval )
             mydict[key] = np.array(mytimes)
             
