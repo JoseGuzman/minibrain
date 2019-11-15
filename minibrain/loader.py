@@ -18,6 +18,7 @@ Example:
 """
 
 import os
+import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 from scipy.signal import find_peaks
@@ -44,7 +45,7 @@ class EphysLoader(object):
     gain = 0.195    # uVolts per bit (from Intant) 
 
 
-    def __init__(self, fname, nchan = 67 ):
+    def __init__(self, fname, date = None, birth = None, nchan = 67):
         """
         Reads binary data from Open Ephys acquired with
         the Intan 512ch Recording controller.
@@ -52,15 +53,28 @@ class EphysLoader(object):
         Arguments:
         ----------
         fname (str) -- filename (e.g., 'continuous.dat')
+        date (str) -- recording date format (e.g., %Y-%m-%d_%H-%M-%S, like '2019-10-09_15-26-38')
+        date (str) -- birth date format (e.g., '2019-10-07_00_00-00')
         nchan (int)   -- number of channels in recording. It
             is 67 by default (64 ADC + 3 AUX from Intan RHD2000).
         """
 
         self._nchan = nchan
-        self._fname = fname 
+        #self._fname = fname 
+        if date is None or birth is None:
+            age = 0
+        else:
+            myformat = '%Y-%m-%d_%H-%M-%S'
+            rec = datetime.datetime.strptime(date, myformat) 
+            birth = datetime.datetime.strptime(birth, myformat) 
+            delta = rec-birth
+            age = delta.days + delta.seconds/(24*60*60)
+
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
+        self._nsamples = nsamples
         print('Recording duration = %2.4f sec.'%(nsamples/self.sf) )
+        print('Recording age      = %2.4f days.'%age )
 
         # accesss without reading the whole file 
         # np.int16 is Integer (-32768 to 32767)
@@ -229,4 +243,5 @@ class EphysLoader(object):
     
     # getter for the ADC channels
     channel = property(lambda self: self.get_channel)
-
+    # getter for the number of samples channels
+    nsamples = property(lambda self: self._nsamples)

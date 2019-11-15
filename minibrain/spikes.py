@@ -43,7 +43,7 @@ class Units(object):
         df_list = list() # list of dataframe
         dict_unit = dict() # a dictionary with all units
         for myshank in shank:
-            mypath = path + '/shank' + myshank + '/continuous.GUI/'
+            mypath = path + 'shank' + myshank + '/continuous.GUI/'
             myfile = mypath + 'cluster_info.tsv'
             df = pd.read_csv(myfile, sep = '\t')
             df['shank'] = df['shank'].apply(read_shank) # map probes
@@ -64,7 +64,8 @@ class Units(object):
             df_unit['id'] = df_unit['id'].apply(lambda x: str(x)+myshank)
             df_list.append(df_unit)
         
-        self.df = pd.concat(df_list).reset_index(drop=True)
+        # set sort=True cause non-cocatenation axis is not aligned
+        self.df = pd.concat(df_list, sort=True).reset_index(drop=True)
         self.unit = dict_unit
         print('%d units found'%len(self.df))
 
