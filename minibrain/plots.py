@@ -127,7 +127,7 @@ def plot_linregress(xdata, ydata, ax = None, color = None, title = None):
     # for a 2-tailed 95% confident interval enter 0.975
     tstat = T.ppf(0.975, n-1) 
 
-    pow2 = lambda(x): np.power(x,2)
+    pow2 = lambda x: np.power(x,2)
     confs = tstat*np.sqrt( (SSE/(n-2)) * (1.0/n +\
         (pow2(xfit-mu)/ ((np.sum(pow2(xdata)) -
         n*(pow2(mu)))))))
