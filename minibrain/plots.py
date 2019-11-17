@@ -114,7 +114,7 @@ def plot_linregress(xdata, ydata, ax = None, color = None, title = None):
     m, a, rval, pval, stderr = linregress(xdata, ydata)
         
     # linear function
-    f = lambda(x): a + m*x
+    f = lambda x: a + m*x
     xfit = np.linspace(xdata.min(), xdata.max(), 100)
     yfit = f(xfit)
     
