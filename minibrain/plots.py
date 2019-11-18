@@ -39,6 +39,7 @@ def plot_bars(data, labels, colors):
     ax = fig.add_subplot(111)
 
     yloc = (1,2)
+    # add sample size to labels
     avg = np.mean(data[0]), np.mean(data[1])
     myparams = dict(width = 0.65, color = colors, align = 'center',
             alpha = 0.5)
@@ -58,8 +59,13 @@ def plot_bars(data, labels, colors):
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
+    # xlabels
+    xlabels = list()
+    for i in range(len(data)):
+        xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
+    ax.set_xticklabels(xlabels, fontsize=14)
+    ax.set_xticks([1,2])
     ax.xaxis.set_ticks_position('none')
-    ax.set_xticklabels([])
 
     # stdout statistic
     stats_0 =  ( labels[0],np.mean(data[0]), np.std(data[0]), len(data[0]) )
