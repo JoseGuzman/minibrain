@@ -47,7 +47,7 @@ setup(
         # If any package contains *.txt files, include them:
         '': ['*.txt'],
         # And include any *.syn files found in the 'data' subdirectory
-        # of the 'PVNet' package, also:
-        'PVNet': ['data/*.syn'],
+        # of the 'minibrain' package, also:
+        'minibrain': ['data/*.syn'],
     },
 )
