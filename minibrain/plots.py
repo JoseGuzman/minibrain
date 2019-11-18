@@ -59,6 +59,7 @@ def plot_bars(data, labels, colors):
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
+
     # xlabels
     xlabels = list()
     for i in range(len(data)):
@@ -73,7 +74,7 @@ def plot_bars(data, labels, colors):
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
     print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
 
-    print('P = %2.4f, Mann-Whitney (U-test)'%mwu(data[0], data[1])[1])
+    print('P = %2.4f, Mann-Whitney (U test)'%mwu(data[0], data[1])[1])
     return(ax)
 
 def plot_boxes(data, mylabels, mycolors):
@@ -91,6 +92,7 @@ def plot_boxes(data, mylabels, mycolors):
     # Box plots
     bp = ax.boxplot(data, widths = 0.45, patch_artist=1)
     # add sample size to labels
+
     xlabels = list()
     for i in range(len(data)):
         xlabels.append(mylabels[i] + '\n(n=' + str(len(data[i])) + ')')
@@ -119,15 +121,27 @@ def plot_boxes(data, mylabels, mycolors):
         mean +=1
         ax.plot(xval, points, 'o', color=color, ms=5)
 
-    # remove axis
+    # remove axis and adjust
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
-    #ax.tick_params(axis='both', direction='out')
-    # remove top axis and right axes ticks
-    #ax.get_xaxis().tick_bottom()
     ax.get_yaxis().tick_left()
 
+    # xlabels
+    xlabels = list()
+    for i in range(len(data)):
+        xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
+    ax.set_xtickslabels(xlabels, fontsize = 14)
+    ax.set_xticks([1,2])
+    ax.xaxis.set_ticks_position('none')
+
+    # stdout statistic
+    stats_0 =  ( labels[0],np.mean(data[0]), np.std(data[0]), len(data[0]) )
+    stats_1 =  ( labels[1],np.mean(data[1]), np.std(data[1]), len(data[1]) )
+    print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
+    print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
+
+    print('P = %2.4f, Mann-Whitney (U test)'%mwu(data[0], data[1])[1])
     return(ax)
 
     
