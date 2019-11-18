@@ -10,31 +10,45 @@ Custom functions for plots and hipothesis testing
 
 import numpy as np
 
-from scipy.stats import linregress, norm
+from scipy.stats import linregress, norm, sem
 from scipy.stats import t as T
 
 import matplotlib.pyplot as plt
 
-def plot_bars(bar, mylabels, mycolors):
+def plot_bars(data, mylabels, mycolors):
     """
     Bar plots
 
     Arguments:
-    data   -- a list containing the arrays of data to plot
+    data   -- a list containing two arrays of data to plot
     mylabels -- a list of string containig the variables
     mycolors -- a list of strings containgin colors
     """
     fig = plt.figure(1)#, figsize=(5,3))
     ax = fig.add_subplot(111)
 
-    y_loc = (1,2)
-    ydata = np.mean(mylabels[0]), np.mean(mylabels[1])
-    ax.bar(y_loc, ydata, align='center', color = mycolors, alpha=.1)
+    yloc = (1,2)
+    avg = np.mean(data[0]), np.mean(data[1])
+    myparams = dict(width = 0.65, color = mycolors, align = 'center',
+            alpha = 0.5)
+    # bar
+    ax.bar(yloc, avg, **myparams)
 
-    # remove axis
+    # single data points and error bars
+    yerr = sem(data[0]), sem(data[1])
+    ax.errorbar(yloc, avg, yerr, fmt = '.', capsize = 10, elinewidth = 3)
+    yloc0 = np.random.normal(loc=1, scale=0.09, size = len(data[0]))
+    yloc1 = np.random.normal(loc=2, scale=0.09, size = len(data[1]))
+    ax.plot(yloc0, data[0], 'o', color=mycolors[0])
+    ax.plot(yloc1, data[1], 'o', color=mycolors[1])
+    
+    # remove axis and adjust    
+    ax.set_xlim(0,3)
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
+    ax.xaxis.set_ticks_position('none')
+    ax.set_xticklabels([])
     return(ax)
 
 def plot_boxes(data, mylabels, mycolors):
@@ -42,7 +56,7 @@ def plot_boxes(data, mylabels, mycolors):
     Plots box
 
     Arguments:
-    data   -- a list containing the arrays of data to plot
+    data   -- a list containing two arrays of data to plot
     mylabels -- a list of string containig the variables
     mycolors -- a list of strings containgin colors
     """
