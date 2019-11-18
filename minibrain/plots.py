@@ -10,26 +10,37 @@ Custom functions for plots and hipothesis testing
 
 import numpy as np
 
+from scipy.stats import kruskal
+from scipy.stats import mannwhitneyu as mwu
+
 from scipy.stats import linregress, norm, sem
 from scipy.stats import t as T
 
 import matplotlib.pyplot as plt
 
-def plot_bars(data, mylabels, mycolors):
+def plot_bars(data, labels, colors):
     """
-    Bar plots
+    Generate a bar plot of two list of variables and 
+    perform a Mann-Whitney test to test for mean differences.
 
-    Arguments:
+    Arguments
+    ----------
     data   -- a list containing two arrays of data to plot
-    mylabels -- a list of string containig the variables
-    mycolors -- a list of strings containgin colors
+    labels -- a list of string containig the variable names
+    colors -- a list of strings containgin colors to plot the bars
+
+    Returns:
+    A bar plot with the means, error bars with the standard error
+    of the mean, and single data points.
+    The mean and standard error of the samples, together with the
+    the probability that the means are the same.
     """
     fig = plt.figure(1)#, figsize=(5,3))
     ax = fig.add_subplot(111)
 
     yloc = (1,2)
     avg = np.mean(data[0]), np.mean(data[1])
-    myparams = dict(width = 0.65, color = mycolors, align = 'center',
+    myparams = dict(width = 0.65, color = colors, align = 'center',
             alpha = 0.5)
     # bar
     ax.bar(yloc, avg, **myparams)
@@ -39,8 +50,8 @@ def plot_bars(data, mylabels, mycolors):
     ax.errorbar(yloc, avg, yerr, fmt = '.', capsize = 10, elinewidth = 3)
     yloc0 = np.random.normal(loc=1, scale=0.09, size = len(data[0]))
     yloc1 = np.random.normal(loc=2, scale=0.09, size = len(data[1]))
-    ax.plot(yloc0, data[0], 'o', color=mycolors[0])
-    ax.plot(yloc1, data[1], 'o', color=mycolors[1])
+    ax.plot(yloc0, data[0], 'o', color=colors[0])
+    ax.plot(yloc1, data[1], 'o', color=colors[1])
     
     # remove axis and adjust    
     ax.set_xlim(0,3)
@@ -49,6 +60,14 @@ def plot_bars(data, mylabels, mycolors):
     ax.spines['bottom'].set_visible(False)
     ax.xaxis.set_ticks_position('none')
     ax.set_xticklabels([])
+
+    # stdout statistic
+    stats_0 =  ( labels[0],np.mean(data[0]), np.std(data[0]), len(data[0]) )
+    stats_1 =  ( labels[1],np.mean(data[1]), np.std(data[1]), len(data[1]) )
+    print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
+    print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
+
+    print('P = %2.4f, Mann-Whitney (U-test)'%mwu(data[0], data[1])[1])
     return(ax)
 
 def plot_boxes(data, mylabels, mycolors):
