@@ -35,7 +35,7 @@ def plot_bars(data, labels, colors):
     The mean and standard error of the samples, together with the
     the probability that the means are the same.
     """
-    fig = plt.figure(1)#, figsize=(5,3))
+    fig = plt.figure(1) # figsize=(5,3))
     ax = fig.add_subplot(111)
 
     yloc = (1,2)
@@ -64,7 +64,7 @@ def plot_bars(data, labels, colors):
     xlabels = list()
     for i in range(len(data)):
         xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
-    ax.set_xticklabels(xlabels, fontsize=14)
+    ax.set_xtickslabels(xlabels, fontsize=14)
     ax.set_xticks([1,2])
     ax.xaxis.set_ticks_position('none')
 
@@ -77,28 +77,28 @@ def plot_bars(data, labels, colors):
     print('P = %2.4f, Mann-Whitney (U test)'%mwu(data[0], data[1])[1])
     return(ax)
 
-def plot_boxes(data, mylabels, mycolors):
+def plot_boxes(data, labels, colors, ax = None):
     """
     Plots box
 
     Arguments:
     data   -- a list containing two arrays of data to plot
-    mylabels -- a list of string containig the variables
-    mycolors -- a list of strings containgin colors
+    labels -- a list of string containig the variables
+    colors -- a list of strings containgin colors
     """
-    fig = plt.figure(1)#, figsize=(5,3))
-    ax = fig.add_subplot(111)
+    if ax is None:
+        ax = plt.gca() # if not given, get current axis
 
-    # Box plots
-    bp = ax.boxplot(data, widths = 0.45, patch_artist=1)
+    # Box plots (sym = '' do not mark outliners)
+    bp = ax.boxplot(data, widths = 0.45, patch_artist=1, sym='')
     # add sample size to labels
 
     xlabels = list()
     for i in range(len(data)):
-        xlabels.append(mylabels[i] + '\n(n=' + str(len(data[i])) + ')')
+        xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
     ax.set_xticklabels(xlabels)
 
-    for patch, color in zip(bp['boxes'], mycolors):
+    for patch, color in zip(bp['boxes'], colors):
         patch.set_facecolor(color)
         patch.set_edgecolor('black')
         patch.set_alpha(0.1)
@@ -110,13 +110,13 @@ def plot_boxes(data, mylabels, mycolors):
     for cap in bp['caps']:
         cap.set(color='black', lw=3)
 
-    for patch, color in zip(bp['medians'], mycolors):
+    for patch, color in zip(bp['medians'], colors):
         patch.set_color(color)
         patch.set_linewidth(3)
 
     # plot data
     mean = 1
-    for points, color in zip(data, mycolors):
+    for points, color in zip(data, colors):
         xval = np.random.normal(loc = mean, scale = .045, size=len(points))
         mean +=1
         ax.plot(xval, points, 'o', color=color, ms=5)
@@ -131,7 +131,7 @@ def plot_boxes(data, mylabels, mycolors):
     xlabels = list()
     for i in range(len(data)):
         xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
-    ax.set_xtickslabels(xlabels, fontsize = 14)
+    #ax.set_xticklabels(xlabels, fontsize = 14)
     ax.set_xticks([1,2])
     ax.xaxis.set_ticks_position('none')
 
@@ -145,7 +145,7 @@ def plot_boxes(data, mylabels, mycolors):
     return(ax)
 
     
-def plot_linregress(xdata, ydata, ax = None, color = None, title = None):
+def plot_linregress(xdata, ydata, color = None, title = None, ax = None):
     """
     plots the linear fit together with the two-side 95% confidence interval.
     For 95% confident interval see:
@@ -159,10 +159,10 @@ def plot_linregress(xdata, ydata, ax = None, color = None, title = None):
 
     Returns:
     --------
-    A table with parameters for linear fit of xdata and ydata
+    An axis object and a dictionary with linear regression results.
     """
     if ax is None:
-        ax = plt.gca() # if not give, get current axis
+        ax = plt.gca() # if not given, get current axis
 
     m, a, rval, pval, stderr = linregress(xdata, ydata)
         
@@ -202,17 +202,15 @@ def plot_linregress(xdata, ydata, ax = None, color = None, title = None):
     ax.get_xaxis().tick_bottom() # remove unneed ticks
     ax.get_yaxis().tick_left()
 
-    # stdout statistic
-    infostats = [
-        (title, 'value'),
-        ('Slope', m), 
-        ('Intercept', a), 
-        ('Correlation coef', rval), 
-        ('P-value (slope=0)', pval),
-        ('Standard error', stderr),
-        ('Samples', n)
-    ]
-    #print AsciiTable(infostats).table
+    # statistics
+    infostats = {
+        'Slope': m, 
+        'Intercept': a, 
+        'Correlation coef': rval, 
+        'P-value (slope=0)': pval,
+        'Standard error': stderr,
+        'Samples': n
+    }
 
     return(ax, infostats)
     
