@@ -69,8 +69,8 @@ def plot_bars(data, labels, colors):
     ax.xaxis.set_ticks_position('none')
 
     # stdout statistic
-    stats_0 =  ( labels[0],np.mean(data[0]), np.std(data[0]), len(data[0]) )
-    stats_1 =  ( labels[1],np.mean(data[1]), np.std(data[1]), len(data[1]) )
+    stats_0 =  ( labels[0],np.mean(data[0]), sem(data[0]), len(data[0]) )
+    stats_1 =  ( labels[1],np.mean(data[1]), sem(data[1]), len(data[1]) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
     print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
 
@@ -136,8 +136,8 @@ def plot_boxes(data, labels, colors, ax = None):
     ax.xaxis.set_ticks_position('none')
 
     # statistics
-    stats_0 =  ( labels[0],np.mean(data[0]), np.std(data[0]), len(data[0]) )
-    stats_1 =  ( labels[1],np.mean(data[1]), np.std(data[1]), len(data[1]) )
+    stats_0 =  ( labels[0],np.mean(data[0]), sem(data[0]), len(data[0]) )
+    stats_1 =  ( labels[1],np.mean(data[1]), sem(data[1]), len(data[1]) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
     print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
     u_test = mwu(data[0], data[1], alternative = 'two-sided')[1]
@@ -207,14 +207,14 @@ def plot_linregress(xdata, ydata, color = None, label = None, ax = None):
     ax.get_yaxis().tick_left()
 
     # statistics
-    stats = ( label, np.mean(ydata), np.std(ydata), len(ydata) )
+    stats = ( label, np.mean(ydata), sem(ydata), len(ydata) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats)
 
     infostats = {
         'Slope': m, 
         'Intercept': a, 
         'Correlation coef': rval, 
-        'P-value (slope=0)': pval,
+        'P-value': pval,
         'Standard error': stderr,
         'Samples': n
     }
