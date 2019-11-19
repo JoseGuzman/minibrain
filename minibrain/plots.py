@@ -135,17 +135,21 @@ def plot_boxes(data, labels, colors, ax = None):
     ax.set_xticks([1,2])
     ax.xaxis.set_ticks_position('none')
 
-    # stdout statistic
+    # statistics
     stats_0 =  ( labels[0],np.mean(data[0]), np.std(data[0]), len(data[0]) )
     stats_1 =  ( labels[1],np.mean(data[1]), np.std(data[1]), len(data[1]) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
     print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
+    u_test = mwu(data[0], data[1], alternative = 'two-sided')[1]
+    print('P = %2.4f, Mann-Whitney (two-sided U test)'%u_test)
 
-    print('P = %2.4f, Mann-Whitney (U test)'%mwu(data[0], data[1])[1])
-    return(ax)
+    infostats = {
+        'P-value': u_test
+    }
+    return(ax, infostats)
 
     
-def plot_linregress(xdata, ydata, color = None, title = None, ax = None):
+def plot_linregress(xdata, ydata, color = None, label = None, ax = None):
     """
     plots the linear fit together with the two-side 95% confidence interval.
     For 95% confident interval see:
@@ -188,7 +192,7 @@ def plot_linregress(xdata, ydata, color = None, title = None, ax = None):
     lower_conf = yfit - abs(confs)
     upper_conf = yfit + abs(confs)
     
-    ax.set_title(title, color = color)
+    ax.set_title(label, color = color)
     ax.plot(xdata, ydata, 'o', color = color, markersize=5)
     ax.plot(xfit, yfit, lw=2, color = color)
     ax.plot(xfit, upper_conf, '--', lw=1, color = color)
@@ -203,6 +207,9 @@ def plot_linregress(xdata, ydata, color = None, title = None, ax = None):
     ax.get_yaxis().tick_left()
 
     # statistics
+    stats = ( label, np.mean(ydata), np.std(ydata), len(ydata) )
+    print('%s = %2.4f +/- %2.4f, n = %d' %stats)
+
     infostats = {
         'Slope': m, 
         'Intercept': a, 
