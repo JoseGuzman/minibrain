@@ -18,6 +18,30 @@ from scipy.stats import t as T
 
 import matplotlib.pyplot as plt
 
+import matplotlib as mpl
+
+mpl.rcParams['font.sans-serif'] = 'Arial'
+mpl.rcParams['font.family'] = 'sans-serif'
+mpl.rcParams['font.size'] = 14
+
+mpl.rcParams['axes.labelsize'] = 14
+mpl.rcParams['axes.titlesize'] = 14
+mpl.rcParams['axes.linewidth'] = 2
+
+mpl.rcParams['xtick.labelsize'] = 14
+mpl.rcParams['xtick.major.width'] = 2
+mpl.rcParams['xtick.major.size'] = 8
+mpl.rcParams['xtick.minor.width'] = 2
+mpl.rcParams['xtick.minor.size'] = 8
+
+mpl.rcParams['ytick.labelsize'] = 14
+mpl.rcParams['ytick.major.width'] = 2
+mpl.rcParams['ytick.major.size'] = 8
+mpl.rcParams['ytick.minor.width'] = 2
+mpl.rcParams['ytick.minor.size'] = 8
+
+mpl.rcParams['pdf.fonttype'] = 42 # TrueType
+
 def plot_bars(data, labels, colors):
     """
     Generate a bar plot of two list of variables and 
@@ -119,7 +143,7 @@ def plot_boxes(data, labels, colors, ax = None):
     for points, color in zip(data, colors):
         xval = np.random.normal(loc = mean, scale = .045, size=len(points))
         mean +=1
-        ax.plot(xval, points, 'o', color=color, ms=5)
+        ax.plot(xval, points, 'o', color=color, ms=4)
 
     # remove axis and adjust
     ax.spines['right'].set_visible(False)
@@ -139,9 +163,9 @@ def plot_boxes(data, labels, colors, ax = None):
     stats_0 =  ( labels[0],np.mean(data[0]), sem(data[0]), len(data[0]) )
     stats_1 =  ( labels[1],np.mean(data[1]), sem(data[1]), len(data[1]) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
-    print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
+    print('%s = %2.4f +/- %2.4f, n = %d' %stats_1)
     u_test = mwu(data[0], data[1], alternative = 'two-sided')[1]
-    print('P = %2.4f, Mann-Whitney (two-sided U test)'%u_test)
+    print('P = %2.4f, Mann-Whitney (two-sided U test)\n'%u_test)
 
     infostats = {
         'P-value': u_test
