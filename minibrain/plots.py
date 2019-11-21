@@ -59,7 +59,7 @@ def plot_bars(data, labels, colors):
     The mean and standard error of the samples, together with the
     the probability that the means are the same.
     """
-    fig = plt.figure(1) # figsize=(5,3))
+    fig = plt.figure(1) 
     ax = fig.add_subplot(111)
 
     yloc = (1,2)
@@ -101,19 +101,24 @@ def plot_bars(data, labels, colors):
     print('P = %2.4f, Mann-Whitney (U test)'%mwu(data[0], data[1])[1])
     return(ax)
 
-def plot_boxes(data, labels, colors, ax = None):
+def plot_boxes(xdata, ydata, labels, colors, ax = None):
     """
     Plots box
 
     Arguments:
-    data   -- a list containing two arrays of data to plot
+    xdata   -- a list containing data to plot
+    ydata   -- a list containing data to plot
     labels -- a list of string containig the variables
     colors -- a list of strings containgin colors
+
+    Returns:
+    A box plots with 
     """
     if ax is None:
         ax = plt.gca() # if not given, get current axis
 
     # Box plots (sym = '' do not mark outliners)
+    data = [xdata, ydata]
     bp = ax.boxplot(data, widths = 0.45, patch_artist=1, sym='')
     # add sample size to labels
 
