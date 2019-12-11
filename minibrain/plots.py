@@ -18,30 +18,6 @@ from scipy.stats import t as T
 
 import matplotlib.pyplot as plt
 
-import matplotlib as mpl
-
-mpl.rcParams['font.sans-serif'] = 'Arial'
-mpl.rcParams['font.family'] = 'sans-serif'
-mpl.rcParams['font.size'] = 14
-
-mpl.rcParams['axes.labelsize'] = 14
-mpl.rcParams['axes.titlesize'] = 14
-mpl.rcParams['axes.linewidth'] = 2
-
-mpl.rcParams['xtick.labelsize'] = 14
-mpl.rcParams['xtick.major.width'] = 2
-mpl.rcParams['xtick.major.size'] = 8
-mpl.rcParams['xtick.minor.width'] = 2
-mpl.rcParams['xtick.minor.size'] = 8
-
-mpl.rcParams['ytick.labelsize'] = 14
-mpl.rcParams['ytick.major.width'] = 2
-mpl.rcParams['ytick.major.size'] = 8
-mpl.rcParams['ytick.minor.width'] = 2
-mpl.rcParams['ytick.minor.size'] = 8
-
-mpl.rcParams['pdf.fonttype'] = 42 # TrueType
-
 def plot_bars(data, labels, colors):
     """
     Generate a bar plot of two list of variables and 

@@ -1,0 +1,51 @@
+#=========================================================================
+# paper.mplstyle
+#
+# Jose Guzman, jose.guzman<at>guzman-lab.com
+# 
+# A matplotlib style sheet for publication figures. You can store it
+# in $home/.matplotlib/stylelib/ after setting $MPLCONFIGDIR
+# with export MPLCONFIGDIR = "$HOME/.matplotlib/"
+#
+# To use it:
+# from matplotlib import style
+# style.use('paper')
+# 
+#=========================================================================
+
+#FONT
+font.family : sans-serif
+font.sans-serif : Arial
+font.size : 14
+
+# LINES
+lines.linewidth : 2 
+lines.markeredgewidth : 0.0
+
+# AXES
+axes.titlesize : 16
+axes.labelsize : 16
+axes.linewidth : 2
+
+axes.spines.top    : False
+axes.spines.right  : False
+axes.spines.bottom : True
+axes.spines.left   : True
+
+# TICKS
+xtick.labelsize   : 16
+xtick.major.width : 2
+xtick.major.size  : 8
+xtick.direction : out
+
+ytick.labelsize   : 14
+ytick.major.width : 2
+ytick.major.size  : 8
+ytick.direction : out
+
+# FIGURE OUTPUT 
+figure.figsize  : 6, 4
+figure.dpi  : 96 
+savefig.dpi : 200
+
+pdf.fonttype : 42
