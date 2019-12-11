@@ -54,7 +54,7 @@ class EphysLoader(object):
         ----------
         fname (str) -- filename (e.g., 'continuous.dat')
         date (str) -- recording date format (e.g., %Y-%m-%d_%H-%M-%S, like '2019-10-09_15-26-38')
-        date (str) -- birth date format (e.g., '2019-10-07_00_00-00')
+        birth (str) -- birth date format (e.g., '2019-10-07_00_00-00')
         nchan (int)   -- number of channels in recording. It
             is 67 by default (64 ADC + 3 AUX from Intan RHD2000).
         """
@@ -65,10 +65,12 @@ class EphysLoader(object):
             age = 0
         else:
             myformat = '%Y-%m-%d_%H-%M-%S'
-            rec = datetime.datetime.strptime(date, myformat) 
-            birth = datetime.datetime.strptime(birth, myformat) 
-            delta = rec-birth
+            recdate = datetime.datetime.strptime(date, myformat) 
+            birthdate = datetime.datetime.strptime(birth, myformat) 
+            delta = recdate-birthdate
             age = delta.days + delta.seconds/(24*60*60)
+
+        self.age = age
 
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
