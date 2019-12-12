@@ -18,7 +18,8 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-myshank = {1.0:'A', 2.0:'B', 3.0:'C', 4.0:'D'}
+myshank = {1.0:'A', 2.0:'B', 3.0:'C', 4.0:'D', 
+           5.0:'E', 6.0:'F', 7.0:'G', 8.0:'H'}
 read_shank = lambda key: myshank[key]
 
 class Units(object):

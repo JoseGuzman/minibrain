@@ -26,24 +26,32 @@ from scipy.signal import find_peaks
 class EphysLoader(object):
     """
     A class to load extracellular recordings acquired
-    with 64 probes silicon probes from Cambridge Neurotech 
+    with the probes silicon probes from Cambridge Neurotech 
     """
     # A dictionary with shanks ID and colors
     shank = {'A': range(16),
              'B': range(16,32),
              'C': range(32,48),
-             'D': range(48,64)
+             'D': range(48,64),
+             'E': range(64,80),
+             'F': range(80,96),
+             'G': range(96,112),
+             'H': range(112,128)
             }
-    color = {'A': '#A52A2A',
-             'B': '#0095FF',
+
+    color = {'A': '#0080FF',
+             'B': '#FF0000',
              'C': '#FF9933',
-             'D': '#00AA00' 
+             'D': '#00AA00',
+             'E': '#FF55FF',
+             'F': '#FFFF7F',
+             'G': '#55FFFF',
+             'H': '#00FF00'
             }
 
     dt = 1/30.       # in ms
     sf = 30000      # number of samples per second
     gain = 0.195    # uVolts per bit (from Intant) 
-
 
     def __init__(self, fname, date = None, birth = None, nchan = 67):
         """
@@ -53,7 +61,8 @@ class EphysLoader(object):
         Arguments:
         ----------
         fname (str) -- filename (e.g., 'continuous.dat')
-        date (str) -- recording date format (e.g., %Y-%m-%d_%H-%M-%S, like '2019-10-09_15-26-38')
+        date (str) -- recording date format (e.g., %Y-%m-%d_%H-%M-%S, 
+            like '2019-10-09_15-26-38')
         birth (str) -- birth date format (e.g., '2019-10-07_00_00-00')
         nchan (int)   -- number of channels in recording. It
             is 67 by default (64 ADC + 3 AUX from Intan RHD2000).
@@ -75,7 +84,8 @@ class EphysLoader(object):
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
         self._nsamples = nsamples
-        print('Recording duration = %2.4f sec.'%(nsamples/self.sf) )
+        self.seconds = nsamples/self.sf # duration in seconds
+        print('Recording duration = %2.4f sec.'%self.seconds )
         print('Recording age      = %2.4f days.'%age )
 
         # accesss without reading the whole file 
