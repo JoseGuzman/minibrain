@@ -106,3 +106,10 @@ class Units(object):
         setattr(myunit, 'df', mydf)
 
         return myunit
+
+    def __len__(self):
+        """
+        Returns the number of good isolated units recorded in shank
+        """
+        return len(self.df)
+
