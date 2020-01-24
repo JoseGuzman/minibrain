@@ -36,11 +36,15 @@ axes.spines.left   : True
 xtick.labelsize   : 16
 xtick.major.width : 2
 xtick.major.size  : 8
+xtick.minor.width : 2
+xtick.minor.size  : 6
 xtick.direction : out
 
 ytick.labelsize   : 14
 ytick.major.width : 2
 ytick.major.size  : 8
+ytick.minor.width : 2
+ytick.minor.widht : 6
 ytick.direction : out
 
 # FIGURE OUTPUT 
