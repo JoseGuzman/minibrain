@@ -3,40 +3,19 @@ lfp.py
 
 Jose Guzman, jose.guzman@guzman-lab.com
 
-Created: Mon Jul 29 20:59:51 CEST 2019
+Created: Thu Feb 13 10:03:06 CET 2020
 
-Contains a class to analyze extracellular recordings 
-Cambride Neurotech silicon probes, sorted with spyking-circus
+Contains a class to analyze local filed potentials with  
+Cambride Neurotech silicon probes.
 
 Example:
 >>> from minibrain  import Power 
+>>> mylfp = Power(data, fs = 30e3)
 """
 
 import numpy as np
 from scipy import signal
 from scipy.integrate import simps
-import matplotlib.pyplot as plt
-
-myshank = {1.0:'A', 2.0:'B', 3.0:'C', 4.0:'D', 
-           5.0:'E', 6.0:'F', 7.0:'G', 8.0:'H'}
-read_shank = lambda key: myshank[key]
-
-def low_pass(x, cutoff):
-    """
-    Returns the low-pass filter with a 4th butter
-
-    Arguments
-    ---------
-    x (array):
-    the path to look for spike_times.npy and spike_clusters.npy 
-    cutoff (float):
-    the cutoff frequency (in sample units, remember to divide it
-    by the sample rate (e.g., 40/sf for 40 Hz cutoff.
-    """
-
-    b, a = signal.butter(N=4, Wn = cutoff, btype='lowpass', analog=False)
-    fsignal = signal.filtfilt(b,a, x)
-    return(fsignal)
 
 class Power(object):
     """
@@ -44,85 +23,127 @@ class Power(object):
     with silicon probes from Cambridge Neurotech.
     """
 
-    def __init__(self, x = , sr = 30000):
+    def __init__(self, data=None, sr = 30000):
         """
         Reads a NumPy array and returns the power spectrum 
     
         Arguments
         ---------
-        x (array):
-            the path to look for spike_times.npy and spike_clusters.npy 
+        data (array):
+            the channel to analyze the power spectra. 
         sr (float):
             the sampling rate of the silicon probe to read 
         """
-        # down-sample the signal to 1 kHz
-        self.sr = int(sr/30)
-        rec = signal.resample( x, num = self.sr)
+        if data is not None:
+            mysr = int(sr/30)
+            Nyquist = mysr/2
 
-        # low-pass filter at 40 Hz
-        self.myrec = low_pass(rec, 40/self.sr)
+            # 1) down-sample the signal to 1 kHz 
+            ds_rec = self.resample(data, num = int(data.size/30) )
 
-        # compute power spectrum (in uV^2) with Welch's method
-        segment = int( self.sr/0.25 ) # 250 ms window
-        myhann = signal.get_window('hann', segment)
-        myparams = dict(fs = self.sr, nperseg = segment, window = myhann
-                noverlap = segment/2, scaling = 'spectrum', 
-                return_onesided = True)
-        freq, ps = signal.welch(x = self.myrec, **myparams) # uV^2
+            # 2) low-pass filter at 40 Hz
+            lp_rec = self.low_pass(ds_rec, 49/Nyquist)
+
+            # 2) compute power spectrum (in uV^2) with Welch's method
+            segment = int( mysr*5 ) # 5 seconds window
+            freq, ps = self.welch(mysr, lp_rec, segment) # uV^2
+            delta = self.get_delta(freq, ps)
+        else:
+            # zero power and frequencies between 0-100 Hz at 0.2 Hz reso
+            freq, ps = np.arange(0,100,.2), np.zeros(int(100/0.2))
+            delta = 0.0
 
         self.freq = freq
-        self.ps = 2*ps
+        self.ps = ps
+        self.delta = delta
 
-        # get frequencies bands
-        delta = simps(ps[np.logical_and(freq>=1, freq<4)], dx = freq[1])
-        theta = simps(ps[np.logical_and(freq>=4, freq<8)], dx = freq[1])
-        alpha = simps(ps[np.logical_and(freq>=8, freq<12)],dx = freq[1])
-        beta  = simps(ps[np.logical_and(freq>12, freq<30)],dx = freq[1])
-        gamma = simps(ps[np.logical_and)freq>30,freq<100)],dx = freq[1])
-        Nsamples = int( math.floor(myrec.size/2) )
-        Nyquist = self.sr/2
+        # get frequencies bands with Simpson integration
+        delta =simps(self.ps[np.logical_and(freq>=1,freq<=4)],dx=freq[1])
+        theta =simps(self.ps[np.logical_and(freq>=4,freq<=8)], dx=freq[1])
+        alpha =simps(self.ps[np.logical_and(freq>=8,freq<=12)],dx=freq[1])
+        beta  =simps(self.ps[np.logical_and(freq>=12,freq<=30)],dx=freq[1])
+        gamma =simps(self.ps[np.logical_and(freq>=30,freq<=100)],dx=freq[1])
+        band  =simps(self.ps[np.logical_and(freq>=0,freq<=100)],dx=freq[1])
+        
+        #self.delta = {'absolute': delta, 'relative': delta/band}
 
-
-    def pulsecopy(self, pulse):
+    def __call__(self, data = None, sr = 30000):
         """
-        Returns a new instance of the Unit class, 
-        but only with the spikes entered in pulse.
+        Returns a Power object upon call
+        """
+        return Power(data,sr) # empty freq and ps
+
+    def get_delta(self, freq, ps):
+        """
+        Computes the absolute delta power (1-4Hz) calculating
+        the area of the power vs frequency with the Simpson method.
+
+        Results are in uV^2
+        """
+        delta = np.logical_and( freq >= 1, freq <= 4 )
+        band = np.logical_and(freq >=0, freq <= 100)
+        rdelta = simps( ps[delta] , dx = freq[1])
+        rband = simps( ps[band] , dx = freq[1])
+        return {'absolute':rdelta, 'relative':rdelta/rband}
+
+    def low_pass(self, data, cutoff):
+        """
+        Returns the low-pass filter with a 4th butter
 
         Arguments
         ---------
-        pulse (list)
-            a list of two values start and end values
-        """
-        myclass = self.__class__
-        myunit = myclass.__new__(myclass)
+        data (array):
+        the path to look for spike_times.npy and spike_clusters.npy 
+        cutoff (float):
+        the cutoff frequency (in sample units, remember to divide it
+        by the Nyquist frequency in sampling points.
 
-        # make deep copies
-        mydict = copy.deepcopy( self.unit )
-        mydf = copy.deepcopy(self.df)
+        Example
+        -------
+        >>> Nyquist = 30000/2
+        >>> mycutoff = 100/Nyquist # for 100 Hz low pass filter
+        >>> mytrace = low_pass(data = rec, cutoff = mycutoff)
+        """
+        myparams = dict(btype='lowpass', analog=False)
+        b, a = signal.butter(N = 4, Wn = cutoff, **myparams)
+        return signal.filtfilt(b,a, data)
+
+    def resample(self, data, num):
+        """
+        Down sample the data at the size given in num.
+        See signal.resample for details.
+        """
+
+        return signal.resample(data, num)
+
+    def welch(self, sr, data, segment):
+        """
+        Computes the Welch's periodogram in segments of the size
+        entered in sampling points. It uses a hann window.
+        The spectral resolution is 0.2 Hz by a 5 second window.
+
+        Arguments:
+        ----------
+        sr (int)
+        The sampling rate
+
+        data (numpy array)
+        A vector containing the voltages
         
-        for key, values  in mydict.items():
-            mytimes = list()
-            for p in pulse:
-                start, end = p
-                spk_times = np.array(values)
-                select = np.logical_and(spk_times>start, spk_times<end)
-                if not spk_times[select].size == 0:
-                    newval = spk_times[select].tolist()
-                    mytimes.extend( newval )
-            mydict[key] = np.array(mytimes)
-            
-            index = mydf.index[ mydf['id']==key]
-            mydf.loc[index, 'n_spikes'] =  int(len(mytimes))
+        segment (int)
+        The number of sampling points to take for the segment.
 
-        # set attributes of new object 
-        setattr(myunit, 'unit', copy.deepcopy(mydict))
-        setattr(myunit, 'df', mydf)
-
-        return myunit
-
-    def __len__(self):
+        Returns:
+        --------
+        A tuple with frequencies and power (uV**2)
         """
-        Returns the number of good isolated units recorded in shank
-        """
-        return len(self.df)
+        myhann = signal.get_window('hann', segment)
+        myparams = dict(fs = sr, nperseg = segment, window = myhann,
+            noverlap = segment/2, scaling = 'spectrum', 
+            return_onesided = True)
+        
+        freq, ps = signal.welch(data, **myparams) # uV^2
 
+        return(freq, 2*ps) # multiply to get negative frequencies
+
+power = Power(data = None, sr = 30000) # empty Power object
