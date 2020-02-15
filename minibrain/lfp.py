@@ -23,7 +23,7 @@ class Power(object):
     with silicon probes from Cambridge Neurotech.
     """
 
-    def __init__(self, data=None, sr = 30000):
+    def __init__(self, data=None, srate = 30000):
         """
         Reads a NumPy array and returns the power spectrum 
     
@@ -31,11 +31,11 @@ class Power(object):
         ---------
         data (array):
             the channel to analyze the power spectra. 
-        sr (float):
+        srate (float):
             the sampling rate of the silicon probe to read 
         """
         if data is not None:
-            mysr = int(sr/30)
+            mysr = int(srate/30)
             Nyquist = mysr/2
 
             # 1) down-sample the signal to 1 kHz 
@@ -67,11 +67,11 @@ class Power(object):
         
         #self.delta = {'absolute': delta, 'relative': delta/band}
 
-    def __call__(self, data = None, sr = 30000):
+    def __call__(self, data = None, srate = 30000):
         """
         Returns a Power object upon call
         """
-        return Power(data,sr) # empty freq and ps
+        return Power(data,srate) # empty freq and ps
 
     def get_delta(self, freq, ps):
         """
@@ -94,6 +94,7 @@ class Power(object):
         ---------
         data (array):
         the path to look for spike_times.npy and spike_clusters.npy 
+
         cutoff (float):
         the cutoff frequency (in sample units, remember to divide it
         by the Nyquist frequency in sampling points.
@@ -105,6 +106,7 @@ class Power(object):
         >>> mytrace = low_pass(data = rec, cutoff = mycutoff)
         """
         myparams = dict(btype='lowpass', analog=False)
+        # generate filter kernel (a and b)
         b, a = signal.butter(N = 4, Wn = cutoff, **myparams)
         return signal.filtfilt(b,a, data)
 
@@ -116,7 +118,7 @@ class Power(object):
 
         return signal.resample(data, num)
 
-    def welch(self, sr, data, segment):
+    def welch(self, srate, data, segment):
         """
         Computes the Welch's periodogram in segments of the size
         entered in sampling points. It uses a hann window.
@@ -124,7 +126,7 @@ class Power(object):
 
         Arguments:
         ----------
-        sr (int)
+        srate (int)
         The sampling rate
 
         data (numpy array)
@@ -138,7 +140,7 @@ class Power(object):
         A tuple with frequencies and power (uV**2)
         """
         myhann = signal.get_window('hann', segment)
-        myparams = dict(fs = sr, nperseg = segment, window = myhann,
+        myparams = dict(fs = srate, nperseg = segment, window = myhann,
             noverlap = segment/2, scaling = 'spectrum', 
             return_onesided = True)
         
@@ -146,4 +148,4 @@ class Power(object):
 
         return(freq, 2*ps) # multiply to get negative frequencies
 
-power = Power(data = None, sr = 30000) # empty Power object
+power = Power(data = None, srate = 30000) # empty Power object
