@@ -50,7 +50,7 @@ class EphysLoader(object):
             }
 
     dt = 1/30.       # in ms
-    sr = 30000      # number of samples per second
+    srate = 30000      # number of samples per second
     gain = 0.195    # uVolts per bit (from Intant) 
 
     def __init__(self, fname, date = None, birth = None, nchan = 67):
@@ -84,7 +84,7 @@ class EphysLoader(object):
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
         self._nsamples = nsamples
-        self.seconds = nsamples/self.sr # duration in seconds
+        self.seconds = nsamples/self.srate # duration in seconds
         print('Recording duration = %2.4f sec.'%self.seconds )
         print('Recording age      = %2.4f days.'%age )
 
@@ -139,7 +139,7 @@ class EphysLoader(object):
                 peaks = peaks - shift
                 for p in peaks:
                     pstart, pend = p - mydist, p + mydist
-                    print('Remove t = %2.4f sec.'%(pstart/self.sr))
+                    print('Remove t = %2.4f sec.'%(pstart/self.srate))
                     # rewrite mydata
                     mydata = np.delete(mydata, np.s_[pstart: pend], axis=1)
         
