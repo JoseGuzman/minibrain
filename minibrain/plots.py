@@ -18,14 +18,15 @@ from scipy.stats import t as T
 
 import matplotlib.pyplot as plt
 
-def plot_bars(data, labels, colors):
+def plot_bars(xdata, ydata, labels, colors, ax = None):
     """
     Generate a bar plot of two list of variables and 
     perform a Mann-Whitney test to test for mean differences.
 
     Arguments
     ----------
-    data   -- a list containing two arrays of data to plot
+    xdata   -- a list containing data to plot
+    ydata   -- a list containing data to plot
     labels -- a list of string containig the variable names
     colors -- a list of strings containgin colors to plot the bars
 
@@ -35,8 +36,10 @@ def plot_bars(data, labels, colors):
     The mean and standard error of the samples, together with the
     the probability that the means are the same.
     """
-    fig = plt.figure(1) 
-    ax = fig.add_subplot(111)
+    if ax is None:
+        ax = plt.gca() # if not given, get current axis
+
+    data = [xdata, ydata]
 
     yloc = (1,2)
     # add sample size to labels
@@ -47,12 +50,17 @@ def plot_bars(data, labels, colors):
     ax.bar(yloc, avg, **myparams)
 
     # single data points and error bars
-    yerr = sem(data[0]), sem(data[1])
-    ax.errorbar(yloc, avg, yerr, fmt = '.', capsize = 10, elinewidth = 3)
-    yloc0 = np.random.normal(loc=1, scale=0.09, size = len(data[0]))
-    yloc1 = np.random.normal(loc=2, scale=0.09, size = len(data[1]))
-    ax.plot(yloc0, data[0], 'o', color=colors[0])
-    ax.plot(yloc1, data[1], 'o', color=colors[1])
+    mycaps = dict(capsize = 10, elinewidth = 3, markeredgewidth = 3)
+
+    yerr0 = sem(data[0])
+    xloc0 = np.random.normal(loc=1, scale=0.09, size = len(data[0]))
+    ax.errorbar(yloc[0], avg[0], yerr0, color=colors[0], **mycaps) 
+    ax.plot(xloc0, data[0], 'o', ms=4, color='k')
+
+    yerr1 = sem(data[1])
+    xloc1 = np.random.normal(loc=2, scale=0.09, size = len(data[1]))
+    ax.errorbar(yloc[1], avg[1], yerr1, color=colors[1], **mycaps)
+    ax.plot(xloc1, data[1], 'o', ms=4, color='k')
     
     # remove axis and adjust    
     ax.set_xlim(0,3)
@@ -64,18 +72,21 @@ def plot_bars(data, labels, colors):
     xlabels = list()
     for i in range(len(data)):
         xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
-    ax.set_xtickslabels(xlabels, fontsize=14)
+    ax.set_xticklabels(xlabels, fontsize=14)
     ax.set_xticks([1,2])
     ax.xaxis.set_ticks_position('none')
 
-    # stdout statistic
+    # statistics
     stats_0 =  ( labels[0],np.mean(data[0]), sem(data[0]), len(data[0]) )
     stats_1 =  ( labels[1],np.mean(data[1]), sem(data[1]), len(data[1]) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
     print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
+    u_test = mwu(data[0], data[1], alternative = 'two-sided')[1]
+    print('P = %2.4f, Mann-Whitney (two-side U test)'%u_test)
 
-    print('P = %2.4f, Mann-Whitney (U test)'%mwu(data[0], data[1])[1])
-    return(ax)
+    infostats = {'P-value': u_test}
+
+    return(ax, infostats)
 
 def plot_boxes(xdata, ydata, labels, colors, ax = None):
     """
@@ -119,7 +130,7 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
         patch.set_color(color)
         patch.set_linewidth(3)
 
-    # plot data
+    # plot data points 
     mean = 1
     for points, color in zip(data, colors):
         xval = np.random.normal(loc = mean, scale = .045, size=len(points))
@@ -148,9 +159,8 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
     u_test = mwu(data[0], data[1], alternative = 'two-sided')[1]
     print('P = %2.4f, Mann-Whitney (two-sided U test)\n'%u_test)
 
-    infostats = {
-        'P-value': u_test
-    }
+    infostats = {'P-value': u_test}
+
     return(ax, infostats)
 
     
