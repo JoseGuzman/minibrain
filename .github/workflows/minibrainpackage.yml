@@ -32,8 +32,8 @@ jobs:
 
       - name: Unittesting with ${{ matrix.python-version }} 
         run: |
-          cd $GITHUB_WORKSPACE/test
           pip install -r requirements.txt
+          cd $GITHUB_WORKSPACE/test
           python power_unittest.py
             #actions/setup-python@v1 test/power_unittest.py
 
