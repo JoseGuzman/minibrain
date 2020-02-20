@@ -1,3 +1,7 @@
+#=========================================================================
+# minibrainpackage.yml 
+#
+#=========================================================================
 name: minibrain 
 
 on: [push]
@@ -21,7 +25,14 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
+      - name: install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python install -r requirements.txt
+
       - name: Unittesting with ${{ matrix.python-version }} 
-        run: ${{ matrix.python-version }} test/power_unittest.py
+        run: |
+          python test/power_unittest.py
+            #actions/setup-python@v1 test/power_unittest.py
 
     
