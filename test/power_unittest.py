@@ -1,5 +1,5 @@
 """
-unittest_test.py
+power_unittest.py
 
 Author: Jose Guzman, jose.guzman@guzman-lab.com
 Created: Thu Feb 20 13:31:16 CET 2020
