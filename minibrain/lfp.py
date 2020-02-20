@@ -17,6 +17,48 @@ import numpy as np
 from scipy import signal
 from scipy.integrate import simps
 
+def fourier_spectrum(data, srate, fmax = None):
+    """
+    Calculate amplitudes and frequencies of the Fourier transform
+    of the signal.
+    
+    Arguments:
+    ----------
+    data (array)
+        A numpy array in microvolts
+    
+    srate (int)
+        the sampling rate in samples per second
+    
+    fmax (float)
+        the maximal frequency to compute the Fourier coefficients
+        
+    returns:
+    The frequencies and amplitudes extracted from the Fourier coefficients
+    until the Nyquist frequency. 
+        
+    """
+    fcoeff = np.fft.fft(data)/data.size
+    DC = [np.abs(fcoeff[0])] # DC component
+    amp = np.concatenate( (DC, 2*np.abs(fcoeff[1:])) )
+    
+    Nsamples = int( np.floor(data.size/2) )
+    Nyquist = srate/2.
+    hz = np.linspace(0, Nyquist, Nsamples + 1)
+    dhz = hz[1] # 
+    
+    # some info
+    #print('Nyquist frequency = %d Hz'%Nyquist)
+    #print('Spectral resolution = %2.4f Hz'%dhz)    
+    
+    if fmax is not None:
+        # read until fmax frequency
+        hz = hz[:int(fmax/dhz)]
+    
+    # amplitudes only untin Nyquist frequency
+    return (hz, amp[:len(hz)])
+
+
 class Power(object):
     """
     A class to load extracellular units recordings acquired
