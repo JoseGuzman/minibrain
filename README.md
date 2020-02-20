@@ -2,7 +2,7 @@
 
 # minibrain 
 
-A python module to analyze electrophysiology and calcium imaging in minibrains.
+A python module to analyze electrical signals and calcium fluorescence in brain organoids.
 
 Requirements
 ============
@@ -33,5 +33,7 @@ myrec = EphysLoader('continuous.dat')
 
 from minibrain import Units
 myunits = Units('/')
+
+from minibrain.lfp import power
 ```
 
