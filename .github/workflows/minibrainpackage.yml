@@ -1,10 +1,10 @@
-name: minibrain package 
+name: minibrain 
 
 on: [push]
 
 jobs:
-  build:
 
+  test:
     runs-on: ubuntu-latest
     strategy:
       max-parallel: 4
@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
