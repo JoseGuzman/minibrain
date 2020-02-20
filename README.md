@@ -2,7 +2,7 @@
 
 # minibrain 
 
-A python module to analyze electrical signals and calcium fluorescence in brain organoids.
+A python module to analyze electrical signals and calcium fluorescence in brain organoids. For personal use only.
 
 Requirements
 ============
