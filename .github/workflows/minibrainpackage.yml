@@ -1,6 +1,8 @@
 #=========================================================================
 # minibrainpackage.yml 
 #
+# Jose Guzman, jose.guzman<at>guzman-lab.com
+# Created: Thu Feb 20 17:10:59 CET 2020
 #=========================================================================
 name: minibrain 
 
@@ -13,7 +15,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.5, 3.6, 3.7]
+        python-version: [3.5, 3.6, 3.7, 3.8]
 
     steps:
       - uses: actions/checkout@v1
@@ -34,9 +36,5 @@ jobs:
         run: |
           pip install minibrain 
           pip install -r requirements.txt
-          pip install numpy
           cd $GITHUB_WORKSPACE/test
           python power_unittest.py
-            #actions/setup-python@v1 test/power_unittest.py
-
-    
