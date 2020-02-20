@@ -1,4 +1,4 @@
-# minibrain
+# minibrain ![minibrain](https://github.com/JoseGuzman/minibrain/workflows/minibrain/badge.svg)
 
 A python module to analyze electrophysiology and calcium imaging in minibrains.
 
