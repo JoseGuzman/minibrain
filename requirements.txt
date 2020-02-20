@@ -2,4 +2,4 @@ git+https://github.com/JoseGuzman/minibrain
 numpy
 matplotlib
 scipy
-
+pandas
