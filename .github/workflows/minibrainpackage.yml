@@ -1,4 +1,4 @@
-name: TEST 
+name: minibrain package 
 
 on: [push]
 
@@ -15,7 +15,6 @@ jobs:
       - uses: actions/checkout@v1
         with:
           fetch-depth: 1
-
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v1
       with:
