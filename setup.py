@@ -42,6 +42,7 @@ setup(
     author_email = 'jguzman at guzman-lab.com',
     url = 'https://github.com/JoseGuzman/minibrain.git',
     packages = ['minibrain'],
+    python_requires='>=2.7',
     include_package_data = True,# include additional data
     package_data={
         # If any package contains *.txt files, include them:
