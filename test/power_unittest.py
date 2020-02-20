@@ -17,7 +17,7 @@ from minibrain.lfp import fourier_spectrum
 
 class TestPowerObject(unittest.TestCase):
     """
-    Unittestin for Power object in minibrain.lfp
+    Unittesting for objects in minibrain.lfp
     """
     
     def setUp(self):
