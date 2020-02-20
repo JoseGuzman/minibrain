@@ -118,19 +118,19 @@ class Power(object):
 
         return signal.resample(data, num)
 
-    def welch(self, srate, data, segment):
+    def welch(self, data, srate, segment):
         """
         Computes the Welch's periodogram in segments of the size
-        entered in sampling points. It uses a hann window.
-        The spectral resolution is 0.2 Hz by a 5 second window.
+        entered in sampling points. It uses a Hann window.
+        The spectral resolution is 0.2 Hz by a 5 seconds window.
 
         Arguments:
         ----------
+        data (array)
+        A vector containing the voltages
+
         srate (int)
         The sampling rate
-
-        data (numpy array)
-        A vector containing the voltages
         
         segment (int)
         The number of sampling points to take for the segment.
