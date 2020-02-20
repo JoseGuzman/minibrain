@@ -54,7 +54,7 @@ class TestPowerObject(unittest.TestCase):
         the right frequencies.
         """
         self.logF.debug('Frequency analysis with Fourier\n')
-        for freq in np.random.randint(low=1, high=100, size = 10):
+        for freq in np.random.uniform(low=1, high=100, size = 10):
             mywave = self.wave(freq)
             f, myamp = fourier_spectrum(data = mywave, srate=self.srate)
             myfreq = f[myamp.argmax()]
@@ -62,8 +62,8 @@ class TestPowerObject(unittest.TestCase):
             info = 'Wave frequency = {:7.5f}, Fourier = {:7.5f}'
             self.logF.debug( info.format(freq, myfreq) )
 
-            # Once rounded to 4 places, the difference is 0.00001
-            self.assertAlmostEqual(freq, myfreq, 4, 1e-5)
+            # Once rounded to 2 places, the difference is 0.001
+            self.assertAlmostEqual(freq, myfreq, delta = 0.1)
         
     def test_Welch_amplitudes(self):
         """
@@ -92,7 +92,7 @@ class TestPowerObject(unittest.TestCase):
         myparams = dict(srate = self.srate, segment = self.srate*5)
 
         self.logW.debug('Frequency analysis with Welch\n')
-        for freq in np.random.randint(low=1, high=100, size = 10):
+        for freq in np.random.uniform(low=1, high=100, size = 10):
             mywave = self.wave(freq)
             f, mypower = power.welch(data = mywave, **myparams)
             myfreq = f[mypower.argmax()]
@@ -100,8 +100,8 @@ class TestPowerObject(unittest.TestCase):
             info = 'Wave frequency = {:7.5f}, Welch = {:7.5f}'
             self.logW.debug( info.format(freq,myfreq) )
 
-            # Once rounded to 5 places, the difference is 0.00001
-            self.assertAlmostEqual(freq, myfreq, 5, 1e-5)
+            # Once rounded to 2 places, the difference is 0.01
+            self.assertAlmostEqual(freq, myfreq, delta = 0.1)
 
 
 if __name__ == '__main__':
