@@ -34,6 +34,7 @@ jobs:
         run: |
           pip install minibrain 
           pip install -r requirements.txt
+          pip install numpy
           cd $GITHUB_WORKSPACE/test
           python power_unittest.py
             #actions/setup-python@v1 test/power_unittest.py
