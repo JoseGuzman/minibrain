@@ -80,18 +80,18 @@ class Power(object):
             mysr = int(srate/30)
             Nyquist = mysr/2
 
-            # 1) down-sample the signal to 1 kHz 
-            ds_rec = self.resample(data, num = int(data.size/30) )
+            # 1) low-pass at 500 Hz
+            lp_rec = self.low_pass(data, 500/Nyquist)
 
-            # 2) low-pass filter at 40 Hz
-            lp_rec = self.low_pass(ds_rec, 49/Nyquist)
+            # 1) down-sample the signal to 1 kHz 
+            ds_rec = self.resample(lp_rec, num = int(data.size/30) )
 
             # 2) compute power spectrum (in uV^2) with Welch's method
             segment = int( mysr*10 ) # 10 seconds window
-            freq, ps = self.welch(lp_rec, mysr, segment) # uV^2
+            freq, ps = self.welch(ds_rec, mysr, segment) # uV^2
             delta = self.get_delta(freq, ps)
         else:
-            # zero power and frequencies between 0-100 Hz at 0.2 Hz reso
+            # zero power and frequencies between 0-100 Hz at 0.1 Hz reso
             freq, ps = np.arange(0,100,.2), np.zeros(int(100/0.2))
             delta = 0.0
 
