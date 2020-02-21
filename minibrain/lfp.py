@@ -87,8 +87,8 @@ class Power(object):
             lp_rec = self.low_pass(ds_rec, 49/Nyquist)
 
             # 2) compute power spectrum (in uV^2) with Welch's method
-            segment = int( mysr*5 ) # 5 seconds window
-            freq, ps = self.welch(mysr, lp_rec, segment) # uV^2
+            segment = int( mysr*10 ) # 10 seconds window
+            freq, ps = self.welch(lp_rec, mysr, segment) # uV^2
             delta = self.get_delta(freq, ps)
         else:
             # zero power and frequencies between 0-100 Hz at 0.2 Hz reso
