@@ -86,8 +86,8 @@ class EphysLoader(object):
         self._nsamples = nsamples
         self.seconds = nsamples/self.srate # duration in seconds
         # prompt info: duration in minutes, age in months
-        print('Recording duration = %2.4f min.'%self.seconds/60 )
-        print('Recording age      = %2.4f months.'%age/30 )
+        print('Recording duration = {:2.4f} min.'.format(self.seconds/60) )
+        print('Recording age      = {:2.4f} months.'.format(age/30) ) 
 
         # accesss without reading the whole file 
         # np.int16 is Integer (-32768 to 32767)
