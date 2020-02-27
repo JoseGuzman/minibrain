@@ -51,7 +51,8 @@ class EphysLoader(object):
 
     dt = 1/30.       # in ms
     srate = 30000      # number of samples per second
-    gain = 0.195    # uVolts per bit (from Intant) 
+    # read "bit_volts" in structure.oebin
+    gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
 
     def __init__(self, fname, date = None, birth = None, nchan = 67):
         """
@@ -65,7 +66,8 @@ class EphysLoader(object):
             like '2019-10-09_15-26-38')
         birth (str) -- birth date format (e.g., '2019-10-07_00_00-00')
         nchan (int)   -- number of channels in recording. It
-            is 67 by default (64 ADC + 3 AUX from Intan RHD2000).
+            is 67 by default (64 ADC + 3 AUX from Intan RHD2000). Use
+            134 (128 + 6 AUX) when using two shanks of electrodes.
         """
 
         self._nchan = nchan
