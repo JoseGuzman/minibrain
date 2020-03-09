@@ -274,7 +274,7 @@ class BurstCounter(object):
         else:
             nburst = 0
         
-        return nbursts
+        return nburst
 
 power = Power(data = None, srate = 30000) # empty Power object
 burst = BurstCounter(data = None, srate = 30000) # empty BurstCounter object
