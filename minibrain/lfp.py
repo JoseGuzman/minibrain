@@ -130,7 +130,7 @@ def rms(data, segment):
     
 class Power(object):
     """
-    A class to load extracellular units recordings acquired
+    A class to handle extracellular signals acquired
     with silicon probes from Cambridge Neurotech.
     """
 
@@ -151,11 +151,11 @@ class Power(object):
             # 1) low-pass at 500 Hz
             lp_rec = self.low_pass(data, 500/Nyquist)
 
-            # 1) down-sample the signal to 1 kHz 
+            # 2) down-sample the signal to 1 kHz 
             ds_rec = self.resample(lp_rec, num = int(data.size/30) )
             newsrate = int(srate/30)
 
-            # 2) compute power spectrum (in uV^2) with Welch's method
+            # 3) compute power spectrum (in uV^2) with Welch's method
             segment = int( newsrate*10 ) # 10 seconds window
             freq, ps = self.welch(ds_rec, newsrate, segment) # uV^2
             delta = self.get_delta(freq, ps)
@@ -250,27 +250,31 @@ class BurstCounter(object):
         detected if the RMS > 7 standard deviations 
         
         """
-        # 150-250 Hz band-pass filter
-        Nyquist = srate/2
-        low, high = 150/Nyquist, 250/Nyquist
-        myrecBP = band_pass(data, low, high)
-
-        # Downsample to 500 Hz
-        myrec = signal.resample(myrecBP, int(myrecBP.size/60) )
-        self.srate = srate/60
-
-        # square root of the mean squared (RMS)
-        mysegment = 5*(self.srate)/1000. # 5 ms
-        myrms = rms(data = myrec, segment = int(mysegment))
-
-        # now read burst separated by one second 
-        mythr = myrms.std()*7
-        myparams = dict(height = mytrh, distance = self.srate)
-        p, x = signal.find_peaks(x = myrms, **params)
+        if data is not None:
+            Nyquist = srate/2
         
-        nburst = p.size
+            # 1) 150-250 Hz band-pass filter
+            low, high = 150/Nyquist, 250/Nyquist
+            myrecBP = band_pass(data, low, high)
+
+            # 2) Downsample to 500 Hz
+            myrec = signal.resample(myrecBP, int(myrecBP.size/60) )
+            srate = srate/60
+
+            # square root of the mean squared (RMS)
+            mysegment = 5*srate/1000. # 5 ms
+            myrms = rms(data = myrec, segment = int(mysegment))
+
+            # now read burst separated by one second 
+            mythr = myrms.std()*7
+            myparams = dict(height = mytrh, distance = self.srate)
+            p, x = signal.find_peaks(x = myrms, **params)
+        
+            nburst = p.size
+        else:
+            nburst = 0
         
         return nbursts
 
 power = Power(data = None, srate = 30000) # empty Power object
-#burst = BurstCounter(data = None, srate = 30000) # empty BurstCounter object
+burst = BurstCounter(data = None, srate = 30000) # empty BurstCounter object
