@@ -5,11 +5,11 @@ Jose Guzman, jose.guzman@guzman-lab.com
 
 Created: Thu Feb 13 10:03:06 CET 2020
 
-Contains a class to analyze local filed potentials with  
+Contains a class to analyze local filed potentials (LFP) with  
 Cambride Neurotech silicon probes.
 
 Example:
->>> from minibrain  import Power 
+>>> from minibrain.lfp import power 
 >>> mylfp = Power(data, fs = 30e3)
 """
 
@@ -55,10 +55,79 @@ def fourier_spectrum(data, srate, fmax = None):
         # read until fmax frequency
         hz = hz[:int(fmax/dhz)]
     
-    # amplitudes only untin Nyquist frequency
+    # amplitudes until Nyquist frequency
     return (hz, amp[:len(hz)])
 
+def low_pass(data, cutoff):
+    """
+    Returns the low-pass filter with a 4th butter
 
+    Arguments
+    ---------
+    data (array):
+    A NumPy array with the data (e.g., voltage in microVolts)
+
+    cutoff (float):
+    the cutoff frequency (in sample units, remember to divide it
+    by the Nyquist frequency in sampling points.
+
+    Example
+    -------
+    >>> Nyquist = 30e3/2
+    >>> mycutoff = 250/Nyquist # for 250 Hz low pass filter
+    >>> mytrace = low_pass(data = rec, cutoff = mycutoff)
+    """
+    myparams = dict(btype='lowpass', analog=False)
+    # generate filter kernel (a and b)
+    b, a = signal.butter(N = 4, Wn = cutoff, **myparams)
+    return signal.filtfilt(b,a, data)
+
+def band_pass(data, low, high):
+    """
+    Returns the band-pass filter with a 4th butter
+
+    Arguments
+    ---------
+    data :array
+        A NumPy array with the data (e.g., voltage in microVolts)
+
+    low : float
+        the low frequency (in sample units, remember to divide it
+        by the Nyquist frequency in sampling points.
+
+    high :float
+        the low frequency (in sample units, remember to divide it
+        by the Nyquist frequency in sampling points.
+
+    Example
+    -------
+    >>> Nyquist = 30e3/2
+    >>> low  = 150/Nyquist # for 150 Hz low pass filter
+    >>> high = 250/Nyquist # for 250 Hz high pass filter
+    >>> mytrace = band_pass(data = rec, low, high)
+    """
+    myparams = dict(btype='bandpass', analog=False)
+    # generate filter kernel (a and b)
+    b, a = signal.butter(N = 4, Wn = [low, high], **myparams)
+    return signal.filtfilt(b,a, data)
+
+def rms(data, segment):
+    """
+    Calculates the square root of the mean square (RMS)
+    along the segment.
+
+    data (array):
+    A NumPy array with the data (e.g., voltage in microVolts)
+
+    segment (int):
+    The size of the segment to calculate (in sampling points)
+    """
+
+    a2 = np.power(data,2)
+    kernel = np.opnes(segment)/float(segment)
+    return np.sqrt( np.convolve(a2, kernel) )
+    
+    
 class Power(object):
     """
     A class to load extracellular units recordings acquired
@@ -105,7 +174,7 @@ class Power(object):
         alpha =simps(self.ps[np.logical_and(freq>=8,freq<=12)],dx=freq[1])
         beta  =simps(self.ps[np.logical_and(freq>=12,freq<=30)],dx=freq[1])
         gamma =simps(self.ps[np.logical_and(freq>=30,freq<=100)],dx=freq[1])
-        band  =simps(self.ps[np.logical_and(freq>=0,freq<=100)],dx=freq[1])
+        band  =simps(self.ps[np.logical_and(freq>=0,freq<=500)],dx=freq[1])
         
         #self.delta = {'absolute': delta, 'relative': delta/band}
 
@@ -128,36 +197,11 @@ class Power(object):
         rband = simps( ps[band] , dx = freq[1])
         return {'absolute':rdelta, 'relative':rdelta/rband}
 
-    def low_pass(self, data, cutoff):
-        """
-        Returns the low-pass filter with a 4th butter
-
-        Arguments
-        ---------
-        data (array):
-        the path to look for spike_times.npy and spike_clusters.npy 
-
-        cutoff (float):
-        the cutoff frequency (in sample units, remember to divide it
-        by the Nyquist frequency in sampling points.
-
-        Example
-        -------
-        >>> Nyquist = 30000/2
-        >>> mycutoff = 100/Nyquist # for 100 Hz low pass filter
-        >>> mytrace = low_pass(data = rec, cutoff = mycutoff)
-        """
-        myparams = dict(btype='lowpass', analog=False)
-        # generate filter kernel (a and b)
-        b, a = signal.butter(N = 4, Wn = cutoff, **myparams)
-        return signal.filtfilt(b,a, data)
-
     def resample(self, data, num):
         """
         Down sample the data at the size given in num.
         See signal.resample for details.
         """
-
         return signal.resample(data, num)
 
     def welch(self, data, srate, segment):
@@ -190,4 +234,43 @@ class Power(object):
 
         return(freq, 2*ps) # multiply to get negative frequencies
 
+
+class BurstCounter(object):
+    """
+    A class to count burst in extracellular recordings acquired
+    with silicon probes from Cambridge Neurotech.
+    """
+
+    def __init__(self, data = None, srate = 30000):
+        """
+        Reads the array and returns the number of burst. A burst
+        is detected by taking the wide-band signal and band-pass 
+        filter to 150-250 Hz. The squared root of the mean squared 
+        (RMS) in segments of 20 ms is calculated and a burst is 
+        detected if the RMS > 7 standard deviations 
+        
+        """
+        # 150-250 Hz band-pass filter
+        Nyquist = srate/2
+        low, high = 150/Nyquist, 250/Nyquist
+        myrecBP = band_pass(data, low, high)
+
+        # Downsample to 500 Hz
+        myrec = signal.resample(myrecBP, int(myrecBP.size/60) )
+        self.srate = srate/60
+
+        # square root of the mean squared (RMS)
+        mysegment = 5*(self.srate)/1000. # 5 ms
+        myrms = rms(data = myrec, segment = int(mysegment))
+
+        # now read burst separated by one second 
+        mythr = myrms.std()*7
+        myparams = dict(height = mytrh, distance = self.srate)
+        p, x = signal.find_peaks(x = myrms, **params)
+        
+        nburst = p.size
+        
+        return nbursts
+
 power = Power(data = None, srate = 30000) # empty Power object
+burst = BurstCounter(data = None, srate = 30000) # empty Power object
