@@ -124,7 +124,7 @@ def rms(data, segment):
     """
 
     a2 = np.power(data,2)
-    kernel = np.opnes(segment)/float(segment)
+    kernel = np.ones(segment)/float(segment)
     return np.sqrt( np.convolve(a2, kernel) )
     
     
@@ -258,7 +258,8 @@ class BurstCounter(object):
             myrecBP = band_pass(data, low, high)
 
             # 2) Downsample to 500 Hz
-            myrec = signal.resample(myrecBP, int(myrecBP.size/60) )
+            #myrec = signal.resample(myrecBP, int(myrecBP.size/60) )
+            myrec = signal.decimate(myrecBP, 60, ftype = 'fir')
             mysrate = srate/60
 
             # square root of the mean squared (RMS)
@@ -267,8 +268,8 @@ class BurstCounter(object):
 
             # now read burst separated by one second 
             mythr = myrms.std()*7
-            myparams = dict(height = mytrh, distance = mysrate)
-            p, x = signal.find_peaks(x = myrms, **params)
+            myparams = dict(height = mythr, distance = mysrate)
+            p, x = signal.find_peaks(x = myrms, **myparams)
         
             self.nburst = p.size
         else:
@@ -276,7 +277,7 @@ class BurstCounter(object):
 
     def __call__(self, data = None, srate = 30000):
         """
-        Returns the number of burst
+        Returns the number of bursts
         """
         # create and object and return number of burst
         myburst = BurstCounter(data, srate)
