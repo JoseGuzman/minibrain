@@ -50,6 +50,12 @@ ytick.direction : out
 # FIGURE OUTPUT 
 figure.figsize  : 6, 4
 figure.dpi  : 96 
+
+# LEGEND
+legend.frameon : False
+legend.markersize: 2
+
 savefig.dpi : 200
 
-pdf.fonttype : 42
+
+pdf.fonttype : 42 # Text in Illustrator
