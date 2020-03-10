@@ -246,7 +246,7 @@ class BurstCounter(object):
         Reads the array and returns the number of burst. A burst
         is detected by taking the wide-band signal and band-pass 
         filter to 150-250 Hz. The squared root of the mean squared 
-        (RMS) in segments of 20 ms is calculated and a burst is 
+        (RMS) in segments of 10 ms is calculated and a burst is 
         detected if the RMS > 7 standard deviations 
         
         """
@@ -259,22 +259,27 @@ class BurstCounter(object):
 
             # 2) Downsample to 500 Hz
             myrec = signal.resample(myrecBP, int(myrecBP.size/60) )
-            srate = srate/60
+            mysrate = srate/60
 
             # square root of the mean squared (RMS)
-            mysegment = 5*srate/1000. # 5 ms
+            mysegment = 5*mysrate/1000. # 5 ms
             myrms = rms(data = myrec, segment = int(mysegment))
 
             # now read burst separated by one second 
             mythr = myrms.std()*7
-            myparams = dict(height = mytrh, distance = self.srate)
+            myparams = dict(height = mytrh, distance = mysrate)
             p, x = signal.find_peaks(x = myrms, **params)
         
-            nburst = p.size
+            self.nburst = p.size
         else:
-            nburst = 0
-        
-        return nburst
+            self.nburst = 0
+
+    def __call__(self, data = None, srate = 30000):
+        """
+        Returns the number of burst
+        """
+        # create and object and return number of burst
+        myburst = BurstCounter(data, srate)
+        return myburst.nburst
 
 power = Power(data = None, srate = 30000) # empty Power object
-burst = BurstCounter(data = None, srate = 30000) # empty BurstCounter object
