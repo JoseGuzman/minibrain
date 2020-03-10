@@ -116,6 +116,8 @@ def rms(data, segment):
     Calculates the square root of the mean square (RMS)
     along the segment.
 
+    Arguments
+    ---------
     data (array):
     A NumPy array with the data (e.g., voltage in microVolts)
 
@@ -126,6 +128,40 @@ def rms(data, segment):
     a2 = np.power(data,2)
     kernel = np.ones(segment)/float(segment)
     return np.sqrt( np.convolve(a2, kernel) )
+    
+def get_burst(data, srate):
+    """
+    Calculate the beginning and end of a burst based on 7x the
+    standard deviation of the signal (generally the RMS). 
+
+    Arguments
+    ---------
+    data   (array)
+        generally the squared root of the mean squared (RMS)
+
+    Returns
+    -------
+        A (start, end) tuple containing the samples where start and
+        end are detected in the signal.
+    """
+    p, _ = signal.find_peaks(x = data, height = data.std()*7 )
+
+    # calculate big time differences > 0.5 seg
+    dx = np.diff(p)
+    idx = np.where(dx>0.5*srate)[0]
+    
+    # +1 is the next peak after big time difference
+    # add peak 0 because we count first start is the first detected peak
+    start = np.concatenate( ([0], idx + 1) )
+    pstart = p[start] # selection from all peaks 
+
+    # the value after the big difference is the last 
+    # add last peak detected as the end of a peak
+    end = np.concatenate( (idx, [-1]) )
+    pend = p[end] # selection from all peaks
+
+    # return indices of start-end burst periods
+    return (pstart, pend)
     
     
 class Power(object):
@@ -258,22 +294,18 @@ class BurstCounter(object):
             myrecBP = band_pass(data, low, high)
 
             # 2) Downsample to 500 Hz
-            #myrec = signal.resample(myrecBP, int(myrecBP.size/60) )
             myrec = signal.decimate(myrecBP, 60, ftype = 'fir')
             mysrate = srate/60
 
             # square root of the mean squared (RMS)
-            mysegment = 10*mysrate/1000. # 10 ms
+            mysegment = 0.010*mysrate # 10 ms
             myrms = rms(data = myrec, segment = int(mysegment))
 
-            # now read burst separated by one second 
-            mythr = myrms.std()*7
-            myparams = dict(height = mythr, distance = mysrate)
-            peaks, _ = signal.find_peaks(x = myrms, **myparams)
-        
-            self.nburst = peaks
+            # now get burst times 
+            self.burst = get_burst(data = myrms, srate = mysrate)
+
         else:
-            self.nburst = np.empty(0)
+            self.burst = None
 
     def __call__(self, data = None, srate = 30000):
         """
@@ -281,6 +313,6 @@ class BurstCounter(object):
         """
         # create and object and return number of burst
         myburst = BurstCounter(data, srate)
-        return myburst.nburst
+        return myburst
 
 power = Power(data = None, srate = 30000) # empty Power object
