@@ -263,7 +263,7 @@ class BurstCounter(object):
             mysrate = srate/60
 
             # square root of the mean squared (RMS)
-            mysegment = 5*mysrate/1000. # 5 ms
+            mysegment = 10*mysrate/1000. # 5 ms
             myrms = rms(data = myrec, segment = int(mysegment))
 
             # now read burst separated by one second 
