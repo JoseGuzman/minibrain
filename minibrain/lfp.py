@@ -132,7 +132,11 @@ def rms(data, segment):
 def get_burst(data, srate):
     """
     Calculate the beginning and end of a burst based on 7x the
-    standard deviation of the signal (generally the RMS). 
+    standard deviation of the signal (generally the RMS). After
+    detecting beginning and ends of the burst based on timings
+    differences larger than 0.5, the closest point that crosses
+    2x the standard deviation of the signal will be assigned as
+    the real beginning and end of the burst.
 
     Arguments
     ---------
@@ -144,6 +148,7 @@ def get_burst(data, srate):
         A (start, end) tuple containing the samples where start and
         end are detected in the signal.
     """
+    mythr = data.std()*2
     p, _ = signal.find_peaks(x = data, height = data.std()*7 )
 
     # calculate big time differences > 0.5 seg
@@ -155,10 +160,21 @@ def get_burst(data, srate):
     start = np.concatenate( ([0], idx + 1) )
     pstart = p[start] # selection from all peaks 
 
+    for i, x in enumerate(pstart):
+        tmp = data[x:x-int(0.05*srate):-1] # take 50 ms window backwards
+        val = np.where( tmp<mythr )[0] # first bellow threshold
+        pstart[i] -= val # correct value
+        print(pstart[i])
+
     # the value after the big difference is the last 
     # add last peak detected as the end of a peak
     end = np.concatenate( (idx, [-1]) )
     pend = p[end] # selection from all peaks
+
+    for i, x in enumerate(pend):
+        tmp = data[x:x+int(0.05*srate)] # 50 ms forward
+        val = np.where( tmp<mythr)[0]
+        pend[i] += val
 
     # return indices of start-end burst periods
     return (pstart, pend)
