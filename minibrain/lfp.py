@@ -254,7 +254,7 @@ class BurstCounter(object):
             Nyquist = srate/2
         
             # 1) 150-250 Hz band-pass filter
-            low, high = 150/Nyquist, 250/Nyquist
+            low, high = 90/Nyquist, 250/Nyquist
             myrecBP = band_pass(data, low, high)
 
             # 2) Downsample to 500 Hz
@@ -263,17 +263,17 @@ class BurstCounter(object):
             mysrate = srate/60
 
             # square root of the mean squared (RMS)
-            mysegment = 10*mysrate/1000. # 5 ms
+            mysegment = 10*mysrate/1000. # 10 ms
             myrms = rms(data = myrec, segment = int(mysegment))
 
             # now read burst separated by one second 
             mythr = myrms.std()*7
             myparams = dict(height = mythr, distance = mysrate)
-            p, x = signal.find_peaks(x = myrms, **myparams)
+            peaks, _ = signal.find_peaks(x = myrms, **myparams)
         
-            self.nburst = p.size
+            self.nburst = peaks
         else:
-            self.nburst = 0
+            self.nburst = np.empty(0)
 
     def __call__(self, data = None, srate = 30000):
         """
