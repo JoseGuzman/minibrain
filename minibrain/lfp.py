@@ -161,10 +161,12 @@ def get_burst(data, srate):
     pstart = p[start] # selection from all peaks 
 
     for i, x in enumerate(pstart):
-        tmp = data[x:x-int(0.05*srate):-1] # take 50 ms window backwards
-        val = np.where( tmp<mythr )[0] # first bellow threshold
-        pstart[i] -= val # correct value
-        print(pstart[i])
+        tmp = data[x:x-int(0.05*srate):-1] # take 100 ms window backwards
+        val, = np.where( tmp<mythr ) # stackoverlflow: 33747908
+        try:
+            pstart[i] -= val[0] # first below threshold 
+        except IndexError:
+            pass # do not assign new value
 
     # the value after the big difference is the last 
     # add last peak detected as the end of a peak
@@ -173,8 +175,11 @@ def get_burst(data, srate):
 
     for i, x in enumerate(pend):
         tmp = data[x:x+int(0.05*srate)] # 50 ms forward
-        val = np.where( tmp<mythr)[0]
-        pend[i] += val
+        val, = np.where( tmp<mythr)
+        try:
+            pend[i] += val[0]
+        except IndexError:
+            pass # do not assign value
 
     # return indices of start-end burst periods
     return (pstart, pend)
