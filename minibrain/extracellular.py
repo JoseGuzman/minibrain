@@ -1,5 +1,5 @@
 """
-lfp.py
+extracellular.py
 
 Jose Guzman, jose.guzman@guzman-lab.com
 
@@ -9,8 +9,11 @@ Contains a class to analyze local filed potentials (LFP) with
 Cambride Neurotech silicon probes.
 
 Example:
->>> from minibrain.lfp import power 
->>> mylfp = Power(data, fs = 30e3)
+>>> from minibrain.extracellular import lfp
+>>> mylfp = lfp(data, fs = 30e3)
+
+>>> from minibrain import burst
+>>> myburst = burst(channel10)
 """
 
 import numpy as np
@@ -186,7 +189,7 @@ def get_burst(data, srate):
     return list( zip(pstart, pend) )
     
     
-class Power(object):
+class LFP(object):
     """
     A class to handle extracellular signals acquired
     with silicon probes from Cambridge Neurotech.
@@ -238,9 +241,9 @@ class Power(object):
 
     def __call__(self, data = None, srate = 30000):
         """
-        Returns a Power object upon call
+        Returns a LFP object upon call
         """
-        return Power(data,srate) # empty freq and ps
+        return LFP(data,srate) # empty freq and ps
 
     def get_delta(self, freq, ps):
         """
@@ -342,5 +345,4 @@ class Burst(object):
         """
         return len(self.idx)
         
-
-power = Power(data = None, srate = 30000) # empty Power object
+lfp = LFP(data = None, srate = 30000) # empty LFP object
