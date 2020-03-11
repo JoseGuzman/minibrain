@@ -48,7 +48,7 @@ class Burst(object):
             myrms = lfp.rms(data = myrecDS, segment = int(mysegment))
 
             # now get burst times 
-            self.idx = self.extract_burst(rmsdata = myrms, srate = mysrate)
+            self.idx = self.long_burst(rmsdata = myrms, srate = mysrate)
 
         else:
             self.idx = [] # empty list 
@@ -66,9 +66,9 @@ class Burst(object):
         """
         return len(self.idx)
 
-    def extract_burst(self, rmsdata, srate):
+    def long_burst(self, rmsdata, srate):
         """
-        Calculate the beginning and end of a burst based on 7x the
+        Calculate the beginning and end of a burst based on 4x the
         standard deviation of the signal (generally the RMS). After
         detecting beginning and ends of the burst based on timings
         differences larger than 0.5, the closest point that crosses
@@ -85,10 +85,11 @@ class Burst(object):
         A list of (start, end) values containing the samples where 
         start and end are detected in the signal.
         """
-        mythr = rmsdata.std()*2
-        p, _ = signal.find_peaks(x = rmsdata, height = rmsdata.std()*7 )
+        lowthr = rmsdata.std()*2
+        highthr = rmsdata.std()*4
+        p, _ = signal.find_peaks(x = rmsdata, height = highthr )
 
-        # calculate big time differences > 0.5 seg
+        # calculate big time differences > 0.5 sec
         dx = np.diff(p)
         idx = np.where(dx>0.5*srate)[0]
     
@@ -98,13 +99,13 @@ class Burst(object):
         pstart = p[start] # selection from all peaks 
 
         for i, x in enumerate(pstart):
-            # take 50 ms window backward
-            tmp = rmsdata[x:x-int(0.05*srate):-1] 
-            val, = np.where( tmp<mythr ) # stackoverlflow: 33747908
+            # take 100 ms window backward
+            tmp = rmsdata[x:x-int(0.100*srate):-1] # read 100 ms backward
+            val, = np.where( tmp<lowthr ) # stackoverlflow: 33747908
             try:
                 pstart[i] -= val[0] # first below threshold 
             except IndexError:
-                pass # do not assign new value
+                pass # do not assign new value if not found
 
         # the value after the big difference is the last 
         # add last peak detected as the end of a peak
@@ -112,12 +113,13 @@ class Burst(object):
         pend = p[end] # selection from all peaks
 
         for i, x in enumerate(pend):
-            tmp = rmsdata[x:x+int(0.05*srate)] # 50 ms forward
-            val, = np.where( tmp<mythr )
+            tmp = rmsdata[x+int(0.250*srate):x:-1] # read 250 ms forward
+            val, = np.where( tmp>lowthr )
             try:
-                pend[i] += val[0]
+                # because we look form outside we need to substract 250ms
+                pend[i] += (int(0.250*srate)-val[0])
             except IndexError:
-                pass # do not assign value
+                pass # do not assign value if not found
 
         # return indices of start-end burst periods
         # to unzip start, end = zip(*<list>)
