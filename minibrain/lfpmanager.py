@@ -155,7 +155,7 @@ class LFP(object):
         
         Returns:
         --------
-            The down-sampled signal.
+        The down-sampled signal.
         """
         return signal.decimate(data, q, ftype = 'fir')
 
