@@ -86,7 +86,7 @@ class Burst(object):
         start and end are detected in the signal.
         """
         lowthr = rmsdata.std()
-        highthr = rmsdata.std()*4
+        highthr = rmsdata.std()*5
         p, _ = signal.find_peaks(x = rmsdata, height = highthr )
 
         # calculate big time differences > 1 sec
