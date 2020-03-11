@@ -85,13 +85,13 @@ class Burst(object):
         A list of (start, end) values containing the samples where 
         start and end are detected in the signal.
         """
-        lowthr = rmsdata.std()*2
+        lowthr = rmsdata.std()
         highthr = rmsdata.std()*4
         p, _ = signal.find_peaks(x = rmsdata, height = highthr )
 
-        # calculate big time differences > 0.5 sec
+        # calculate big time differences > 1 sec
         dx = np.diff(p)
-        idx = np.where(dx>0.5*srate)[0]
+        idx = np.where(dx>1*srate)[0]
     
         # +1 is the next peak after big time difference
         # add peak 0 because we count first start is the first detected peak
