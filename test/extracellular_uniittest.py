@@ -1,5 +1,5 @@
 """
-power_unittest.py
+extracellular_unittest.py
 
 Author: Jose Guzman, jose.guzman@guzman-lab.com
 Created: Thu Feb 20 13:31:16 CET 2020
@@ -11,8 +11,8 @@ import sys
 
 import numpy as np
 from numpy import pi as PI
-from minibrain.lfp import power
-from minibrain.lfp import fourier_spectrum
+from minibrain.extracellular import lfp
+from minibrain.extracellular import fourier_spectrum
 
 
 class TestPowerObject(unittest.TestCase):
@@ -67,7 +67,7 @@ class TestPowerObject(unittest.TestCase):
         
     def test_Welch_amplitudes(self):
         """
-        Test that the Welch's periodogram in power computes
+        Test that the Welch's periodogram in lfp object computes
         the right frequencies.
         """
         myparams = dict(srate = self.srate, segment = self.srate*5)
@@ -75,7 +75,7 @@ class TestPowerObject(unittest.TestCase):
         self.logW.debug('Amplitude analysis with Welch\n')
         for amp in np.random.uniform(low=1,high=100,size = 10):
             mywave = amp*self.wave(5) # 5 Hz wave 
-            f, mypower = power.welch(data = mywave, **myparams)
+            f, mypower = lfp.welch(data = mywave, **myparams)
             myamp = np.sqrt( mypower.max() )
 
             info = 'Wave amplitude = {:7.5f}, Welch = {:7.5f}'
@@ -86,7 +86,7 @@ class TestPowerObject(unittest.TestCase):
 
     def test_Welch_frequencies(self):
         """
-        Test that the Welch's periodogram in power computes
+        Test that the Welch's periodogram in lfp computes
         the right frequencies.
         """
         myparams = dict(srate = self.srate, segment = self.srate*5)
@@ -94,7 +94,7 @@ class TestPowerObject(unittest.TestCase):
         self.logW.debug('Frequency analysis with Welch\n')
         for freq in np.random.uniform(low=1, high=100, size = 10):
             mywave = self.wave(freq)
-            f, mypower = power.welch(data = mywave, **myparams)
+            f, mypower = lfp.welch(data = mywave, **myparams)
             myfreq = f[mypower.argmax()]
 
             info = 'Wave frequency = {:7.5f}, Welch = {:7.5f}'
