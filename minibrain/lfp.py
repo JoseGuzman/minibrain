@@ -320,7 +320,7 @@ class Burst(object):
             mysrate = srate/60 # update sampling rate
 
             # square root of the mean squared (RMS)
-            mysegment = 0.010*mysrate # 10 ms
+            mysegment = 0.005*mysrate # 10 ms in sampling points
             myrms = rms(data = myrec, segment = int(mysegment))
 
             # now get burst times 
