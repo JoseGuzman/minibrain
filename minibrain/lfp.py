@@ -145,7 +145,7 @@ def get_burst(data, srate):
 
     Returns
     -------
-        A (start, end) tuple containing the samples where start and
+        A (start, end) list containing the samples where start and
         end are detected in the signal.
     """
     mythr = data.std()*2
@@ -182,7 +182,8 @@ def get_burst(data, srate):
             pass # do not assign value
 
     # return indices of start-end burst periods
-    return (pstart, pend)
+    # to unzip start, end = zip(*<list>)
+    return list( zip(pstart, pend) )
     
     
 class Power(object):
@@ -316,17 +317,17 @@ class Burst(object):
 
             # 2) Downsample to 500 Hz
             myrec = signal.decimate(myrecBP, 60, ftype = 'fir')
-            mysrate = srate/60
+            mysrate = srate/60 # update sampling rate
 
             # square root of the mean squared (RMS)
             mysegment = 0.010*mysrate # 10 ms
             myrms = rms(data = myrec, segment = int(mysegment))
 
             # now get burst times 
-            self.burst = get_burst(data = myrms, srate = mysrate)
+            self.idx = get_burst(data = myrms, srate = mysrate)
 
         else:
-            self.burst = None
+            self.idx = [] # empty list 
 
     def __call__(self, data = None, srate = 30000):
         """
@@ -337,8 +338,9 @@ class Burst(object):
 
     def __len__(self):
         """
-        Returns the number of burst
+        Returns the number of bursts detected
         """
+        return len(self.idx)
         
 
 power = Power(data = None, srate = 30000) # empty Power object
