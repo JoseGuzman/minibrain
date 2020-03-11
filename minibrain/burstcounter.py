@@ -48,7 +48,7 @@ class Burst(object):
             myrms = lfp.rms(data = myrecDS, segment = int(mysegment))
 
             # now get burst times 
-            self.idx = extract_burst(data = myrms, srate = mysrate)
+            self.idx = self.extract_burst(rmsdata = myrms, srate = mysrate)
 
         else:
             self.idx = [] # empty list 
@@ -85,8 +85,8 @@ class Burst(object):
         A list of (start, end) values containing the samples where 
         start and end are detected in the signal.
         """
-        mythr = data.std()*2
-        p, _ = signal.find_peaks(x = data, height = data.std()*7 )
+        mythr = rmsdata.std()*2
+        p, _ = signal.find_peaks(x = rmsdata, height = rmsdata.std()*7 )
 
         # calculate big time differences > 0.5 seg
         dx = np.diff(p)
@@ -99,7 +99,7 @@ class Burst(object):
 
         for i, x in enumerate(pstart):
             # take 50 ms window backward
-            tmp = data[x:x-int(0.05*srate):-1] 
+            tmp = rmsdata[x:x-int(0.05*srate):-1] 
             val, = np.where( tmp<mythr ) # stackoverlflow: 33747908
         try:
             pstart[i] -= val[0] # first below threshold 
@@ -112,7 +112,7 @@ class Burst(object):
         pend = p[end] # selection from all peaks
 
         for i, x in enumerate(pend):
-            tmp = data[x:x+int(0.05*srate)] # 50 ms forward
+            tmp = rmsdata[x:x+int(0.05*srate)] # 50 ms forward
             val, = np.where( tmp<mythr)
             try:
                 pend[i] += val[0]
@@ -123,4 +123,5 @@ class Burst(object):
         # to unzip start, end = zip(*<list>)
         return list( zip(pstart, pend) )
     
-burstobj = Burst(srate = 30000)
+# this is the object we will use to calculate bursts 
+burst = Burst(srate = 30000)
