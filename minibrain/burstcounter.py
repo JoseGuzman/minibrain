@@ -123,3 +123,4 @@ class Burst(object):
         # to unzip start, end = zip(*<list>)
         return list( zip(pstart, pend) )
     
+burstobj = Burst(srate = 30000)
