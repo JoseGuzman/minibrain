@@ -292,7 +292,7 @@ class Power(object):
         return(freq, 2*ps) # multiply to get negative frequencies
 
 
-class BurstCounter(object):
+class Burst(object):
     """
     A class to count burst in extracellular recordings acquired
     with silicon probes from Cambridge Neurotech.
@@ -330,10 +330,15 @@ class BurstCounter(object):
 
     def __call__(self, data = None, srate = 30000):
         """
-        Returns the number of bursts
+        Returns a Burst object
         """
         # create and object and return number of burst
-        myburst = BurstCounter(data, srate)
-        return myburst
+        return Burst(data, srate)
+
+    def __len__(self):
+        """
+        Returns the number of burst
+        """
+        
 
 power = Power(data = None, srate = 30000) # empty Power object

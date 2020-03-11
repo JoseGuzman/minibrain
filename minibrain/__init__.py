@@ -21,4 +21,4 @@ __email__ = 'jose.guzman at guzman-lab.com'
 from minibrain.loader import EphysLoader # from minibrain import EphysLoader
 from minibrain.spikes import Units # from minibrain import Units
 from minibrain.lfp import power  # from minibrain import power 
-from minibrain.lfp import BurstCounter as burst  # from minibrain import burst 
+from minibrain.lfp import Burst as burst  # from minibrain import burst 
