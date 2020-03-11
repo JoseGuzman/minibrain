@@ -101,10 +101,10 @@ class Burst(object):
             # take 50 ms window backward
             tmp = rmsdata[x:x-int(0.05*srate):-1] 
             val, = np.where( tmp<mythr ) # stackoverlflow: 33747908
-        try:
-            pstart[i] -= val[0] # first below threshold 
-        except IndexError:
-            pass # do not assign new value
+            try:
+                pstart[i] -= val[0] # first below threshold 
+            except IndexError:
+                pass # do not assign new value
 
         # the value after the big difference is the last 
         # add last peak detected as the end of a peak
@@ -113,7 +113,7 @@ class Burst(object):
 
         for i, x in enumerate(pend):
             tmp = rmsdata[x:x+int(0.05*srate)] # 50 ms forward
-            val, = np.where( tmp<mythr)
+            val, = np.where( tmp<mythr )
             try:
                 pend[i] += val[0]
             except IndexError:
