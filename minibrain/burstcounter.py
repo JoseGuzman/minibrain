@@ -85,7 +85,7 @@ class Burst(object):
         A list of (start, end) values containing the samples where 
         start and end are detected in the signal.
         """
-        lowthr = rmsdata.std()
+        lowthr = rmsdata.std()*1.5
         highthr = rmsdata.std()*5
         p, _ = signal.find_peaks(x = rmsdata, height = highthr )
 
