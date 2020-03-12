@@ -30,18 +30,5 @@ pip install -e .
 
 ## Examples of usage
 
-(Calculate Burst)
-
- [[Link Text|nameofwikipage]]
-In Python:
-
-```python
-from minibrain import EphysLoader
-myrec = EphysLoader('continuous.dat')
-
-from minibrain import Units
-myunits = Units('/')
-
-from minibrain.lfp import power
-```
+* [Calculate Bursts](https://github.com/JoseGuzman/minibrain/wiki/Calculate-Burst)
 
