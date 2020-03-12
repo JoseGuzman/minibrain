@@ -164,8 +164,8 @@ class EphysLoader(object):
         --------
         A 1D Numpy array with voltage in microVolts
         """
-        # traspose to have 1D Numpy
-        return self.gain*self._data[channel].T 
+        # return self.gain*self._data[channel].T 
+        return self._data[channel]*self.gain 
 
     def fig_waveform(self, spk_times, nrandom, channel):
         """
