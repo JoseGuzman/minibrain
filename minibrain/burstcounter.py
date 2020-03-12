@@ -123,7 +123,8 @@ class Burst(object):
 
         # return indices of start-end burst periods
         # to unzip start, end = zip(*<list>)
-        return list( zip(pstart, pend) )
+        return np.column_stack( (pstart, pend) )
+        #return list( zip(pstart, pend) )
     
 # this is the object we will use to calculate bursts 
 burst = Burst(srate = 30000)

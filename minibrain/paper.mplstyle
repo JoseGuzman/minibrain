@@ -48,7 +48,7 @@ ytick.minor.widht : 6
 ytick.direction : out
 
 # FIGURE OUTPUT 
-figure.figsize  : 8, 3
+figure.figsize  : 8,3
 figure.dpi  : 96 
 
 # LEGEND
