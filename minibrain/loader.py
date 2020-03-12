@@ -49,7 +49,7 @@ class EphysLoader(object):
              'H': '#00FF00'
             }
 
-    dt = 1/30.       # in ms
+    dt = 1/30.       # in ms!!!!!!!!! (to plot single spikes!)
     srate = 30000      # number of samples per second
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
