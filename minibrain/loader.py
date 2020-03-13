@@ -21,7 +21,10 @@ import os
 import datetime
 import numpy as np
 import matplotlib.pyplot as plt
-from scipy.signal import find_peaks
+
+from scipy import signal 
+
+from minibrain.lfpmanager import lfp
 
 class EphysLoader(object):
     """
@@ -33,6 +36,7 @@ class EphysLoader(object):
              'B': range(16,32),
              'C': range(32,48),
              'D': range(48,64),
+
              'E': range(64,80),
              'F': range(80,96),
              'G': range(96,112),
@@ -43,6 +47,7 @@ class EphysLoader(object):
              'B': '#FF0000',
              'C': '#FF9933',
              'D': '#00AA00',
+
              'E': '#FF55FF',
              'F': '#FFFF7F',
              'G': '#55FFFF',
@@ -101,6 +106,35 @@ class EphysLoader(object):
         self._data = np.transpose( self._memmap )
         fp.close()
 
+    def get_rms_shank(self, shankID, pstart, pend):
+        """
+        Calculate the square root of the mean squared (RMS) of all the 
+        channels in the shank from the times in pstart and pend.
+
+        
+        shankID (char)  -- 'A', 'B', 'C', or 'D'
+        psart (int)     -- the beginning time of the channel in sampling points
+        pend (int)     -- the end time of the channel in sampling points
+
+        Returns
+        -------
+        A list with the maximal RMS (20 ms window length). 
+        """
+        myshank = list()
+        for i, ch in enumerate(self.shank[shankID]):
+            myrec = self.get_channel(ch)[pstart:pend]
+
+            band_pass_params = dict(low = 90, high = 250, srate = self.srate)
+            myrecBP = lfp.band_pass(data = myrec, **band_pass_params)
+            myrecDC = lfp.decimate(data = myrecBP, q = 60)
+            new_srate = self.srate/60
+            mysegment = int(0.020*new_srate) # 20 ms for testing 
+            myrecRMS = lfp.rms(data = myrecDC, segment = mysegment )
+            myshank.append( myrecRMS.max() )
+
+        return myshank
+        
+
     def savemove(self, ch_list = None, height = 1000, distance = 5):
         """
         Creates a new binary file when removing 
@@ -133,7 +167,7 @@ class EphysLoader(object):
         
         for channel in mychannel:
             trace = mydata[channel].T # now reads bytes from memory
-            peaks = find_peaks(trace,height=myheight,distance = mydist)[0]
+            peaks = signal.find_peaks(trace,height=myheight,distance = mydist)[0]
             print('%3d artifacts found in channel %3d'
                 %(peaks.size, channel))
 
