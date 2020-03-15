@@ -74,9 +74,9 @@ class Burst(object):
 
     def delete(self, index):
         """
-        Remove element from the bust
+        Remove element from the bust in place
         """
-        np.delete(self.idx, index)
+        self.idx = np.delete(self.idx, index, axis = 0)
 
     def long_burst(self, rmsdata, srate):
         """
