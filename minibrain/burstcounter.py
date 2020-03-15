@@ -54,7 +54,7 @@ class Burst(object):
             self.idx = self.long_burst(rmsdata = myrms, srate = mysrate)
 
         else:
-            self.idx = [] # empty list 
+            self.idx = np.empty((1,2)) # empty NumPy with one element. 
 
     def __call__(self, data = None, srate = 30000):
         """
