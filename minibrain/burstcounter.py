@@ -10,7 +10,10 @@ Cambride Neurotech silicon probes.
 
 Example:
 >>> from minibrain import burst
+>>> channel10 = # a NumPy array with voltages
 >>> myburst = burst(channel10)
+>>> myburst[0] # gets the first burst of the channel
+>>> myburst[0]
 """
 import numpy as np
 from scipy import signal
@@ -65,6 +68,15 @@ class Burst(object):
         Returns the number of bursts detected
         """
         return len(self.idx)
+
+    def __getitem__(self, number):
+        return self.idx[number]
+
+    def delete(self, index):
+        """
+        Remove element from the bust
+        """
+        np.delete(self.idx, index)
 
     def long_burst(self, rmsdata, srate):
         """
