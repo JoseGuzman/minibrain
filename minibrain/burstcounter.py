@@ -15,6 +15,8 @@ Example:
 >>> myburst[0] # gets the first burst of the channel
 >>> myburst[0]
 """
+
+import pickle 
 import numpy as np
 from scipy import signal
 
@@ -43,18 +45,20 @@ class Burst(object):
 
             # 2) Downsample to 500 Hz
             myrecDS = lfp.decimate(data = myrecBP, q = 60)
-            mysrate = srate/60 # update sampling rate
-            dt = 1/mysrate
+            self.srate = srate/60 # update sampling rate
+            dt = 1/self.srate
 
             # square root of the mean squared (RMS)
-            mysegment = 0.005/dt # 10 ms in sampling points
+            mysegment = 0.005/dt # 5 ms in sampling points
             myrms = lfp.rms(data = myrecDS, segment = int(mysegment))
 
             # now get burst times 
-            self.idx = self.__long_burst(rmsdata = myrms, srate = mysrate)
+            self.idx = self.__long_burst(rmsdata = myrms,srate = self.srate)
 
         else:
+            self.rate = srate
             self.idx = np.empty((1,2)) # empty NumPy with one element. 
+            self.bpass = []
 
     def __call__(self, data = None, srate = 30000):
         """
@@ -72,18 +76,12 @@ class Burst(object):
     def __getitem__(self, number):
         return self.idx[number]
 
-    def delete(self, index):
-        """
-        Remove element from the bust in place
-        """
-        self.idx = np.delete(self.idx, index, axis = 0)
-
     def __long_burst(self, rmsdata, srate):
         """
         Calculate the beginning and end of a burst based on 4x the
         standard deviation of the signal (generally the RMS). After
         detecting beginning and ends of the burst based on timings
-        differences larger than 0.5, the closest point that crosses
+        differences larger than 750 ms, the closest point that crosses
         2x the standard deviation of the signal will be assigned as
         the real beginning and end of the burst.
 
@@ -98,12 +96,12 @@ class Burst(object):
         start and end are detected in the signal.
         """
         lowthr = rmsdata.std()*1.5
-        highthr = rmsdata.std()*5
+        highthr = rmsdata.std()*6
         p, _ = signal.find_peaks(x = rmsdata, height = highthr )
 
-        # calculate big time differences > 1 sec
+        # calculate big time differences > 750 msec
         dx = np.diff(p)
-        idx = np.where(dx>1*srate)[0]
+        idx = np.where(dx>.75*srate)[0]
     
         # +1 is the next peak after big time difference
         # add peak 0 because we count first start is the first detected peak
@@ -138,5 +136,25 @@ class Burst(object):
         return np.column_stack( (pstart, pend) )
         #return list( zip(pstart, pend) )
     
+    def delete(self, index):
+        """
+        Remove element from the bust in place
+        """
+        self.idx = np.delete(self.idx, index, axis = 0)
+
+    def save(self, fname):
+        """
+        Save a hdf5 file with a list of burst obtained in the 
+        original (donw-sample) recording 
+        """
+        pstart = int(self.srate) # 1 sec. before peak detection
+        pend   = int(1.5*self.srate) # 1.5 after peak detection 
+        # select burst periods in down-sampled signal
+        mylist = [myrecDS[b[0]-pstart : b[1]+pend] for b in self.idx]
+    
+        with open(fname, 'wb') as fp:
+            # protocol 2 to make it compatible with python2
+            pickle.dump(mylist, fp, protocol=2)
+
 # this is the object we will use to calculate bursts 
 burst = Burst(srate = 30000)
