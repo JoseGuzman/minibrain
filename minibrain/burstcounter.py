@@ -29,7 +29,7 @@ class Burst(object):
     with silicon probes from Cambridge Neurotech.
     """
 
-    def __init__(self, channel = None, srate = 30000):
+    def __init__(self, channel = None, upthr = 7, srate = 30000):
         """
         Reads the array and returns the number of burst. A burst
         is detected by taking the wide-band signal and band-pass 
@@ -43,6 +43,9 @@ class Burst(object):
             Array with voltages (uV) of the signal
         srate (int)
             The sampling rate of the signal
+        upthr (int)
+            The upper threshold for the burst detection. By default
+            is 7x the standar deviation of the RMS.
         """
 
         if channel is not None:
@@ -64,7 +67,7 @@ class Burst(object):
             self.rms = myrms
 
             # now get burst times 
-            self.idx = self.__long_burst(rmsdata = myrms)
+            self.idx = self.__long_burst(thr = upthr)
 
         else:
             self.rate = srate
@@ -72,6 +75,9 @@ class Burst(object):
             self.wband = []
             self.bpass = []
             self.rms = []
+
+        # update upper threshold value
+        self.upthr = upthr
 
     def delete(self, index):
         """
@@ -129,10 +135,10 @@ class Burst(object):
 
         # RMS signal
         ax[2].plot(time[pstart:pend],self.rms[pstart:pend],lw=1, c='k')
-        ax[2].axhline(y = self.rms.std()*6, color='darkgreen', lw=2,
-            linestyle = '--', label = '6$\sigma$')
-        ax[2].axhline(y = self.rms.std()*1.5, color='brown', lw=2,
-            linestyle = '--', label = '1.5$\sigma$')
+        ax[2].axhline(y = self.rms.std()*self.upthr, color='darkgreen', 
+            lw=2,linestyle = '--', label = str(self.upthr) + '$\sigma$')
+        ax[2].axhline(y = self.rms.std()*2, color='brown', lw=2,
+            linestyle = '--', label = '2$\sigma$')
         ax[2].set_ylabel('RMS \n ($\mu$V)')
         ax[2].set_xlabel('Time (sec.)')
 
@@ -141,12 +147,12 @@ class Burst(object):
 
         return ax
 
-    def __call__(self, channel = None, srate = 30000):
+    def __call__(self, channel = None, upthr = 7, srate = 30000):
         """
         Returns a Burst object
         """
         # create and object and return number of burst
-        return Burst(channel, srate)
+        return Burst(channel, 7, srate)
 
     def __len__(self):
         """
@@ -157,7 +163,7 @@ class Burst(object):
     def __getitem__(self, number):
         return self.idx[number]
 
-    def __long_burst(self, rmsdata):
+    def __long_burst(self, thr):
         """
         Calculate the beginning and end of a burst based on 6x the
         standard deviation of the signal (generally the RMS). After
@@ -168,17 +174,18 @@ class Burst(object):
 
         Arguments
         ---------
-        rmsdata   (array)
-        the squared root of the mean squared (RMS) of a recording
+        thr   (int)
+        the upper threshold over the squared root of the mean squared 
+        (RMS) of a recording to detect a signal.
 
         Returns
         -------
         A list of (start, end) values containing the samples where 
         start and end are detected in the signal.
         """
-        lowthr = rmsdata.std()*1.5
-        highthr = rmsdata.std()*6
-        p, _ = signal.find_peaks(x = rmsdata, height = highthr )
+        highthr = self.rms.std()*thr
+        lowthr = self.rms.std()*2.0
+        p, _ = signal.find_peaks(x = self.rms, height = highthr )
 
         # calculate big time differences > 750 msec
         dx = np.diff(p)
@@ -191,10 +198,11 @@ class Burst(object):
 
         for i, x in enumerate(pstart):
             # take 100 ms window backward
-            tmp = rmsdata[x:x-int(0.100*self.srate):-1] # read 100 ms backward
-            val, = np.where( tmp<lowthr ) # stackoverlflow: 33747908
+            tmp = self.rms[x-int(0.150*self.srate):x]  
+            # values bellow lower threshold
+            val, = np.where( tmp>lowthr ) # stackoverlflow: 33747908
             try:
-                pstart[i] -= val[0] # first below threshold 
+                pstart[i] -= (int(0.150*self.srate)-val[0])
             except IndexError:
                 pass # do not assign new value if not found
 
@@ -204,7 +212,7 @@ class Burst(object):
         pend = p[end] # selection from all peaks
 
         for i, x in enumerate(pend):
-            tmp = rmsdata[x+int(0.250*self.srate):x:-1] # read 250 ms forward
+            tmp = self.rms[x+int(0.250*self.srate):x:-1] # read 250 ms forward
             val, = np.where( tmp>lowthr )
             try:
                 # because we look form outside we need to substract 250ms
@@ -219,4 +227,4 @@ class Burst(object):
     
 
 # this is the object we will use to calculate bursts 
-burst = Burst(srate = 30000)
+burst = Burst(upthr = 7, srate = 30000)
