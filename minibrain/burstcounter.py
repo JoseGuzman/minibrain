@@ -40,6 +40,8 @@ class Burst(object):
         if channel is not None:
             Nyquist = srate/2
         
+            self.wband = lfp.decimate(channel = data, q = 60)
+
             # 1) 90-250 Hz band-pass filter
             myrecBP = lfp.band_pass(channel,low=90,high=250,srate = srate)
 
@@ -47,10 +49,12 @@ class Burst(object):
             myrecDS = lfp.decimate(channel = myrecBP, q = 60)
             self.srate = srate/60 # update sampling rate
             dt = 1/self.srate
+            self.bpass = myrecDS
 
             # square root of the mean squared (RMS)
             mysegment = 0.005/dt # 5 ms in sampling points
             myrms = lfp.rms(channel = myrecDS, segment = int(mysegment))
+            self.rms = myrms
 
             # now get burst times 
             self.idx = self.__long_burst(rmsdata = myrms,srate = self.srate)
@@ -58,7 +62,29 @@ class Burst(object):
         else:
             self.rate = srate
             self.idx = np.empty((1,2)) # empty NumPy with one element. 
+            self.wband = []
             self.bpass = []
+            self.rms = []
+
+    def delete(self, index):
+        """
+        Remove element from the bust in place
+        """
+        self.idx = np.delete(self.idx, index, axis = 0)
+
+    def save(self, fname):
+        """
+        Save a hdf5 file with a list of burst obtained in the 
+        band-pass (90-250 Hz) signal.
+        """
+        pstart = int(self.srate) # 1 sec. before peak detection
+        pend   = int(1.5*self.srate) # 1.5 after peak detection 
+        # select burst periods in down-sampled signal
+        mylist = [self.bpass[b[0]-pstart : b[1]+pend] for b in self.idx]
+    
+        with open(fname, 'wb') as fp:
+            # protocol 2 to make it compatible with python2
+            pickle.dump(mylist, fp, protocol=2)
 
     def __call__(self, channel = None, srate = 30000):
         """
@@ -136,25 +162,6 @@ class Burst(object):
         return np.column_stack( (pstart, pend) )
         #return list( zip(pstart, pend) )
     
-    def delete(self, index):
-        """
-        Remove element from the bust in place
-        """
-        self.idx = np.delete(self.idx, index, axis = 0)
-
-    def save(self, fname):
-        """
-        Save a hdf5 file with a list of burst obtained in the 
-        original (donw-sample) recording 
-        """
-        pstart = int(self.srate) # 1 sec. before peak detection
-        pend   = int(1.5*self.srate) # 1.5 after peak detection 
-        # select burst periods in down-sampled signal
-        mylist = [myrecDS[b[0]-pstart : b[1]+pend] for b in self.idx]
-    
-        with open(fname, 'wb') as fp:
-            # protocol 2 to make it compatible with python2
-            pickle.dump(mylist, fp, protocol=2)
 
 # this is the object we will use to calculate bursts 
 burst = Burst(srate = 30000)
