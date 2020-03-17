@@ -93,7 +93,7 @@ class Burst(object):
             # protocol 2 to make it compatible with python2
             pickle.dump(mylist, fp, protocol=2)
 
-    def plot_burst(self, idx):
+    def plot(self, idx):
         """
         Return three axis with wide-band, band-pass (90-250 Hz) and
         rms from the burst with idx.
@@ -117,18 +117,18 @@ class Burst(object):
 
         # Wide-band signal
         ax[0].plot(time[pstart:pend],self.wband[pstart:pend],lw=1, c='gray')
-        ax[0].plot(time[bstart:bend],self.wpass[bstart:bend],lw=1,
-            c='tab:blue', label = 'wide-band Hz')
+        ax[0].plot(time[bstart:bend],self.wband[bstart:bend],lw=1,
+            c='tab:blue', label = 'wide-band')
         ax[0].set_ylabel('Amplitude \n ($\mu$V)')
 
         # Band-pass signal
-        ax[1].plot(time[pstart:pend],self.bpass[pstart:pend],lw=1, c='k')
+        ax[1].plot(time[pstart:pend],self.bpass[pstart:pend],lw=1, c='gray')
         ax[1].plot(time[bstart:bend],self.bpass[bstart:bend],lw=1,
             c='purple', label = '90-250 Hz')
         ax[1].set_ylabel('Amplitude \n ($\mu$V)')
 
         # RMS signal
-        ax[2].plot(time[pstart:pend],self.rms[pstart:pend],lw=1, c='gray')
+        ax[2].plot(time[pstart:pend],self.rms[pstart:pend],lw=1, c='k')
         ax[2].axhline(y = self.rms.std()*6, color='darkgreen', lw=2,
             linestyle = '--', label = '5$\sigma$')
         ax[2].axhline(y = self.rms.std()*1.5, color='brown', lw=2,
