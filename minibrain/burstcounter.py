@@ -19,6 +19,7 @@ Example:
 import pickle 
 import numpy as np
 from scipy import signal
+import matplotlib.pyplot as plt
 
 from minibrain import lfp # from minibrain.lfpmanager import lfp
 
@@ -54,12 +55,11 @@ class Burst(object):
 
             # 2) Downsample to 500 Hz
             myrecDS = lfp.decimate(myrecBP, q = 60)
-            self.srate = srate/60 # update sampling rate
-            dt = 1/self.srate
+            self.srate = int(srate/60) # update sampling rate
             self.bpass = myrecDS
 
             # square root of the mean squared (RMS)
-            mysegment = 0.005/dt # 5 ms in sampling points
+            mysegment = 0.005*self.srate # 5 ms in sampling points
             myrms = lfp.rms(self.bpass, segment = int(mysegment))
             self.rms = myrms
 
@@ -92,6 +92,54 @@ class Burst(object):
         with open(fname, 'wb') as fp:
             # protocol 2 to make it compatible with python2
             pickle.dump(mylist, fp, protocol=2)
+
+    def plot_burst(self, idx):
+        """
+        Return three axis with wide-band, band-pass (90-250 Hz) and
+        rms from the burst with idx.
+
+        Argument
+        --------
+        idx (int)
+            the burst nubmer
+
+        Return
+        ------
+        ax (array)
+            An array of axis
+        """
+        time = np.arange(len(self.wband))/self.srate # time vector
+        bstart, bend = self.idx[idx]
+        pstart = int(bstart - self.srate) # 1 second before beg. of burst
+        pend   = int(bend + 1.5*self.srate)# 1.5 seconds after end. of burst
+
+        fig, ax = plt.subplots(3,1, figsize = (16,8), sharex= True)
+
+        # Wide-band signal
+        ax[0].plot(time[pstart:pend],self.wband[pstart:pend],lw=1, c='gray')
+        ax[0].plot(time[bstart:bend],self.wpass[bstart:bend],lw=1,
+            c='tab:blue', label = 'wide-band Hz')
+        ax[0].set_ylabel('Amplitude \n ($\mu$V)')
+
+        # Band-pass signal
+        ax[1].plot(time[pstart:pend],self.bpass[pstart:pend],lw=1, c='k')
+        ax[1].plot(time[bstart:bend],self.bpass[bstart:bend],lw=1,
+            c='purple', label = '90-250 Hz')
+        ax[1].set_ylabel('Amplitude \n ($\mu$V)')
+
+        # RMS signal
+        ax[2].plot(time[pstart:pend],self.rms[pstart:pend],lw=1, c='gray')
+        ax[2].axhline(y = self.rms.std()*6, color='darkgreen', lw=2,
+            linestyle = '--', label = '5$\sigma$')
+        ax[2].axhline(y = self.rms.std()*1.5, color='brown', lw=2,
+            linestyle = '--', label = '1.5$\sigma$')
+        ax[2].set_ylabel('RMS \n ($\mu$V)')
+        ax[2].set_xlabel('Time (sec.)')
+
+        for myax in ax:
+            myax.legend(frameon = False, loc = 2)
+
+        return ax
 
     def __call__(self, channel = None, srate = 30000):
         """
