@@ -47,20 +47,20 @@ class Burst(object):
         if channel is not None:
             Nyquist = srate/2
         
-            self.wband = lfp.decimate(channel = data, q = 60)
+            self.wband = lfp.decimate(channel, q = 60)
 
             # 1) 90-250 Hz band-pass filter
             myrecBP = lfp.band_pass(channel,low=90,high=250,srate = srate)
 
             # 2) Downsample to 500 Hz
-            myrecDS = lfp.decimate(channel = myrecBP, q = 60)
+            myrecDS = lfp.decimate(myrecBP, q = 60)
             self.srate = srate/60 # update sampling rate
             dt = 1/self.srate
             self.bpass = myrecDS
 
             # square root of the mean squared (RMS)
             mysegment = 0.005/dt # 5 ms in sampling points
-            myrms = lfp.rms(channel = myrecDS, segment = int(mysegment))
+            myrms = lfp.rms(self.bpass, segment = int(mysegment))
             self.rms = myrms
 
             # now get burst times 
@@ -87,7 +87,7 @@ class Burst(object):
         pstart = int(self.srate) # 1 sec. before peak detection
         pend   = int(1.5*self.srate) # 1.5 after peak detection 
         # select burst periods in down-sampled signal
-        mylist = [self.bpass[b[0]-pstart : b[1]+pend] for b in self.idx]
+        mylist = [self.bpass[ b[0]-pstart:b[1]+pend ] for b in self.idx]
     
         with open(fname, 'wb') as fp:
             # protocol 2 to make it compatible with python2
