@@ -28,29 +28,29 @@ class Burst(object):
     with silicon probes from Cambridge Neurotech.
     """
 
-    def __init__(self, data = None, srate = 30000):
+    def __init__(self, channel = None, srate = 30000):
         """
         Reads the array and returns the number of burst. A burst
         is detected by taking the wide-band signal and band-pass 
         filter to 150-250 Hz. The squared root of the mean squared 
         (RMS) in segments of 10 ms is calculated and a burst is 
-        detected if the RMS > 7 standard deviations 
+        detected if the RMS > 6 standard deviations 
         
         """
-        if data is not None:
+        if channel is not None:
             Nyquist = srate/2
         
             # 1) 90-250 Hz band-pass filter
-            myrecBP = lfp.band_pass(data, low=90, high=250, srate = srate)
+            myrecBP = lfp.band_pass(channel,low=90,high=250,srate = srate)
 
             # 2) Downsample to 500 Hz
-            myrecDS = lfp.decimate(data = myrecBP, q = 60)
+            myrecDS = lfp.decimate(channel = myrecBP, q = 60)
             self.srate = srate/60 # update sampling rate
             dt = 1/self.srate
 
             # square root of the mean squared (RMS)
             mysegment = 0.005/dt # 5 ms in sampling points
-            myrms = lfp.rms(data = myrecDS, segment = int(mysegment))
+            myrms = lfp.rms(channel = myrecDS, segment = int(mysegment))
 
             # now get burst times 
             self.idx = self.__long_burst(rmsdata = myrms,srate = self.srate)
@@ -60,12 +60,12 @@ class Burst(object):
             self.idx = np.empty((1,2)) # empty NumPy with one element. 
             self.bpass = []
 
-    def __call__(self, data = None, srate = 30000):
+    def __call__(self, channel = None, srate = 30000):
         """
         Returns a Burst object
         """
         # create and object and return number of burst
-        return Burst(data, srate)
+        return Burst(channel, srate)
 
     def __len__(self):
         """
