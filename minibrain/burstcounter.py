@@ -51,7 +51,7 @@ class Burst(object):
             myrms = lfp.rms(data = myrecDS, segment = int(mysegment))
 
             # now get burst times 
-            self.idx = self.long_burst(rmsdata = myrms, srate = mysrate)
+            self.idx = self.__long_burst(rmsdata = myrms, srate = mysrate)
 
         else:
             self.idx = np.empty((1,2)) # empty NumPy with one element. 
@@ -78,7 +78,7 @@ class Burst(object):
         """
         self.idx = np.delete(self.idx, index, axis = 0)
 
-    def long_burst(self, rmsdata, srate):
+    def __long_burst(self, rmsdata, srate):
         """
         Calculate the beginning and end of a burst based on 4x the
         standard deviation of the signal (generally the RMS). After
