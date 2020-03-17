@@ -64,7 +64,7 @@ class Burst(object):
             self.rms = myrms
 
             # now get burst times 
-            self.idx = self.__long_burst(rmsdata = myrms,srate = self.srate)
+            self.idx = self.__long_burst(rmsdata = myrms)
 
         else:
             self.rate = srate
@@ -130,7 +130,7 @@ class Burst(object):
         # RMS signal
         ax[2].plot(time[pstart:pend],self.rms[pstart:pend],lw=1, c='k')
         ax[2].axhline(y = self.rms.std()*6, color='darkgreen', lw=2,
-            linestyle = '--', label = '5$\sigma$')
+            linestyle = '--', label = '6$\sigma$')
         ax[2].axhline(y = self.rms.std()*1.5, color='brown', lw=2,
             linestyle = '--', label = '1.5$\sigma$')
         ax[2].set_ylabel('RMS \n ($\mu$V)')
@@ -157,9 +157,9 @@ class Burst(object):
     def __getitem__(self, number):
         return self.idx[number]
 
-    def __long_burst(self, rmsdata, srate):
+    def __long_burst(self, rmsdata):
         """
-        Calculate the beginning and end of a burst based on 4x the
+        Calculate the beginning and end of a burst based on 6x the
         standard deviation of the signal (generally the RMS). After
         detecting beginning and ends of the burst based on timings
         differences larger than 750 ms, the closest point that crosses
@@ -182,7 +182,7 @@ class Burst(object):
 
         # calculate big time differences > 750 msec
         dx = np.diff(p)
-        idx = np.where(dx>.75*srate)[0]
+        idx = np.where(dx>.75*self.srate)[0]
     
         # +1 is the next peak after big time difference
         # add peak 0 because we count first start is the first detected peak
@@ -191,7 +191,7 @@ class Burst(object):
 
         for i, x in enumerate(pstart):
             # take 100 ms window backward
-            tmp = rmsdata[x:x-int(0.100*srate):-1] # read 100 ms backward
+            tmp = rmsdata[x:x-int(0.100*self.srate):-1] # read 100 ms backward
             val, = np.where( tmp<lowthr ) # stackoverlflow: 33747908
             try:
                 pstart[i] -= val[0] # first below threshold 
@@ -204,11 +204,11 @@ class Burst(object):
         pend = p[end] # selection from all peaks
 
         for i, x in enumerate(pend):
-            tmp = rmsdata[x+int(0.250*srate):x:-1] # read 250 ms forward
+            tmp = rmsdata[x+int(0.250*self.srate):x:-1] # read 250 ms forward
             val, = np.where( tmp>lowthr )
             try:
                 # because we look form outside we need to substract 250ms
-                pend[i] += (int(0.250*srate)-val[0])
+                pend[i] += (int(0.250*self.srate)-val[0])
             except IndexError:
                 pass # do not assign value if not found
 
