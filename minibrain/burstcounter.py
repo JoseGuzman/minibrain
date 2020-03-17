@@ -35,8 +35,15 @@ class Burst(object):
         filter to 150-250 Hz. The squared root of the mean squared 
         (RMS) in segments of 10 ms is calculated and a burst is 
         detected if the RMS > 6 standard deviations 
-        
+
+        Arguments:
+        ----------
+        channel (array)
+            Array with voltages (uV) of the signal
+        srate (int)
+            The sampling rate of the signal
         """
+
         if channel is not None:
             Nyquist = srate/2
         
