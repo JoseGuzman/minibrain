@@ -47,6 +47,8 @@ class Burst(object):
             The upper threshold for the burst detection. By default
             is 7x the standar deviation of the RMS.
         """
+        # update upper threshold value
+        self.upthr = upthr
 
         if channel is not None:
             Nyquist = srate/2
@@ -67,7 +69,7 @@ class Burst(object):
             self.rms = myrms
 
             # now get burst times 
-            self.idx = self.__long_burst(thr = upthr)
+            self.idx = self.__long_burst(upthr = upthr)
 
         else:
             self.rate = srate
@@ -75,9 +77,6 @@ class Burst(object):
             self.wband = []
             self.bpass = []
             self.rms = []
-
-        # update upper threshold value
-        self.upthr = upthr
 
     def delete(self, index):
         """
@@ -181,7 +180,7 @@ class Burst(object):
             label = 'RMS', lw = 1, color='brown')
 
         ax[2].axhline(y = self.rms.std()*self.upthr, color='darkgreen', 
-            lw=2,linestyle = '--', label = str(self.upthr) + '$\sigma$')
+            lw=2,linestyle = '--', label = f'{self.upthr}$\sigma$')
         ax[2].axhline(y = self.rms.std()*2, color='brown', lw=2,
             linestyle = '--', label = '2$\sigma$')
         ax[2].set_ylabel('Amplitude \n ($\mu$V)')
@@ -197,7 +196,7 @@ class Burst(object):
         Returns a Burst object
         """
         # create and object and return number of burst
-        return Burst(channel, 7, srate)
+        return Burst(channel, upthr, srate)
 
     def __len__(self):
         """
@@ -208,7 +207,7 @@ class Burst(object):
     def __getitem__(self, number):
         return self.idx[number]
 
-    def __long_burst(self, thr):
+    def __long_burst(self, upthr):
         """
         Calculate the beginning and end of a burst based on 6x the
         standard deviation of the signal (generally the RMS). After
@@ -228,7 +227,7 @@ class Burst(object):
         A list of (start, end) values containing the samples where 
         start and end are detected in the signal.
         """
-        highthr = self.rms.std()*thr
+        highthr = self.rms.std()*upthr
         lowthr = self.rms.std()*2.0
         p, _ = signal.find_peaks(x = self.rms, height = highthr )
 

@@ -89,10 +89,10 @@ class LFP(object):
             Nyquist = srate/2
 
         myparams = dict(btype='lowpass', analog=False)
-        mycuttoff = cutoff/Nyquist
+        mycutoff = cutoff/Nyquist
 
         # generate filter kernel (a and b)
-        b, a = signal.butter(N = 4, Wn = cutoff, **myparams)
+        b, a = signal.butter(N = 4, Wn = mycutoff, **myparams)
 
         return signal.filtfilt(b,a, data)
 
@@ -138,6 +138,44 @@ class LFP(object):
         b, a = signal.butter(N = 4, Wn = [low, high], **myparams)
 
         return signal.filtfilt(b,a, data)
+
+    def notch(self, data, band, srate = None):
+        """
+        Returns the band-stop filter with a 2nd order IIR filter
+        with a narrow bandwidht (high quality factor). Applies the 
+        filter twice, once forward and once backward to avoid phase
+        distortions (see scipy.signal.filtfilt for details).
+
+        Arguments
+        ---------
+        data :array
+            A NumPy array with the data (e.g., voltage in microVolts)
+
+        band : float
+            the band-stop frequency 
+
+        Example
+        -------
+        >>> band  = 50 # for 50 Hz band-stop filter
+        >>> signal_BP = lfp.notch(data = rec, band)
+
+        Be carefull when using a signal with a different sampling
+        rate than the lfp object
+        
+        >>> signal_BP = lfp.band_pass(rec, band=50, srate = 500)
+        """
+        if srate is None:
+            srate = self.srate
+            Nyquist = self.Nyquist
+        else:
+            Nyquist = srate/2
+
+        w0 = band/Nyquist
+        Q = 30 # quality factor
+        # generate filter kernel (a and b)
+        b, a = signal.iirnotch(w0, Q)
+
+        return signal.filtfilt(b, a, data)
 
     def decimate(self, data, q):
         """
