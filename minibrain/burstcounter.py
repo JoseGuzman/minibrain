@@ -148,6 +148,50 @@ class Burst(object):
 
         return ax
 
+    def plot_time(self, tstart, tend):
+        """
+        Return three axis with wide-band, band-pass (90-250 Hz) and
+        rms from the burst with idx.
+
+        Argument
+        --------
+        tstart: (float) beginning of recording (in sec.)
+        tend: (float) end of recording (in sec.)
+        
+        Return
+        ------
+        ax (array)
+            An array of axis
+        """
+        time = np.arange(len(self.wband))/self.srate # time vector
+        pstart = int(tstart*self.srate)
+        pend   = int(tend*self.srate)
+        
+        fig, ax = plt.subplots(3,1, figsize = (16,8), sharex=True)
+        
+        ax[0].plot(time[pstart:pend], self.wband[pstart:pend], 
+            label = 'wide-band', lw = 1, color='C0')
+        ax[0].set_ylabel('Amplitude \n ($\mu$V)')
+
+        ax[1].plot(time[pstart:pend], self.bpass[pstart:pend], 
+            label = '90-250 Hz', lw = 1, color='black')
+        ax[1].set_ylabel('Amplitude \n ($\mu$V)')
+
+        ax[2].plot(time[pstart:pend], self.rms[pstart:pend], 
+            label = 'RMS', lw = 1, color='brown')
+
+        ax[2].axhline(y = self.rms.std()*self.upthr, color='darkgreen', 
+            lw=2,linestyle = '--', label = str(self.upthr) + '$\sigma$')
+        ax[2].axhline(y = self.rms.std()*2, color='brown', lw=2,
+            linestyle = '--', label = '2$\sigma$')
+        ax[2].set_ylabel('Amplitude \n ($\mu$V)')
+        ax[2].set_xlabel('Time (sec.)')
+
+        for myax in ax:
+            myax.legend(frameon = False, loc = 2)
+
+        return ax
+
     def __call__(self, channel = None, upthr = 7, srate = 30000):
         """
         Returns a Burst object
