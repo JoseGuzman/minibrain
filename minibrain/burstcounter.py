@@ -180,7 +180,7 @@ class Burst(object):
             label = 'RMS', lw = 1, color='brown')
 
         ax[2].axhline(y = self.rms.std()*self.upthr, color='darkgreen', 
-            lw=2,linestyle = '--', label = f'{self.upthr}$\sigma$')
+            lw=2,linestyle = '--', label = str(self.upthr)+ $\sigma$')
         ax[2].axhline(y = self.rms.std()*2, color='brown', lw=2,
             linestyle = '--', label = '2$\sigma$')
         ax[2].set_ylabel('Amplitude \n ($\mu$V)')
