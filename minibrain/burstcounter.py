@@ -120,6 +120,7 @@ class Burst(object):
         pend   = int(bend + 1.5*self.srate)# 1.5 seconds after end. of burst
 
         fig, ax = plt.subplots(3,1, figsize = (16,8), sharex= True)
+        fig.suptitle('Burst {:04d}'.format(idx))
 
         # Wide-band signal
         ax[0].plot(time[pstart:pend],self.wband[pstart:pend],lw=1, c='gray')
