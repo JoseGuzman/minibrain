@@ -98,14 +98,14 @@ class Burst(object):
             # protocol 2 to make it compatible with python2
             pickle.dump(mylist, fp, protocol=2)
 
-    def plot(self, idx):
+    def plot(self, index):
         """
         Return three axis with wide-band, band-pass (90-250 Hz) and
-        rms from the burst with idx.
+        rms from the burst with index.
 
         Argument
         --------
-        idx (int)
+        index (int)
             the burst nubmer
 
         Return
@@ -114,12 +114,12 @@ class Burst(object):
             An array of axis
         """
         time = np.arange(len(self.wband))/self.srate # time vector
-        bstart, bend = self.idx[idx]
+        bstart, bend = self.idx[index]
         pstart = int(bstart - self.srate) # 1 second before beg. of burst
         pend   = int(bend + 1.5*self.srate)# 1.5 seconds after end. of burst
 
         fig, ax = plt.subplots(3,1, figsize = (16,8), sharex= True)
-        fig.suptitle('Burst {:04d}'.format(idx))
+        fig.suptitle('Burst {:04d}'.format(index))
 
         # Wide-band signal
         ax[0].plot(time[pstart:pend],self.wband[pstart:pend],lw=1, c='gray')
@@ -150,7 +150,7 @@ class Burst(object):
     def plot_time(self, tstart, tend):
         """
         Return three axis with wide-band, band-pass (90-250 Hz) and
-        rms from the burst with idx.
+        rms from the burst.
 
         Argument
         --------
@@ -204,17 +204,17 @@ class Burst(object):
         """
         return len(self.idx)
 
-    def __getitem__(self, number):
+    def __getitem__(self, index):
         """
         get the beginning and the end of the burst in sampling points
         """
-        return self.idx[number]
+        return self.idx[index]
 
-    def __setitem__(self, pair):
+    def __setitem__(self, index, pair):
         """
         set the beginning and the end of the burst in sampling points
         """
-        return self.idx[tupple] = pair 
+        return self.idx[index] = pair 
 
     def __long_burst(self, upthr):
         """
