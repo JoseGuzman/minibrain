@@ -183,7 +183,7 @@ class Burst(object):
             lw=2,linestyle = '--', label = str(self.upthr)+ '$\sigma$')
         ax[2].axhline(y = self.rms.std()*2, color='brown', lw=2,
             linestyle = '--', label = '2$\sigma$')
-        ax[2].set_ylabel('Amplitude \n ($\mu$V)')
+        ax[2].set_ylabel('RMS \n ($\mu$V)')
         ax[2].set_xlabel('Time (sec.)')
 
         for myax in ax:
