@@ -69,11 +69,11 @@ class Burst(object):
             self.rms = myrms
 
             # now get burst times 
-            self.idx = self.__long_burst(upthr = upthr)
+            self._burst = self.__long_burst(upthr = upthr)
 
         else:
             self.rate = srate
-            self.idx = np.empty((1,2)) # empty NumPy with one element. 
+            self._burst = np.empty((1,2)) # empty NumPy with one element. 
             self.wband = []
             self.bpass = []
             self.rms = []
@@ -82,7 +82,7 @@ class Burst(object):
         """
         Remove element from the bust in place
         """
-        self.idx = np.delete(self.idx, index, axis = 0)
+        self._burst = np.delete(self._burst, index, axis = 0)
 
     def save(self, fname):
         """
@@ -92,7 +92,7 @@ class Burst(object):
         pstart = int(self.srate) # 1 sec. before peak detection
         pend   = int(1.5*self.srate) # 1.5 after peak detection 
         # select burst periods in down-sampled signal
-        mylist = [self.bpass[ b[0]-pstart:b[1]+pend ] for b in self.idx]
+        mylist = [self.bpass[ b[0]-pstart:b[1]+pend ] for b in self._burst]
     
         with open(fname, 'wb') as fp:
             # protocol 2 to make it compatible with python2
@@ -114,7 +114,7 @@ class Burst(object):
             An array of axis
         """
         time = np.arange(len(self.wband))/self.srate # time vector
-        bstart, bend = self.idx[index]
+        bstart, bend = self._burst[index]
         pstart = int(bstart - self.srate) # 1 second before beg. of burst
         pend   = int(bend + 1.5*self.srate)# 1.5 seconds after end. of burst
 
@@ -202,19 +202,19 @@ class Burst(object):
         """
         Returns the number of bursts detected
         """
-        return len(self.idx)
+        return len(self._burst)
 
     def __getitem__(self, index):
         """
         get the beginning and the end of the burst in sampling points
         """
-        return self.idx[index]
+        return tuple(self._burst[index])
 
     def __setitem__(self, index, pair):
         """
         set the beginning and the end of the burst in sampling points
         """
-        self.idx[index] = pair 
+        self._burst[index] = pair 
 
     def __long_burst(self, upthr):
         """
