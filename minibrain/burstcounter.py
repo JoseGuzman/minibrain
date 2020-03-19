@@ -205,7 +205,16 @@ class Burst(object):
         return len(self.idx)
 
     def __getitem__(self, number):
+        """
+        get the beginning and the end of the burst in sampling points
+        """
         return self.idx[number]
+
+    def __setitem__(self, pair):
+        """
+        set the beginning and the end of the burst in sampling points
+        """
+        return self.idx[tupple] = pair 
 
     def __long_burst(self, upthr):
         """
