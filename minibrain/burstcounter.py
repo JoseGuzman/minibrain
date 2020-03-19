@@ -214,7 +214,7 @@ class Burst(object):
         """
         set the beginning and the end of the burst in sampling points
         """
-        return self.idx[index] = pair 
+        self.idx[index] = pair 
 
     def __long_burst(self, upthr):
         """
