@@ -100,8 +100,8 @@ class EphysLoader(object):
         # np.int16 is 16-bits integer 
         # signed means that the (2**16 values) are between -32768 to 32767
         # i2 means 'signed 2-byte (16 bit) integer'
-        # '>' means big-endian
-        self._memmap = np.memmap(fp, np.dtype('>i2'), mode = 'r', 
+        # '<' means little-endian
+        self._memmap = np.memmap(fp, np.dtype('<i2'), mode = 'r', 
             shape = (nsamples, nchan))
 
         # we transpose the map to handle 1D NumPy decently 
