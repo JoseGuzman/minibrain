@@ -208,7 +208,7 @@ class Burst(object):
         """
         get the beginning and the end of the burst in sampling points
         """
-        return tuple(self._burst[index])
+        return self._burst[index]
 
     def __setitem__(self, index, pair):
         """
@@ -247,31 +247,43 @@ class Burst(object):
         # +1 is the next peak after big time difference
         # add peak 0 because we count first start is the first detected peak
         start = np.concatenate( ([0], idx + 1) )
-        pstart = p[start] # selection from all peaks 
+        try:
+            pstart = p[start] # selection from all peaks 
+        except IndexError:
+            # if index 0 no peak detected
+            pstart = np.nan
+        else:
 
-        for i, x in enumerate(pstart):
-            # take 100 ms window backward
-            tmp = self.rms[x-int(0.150*self.srate):x]  
-            # values bellow lower threshold
-            val, = np.where( tmp>lowthr ) # stackoverlflow: 33747908
-            try:
-                pstart[i] -= (int(0.150*self.srate)-val[0])
-            except IndexError:
-                pass # do not assign new value if not found
+            for i, x in enumerate(pstart):
+                # take 100 ms window backward
+                tmp = self.rms[x-int(0.150*self.srate):x]  
+                # values bellow lower threshold
+                val, = np.where( tmp>lowthr ) # stackoverlflow: 33747908
+                try:
+                    pstart[i] -= (int(0.150*self.srate)-val[0])
+                except IndexError:
+                    pass # do not assign new value if not found
 
         # the value after the big difference is the last 
         # add last peak detected as the end of a peak
         end = np.concatenate( (idx, [-1]) )
-        pend = p[end] # selection from all peaks
+        # selection from all peaks
+        try:
+            pend = p[end]
+        except IndexError:
+            # if index 0 no peak detected
+            pend = np.nan
+        else:
 
-        for i, x in enumerate(pend):
-            tmp = self.rms[x+int(0.250*self.srate):x:-1] # read 250 ms forward
-            val, = np.where( tmp>lowthr )
-            try:
-                # because we look form outside we need to substract 250ms
-                pend[i] += (int(0.250*self.srate)-val[0])
-            except IndexError:
-                pass # do not assign value if not found
+            for i, x in enumerate(pend):
+                # read 250 ms forward
+                tmp = self.rms[x+int(0.250*self.srate):x:-1] 
+                val, = np.where( tmp>lowthr )
+                try:
+                    # because we look form outside we need to substract
+                    pend[i] += (int(0.250*self.srate)-val[0])
+                except IndexError:
+                    pass # do not assign value if not found
 
         # return indices of start-end burst periods
         # to unzip start, end = zip(*<list>)
