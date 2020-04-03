@@ -12,7 +12,7 @@ Example:
 >>> from minibrain import lfp # or from minibrain.lfpmanager import lfp
 
 # compute the square root of the mean squared in 5 ms segments
->>> myburst = lfp.rms(data = myarray, segment = 0.005*srate)
+>>> myburst = lfp.ms(data = myarray, segment = 0.005*srate)
 """
 
 import numpy as np

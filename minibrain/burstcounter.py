@@ -208,7 +208,10 @@ class Burst(object):
         """
         get the beginning and the end of the burst in sampling points
         """
-        return self._burst[index]
+        try:
+            return self._burst[index]
+        except IndexError:
+            return None
 
     def __setitem__(self, index, pair):
         """
