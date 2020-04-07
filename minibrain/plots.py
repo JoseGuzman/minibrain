@@ -5,7 +5,7 @@ Jose Guzman, sjm.guzman@gmail.com
 
 Created: Tue Sep 25 15:02:38 CEST 2018
 
-Custom functions for plots and hipothesis testing
+Custom functions for plots and hypothesis testing
 """
 
 import numpy as np
@@ -20,8 +20,8 @@ import matplotlib.pyplot as plt
 
 def plot_bars(xdata, ydata, labels, colors, ax = None):
     """
-    Generate a bar plot of two list of variables and 
-    perform a Mann-Whitney test to test for mean differences.
+    Generate a bar plot from a list containing the data
+    perform a Mann-Whitney U-test to test for mean differences.
 
     Arguments
     ----------
@@ -31,9 +31,9 @@ def plot_bars(xdata, ydata, labels, colors, ax = None):
     colors -- a list of strings containgin colors to plot the bars
 
     Returns:
-    A bar plot with the means, error bars with the standard error
+    ax: a bar plot with the means, error bars with the standard error
     of the mean, and single data points.
-    The mean and standard error of the samples, together with the
+    info: hhe mean and standard error of the samples, together with the
     the probability that the means are the same.
     """
     if ax is None:
@@ -90,7 +90,8 @@ def plot_bars(xdata, ydata, labels, colors, ax = None):
 
 def plot_boxes(xdata, ydata, labels, colors, ax = None):
     """
-    Plots box
+    Generate a box plot from a list containing the data 
+    perform a Mann-Whitney U-test to test for mean differences.
 
     Arguments:
     xdata   -- a list containing data to plot
@@ -99,7 +100,14 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
     colors -- a list of strings containgin colors
 
     Returns:
-    A box plots with 
+    ax: a box plots with where the horizontal line is the
+    median, boxes the first and third quartiles, and 
+    the whiskers the most extreme data points <1.5x
+    the interquartile distance form the edges. It also
+    show single data form the experiments.
+
+    info: the mean and standard error of the samples, together with the
+    the probability that the means are the same.
     """
     if ax is None:
         ax = plt.gca() # if not given, get current axis
