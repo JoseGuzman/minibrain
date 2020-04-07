@@ -210,8 +210,8 @@ class Burst(object):
         """
         try:
             return self._burst[index]
-        except IndexError:
-            return None
+        except IndexError: # if not found, return nan
+            return np.full(2, np.nan)
 
     def __setitem__(self, index, pair):
         """
