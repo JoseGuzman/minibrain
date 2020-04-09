@@ -54,7 +54,7 @@ class LFP(object):
 
         a2 = np.power(data,2)
         kernel = np.ones(segment)/float(segment)
-        return np.sqrt( np.convolve(a2, kernel) )
+        return np.sqrt( np.convolve(a2, kernel, 'same') )
 
     
     def low_pass(self, data, cutoff, srate = None):
