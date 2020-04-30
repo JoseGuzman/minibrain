@@ -69,8 +69,8 @@ class LFP(object):
         A NumPy array with the data (e.g., voltage in microVolts)
 
         cutoff (float):
-        the cutoff frequency (in sample units, remember to divide it
-        by the Nyquist frequency in sampling points.
+        the cutoff frequency (the function will  divide it
+        by the Nyquist frequency to express it in  sampling points.
 
         Example
         -------
