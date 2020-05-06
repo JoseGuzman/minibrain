@@ -1,14 +1,17 @@
 
 # PulsePal stimulation examples for optogenetics
 
-A Python module to analyze electrical signals and calcium fluorescence in brain organoids. For personal use only.
+My list of PulsePal (v2) protocols for photostimulation and open-ephy GUI manipulation. 
 
 ## Requirements
 
-PulsePal only works with Python 2.7 at the moment. To use the pulse with the scripts, use
-the a conda environment with Python 2.
+PulsePal only works with Python 2.7 at the moment. Use a conda environment with Python 2. 
 
-Assuming that you do not have it already use [pulsepal.yml](https://github.com/JoseGuzman/minibrain/blob/master/PayPulse/pulsepal.yml) and type:
+```bash
+conda create --name pulsepal python=2.7
+```
+
+Assuming that you do not have it already use my [pulsepal.yml](https://github.com/JoseGuzman/minibrain/blob/master/PulsePal/pulsepal.yml) and type:
 
 ```bash
 conda env create -f pulsepal.yml
