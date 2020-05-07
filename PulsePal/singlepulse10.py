@@ -4,6 +4,7 @@ singlepulse10.py
 Jose Guzman, jose.guzman<at>guzman-lab.com
 
 This script delivers on PULSE of 500 ms
+every 10 seconds repeteadly.
 
 To load it in Pulse Pal type:
 >>> python singlepulse10.py
