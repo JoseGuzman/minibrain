@@ -6,11 +6,11 @@ Jose Guzman, jose.guzman@guzman-lab.com
 Created: Mon Jul 29 20:59:51 CEST 2019
 
 Contains a class to load extracellular spikes recorded 
-Cambride Neurotech silicon probes, sorted with spyking-circus
-and curated with phy.
+Cambride Neurotech silicon probes, sorted with Kilosort2
+and curated with Phy2.
 
 Example:
->>> from minibrain  import UnitsLoader 
+>>> from minibrain  import Units 
 """
 
 import copy 
@@ -28,7 +28,7 @@ class Units(object):
     with silicon probes from Cambridge Neurotech.
     """
 
-    def __init__(self, path = "./continuous/Bandpass_Filter-102_100.0/", shank = 'ABCD'):
+    def __init__(self, path = "./"):
         """
         Reads all good isolated units from the probes and returns them 
         in a dataframe and dictionary
@@ -36,37 +36,37 @@ class Units(object):
         Arguments
         ---------
         path (str):
-            the path to look for spike_times.npy and spike_clusters.npy 
-        shank (str):
-            the shank of the silicon probe to read 
+            the path to look for cluster_info, spike_times.npy 
+            and spike_clusters.npy generated with Phy2.
+
+            Pandas dataframe with good units from clusteruing
+            A dictionary with the spike times of all good units
         """
     
-        df_list = list() # list of dataframe
         dict_unit = dict() # a dictionary with all units
-        for myshank in shank:
-            mypath = path + 'shank' + myshank + '/continuous.GUI/'
-            myfile = mypath + 'cluster_info.tsv'
-            df = pd.read_csv(myfile, sep = '\t')
-            df['shank'] = df['shank'].apply(read_shank) # map probes
+        myfile = path + 'cluster_info.tsv'
+        df = pd.read_csv(myfile, sep = '\t')
+        #df['sh'] = df['sh'].apply(read_shank) # map probes
             
-            # choose only good units
-            df_unit = df[ (df['group']=='good') ]
-            df_unit = df_unit.drop('group', 1) # 1 is for dropping column
+        # choose only good units
+        df_unit = df[ (df['group']=='good') ]
+        df_unit = df_unit.drop('group', 1) # 1 is for dropping column
         
-            # read good units
-            spike_times = np.load(mypath + 'spike_times.npy')
-            spike_clusters = np.load(mypath + 'spike_clusters.npy')
+        # read good units
+        spike_times = np.load(path + 'spike_times.npy')
+        spike_clusters = np.load(path + 'spike_clusters.npy')
         
-            for i in df_unit['id'].values:
-                mykey = str(i) + myshank
-                dict_unit[mykey] = spike_times[np.where(spike_clusters==i)] 
+        for myid in df_unit['cluster_id'].values:
+            #mykey = str(i) + myshank
+            dict_unit[str(myid)]  = spike_times[np.where(spike_clusters==myid)] 
 
-            # change to have unique identifiers
-            df_unit['id'] = df_unit['id'].apply(lambda x: str(x)+myshank)
-            df_list.append(df_unit)
+        # change to have unique identifiers
+        #df_unit['id'] = df_unit['id'].apply(lambda x: str(x)+myshank)
         
         # set sort=True cause non-cocatenation axis is not aligned
-        self.df = pd.concat(df_list, sort=True).reset_index(drop=True)
+        # Pandas dataframe with good units from clusteruing
+        self.df = df_unit
+        # A dictionary with the spike times of all good units
         self.unit = dict_unit
         print('%d units found'%len(self.df))
 
