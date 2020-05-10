@@ -272,27 +272,26 @@ class EphysLoader(object):
 
         #fig = plt.figure(figsize = (4,16))
 
-        yoffset = 0 # y-offset to plot traces 
+        yoffset = 0 # y-offset to plot traces (will go negative)
         for ch in self.shank[shankID]:
             uvolt = self.channel(ch)
             avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
             #ax = plt.subplot(8,1,mysubplot)
             avg +=yoffset
-            if not ch%2: # uneven
+            if not ch%2: # even (e.g., 0, 2, 4, etc...)
                 ax.plot(time, avg, c = self.color[shankID], lw =1.5)
-                ax.text(s = str(ch), x= 1,y = yoffset+15, ha = 'center')
-            else: # plot down if even
-                ax.plot(time-6, avg-50, c = self.color[shankID], lw=1.5)
-                ax.text(s = str(ch), x=-6,y = yoffset-30, ha = 'center')
-            yoffset +=80 # jump to the next subplot
-            #ax.set_ylim(top = 30, bottom = -90)
+                ax.text(s = str(ch), x= 0,y = yoffset+15, ha = 'left')
+            else: # plot down if uneven
+                ax.plot(time+6, avg+50, c = self.color[shankID], lw=1.5)
+                ax.text(s = str(ch), x=6,y = yoffset+65, ha = 'left')
+            yoffset -=80 # jump to the next subplot
             ax.axis('off')
         
         # plot scalebar
-        ax.hlines(y = -50, xmin = 2, xmax=4, lw=2, color='k') # 2 ms
-        ax.vlines(x = 4, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
-        ax.text(s='50 $\mu$V', y= -25, x= 5, verticalalignment='center')
-        ax.text(s='2 ms', y=-90, x=3, horizontalalignment='center')
+        ax.hlines(y = -1230, xmin = 10, xmax=12, lw=2, color='k') # 2 ms
+        ax.text(s='2 ms', y=-1300, x=11, horizontalalignment='center')
+        ax.vlines(x = 12, ymin = -1230, ymax=-1180, lw=2, color='k')  # 50 uV
+        ax.text(s='50 $\mu$V', y= -1205, x= 12.5, verticalalignment='center')
 
         return( ax )
 
