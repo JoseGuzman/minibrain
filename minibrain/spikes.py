@@ -53,12 +53,12 @@ class Units(object):
         df_unit = df_unit.drop('group', 1) # 1 is for dropping column
         
         # read good units
-        spike_times = np.load(path + 'spike_times.npy')
+        spike_times = np.load(path + 'spike_times.npy').flatten()
         spike_clusters = np.load(path + 'spike_clusters.npy')
         
         for myid in df_unit['cluster_id'].values:
             #mykey = str(i) + myshank
-            dict_unit[str(myid)]  = spike_times[np.where(spike_clusters==myid)] 
+            dict_unit[myid]  = spike_times[np.where(spike_clusters==myid)]
 
         # change to have unique identifiers
         #df_unit['id'] = df_unit['id'].apply(lambda x: str(x)+myshank)
