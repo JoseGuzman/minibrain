@@ -66,7 +66,11 @@ class Units(object):
         # choose only good units
         df_unit = df[ (df['group']=='good') ]
         df_unit = df_unit.drop('group', 1) # 1 is for dropping column
+        # remove some unused terms from Kilosort2
         df_unit = df_unit.drop('KSLabel', 1)
+        df_unit = df_unit.drop('ContamPct', 1)
+        df_unit = df_unit.drop('depth', 1)
+
         
         # read good units
         spike_times = np.load(path + 'spike_times.npy').flatten()
@@ -78,12 +82,11 @@ class Units(object):
             #mykey = str(i) + myshank
             dict_unit[myid]  = spike_times[np.where(spike_clusters==myid)]
 
-        # change to have unique identifiers
-        #df_unit['id'] = df_unit['id'].apply(lambda x: str(x)+myshank)
-        
-        # set sort=True cause non-cocatenation axis is not aligned
         # Pandas dataframe with good units from clusteruing
         df_unit.sort_values(by=['ch'], inplace=True)
+        # reassign index to cluster_id
+        df_unit.set_index('cluster_id', inplace=True)
+
         self.df = df_unit
         # A dictionary with the spike times of all good units
         self.unit = dict_unit
