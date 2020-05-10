@@ -57,35 +57,33 @@ class Units(object):
             A dictionary with the spike times of all good units
         """
     
-        dict_unit = dict() # a dictionary with all units
         myfile = path + 'cluster_info.tsv'
         df = pd.read_csv(myfile, sep = '\t')
-        # df['sh'] = read_shank(df['ch'].values )
         df['sh'] = df['ch'].apply(read_shank) # map probes
-            
-        # choose only good units
-        df_unit = df[ (df['group']=='good') ]
-        df_unit = df_unit.drop('group', 1) # 1 is for dropping column
-        # remove some unused terms from Kilosort2
-        df_unit = df_unit.drop('KSLabel', 1)
-        df_unit = df_unit.drop('ContamPct', 1)
-        df_unit = df_unit.drop('depth', 1)
+        df.set_index(df['cluster_id'].values, inplace=True)
 
-        
+        # choose only good units
+        df_unit = df[ (df['group']=='good') ].copy()
+
+        # remove some unused terms from Kilosort2
+        del df_unit['group'] 
+        del df_unit['Amplitude'] 
+        del df_unit['amp'] 
+        del df_unit['KSLabel'] 
+        del df_unit['ContamPct'] 
+        del df_unit['depth'] 
+
         # read good units
         spike_times = np.load(path + 'spike_times.npy').flatten()
         spike_clusters = np.load(path + 'spike_clusters.npy')
         
-        #df_unit.sort_values(by=['ch'], inplace = True)
         # read spikes from units
+        dict_unit = dict() # a dictionary with all units
         for myid in df_unit['cluster_id'].values:
-            #mykey = str(i) + myshank
             dict_unit[myid]  = spike_times[np.where(spike_clusters==myid)]
 
-        # Pandas dataframe with good units from clusteruing
-        df_unit.sort_values(by=['ch'], inplace=True)
-        # reassign index to cluster_id
-        df_unit.set_index('cluster_id', inplace=True)
+        # reorder by channel
+        df_unit.sort_values(by='ch', inplace=True)
 
         self.df = df_unit
         # A dictionary with the spike times of all good units

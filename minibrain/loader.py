@@ -204,7 +204,7 @@ class EphysLoader(object):
         # return self.gain*self._data[channel].T 
         return self._data[channel]*self.gain 
 
-    def fig_waveform(self, spk_times, nrandom, channel):
+    def fig_waveform(self, spk_times, nrandom, channel, ax):
         """
         Plots 2 ms of average voltage of the channel at the times given.
 
@@ -213,10 +213,13 @@ class EphysLoader(object):
         spk_times (list)  -- sampling points to take
         nrandom (int) -- the number of single random waveforms to plot
         channel (int)  -- the channel to plot 
+        ax (axis object)
 
         Returns the figure to plot
         
         """
+        if ax is None:
+            ax = plt.gca()
 
         tmax = 2 # in ms
         spk_times = spk_times.astype(int) # cast to int
@@ -225,10 +228,6 @@ class EphysLoader(object):
 
         uvolt = self.channel(channel)
         avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
-
-        # plot average waveform
-        fig = plt.figure(figsize = (5,6))
-        ax = plt.subplot(111)
 
         # take n random waveforms
         for peak in np.random.choice(spk_times, nrandom):
@@ -247,7 +246,7 @@ class EphysLoader(object):
         ax.vlines(x = 2.2, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
         ax.text(s='50 $\mu$V', y= -25, x=2.5, verticalalignment='center')
 
-        return( fig )
+        return( ax )
         
         
     def fig_shank(self, spk_times, shankID, ax=None):
@@ -258,16 +257,18 @@ class EphysLoader(object):
         ----------
         spk_times (list)  -- sampling points to take
         shankID (char)  -- 'A', 'B', 'C', or 'D'
+        ax (axis object)
 
         Returns the figure to plot
         
         """
+        if ax is None:
+            ax = plt.gca()
+
         spk_times = spk_times.astype(int) # cast to int
         time = np.linspace(start = 0, stop = 5, num = 5/self.dt)
         phalf = int(2.5/self.dt)
 
-        if ax is None:
-            ax = plt.gca()
 
         #fig = plt.figure(figsize = (4,16))
 
