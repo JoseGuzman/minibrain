@@ -250,7 +250,7 @@ class EphysLoader(object):
         return( fig )
         
         
-    def fig_shank(self, spk_times, shankID):
+    def fig_shank(self, spk_times, shankID, ax=None):
         """
         Plots 5 ms of average voltage of the shank at the times given.
 
@@ -266,31 +266,34 @@ class EphysLoader(object):
         time = np.linspace(start = 0, stop = 5, num = 5/self.dt)
         phalf = int(2.5/self.dt)
 
-        fig = plt.figure(figsize = (4,16))
+        if ax is None:
+            ax = plt.gca()
 
-        mysubplot = 1
+        #fig = plt.figure(figsize = (4,16))
+
+        yoffset = 0 # y-offset to plot traces 
         for ch in self.shank[shankID]:
             uvolt = self.channel(ch)
             avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
-            ax = plt.subplot(8,1,mysubplot)
-            if not ch%2: 
-                ax.plot(time, avg, color = self.color[shankID])
-                ax.text(s = str(ch), x= 0.5,y =  5, ha = 'center')
-            else: # plot down if uneven
-                ax.plot(time-5, avg-40, color = self.color[shankID])
-                ax.text(s = str(ch), x= -4.5,y = -35, ha = 'center')
-                mysubplot +=1 # jump to the next subplot
-            ax.set_ylim(top = 30, bottom = -90)
+            #ax = plt.subplot(8,1,mysubplot)
+            avg +=yoffset
+            if not ch%2: # uneven
+                ax.plot(time, avg, c = self.color[shankID], lw =1.5)
+                ax.text(s = str(ch), x= 1,y = yoffset+15, ha = 'center')
+            else: # plot down if even
+                ax.plot(time-6, avg-50, c = self.color[shankID], lw=1.5)
+                ax.text(s = str(ch), x=-6,y = yoffset-30, ha = 'center')
+            yoffset +=80 # jump to the next subplot
+            #ax.set_ylim(top = 30, bottom = -90)
             ax.axis('off')
         
         # plot scalebar
-        ax = plt.gca()
         ax.hlines(y = -50, xmin = 2, xmax=4, lw=2, color='k') # 2 ms
         ax.vlines(x = 4, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
-        ax.text(s='50 $\mu$V', y= -25, x=4.5, verticalalignment='center')
-        ax.text(s='2 ms', y=-70, x=3, horizontalalignment='center')
+        ax.text(s='50 $\mu$V', y= -25, x= 5, verticalalignment='center')
+        ax.text(s='2 ms', y=-90, x=3, horizontalalignment='center')
 
-        return( fig )
+        return( ax )
 
     
     # getter for the ADC channels
