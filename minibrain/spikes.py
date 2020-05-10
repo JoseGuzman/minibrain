@@ -64,7 +64,7 @@ class Units(object):
         myfile = path + 'cluster_info.tsv'
         df = pd.read_csv(myfile, sep = '\t')
         #df['sh'] = df['sh'].apply(read_shank) # map probes
-        df['sh']= read_shank(df['ch'])
+        #df['sh']= read_shank(df['ch'])
             
         # choose only good units
         df_unit = df[ (df['group']=='good') ]
