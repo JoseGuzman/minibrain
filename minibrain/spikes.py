@@ -22,6 +22,23 @@ myshank = {1.0:'A', 2.0:'B', 3.0:'C', 4.0:'D',
            5.0:'E', 6.0:'F', 7.0:'G', 8.0:'H'}
 read_shank = lambda key: myshank[key]
 
+def read_shank(channel):
+    """
+    Returns the shankID of the channel.
+
+    Parameters
+    ----------
+    channel (int)
+        The number of the channel in the shank
+    """
+    rules = [range( 0,16), range(16,32), range(32,48), range(48,64),
+             range(64,80), range(80,96), range(96,112), range(112,128)]
+    shank = 'ABCDEFGH'
+
+    for i,sh in enumerate(rules):
+        if channel in sh:
+            return shank[i]
+
 class Units(object):
     """
     A class to load extracellular units recordings acquired
@@ -47,6 +64,7 @@ class Units(object):
         myfile = path + 'cluster_info.tsv'
         df = pd.read_csv(myfile, sep = '\t')
         #df['sh'] = df['sh'].apply(read_shank) # map probes
+        df['sh']= read_shank(df['ch'])
             
         # choose only good units
         df_unit = df[ (df['group']=='good') ]
