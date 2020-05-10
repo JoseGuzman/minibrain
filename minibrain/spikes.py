@@ -118,7 +118,7 @@ class Units(object):
                     mytimes.extend( newval )
             mydict[key] = np.array(mytimes)
             
-            index = mydf.index[ mydf['id']==key]
+            index = mydf.index[ mydf['cluster_id']==key]
             mydf.loc[index, 'n_spikes'] =  int(len(mytimes))
 
         # set attributes of new object 
