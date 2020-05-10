@@ -18,11 +18,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 
-myshank = {1.0:'A', 2.0:'B', 3.0:'C', 4.0:'D', 
-           5.0:'E', 6.0:'F', 7.0:'G', 8.0:'H'}
-
-read_shank = lambda key: myshank[key]
-
+@np.vectorize
 def read_shank(channel):
     """
     Returns the shankID of the channel.
@@ -64,17 +60,20 @@ class Units(object):
         dict_unit = dict() # a dictionary with all units
         myfile = path + 'cluster_info.tsv'
         df = pd.read_csv(myfile, sep = '\t')
-        #df['sh'] = df['sh'].apply(read_shank) # map probes
-        #df['sh']= read_shank(df['ch'])
+        # df['sh'] = read_shank(df['ch'].values )
+        df['sh'] = df['ch'].apply(read_shank) # map probes
             
         # choose only good units
         df_unit = df[ (df['group']=='good') ]
         df_unit = df_unit.drop('group', 1) # 1 is for dropping column
+        df_unit = df_unit.drop('KSLabel', 1)
         
         # read good units
         spike_times = np.load(path + 'spike_times.npy').flatten()
         spike_clusters = np.load(path + 'spike_clusters.npy')
         
+        #df_unit.sort_values(by=['ch'], inplace = True)
+        # read spikes from units
         for myid in df_unit['cluster_id'].values:
             #mykey = str(i) + myshank
             dict_unit[myid]  = spike_times[np.where(spike_clusters==myid)]
@@ -84,6 +83,7 @@ class Units(object):
         
         # set sort=True cause non-cocatenation axis is not aligned
         # Pandas dataframe with good units from clusteruing
+        df_unit.sort_values(by=['ch'], inplace=True)
         self.df = df_unit
         # A dictionary with the spike times of all good units
         self.unit = dict_unit
