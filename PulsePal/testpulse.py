@@ -30,7 +30,7 @@ def loadpulse(args):
 
     output = args['out']
     # define a PULSE 
-    mypulse.triggerMode[2] = 1 # trigger on/off
+    mypulse.triggerMode[2] = 0 # trigger on/off
     mypulse.triggerMode[1] = 1 # no trigger
 
     mypulse.isBiphasic[output] = 0 # monophasic
