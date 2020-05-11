@@ -60,7 +60,11 @@ class Units(object):
         myfile = path + 'cluster_info.tsv'
         df = pd.read_csv(myfile, sep = '\t')
         df['sh'] = df['ch'].apply(read_shank) # map probes
-        df.set_index(df['cluster_id'].values, inplace=True)
+        try:
+            df.set_index(df['cluster_id'].values, inplace=True)
+        except KeyError: # old phy-devel uses simply 'id'
+            df.set_index(df['id'].values, inplace=True) 
+            df.rename(columns = {'id':'cluster_id'}, inplace=True)
 
         # choose only good units
         df_unit = df[ (df['group']=='good') ].copy()
