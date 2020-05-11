@@ -269,9 +269,6 @@ class EphysLoader(object):
         time = np.linspace(start = 0, stop = 5, num = 5/self.dt)
         phalf = int(2.5/self.dt)
 
-
-        #fig = plt.figure(figsize = (4,16))
-
         yoffset = 0 # y-offset to plot traces (will go negative)
         for ch in self.shank[shankID]:
             uvolt = self.channel(ch)
