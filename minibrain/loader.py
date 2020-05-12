@@ -57,7 +57,7 @@ class EphysLoader(object):
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
 
-    def __init__(self, fname, date = None, birth = None, nchan = 67, srate=30e3):
+    def __init__(self, fname, date = None, birth = None, nchan = 67, srate=30e3, openephys_binary = True):
         """
         Reads binary data from Open Ephys acquired with
         the Intan 512ch Recording controller.
@@ -77,7 +77,8 @@ class EphysLoader(object):
             134 (128 + 6 AUX) when using two shanks of electrodes.
         srate (int)
             sampling rate, the number of samples per second
-        """
+
+        openephys_binary (bool) if acquisition was with Open Ephys GUI (default True) """
 
         self._nchan = nchan
         self.srate = srate      # number of samples per second
@@ -101,6 +102,10 @@ class EphysLoader(object):
         print('Recording duration = {:2.4f} min.'.format(self.seconds/60) )
         print('Recording age      = {:2.4f} months.'.format(age/30) ) 
 
+        if openephys_binary:
+            btype = '<i2'
+        else: # Intan software
+            btype = 'int16'
         # accesss without reading the whole file 
         # np.int16 is 16-bits integer 
         # signed means that the (2**16 values) are between -32768 to 32767
@@ -108,14 +113,14 @@ class EphysLoader(object):
         # '<' means little-endian
         #self._memmap = np.memmap(fp, np.dtype('<i2'), mode = 'r', 
         #    shape = (nsamples, nchan))
-        self._memmap = np.memmap(fp, np.dtype('<i2'), mode = 'r', 
-            shape = (nsamples, nchan))
+        self._memmap = np.memmap(fp, np.dtype(btype), mode = 'r', 
+                shape = (nsamples, nchan))
 
         # we transpose the map to handle 1D NumPy decently 
         # e.g., to use self._data[0] for channel zero.
         # this is the data we will use in the object
         self._data = np.transpose( self._memmap )
-        #self._data = np.transpose( self._data )
+
         fp.close()
 
     def get_rms_shank(self, shankID, pstart, pend):
@@ -276,13 +281,14 @@ class EphysLoader(object):
 
         spk_times = spk_times.astype(int) # cast to int
         time = np.linspace(start = 0, stop = 5, num = 5/self.dt)
-        phalf = int(2.5/self.dt)
+        phalf = int(2.5/self.dt) # 2.5 before and after peak
 
         yoffset = 0 # y-offset to plot traces (will go negative)
         for ch in self.shank[shankID]:
+            selection = np.empty((spk_times.size, time.size)) # 2D array
             uvolt = self.channel(ch)
             avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
-            #ax = plt.subplot(8,1,mysubplot)
+
             avg +=yoffset
             if not ch%2: # even (e.g., 0, 2, 4, etc...)
                 ax.plot(time, avg, c = self.color[shankID], lw =1.5)
