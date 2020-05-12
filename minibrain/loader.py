@@ -55,7 +55,6 @@ class EphysLoader(object):
             }
 
     dt = 1/30.       # in ms!!!!!!!!! (to plot single spikes!)
-    srate = 30000      # number of samples per second
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
 
@@ -66,17 +65,24 @@ class EphysLoader(object):
 
         Arguments:
         ----------
-        fname (str) -- filename (e.g., 'continuous.dat')
-        date (str) -- recording date format (e.g., %Y-%m-%d_%H-%M-%S, 
+        fname (str) 
+            filename (e.g., 'continuous.dat')
+        date (str) 
+            recording date format (e.g., %Y-%m-%d_%H-%M-%S, 
             like '2019-10-09_15-26-38')
-        birth (str) -- birth date format (e.g., '2019-10-07_00_00-00')
-        nchan (int)   -- number of channels in recording. It
-            is 67 by default (64 ADC + 3 AUX from Intan RHD2000). Use
+        birth (str) 
+            birth date format (e.g., '2019-10-07_00_00-00')
+        nchan (int)  
+            number of channels in recording. It is 67 by default 
+            (64 ADC + 3 AUX from Intan RHD2000). Use
             134 (128 + 6 AUX) when using two shanks of electrodes.
+        srate (int)
+            sampling rate, the number of samples per second
         """
 
         self._nchan = nchan
-        #self._fname = fname 
+        self.srate = 30000      # number of samples per second
+        sefl.dt = 1/(srate/1000) # sampling interval in ms
         if date is None or birth is None:
             age = 0
         else:
