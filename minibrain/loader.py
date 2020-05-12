@@ -54,7 +54,6 @@ class EphysLoader(object):
              'H': '#00FF00'
             }
 
-    dt = 1/30.       # in ms!!!!!!!!! (to plot single spikes!)
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
 
@@ -81,7 +80,7 @@ class EphysLoader(object):
         """
 
         self._nchan = nchan
-        self.srate = 30000      # number of samples per second
+        self.srate = srate      # number of samples per second
         self.dt = 1/(srate/1000) # sampling interval in ms
         if date is None or birth is None:
             age = 0
