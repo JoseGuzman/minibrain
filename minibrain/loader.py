@@ -285,7 +285,6 @@ class EphysLoader(object):
 
         yoffset = 0 # y-offset to plot traces (will go negative)
         for ch in self.shank[shankID]:
-            selection = np.empty((spk_times.size, time.size)) # 2D array
             uvolt = self.channel(ch)
             avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
 
