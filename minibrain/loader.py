@@ -58,7 +58,7 @@ class EphysLoader(object):
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
 
-    def __init__(self, fname, date = None, birth = None, nchan = 67):
+    def __init__(self, fname, date = None, birth = None, nchan = 67, srate=3000):
         """
         Reads binary data from Open Ephys acquired with
         the Intan 512ch Recording controller.
@@ -82,7 +82,7 @@ class EphysLoader(object):
 
         self._nchan = nchan
         self.srate = 30000      # number of samples per second
-        sefl.dt = 1/(srate/1000) # sampling interval in ms
+        self.dt = 1/(srate/1000) # sampling interval in ms
         if date is None or birth is None:
             age = 0
         else:
