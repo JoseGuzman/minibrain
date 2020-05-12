@@ -57,7 +57,7 @@ class EphysLoader(object):
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
 
-    def __init__(self, fname, date = None, birth = None, nchan = 67, srate=3000):
+    def __init__(self, fname, date = None, birth = None, nchan = 67, srate=30e3):
         """
         Reads binary data from Open Ephys acquired with
         the Intan 512ch Recording controller.
@@ -106,12 +106,16 @@ class EphysLoader(object):
         # signed means that the (2**16 values) are between -32768 to 32767
         # i2 means 'signed 2-byte (16 bit) integer'
         # '<' means little-endian
+        #self._memmap = np.memmap(fp, np.dtype('<i2'), mode = 'r', 
+        #    shape = (nsamples, nchan))
         self._memmap = np.memmap(fp, np.dtype('<i2'), mode = 'r', 
             shape = (nsamples, nchan))
 
         # we transpose the map to handle 1D NumPy decently 
+        # e.g., to use self._data[0] for channel zero.
         # this is the data we will use in the object
         self._data = np.transpose( self._memmap )
+        #self._data = np.transpose( self._data )
         fp.close()
 
     def get_rms_shank(self, shankID, pstart, pend):
