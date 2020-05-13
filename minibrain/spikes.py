@@ -60,13 +60,8 @@ class Units(object):
         myfile = path + 'cluster_info.tsv'
         df = pd.read_csv(myfile, sep = '\t')
         df['sh'] = df['ch'].apply(read_shank) # map probes
-        try:
-            df.set_index(df['cluster_id'].values, inplace=True)
-        except KeyError: # old phy-devel uses simply 'id'
-            df.set_index(df['id'].values, inplace=True) 
-            df.rename(columns = {'id':'cluster_id'}, inplace=True)
-
-        # choose only good units
+        
+        # make a copy with only good units
         df_unit = df[ (df['group']=='good') ].copy()
 
         # remove some unused terms from Kilosort2
@@ -76,6 +71,10 @@ class Units(object):
         del df_unit['KSLabel'] 
         del df_unit['ContamPct'] 
         del df_unit['depth'] 
+
+        # old phy-devel uses simply 'id'
+        if 'id' in df.columns:
+            df.rename(columns = {'id':'cluster_id'}, inplace=True)
 
         # read good units
         spike_times = np.load(path + 'spike_times.npy').flatten()
@@ -88,6 +87,7 @@ class Units(object):
 
         # reorder by channel
         df_unit.sort_values(by='ch', inplace=True)
+        df_unit.reset_index(drop = True, inplace = True)
 
         self.df = df_unit
         # A dictionary with the spike times of all good units

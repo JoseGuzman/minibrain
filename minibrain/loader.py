@@ -57,7 +57,7 @@ class EphysLoader(object):
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
 
-    def __init__(self, fname, date = None, birth = None, nchan = 67, srate=30e3, openephys_binary = True):
+    def __init__(self,fname,date=None,birth=None,nchan=67,srate=30000, openephys_binary = True):
         """
         Reads binary data from Open Ephys acquired with
         the Intan 512ch Recording controller.
