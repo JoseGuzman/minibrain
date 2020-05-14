@@ -218,7 +218,7 @@ class EphysLoader(object):
         # return self.gain*self._data[channel].T 
         return self._data[channel]*self.gain 
 
-    def fig_waveform(self, spk_times, nrandom, channel, ax):
+    def fig_waveform(self, spk_times, nrandom, channel, ax=None):
         """
         Plots 2 ms of average voltage of the channel at the times given.
 
