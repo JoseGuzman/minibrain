@@ -26,6 +26,49 @@ from scipy import signal
 
 from minibrain.lfpmanager import lfp
 
+def spike_kinetics(waveform, dt = 1):
+    """
+    Calculates spike half-width, the trough to right (late) peak latency
+    - related to the repolarization of an action potential -, and the
+    peak amplitude asymmetry index (reflecting differences in the rate of
+    fall of spike repolarization).
+
+    Parameters
+    ----------
+    waveform (array)
+        a Numpy Array with the waveform to calculate spike kinetics.
+
+    dt (sampling interval) 
+        sampling interval in ms (e.g., 1/30 30 samples every ms).
+        Default is one.
+
+    Returns
+    -------
+    A dictionary with the parameters
+    """
+    # first normalize the wave to it's peak
+    mytrace = waveform/waveform.min() # peak in y=1
+
+    mypeak = mytrace.argmax() # peak to calculate half-width
+    a = np.min(mytrace[:mypeak] # peak in the left part of the spike
+    b = np.min(mytrace[:mypeak] # peak in the right part of the spike
+
+    # Half-width from the min found
+    half_width = signal.peak_widths(mytrace, [mypeak], rel_height = 0.5)
+    # latency from min to the second peak
+    latency = np.where(mytrace == b) - mypeak
+    # asymetry from the first peak, substract baseline
+    baseline = mytrace[:20].mean()
+    a = baseline -a
+    b = baseline -b
+
+    mydict = dict()
+    mydict['half_width'] = half_width[0][0]*dt # in sampling points
+    mydict['latency'] = latency[0][0]*dt # in sampling points
+    mydict['asymmetry'] = (a-b)/(a+b)
+
+    return mydict
+
 class EphysLoader(object):
     """
     A class to load extracellular recordings acquired
@@ -229,19 +272,21 @@ class EphysLoader(object):
         channel (int)  -- the channel to plot 
         ax (axis object)
 
-        Returns the figure to plot
+        Returns the axis to plot and a dictionary with the
+        kinetic properties of the average waveform.
         
         """
         if ax is None:
             ax = plt.gca()
 
-        tmax = 2 # in ms
+        tmax = 3 # in ms
         spk_times = spk_times.astype(int) # cast to int
         time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
         phalf = int((tmax/2)/self.dt)
 
         uvolt = self.channel(channel)
         avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
+        mydict = spike_kinetics(avg, dt = self.dt)
 
         # take n random waveforms
         for peak in np.random.choice(spk_times, nrandom):
@@ -260,7 +305,7 @@ class EphysLoader(object):
         ax.vlines(x = 2.2, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
         ax.text(s='50 $\mu$V', y= -25, x=2.5, verticalalignment='center')
 
-        return( ax )
+        return( ax, avg )
         
         
     def fig_shank(self, spk_times, shankID, ax=None):
