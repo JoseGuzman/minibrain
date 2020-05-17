@@ -50,15 +50,16 @@ def spike_kinetics(waveform, dt = 1):
     mytrace = waveform/waveform.min() # peak in y=1
 
     mypeak = mytrace.argmax() # peak to calculate half-width
-    a = np.min(mytrace[:mypeak] # peak in the left part of the spike
-    b = np.min(mytrace[:mypeak] # peak in the right part of the spike
+    a = np.min(mytrace[:mypeak]) # peak in the left part of the spike
+    b = np.min(mytrace[mypeak:]) # peak in the right part of the spike
 
     # Half-width from the min found
     half_width = signal.peak_widths(mytrace, [mypeak], rel_height = 0.5)
     # latency from min to the second peak
     latency = np.where(mytrace == b) - mypeak
-    # asymetry from the first peak, substract baseline
-    baseline = mytrace[:20].mean()
+    # asymetry from the first peak, substract 0.5 ms baseline
+    base = int(0.5*dt)
+    baseline = mytrace[:base].mean()
     a = baseline -a
     b = baseline -b
 
@@ -66,6 +67,7 @@ def spike_kinetics(waveform, dt = 1):
     mydict['half_width'] = half_width[0][0]*dt # in sampling points
     mydict['latency'] = latency[0][0]*dt # in sampling points
     mydict['asymmetry'] = (a-b)/(a+b)
+    mydict['waveform'] = waveform/-waveform.min() # normalized to peak
 
     return mydict
 
@@ -263,7 +265,7 @@ class EphysLoader(object):
 
     def fig_waveform(self, spk_times, nrandom, channel, ax=None):
         """
-        Plots 2 ms of average voltage of the channel at the times given.
+        Plots 4 ms of average voltage of the channel at the times given.
 
         Arguments:
         ----------
@@ -279,7 +281,7 @@ class EphysLoader(object):
         if ax is None:
             ax = plt.gca()
 
-        tmax = 3 # in ms
+        tmax = 4 # in ms
         spk_times = spk_times.astype(int) # cast to int
         time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
         phalf = int((tmax/2)/self.dt)
@@ -305,7 +307,7 @@ class EphysLoader(object):
         ax.vlines(x = 2.2, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
         ax.text(s='50 $\mu$V', y= -25, x=2.5, verticalalignment='center')
 
-        return( ax, avg )
+        return( ax, mydict )
         
         
     def fig_shank(self, spk_times, shankID, ax=None):
