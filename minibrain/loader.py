@@ -123,7 +123,9 @@ class EphysLoader(object):
         srate (int)
             sampling rate, the number of samples per second
 
-        openephys_binary (bool) if acquisition was with Open Ephys GUI (default True) """
+        openephys_binary (bool) 
+            if acquisition was with Open Ephys GUI (default True) 
+        """
 
         self._nchan = nchan
         self.srate = srate      # number of samples per second
