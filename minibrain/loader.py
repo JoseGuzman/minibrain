@@ -58,7 +58,7 @@ def spike_kinetics(waveform, dt = 1):
     # latency from min to the second peak
     latency = np.where(mytrace == b) - mypeak
     # asymetry from the first peak, substract 0.5 ms baseline
-    base = int(0.5*dt)
+    base = int(0.5/dt)
     baseline = mytrace[:base].mean()
     a = baseline -a
     b = baseline -b
@@ -301,11 +301,11 @@ class EphysLoader(object):
 
         # plot scalebar
         # horizontal (time)
-        ax.hlines(y=-50, xmin=1.2, xmax=2.2, lw=2, color='k') # 2 ms
-        ax.text(s='1 ms', y=-60, x=1.7, horizontalalignment='center')
+        ax.hlines(y=-50, xmin=2.2, xmax=3.2, lw=2, color='k') # 2 ms
+        ax.text(s='1 ms', y=-60, x=2.7, horizontalalignment='center')
         # vertical (voltage)
-        ax.vlines(x = 2.2, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
-        ax.text(s='50 $\mu$V', y= -25, x=2.5, verticalalignment='center')
+        ax.vlines(x = 3.2, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
+        ax.text(s='50 $\mu$V', y= -25, x=3.5, verticalalignment='center')
 
         return( ax, mydict )
         
