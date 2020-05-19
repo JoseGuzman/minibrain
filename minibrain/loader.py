@@ -61,7 +61,7 @@ def spike_kinetics(waveform, dt = 1):
         mydict['half_width'] = np.nan
         mydict['asymetry']   = np.nan
         mydict['latency'] = np.nan
-    else
+    else:
         mydict['half_width'] = half_width[0][0]*dt # in sampling points
 
         # asymetry from the first peak, substract 1 ms baseline
