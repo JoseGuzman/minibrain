@@ -265,6 +265,35 @@ class EphysLoader(object):
         # return self.gain*self._data[channel].T 
         return self._data[channel]*self.gain 
 
+    def waveform_kinetics(self, spk_times, channel):
+        """
+        gets kinetic parameters from the voltage of the channel 
+        4 ms around the times given.
+        """
+        tmax = 4 # in ms
+        spk_times = spk_times.astype(int) # cast to int
+        phalf = int((tmax/2)/self.dt)
+
+        waveform = list()
+        half_width = list()
+        latency = list()
+        asymmetry = list()
+        uvolt = self.channel(channel)
+        for p in spk_times:
+            myspike = spike_kinetics(uvolt[ p-phalf: p + phalf ], self.dt)
+            waveform.append( myspike['waveform'] ) # normalized spike!
+            half_width.append( myspike['half_width'] )
+            latency.append( myspike['latency'] )
+            asymmetry.append( myspike['asymmetry'] )
+
+        mydict={'waveform': waveform,
+                'half_width': half_width,
+                'latency' : latency,
+                'asymmetry' : asymmetry
+                }
+        return mydict
+
+
     def fig_waveform(self, spk_times, nrandom, channel, ax=None):
         """
         Plots 4 ms of average voltage of the channel at the times given.
