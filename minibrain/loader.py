@@ -55,21 +55,27 @@ def spike_kinetics(waveform, dt = 1):
 
     mydict = dict()
     # Half-width from the min found
-    half_width = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.5)
-    mydict['half_width'] = half_width[0][0]*dt # in sampling points
+    try:
+        half_width = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.5)
+    except PeakPropertyWarning: # if half-width is zero
+        mydict['half_width'] = np.nan
+        mydict['asymetry']   = np.nan
+        mydict['latency'] = np.nan
+    else
+        mydict['half_width'] = half_width[0][0]*dt # in sampling points
 
-    # asymetry from the first peak, substract 1 ms baseline
-    if dt == 1:
-        mybase = 30 # take at least 30 sampling points
-    else:
-        mybase = int(1/dt) 
-    baseline = mytrace[:mybase].mean()
-    a = baseline - mytrace[a_idx]
-    b = baseline - mytrace[b_idx]
-    mydict['asymmetry'] = (a-b)/(a+b)
+        # asymetry from the first peak, substract 1 ms baseline
+        if dt == 1:
+            mybase = 30 # take at least 30 sampling points
+        else:
+            mybase = int(1/dt) 
+        baseline = mytrace[:mybase].mean()
+        a = baseline - mytrace[a_idx]
+        b = baseline - mytrace[b_idx]
+        mydict['asymmetry'] = (a-b)/(a+b)
 
-    # latency from min to the right peak
-    mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
+        # latency from min to the right peak
+        mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
     mydict['waveform'] = mytrace # normalized to peak
 
     return mydict
