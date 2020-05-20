@@ -26,7 +26,7 @@ from scipy import signal
 
 from minibrain.lfpmanager import lfp
 
-def spike_kinetics(waveform, peak = None, dt = 1):
+def spike_kinetics(waveform, dt = 1):
     """
     Calculates spike half-width, the trough to right (late) peak latency
     - related to the repolarization of an action potential -, and the
@@ -37,10 +37,6 @@ def spike_kinetics(waveform, peak = None, dt = 1):
     ----------
     waveform (array)
         a Numpy Array with the waveform to calculate spike kinetics.
-
-    peak (int)
-        the sampling point where the peak is location. If None
-    the minimun will be detected.
 
     dt (sampling interval) 
         sampling interval in ms (e.g., 1/30 30 samples every ms).
@@ -53,10 +49,7 @@ def spike_kinetics(waveform, peak = None, dt = 1):
     # first normalize the wave to it's peak
     mytrace = waveform/-waveform.min() # peak in y=1
 
-    if peak is None:
-        p_idx = mytrace.argmin() # peak index to calculate half-width
-    else:
-        p_idx = peak 
+    p_idx = mytrace.argmin() # peak index to calculate half-width
     a_idx = mytrace[:p_idx].argmax() # peak index the left part 
     b_idx = p_idx + mytrace[p_idx:].argmax() # peak index the right part 
 
@@ -295,7 +288,7 @@ class EphysLoader(object):
         asymmetry = list()
         uvolt = self.channel(channel)
         for p in spk_times:
-            myspike = spike_kinetics(uvolt[ p-phalf: p + phalf ], self.dt)
+            myspike = spike_kinetics(uvolt[p-phalf : p+phalf], dt=self.dt)
             waveform.append( myspike['waveform'] ) # normalized spike!
             half_width.append( myspike['half_width'] )
             latency.append( myspike['latency'] )
