@@ -42,7 +42,7 @@ def spike_kinetics(waveform, dt = 1):
         a Numpy Array with the waveform to calculate spike kinetics.
 
     dt (sampling interval) 
-        sampling interval in ms (e.g., 1/30 30 samples every ms).
+        ampling interval in ms (e.g., 1/30 30 samples every ms).
         Default is one.
 
     Returns
@@ -68,15 +68,7 @@ def spike_kinetics(waveform, dt = 1):
     else:
         mydict['half_width'] = half_width*dt # in sampling points
 
-        # asymetry from the first peak, substract 1 ms baseline
-        if dt == 1:
-            mybase = 15 # take at least 30 sampling points
-        else:
-            mybase = int(0.5/dt) 
-        baseline = mytrace[:mybase].mean()
-        a = mytrace[a_idx] - baseline
-        b = mytrace[b_idx] - baseline
-        mydict['asymmetry'] = (a-b)/(a+b)
+        mydict['asymmetry'] = mytrace[a_idx] - mytrace[b_idx] #(a-b)/(a+b)
         mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
 
     mydict['waveform'] = mytrace # normalized to peak
