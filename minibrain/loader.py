@@ -28,10 +28,13 @@ from minibrain.lfpmanager import lfp
 
 def spike_kinetics(waveform, dt = 1):
     """
-    Calculates spike half-width, the trough to right (late) peak latency
-    - related to the repolarization of an action potential -, and the
-    peak amplitude asymmetry index (reflecting differences in the rate of
-    fall of spike repolarization).
+    Calculates the following kinetic parameters from the spike waveform.
+    * half-width:  related to rates of depolarization/repolarization.
+    * latency : the trough to right (late) peak latency. It related to 
+    the repolarization of an action potential.
+    * asymmetry: peak amplitude asymmetry index (reflecting differences in 
+    the rate of fall of spike repolarization).
+    * peak2trough: the ratio of the peak to the trough
 
     Parameters
     ----------
@@ -44,7 +47,7 @@ def spike_kinetics(waveform, dt = 1):
 
     Returns
     -------
-    A dictionary with the parameters
+    A dictionary with the parameters and the spike waveform normalized.
     """
     # first normalize the wave to it's peak
     mytrace = waveform/-waveform.min() # peak in y=1
@@ -56,25 +59,26 @@ def spike_kinetics(waveform, dt = 1):
     mydict = dict()
     # Half-width from the min found
     half_width = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.5)
-    if half_width == False: # if half-width is zero
+    half_width = float(half_width[0])
+
+    if half_width <=0: # if half-width is zero
         mydict['half_width'] = np.nan
-        mydict['asymetry']   = np.nan
+        mydict['asymmetry']   = np.nan
         mydict['latency'] = np.nan
     else:
-        mydict['half_width'] = half_width[0][0]*dt # in sampling points
+        mydict['half_width'] = half_width*dt # in sampling points
 
         # asymetry from the first peak, substract 1 ms baseline
         if dt == 1:
-            mybase = 30 # take at least 30 sampling points
+            mybase = 15 # take at least 30 sampling points
         else:
-            mybase = int(1/dt) 
+            mybase = int(0.5/dt) 
         baseline = mytrace[:mybase].mean()
-        a = baseline - mytrace[a_idx]
-        b = baseline - mytrace[b_idx]
+        a = mytrace[a_idx] - baseline
+        b = mytrace[b_idx] - baseline
         mydict['asymmetry'] = (a-b)/(a+b)
-
-        # latency from min to the right peak
         mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
+
     mydict['waveform'] = mytrace # normalized to peak
 
     return mydict
