@@ -322,6 +322,7 @@ class EphysLoader(object):
         phalf = int((tmax/2)/self.dt)
 
         uvolt = self.channel(channel)
+        uvolt -= np.median(uvolt) # correct for median
         avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
         mydict = spike_kinetics(avg, dt = self.dt)
 
@@ -368,6 +369,7 @@ class EphysLoader(object):
         yoffset = 0 # y-offset to plot traces (will go negative)
         for ch in self.shank[shankID]:
             uvolt = self.channel(ch)
+            uvolt -= np.median(uvolt)
             avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
 
             avg +=yoffset
