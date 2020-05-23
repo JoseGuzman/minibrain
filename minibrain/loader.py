@@ -50,6 +50,11 @@ def spike_kinetics(waveform, dt = 1):
     -------
     A dictionary with the parameters and the spike waveform normalized.
     """
+    if dt == 1:
+        mybase = 15; # take at least 15 samples
+    else:
+        mybase = int(0.5/dt) # 0.5 ms
+
     # first normalize the wave to it's peak
     mytrace = waveform/-waveform.min() # peak in y=1
 
@@ -68,8 +73,11 @@ def spike_kinetics(waveform, dt = 1):
         mydict['latency'] = np.nan
     else:
         mydict['half_width'] = half_width*dt # in sampling points
+        baseline = mytrace[:mybase].mean()
+        a = mytrace[a_idx] - baseline
+        b = mytrace[b_idx] - baseline
 
-        mydict['asymmetry'] = mytrace[b_idx]/mytrace[a_idx] #(a-b)/(a+b)
+        mydict['asymmetry'] = (b-a)/(a+b) #(a-b)/(a+b)
         mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
 
     mydict['waveform'] = mytrace # normalized to peak
