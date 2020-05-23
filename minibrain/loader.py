@@ -29,12 +29,13 @@ from minibrain.lfpmanager import lfp
 def spike_kinetics(waveform, dt = 1):
     """
     Calculates the following kinetic parameters from the spike waveform.
-    * half-width:  related to rates of depolarization/repolarization.
+
+    * half-width:  the width of the spike at half-maximal amplitude of the related to rates of depolarization/repolarization.
     * latency : the trough to right (late) peak latency. It related to 
     the repolarization of an action potential.
-    * asymmetry: peak amplitude asymmetry index (reflecting differences in 
-    the rate of fall of spike repolarization).
-    * peak2trough: the ratio of the peak to the trough
+    * asymmetry: the ratio of the amplitude of the second maximun (b) to 
+    the amplitude of the first maximum (a). It reflects the differences in 
+    the rate of fall of spike repolarization.
 
     Parameters
     ----------
@@ -68,7 +69,7 @@ def spike_kinetics(waveform, dt = 1):
     else:
         mydict['half_width'] = half_width*dt # in sampling points
 
-        mydict['asymmetry'] = mytrace[a_idx] - mytrace[b_idx] #(a-b)/(a+b)
+        mydict['asymmetry'] = mytrace[b_idx]/mytrace[a_idx] #(a-b)/(a+b)
         mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
 
     mydict['waveform'] = mytrace # normalized to peak
