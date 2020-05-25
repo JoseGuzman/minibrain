@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 
 from scipy import signal 
 
-from minibrain.lfpmanager import lfp
+from minibrain.lfpmanager import lfpops.spkTh           = -6;
 
 def spike_kinetics(waveform, dt = 1):
     """
@@ -107,9 +107,9 @@ class EphysLoader(object):
              'D': '#00AA00',
 
              'E': '#FF55FF',
-             'F': '#FFFF7F',
-             'G': '#55FFFF',
-             'H': '#00FF00'
+             'F': '#DAA520', # goldenrod
+             'G': '#000080', # navy
+             'H': '#2E8B57' # seagreen
             }
 
     # read "bit_volts" in structure.oebin
