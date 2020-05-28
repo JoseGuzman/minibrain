@@ -24,7 +24,7 @@ import matplotlib.pyplot as plt
 
 from scipy import signal 
 
-from minibrain.lfpmanager import lfpops.spkTh           = -6;
+from minibrain.lfpmanager import lfp
 
 def spike_kinetics(waveform, dt = 1):
     """

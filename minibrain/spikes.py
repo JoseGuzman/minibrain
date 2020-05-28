@@ -69,7 +69,6 @@ class Units(object):
         del df_unit['Amplitude'] 
         del df_unit['amp'] 
         del df_unit['KSLabel'] 
-        del df_unit['ContamPct'] 
         del df_unit['depth'] 
 
         # old phy-devel uses simply 'id'
