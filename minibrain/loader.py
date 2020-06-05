@@ -77,10 +77,10 @@ def spike_kinetics(waveform, dt = 1):
     else:
         mydict['half_width'] = half_width*dt # in sampling points
         baseline = mytrace[:mybase].mean()
-        a = mytrace[a_idx] - baseline
-        b = mytrace[b_idx] - baseline
+        a = mytrace[a_idx] 
+        b = mytrace[b_idx]
 
-        mydict['asymmetry'] = (b-a)/(a+b) #(a-b)/(a+b)
+        mydict['asymmetry'] = a-b#(b-a)/(a+b) #(a-b)/(a+b)
         mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
 
     mydict['waveform'] = mytrace # normalized to peak
