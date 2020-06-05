@@ -336,11 +336,14 @@ class EphysLoader(object):
         uvolt = self.channel(channel)
         uvolt -= np.median(uvolt) # correct for median
         avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
-        mydict = spike_kinetics(avg, dt = self.dt)
+        mydict = spike_kinetics(avg, dt = self.dt) # will normalize spike
 
         # take n random waveforms
         for peak in np.random.choice(spk_times, nrandom):
             wave = uvolt[peak-phalf:peak+phalf]
+            # remove 0.5 ms baseline to plot
+            mybase = wave[:int(0.5/self.dt)].mean()
+            wave -=mybase
             ax.plot(time, wave, lw=0.5, color='#999999')
 
         ax.plot(time, avg, color = 'k', lw=2) 
