@@ -54,6 +54,9 @@ def spike_kinetics(waveform, dt = 1):
         mybase = 15; # take at least 15 samples
     else:
         mybase = int(0.5/dt) # 0.5 ms
+    baseline = waveform[:mybase].mean()
+    # substract baseline
+    waveform -=baseline
 
     # first normalize the wave to it's peak
     mytrace = waveform/-waveform.min() # peak in y=1
