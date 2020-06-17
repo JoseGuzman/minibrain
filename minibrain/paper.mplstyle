@@ -44,7 +44,7 @@ ytick.labelsize   : 14
 ytick.major.width : 2
 ytick.major.size  : 8
 ytick.minor.width : 2
-ytick.minor.width : 6
+ytick.minor.size : 6
 ytick.direction : out
 
 # FIGURE OUTPUT 
@@ -53,9 +53,9 @@ figure.dpi  : 96
 
 # LEGEND
 legend.frameon : False
-legend.markersize: 2
+#legend.markersize: 2
 
-savefig.dpi : 200
+savefig.dpi : 600
 
 
 pdf.fonttype : 42 # Text in Illustrator
