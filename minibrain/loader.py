@@ -36,6 +36,7 @@ def spike_kinetics(waveform, dt = 1):
     * asymmetry: the ratio of the amplitude of the second maximun (b) to 
     the amplitude of the first maximum (a). It reflects the differences in 
     the rate of fall of spike repolarization.
+    * rise-time: the 10-90% rise-time of the spike, related to the number of Na channels
 
     Parameters
     ----------
@@ -74,14 +75,19 @@ def spike_kinetics(waveform, dt = 1):
         mydict['half_width'] = np.nan
         mydict['asymmetry']   = np.nan
         mydict['latency'] = np.nan
+        mydict['rise'] = np.nan
     else:
         mydict['half_width'] = half_width*dt # in sampling points
-        baseline = mytrace[:mybase].mean()
         a = mytrace[a_idx] 
         b = mytrace[b_idx]
 
         mydict['asymmetry'] = a-b#(b-a)/(a+b) #(a-b)/(a+b)
         mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
+        myrise = p_idx - a_idx
+        t10 = (10*myrise)/100 # 10% of the rise
+        t90 = (90*myrise)/100 # 90% of the rise
+
+        mydict['rise'] = (t90-t10)*dt # in sampling points
 
     mydict['waveform'] = mytrace # normalized to peak
 
