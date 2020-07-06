@@ -52,7 +52,7 @@ def spike_kinetics(waveform, dt = 1):
     A dictionary with the parameters and the spike waveform normalized.
     """
     if dt == 1:
-        mybase = 15; # take at least 15 samples
+        mybase = 30; # take at least 30 samples (1 ms)
     else:
         mybase = int(0.5/dt) # 0.5 ms
     baseline = waveform[:mybase].mean()
@@ -70,6 +70,8 @@ def spike_kinetics(waveform, dt = 1):
     # Half-width from the min found
     half_width = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.5)
     half_width = float(half_width[0])
+    p90 = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.9)[2]
+    p10 = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.1)[2]
 
     if half_width <=0: # if half-width is zero
         mydict['half_width'] = np.nan
@@ -78,17 +80,15 @@ def spike_kinetics(waveform, dt = 1):
         mydict['rise'] = np.nan
     else:
         mydict['half_width'] = half_width*dt # in sampling points
-        a = mytrace[a_idx] 
-        b = mytrace[b_idx]
+        a = mytrace[a_idx] # baseline substracted 
+        b = mytrace[b_idx] # baseline substracted
 
         mydict['asymmetry'] = a-b#(b-a)/(a+b) #(a-b)/(a+b)
         mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
-        myrise = p_idx - a_idx
-        #t10 = (10*myrise)/100 # 10% of the rise
-        #t90 = (90*myrise)/100 # 90% of the rise
+        #myrise = p_idx - a_idx
 
         #mydict['rise'] = (t90-t10)*dt # in sampling points
-        mydict['rise'] = myrise*dt # in sampling points
+        mydict['rise'] = (p90-p10)*dt # in sampling points
 
     mydict['waveform'] = mytrace # normalized to peak
 
