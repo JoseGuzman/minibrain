@@ -70,8 +70,8 @@ def spike_kinetics(waveform, dt = 1):
     # Half-width from the min found
     half_width = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.5)
     half_width = float(half_width[0])
-    p90 = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.9)[2]
-    p10 = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.1)[2]
+    p90 = float(signal.peak_widths(-mytrace, [p_idx], rel_height = 0.9)[2])
+    p10 = float(signal.peak_widths(-mytrace, [p_idx], rel_height = 0.1)[2])
 
     if half_width <=0: # if half-width is zero
         mydict['half_width'] = np.nan
@@ -88,7 +88,7 @@ def spike_kinetics(waveform, dt = 1):
         #myrise = p_idx - a_idx
 
         #mydict['rise'] = (t90-t10)*dt # in sampling points
-        mydict['rise'] = (p90-p10)*dt # in sampling points
+        mydict['rise'] = (p10-p90)*dt # in sampling points
 
     mydict['waveform'] = mytrace # normalized to peak
 
