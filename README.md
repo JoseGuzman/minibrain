@@ -14,7 +14,7 @@ The module has been extensively tested on Python 3.5 to 3.8. We recommend to hav
 Assuming that you do not have an environment already, you can create it and download [minibrain.yml](https://github.com/JoseGuzman/minibrain/blob/master/minibrain.yml) and type:
 
 ```bash
-conda env create -n minibrain -f minibrain.yml
+conda create -n minibrain -f minibrain.yml
 ```
 
 ## How to install it
