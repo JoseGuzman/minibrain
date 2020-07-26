@@ -6,7 +6,7 @@ A Python module to analyze electrical signals and calcium fluorescence in brain 
 
 ## Requirements
 
-The module has been extensively tested on Python 3.5 to 3.8. We recommend to have a package manager like Anaconda with:
+The module has been extensively tested on Python >= 3.5. We recommend to have a package manager like Anaconda with:
 1. Standard scientific modules for data handling ([IPython and Jupyter](https://ipython.org/) , [pandas](https://pandas.pydata.org/)), 
 2. Modules for scientific analysis ([Scipy](https://scipy.org/), [NumPy](https://numpy.org/) and machine learning ([Scikit-learn](https://scikit-learn.org/)) 
 3. The scientific library for data visualization ([matplotlib](https://matplotlib.org/)). 
