@@ -32,7 +32,7 @@ pip install -e .
 
 * [Calculate Bursts](https://github.com/JoseGuzman/minibrain/wiki/Calculate-Burst)
 
-## Licence
+## License
 Minibrain is free software. You can redistribute it and modify it under the terms of the GNU General Public License (GPL).   either version 2 of the License, or any later version as published by the Free Software Foundation.
 
 Minibrain is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
