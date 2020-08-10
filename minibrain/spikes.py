@@ -94,6 +94,37 @@ class Units(object):
         self.unit = dict_unit
         print('%d units found'%len(self.df))
 
+    def get_spikes(self, pulse, unitID, lag = 30000):
+        """
+        Returns a list of spike times of a unit after the beginning of 
+        the pulse. Times are substracted from the beginning of the 
+        pulse.
+
+        Arguments
+        ---------
+        pulse (list)
+            a list of two values start and end values
+
+        unitID (int)
+            the ID of the unit in the cluster.
+
+        lag (int)
+            number of sampling points after the beginning of pulse.
+        Default is 30000 (1 sec).
+        """
+
+        CONST = 150 # 5 ms delay to avoid artefact
+        myunit = self.unit[unitID]
+
+        myspikes = list() # containter
+        for p in pulse:
+            start, end = p
+            idx = np.logical_and( myunit>start+CONST, myunit< end + lag)
+            spk_times = list(myunit[idx] - start) # remove beginning of pulse
+            myspikes.extend ( list(myunit[idx]-start ) ) #
+
+        return myspikes
+
     def pulsecopy(self, pulse):
         """
         Returns a new instance of the Unit class, 
