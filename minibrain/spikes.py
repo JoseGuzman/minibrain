@@ -164,7 +164,7 @@ class Units(object):
 
     def __len__(self):
         """
-        Returns the number of good isolated units recorded in shank
+        Returns the number of good isolated units recorded.
         """
         return len(self.df)
 

@@ -121,6 +121,14 @@ class EphysLoader(object):
              'G': '#000080', # navy
              'H': '#2E8B57' # seagreen
             }
+    
+    shankF = {'A': range(10),
+             'B': range(10,21),
+             'C': range(21,32),
+             'D': range(32,43),
+             'E': range(43,54),
+             'F': range(54,64),
+            }
 
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
@@ -368,7 +376,7 @@ class EphysLoader(object):
         return( ax, mydict )
         
         
-    def fig_shank(self, spk_times, shankID, ax=None):
+    def fig_shank(self, spk_times, shankID, shanktype ='P', ax=None):
         """
         Plots 5 ms of average voltage of the shank at the times given.
 
@@ -389,7 +397,14 @@ class EphysLoader(object):
         phalf = int(2.5/self.dt) # 2.5 before and after peak
 
         yoffset = 0 # y-offset to plot traces (will go negative)
-        for ch in self.shank[shankID]:
+        if shanktype is 'P':
+            myshank = self.shank
+        elif shanktype is 'F':
+            myshank = self.shankF
+        else:
+            myshank = self.shank
+
+        for ch in myshank[shankID]:
             uvolt = self.channel(ch)
             uvolt -= np.median(uvolt)
             avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
