@@ -382,8 +382,12 @@ class EphysLoader(object):
 
         Arguments:
         ----------
-        spk_times (list)  -- sampling points to take
-        shankID (char)  -- 'A', 'B', 'C', or 'D'
+        spk_times (list)  
+            sampling points to take
+        shankID (char)  
+            'A', 'B', 'C', or 'D'
+        shanktype (char)
+            If P or F-type probes from Cambridge Neurotech
         ax (axis object)
 
         Returns the figure to plot

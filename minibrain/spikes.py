@@ -19,7 +19,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 @np.vectorize
-def read_shank(channel):
+def read_shank(channel, shanktype='P'):
     """
     Returns the shankID of the channel.
 
@@ -27,10 +27,24 @@ def read_shank(channel):
     ----------
     channel (int)
         The number of the channel in the shank
+
+    shanktype (str):
+        the type of probe used 'P' is ASSY-P from Cambridge Neurotech
     """
-    rules = [range( 0,16), range(16,32), range(32,48), range(48,64),
-             range(64,80), range(80,96), range(96,112), range(112,128)]
-    shank = 'ABCDEFGH'
+    if shanktype is 'P':
+        rules = [range( 0,16), range(16,32), range(32,48), range(48,64),
+                range(64,80), range(80,96), range(96,112), range(112,128)]
+        shank = 'ABCDEFGH'
+
+    elif shanktype is 'F':
+        rules = [range( 0,10), range(10,21), range(21,32), range(32,43),
+                range(43,54), range(54,64)]
+        shank = 'ABCDEF'
+    else:
+        rules = [range( 0,16), range(16,32), range(32,48), range(48,64),
+                range(64,80), range(80,96), range(96,112), range(112,128)]
+        shank = 'ABCDEFGH'
+
 
     for i,sh in enumerate(rules):
         if channel in sh:
@@ -42,7 +56,7 @@ class Units(object):
     with silicon probes from Cambridge Neurotech.
     """
 
-    def __init__(self, path = "./"):
+    def __init__(self, path = "./", shanktype = 'P'):
         """
         Reads all good isolated units from the probes and returns them 
         in a dataframe and dictionary
@@ -59,7 +73,8 @@ class Units(object):
     
         myfile = path + 'cluster_info.tsv'
         df = pd.read_csv(myfile, sep = '\t')
-        df['sh'] = df['ch'].apply(read_shank) # map probes
+        # map shank according to channel number 
+        df['sh'] = df['ch'].apply(lambda x: read_shank(x, shanktype))
         
         # make a copy with only good units
         df_unit = df[ (df['group']=='good') ].copy()
