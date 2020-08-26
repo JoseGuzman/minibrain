@@ -6,7 +6,7 @@ Contains kinetic measurements for normalized spikes.
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier (e.g., use it as a pandas index) |
+| uid        | --     | unique idenfier for the spike and waveform (e.g., use it as a pandas index) |
 | half_width | ms     | width of spike at half-maximal amplitude (relates to rates of depolarization/repolarisation)                  |
 | asymmetry  | --     | ratio between the second and the first maxima (relates to rate of fall of action potential repolarization)    |
 | latency    | ms     | trought to right peak latency (relates to repolariation of an action potential)                   |
@@ -20,9 +20,22 @@ Contains kinetic measurements for normalized spikes.
 
 ## waveforms.csv
 
+Contains normalized spike waveforms. 
+
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier (e.g., use it as a pandas index) |
+| uid        | --     | unique idenfier for the spike and waveform (e.g., use it as a pandas index) |
 | 0-120      | --     | voltage sample (33.3 uS) normalized to the trought of the spike. Total time is 4 ms |
 
 ## burst.csv
+
+Contains properties of burst.
+
+| key        | units  | Description |
+|------------|--------|------------ |
+| OrgID      | --     | unique idenfier for the organoid (e.g., use it as a pandas index) |
+| age        | months | after embryonic body formation                   |
+| EB         | date   | date of embryonic body formation (relates to organoid batch |
+| Burst dur  | sec    | duration of the burst |
+| IBI        | sec    | average of inter-burst-interval in organoid |
+| organoid   | --     | organoid type *                                   |
