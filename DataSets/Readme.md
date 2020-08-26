@@ -1,6 +1,7 @@
-Every organoid contains a prefix ID (OrgID)
+Every organoid contains a unique prefix with two letters + three digits number (e.g, TC001) called OrgID. To know which kind of organoid
+correspond to every OrgID, check the table below.
 
-| key         | OrgID  | Description |
+| organoid    | OrgID  | Description |
 |-------------|------- |------------ |
 | TSCp5_30s   | TC     | -- |
 | TSCp5_32s   | TC     | -- |
