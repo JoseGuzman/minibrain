@@ -31,6 +31,12 @@ Contains kinetic measurements for normalized spikes.
 | age        | months | after embryonic body formation                   |
 
 
+To load it:
+```python
+import pandas as pd
+df = pd.read_csv('waveforms.csv', index_col = 'uid')
+df.info()
+```
 ## waveforms.csv
 
 Contains normalized spike waveforms. 
@@ -41,9 +47,10 @@ Contains normalized spike waveforms.
 | 0-120      | --     | voltage sample (33.3 uS) normalized to the trought of the spike. Total time is 4 ms |
 
 To load it:
+
 ```python
 import pandas as pd
-df = pd.read_csv('waveforms.csv', index.col = 'uid')
+df = pd.read_csv('waveforms.csv', index_col = 'uid')
 df.info()
 df.iloc[0, :].plot() # plot the first waveform
 ```
