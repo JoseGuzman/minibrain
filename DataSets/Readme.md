@@ -40,6 +40,14 @@ Contains normalized spike waveforms.
 | uid        | --     | unique idenfier for the spike (e.g., use it as a pandas index) |
 | 0-120      | --     | voltage sample (33.3 uS) normalized to the trought of the spike. Total time is 4 ms |
 
+To load it:
+```python
+import pandas as pd
+df = pd.read_csv('waveforms.csv', index.col = 'uid')
+df.info()
+df.iloc[0, :].plot() # plot the first waveform
+```
+
 ## burst.csv
 
 Contains properties of burst.
