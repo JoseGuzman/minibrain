@@ -10,7 +10,7 @@ A python module to analyze electrophysiology and calcium imaging in minibrains
 #-------------------------------------------------------------------------
 # Global variables
 #-------------------------------------------------------------------------
-__version__ = '0.6'
+__version__ = 'v0.7alpha'
 __author__ = 'Jose Guzman'
 __email__ = 'jose.guzman at guzman-lab.com'
 
@@ -21,5 +21,4 @@ __email__ = 'jose.guzman at guzman-lab.com'
 from minibrain.loader import EphysLoader # from minibrain import EphysLoader
 from minibrain.spikes import Units # from minibrain import Units
 from minibrain.lfpmanager import lfp # from minibrain import lfp 
-#from minibrain.extracellular import Burst as burst 
 from minibrain.burstcounter import burst
