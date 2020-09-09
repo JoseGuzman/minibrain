@@ -1,4 +1,5 @@
 ![minibrain](https://github.com/JoseGuzman/minibrain/workflows/minibrain/badge.svg)
+[![Build Status](https://travis-ci.com/JoseGuzman/minibrain.svg?branch=master)](https://travis-ci.com/JoseGuzman/minibrain)
 
 # minibrain 
 
