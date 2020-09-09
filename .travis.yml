@@ -1,0 +1,16 @@
+language: python
+
+python:
+    - "3.5"
+    - "3.6"
+    - "3.7"
+    - "3.8"
+
+# install dependencies
+install:
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+
+# run unitttest
+script:
+    - python extracellular_unittest.py 
