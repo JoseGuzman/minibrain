@@ -13,4 +13,5 @@ install:
 
 # run unitttest
 script:
+    - cd $GITHUB_WORKSPACE/test
     - python extracellular_unittest.py 
