@@ -64,6 +64,7 @@ def spike_kinetics(waveform, dt = 1):
 
     p_idx = mytrace.argmin() # peak index to calculate half-width
     a_idx = mytrace[:p_idx].argmax() # peak index the left part 
+#from minibrain.extracellular import Burst as burst 
     b_idx = p_idx + mytrace[p_idx:].argmax() # peak index the right part 
 
     mydict = dict()
@@ -97,7 +98,7 @@ def spike_kinetics(waveform, dt = 1):
 class EphysLoader(object):
     """
     A class to load extracellular recordings acquired
-    with the probes silicon probes from Cambridge Neurotech 
+    with the silicon probes from Cambridge Neurotech 
     """
     # A dictionary with shanks ID and colors
     shank = {'A': range(16),
