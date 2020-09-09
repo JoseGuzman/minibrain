@@ -1,5 +1,8 @@
 git+https://github.com/JoseGuzman/minibrain
-numpy
-matplotlib
+pandas
+jupyter 
 scipy
+numpy
+scikit-learn
+matplotlib
 pandas
