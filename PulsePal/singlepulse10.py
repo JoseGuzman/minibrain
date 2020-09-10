@@ -35,4 +35,3 @@ mypulse.syncAllParams()
 #mypulse.disconnect()
 # leaving this line commented allows you to use ipython to 
 # run the script ;
-

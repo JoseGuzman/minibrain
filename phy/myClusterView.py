@@ -122,8 +122,3 @@ class SpikeSplitter(IPlugin):
                 controller.supervisor.actions.split(list(p[x]))
                 #emit('action', s.action_creator, 'split', list(p[x]))
                 gui.status_message = 'Spike id: %s'%p[x]
-
-        
-
-            
-

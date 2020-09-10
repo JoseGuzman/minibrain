@@ -45,7 +45,6 @@ def loadpulse(args):
     mypulse.disconnect()
 
 if __name__ == '__main__':
-    import argparse
     import logging
     from datetime import datetime
 
