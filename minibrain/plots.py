@@ -70,7 +70,7 @@ def plot_bars(xdata, ydata, labels, colors, ax = None):
 
     # xlabels
     xlabels = list()
-    for i in range(len(data)):
+    for i in enumerate(data):
         xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
     ax.set_xticklabels(xlabels, fontsize=14)
     ax.set_xticks([1,2])
@@ -118,7 +118,7 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
     # add sample size to labels
 
     xlabels = list()
-    for i in range(len(data)):
+    for i in enumerate(data):
         xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
     ax.set_xticklabels(xlabels)
 
@@ -153,7 +153,7 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
 
     # xlabels
     xlabels = list()
-    for i in range(len(data)):
+    for i in enumerate(data):
         xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
     #ax.set_xticklabels(xlabels, fontsize = 14)
     ax.set_xticks([1,2])
