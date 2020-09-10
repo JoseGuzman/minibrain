@@ -31,12 +31,12 @@ def read_shank(channel, shanktype='P'):
     shanktype (str):
         the type of probe used 'P' is ASSY-P from Cambridge Neurotech
     """
-    if shanktype is 'P':
+    if shanktype == 'P':
         rules = [range( 0,16), range(16,32), range(32,48), range(48,64),
                 range(64,80), range(80,96), range(96,112), range(112,128)]
         shank = 'ABCDEFGH'
 
-    elif shanktype is 'F':
+    elif shanktype == 'F':
         rules = [range( 0,10), range(10,21), range(21,32), range(32,43),
                 range(43,54), range(54,64)]
         shank = 'ABCDEF'

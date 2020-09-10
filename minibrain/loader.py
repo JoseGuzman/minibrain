@@ -402,9 +402,9 @@ class EphysLoader(object):
         phalf = int(2.5/self.dt) # 2.5 before and after peak
 
         yoffset = 0 # y-offset to plot traces (will go negative)
-        if shanktype is 'P':
+        if shanktype == 'P':
             myshank = self.shank
-        elif shanktype is 'F':
+        elif shanktype ==  'F':
             myshank = self.shankF
         else:
             myshank = self.shank
