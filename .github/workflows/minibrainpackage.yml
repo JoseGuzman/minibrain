@@ -4,7 +4,7 @@
 # Jose Guzman, jose.guzman<at>guzman-lab.com
 # Created: Thu Feb 20 17:10:59 CET 2020
 #=========================================================================
-name: minibrain 
+name: minibrain
 
 on: [push]
 
