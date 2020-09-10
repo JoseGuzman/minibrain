@@ -52,7 +52,7 @@ def spike_kinetics(waveform, dt = 1):
     A dictionary with the parameters and the spike waveform normalized.
     """
     if dt == 1:
-        mybase = 30; # take at least 30 samples (1 ms)
+        mybase = 30 # take at least 30 samples (1 ms)
     else:
         mybase = int(0.5/dt) # 0.5 ms
     baseline = waveform[:mybase].mean()

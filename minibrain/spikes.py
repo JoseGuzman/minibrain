@@ -182,4 +182,3 @@ class Units(object):
         Returns the number of good isolated units recorded.
         """
         return len(self.df)
-
