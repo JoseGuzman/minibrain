@@ -36,4 +36,3 @@ mypulse.customTrainLoop[2] = 1 # end defined in pulseTrainDuration
 mypulse.syncAllParams()
 
 mypulse.disconnect()
-

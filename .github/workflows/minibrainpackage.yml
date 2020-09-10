@@ -1,5 +1,5 @@
 #=========================================================================
-# minibrainpackage.yml 
+# minibrainpackage.yml
 #
 # Jose Guzman, jose.guzman<at>guzman-lab.com
 # Created: Thu Feb 20 17:10:59 CET 2020
@@ -32,9 +32,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Unittesting with Python ${{ matrix.python-version }} 
+      - name: Unittesting with Python ${{ matrix.python-version }}
         run: |
-          pip install minibrain 
+          pip install minibrain
           pip install -r requirements.txt
           cd $GITHUB_WORKSPACE/test
           python extracellular_unittest.py
