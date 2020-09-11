@@ -1,10 +1,11 @@
 
 
-# minibrain ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JoseGuzman/minibrain)  ![minibrain](https://github.com/JoseGuzman/minibrain/workflows/minibrain_unittest/badge.svg)
+# minibrain ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JoseGuzman/minibrain)  
 
 A Python module to analyze electrical signals and calcium fluorescence in brain organoids. For personal use only.
 
 * [![Build Status](https://travis-ci.com/JoseGuzman/minibrain.svg?branch=master)](https://travis-ci.com/JoseGuzman/minibrain)
+* ![minibrain](https://github.com/JoseGuzman/minibrain/workflows/minibrain_unittest/badge.svg)
 * [![CodeFactor](https://www.codefactor.io/repository/github/joseguzman/minibrain/badge)](https://www.codefactor.io/repository/github/joseguzman/minibrain)
 
 
