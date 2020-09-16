@@ -1,4 +1,4 @@
-name:minibrain 
+name:minibrain
 channels:
   - r
   - conda-forge
