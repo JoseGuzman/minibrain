@@ -11,8 +11,8 @@ import sys
 
 import numpy as np
 from numpy import pi as PI
-from minibrain import lfp
 from minibrain.extracellular import fourier_spectrum
+from minibrain import lfp
 
 
 class TestPowerObject(unittest.TestCase):
