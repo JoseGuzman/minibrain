@@ -5,9 +5,14 @@ update_datasets.py
 Jose Guzman, jose.guzman@guzman-lab.com
 Thu Aug 27 12:22:12 CEST 2020
 
-This script creates a csv file for spike waveforms (*waveform.csv)
+This script creates a csv file for spike waveforms (*waveforms.csv)
 for the kinetics of the spikes (*spikes.csv) for every single 
 organoid type collected in $HOME/Guzman.VCB/
+In addition, it will update the minibrain repository
+(github.com/JoseGuzman/minibrain) with three datasets:
+    1. waveforms.csv: normalized waveforms from organoids.
+    2. spikes.csv : spike kinetic properties from organoids.
+    3. organoID.csv: the type of of organoid for every unique identifier.
 
 """
 import logging
@@ -81,5 +86,9 @@ if __name__ == '__main__':
     # Create/update waveforms.csv
     name = git + 'waveforms.csv'
     dfwaveforms = pd.DataFrame(dfspikes['waveform'].tolist(), 
-            index=dfspikes.index)
+            index = dfspikes.index)
     dfwaveforms.to_csv(name, index=True)
+
+    # Create/update organoID.csv
+    name = git + 'organoID.csv'
+    dfspikes.loc[:,dfspikes.columns =='organoid'].to_csv(name, index=True)
