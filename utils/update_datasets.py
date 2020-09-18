@@ -87,8 +87,5 @@ if __name__ == '__main__':
     name = git + 'waveforms.csv'
     dfwaveforms = pd.DataFrame(dfspikes['waveform'].tolist(), 
             index = dfspikes.index)
+    dfwaveforms['organoid'] = dfspikes['organoid']
     dfwaveforms.to_csv(name, index=True)
-
-    # Create/update organoID.csv
-    name = git + 'organoID.csv'
-    dfspikes.loc[:,dfspikes.columns =='organoid'].to_csv(name, index=True)
