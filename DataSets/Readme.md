@@ -62,7 +62,7 @@ waveforms.iloc[0, :].plot() # plot the first waveform
 After it, you can merge the organoid dataset:
 ```python
 organoid = pd.read_csv('OrganoID.csv', index_col = 'uid')
-waveforms.merge( organoid, left_index=True, right_on = 'organoid')
+waveforms = waveforms.merge( organoid, left_index = True, right_on = 'organoid')
 ```
 
 ## bursts.csv
