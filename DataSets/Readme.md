@@ -59,7 +59,8 @@ waveforms.iloc[0, :].plot() # plot the first waveform
 ```
 After it, you see which organoids types we have:
 ```python
-waveforms.organoid.value_counts()```
+waveforms.organoid.value_counts()
+```
 
 ## bursts.csv
 
