@@ -5,7 +5,10 @@ Jose Guzman, jose.guzman <at> guzman-lab.com
 
 Created: Thu Sep 17 21:56:11 CEST 2020
 
-Contains transformers
+Contains dataframe transformers for feature selection, 
+feature scaling, feature encoders, collected into pipelines 
+to be tested with different machine learning methods.
+
 """
 
 from sklearn.pipeline import Pipeline
@@ -22,7 +25,7 @@ mycolors = {'TSCp5_30s':     '#FFA500', # orange
 
 class ColumnsDelete():
     """
-    A custom transformer to delete a list of 
+    A feature selection transformer to delete a list of 
     features from a pandas dataframe.
     """
     def __init__(self, columns = None):
