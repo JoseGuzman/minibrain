@@ -1,12 +1,7 @@
 # Datasets
 
-## organoID.csv
-Every measurement contains a unique prefix with two letters + three digits number + that follows a 2-alphanumeric identifier for the individual experiment (e.g. VT014_9F). This code servers as a unique identifier (uid) in the datasets. To know which kind of organoid correspond to every recording, load t the table below.
+Every measurement contains a unique prefix with two letters + three digits number + that follows a 2-alphanumeric identifier for the individual experiment (e.g. VT014_9F, meaning a DLX_Cheriff organoid). This code servers as a unique identifier (uid) in the datasets. You can see which kind of organoid correspond to every recording in the 'organoid' column of every dataset.
 
-```python
-import pandas as pd
-organoid = pd.read_csv('OrganoID.csv', index_col = 'uid')
-```
 To see the description of the organoid, check the table below.
 
 | organoid    | prefix | Description |
@@ -29,7 +24,7 @@ Contains kinetic measurements for normalized spikes.
 | asymmetry  | --     | ratio between the second and the first maxima (relates to rate of fall of action potential repolarization)    |
 | latency    | ms     | trought to right peak latency (relates to repolariation of an action potential)                   |
 | rise       | ms     | rise-time of the spike (relates to max. number of Sodium channels active during an action potential)                          |
-| organoid   | --     | organoid type (as described in organoID.csv)                                |
+| organoid   | --     | organoid type (as described in the table above)                                |
 | n_spikes   | --     |number of extrallular spikes detected in a session            |
 | fr         | Hz     |average frequency of spike firing                 |
 | ISI.median | Hz     |median frequency of the inter-spike interval      |
@@ -41,6 +36,7 @@ To load it:
 import pandas as pd
 spikes = pd.read_csv('waveforms.csv', index_col = 'uid')
 spikes.info()
+spikes.organoid.value_counts()
 ```
 ## waveforms.csv
 
@@ -50,6 +46,7 @@ Contains normalized spike waveforms.
 |------------|--------|------------ |
 | uid        | --     | unique idenfier for the spike (e.g., use it as a pandas index) |
 | 0-120      | --     | voltage sample (33.3 uS) normalized to the trought of the spike. Total time is 4 ms |
+| organoid   | --     | organoid type (as described in the table above)                                |
 
 To load it:
 
@@ -58,12 +55,11 @@ import pandas as pd
 waveforms = pd.read_csv('waveforms.csv', index_col = 'uid')
 waveforms.info()
 waveforms.iloc[0, :].plot() # plot the first waveform
+
 ```
-After it, you can merge the organoid dataset:
+After it, you see which organoids types we have:
 ```python
-organoid = pd.read_csv('OrganoID.csv', index_col = 'uid')
-waveforms = waveforms.merge( organoid, left_index = True, right_on = 'organoid')
-```
+waveforms.organoid.value_counts()```
 
 ## bursts.csv
 
