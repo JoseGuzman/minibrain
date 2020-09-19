@@ -31,17 +31,26 @@ class ColumnsDelete():
     def __init__(self, columns = None):
         self.columns = columns
 
-    def fit(self, X, y = None, **fit_params):
+    def fit(self, df, y = None, **fit_params):
         """
+        Parameter
+        ---------
+        df (Pandas DataFrame object)
+        a Pandas DataFrame object.
         Returns the transformer object, nothing to do here
         """
         return self
 
-    def transform(self, X, **transform_params):
+    def transform(self, df, **transform_params):
         """
         Deletes the column from a dataframe
+
+        Parameter
+        ---------
+        df (Pandas DataFrame object)
+        a Pandas DataFrame object.
         """
-        mydf = X.copy() # create a new dataframe
+        mydf = df.copy() # create a new dataframe
 
         if self.columns:
             mydf.drop(self.columns, axis=1, inplace=True)
