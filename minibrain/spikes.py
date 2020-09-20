@@ -99,10 +99,11 @@ class Units(object):
         for myid in df_unit['cluster_id'].values:
             dict_unit[myid]  = spike_times[np.where(spike_clusters==myid)]
 
-        # reorder by channel and reset index
+        # reorder by channel and set index to cluster_id 
         df_unit.sort_values(by='ch', inplace=True)
         # recreate a new column index, without create it in the dataframe
-        df_unit.reset_index(drop = True, inplace = True)
+        #df_unit.reset_index(drop = True, inplace = True)
+        df_unit.set_index('cluster_id', inplace=True)
 
         self.df = df_unit
         # A dictionary with the spike times of all good units
