@@ -1,5 +1,5 @@
 """
-pipeline.py
+transformers.py
 
 Jose Guzman, jose.guzman <at> guzman-lab.com
 
@@ -10,6 +10,8 @@ feature scaling, feature encoders, collected into pipelines
 to be tested with different machine learning methods.
 
 """
+
+from sklearn.base import BaseEstimator, TransformesMixin
 
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
