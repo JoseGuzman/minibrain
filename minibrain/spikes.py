@@ -109,7 +109,7 @@ class Units(object):
         # A dictionary with the spike times of all good units
         self.unit = dict_unit
         n_units = len(self.df)
-        print('{:2d} units found in {}'.format(n_units, myfile)
+        print('{0:2d} units found in {1}'.format(n_units, myfile)
 
     def get_spikes(self, pulse, unitID, lag = 30000):
         """
