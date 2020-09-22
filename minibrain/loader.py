@@ -299,30 +299,34 @@ class EphysLoader(object):
 
     def waveform_kinetics(self, spk_times, channel):
         """
-        gets kinetic parameters from the voltage of the channel 
+        gets kinetic parameters from the normalized average
+        spike obtained by summing all spikes in the  channel 
         4 ms around the times given.
+
+        Parameters
+        ----------
+
+        spk_times (array)
+            a list of spike times (in sampling points)
+
+        channel (int)
+            the channel to record the spikes from.
+
+        Returns
+        -------
+            a dictionary with half-width, latency, asymmetry
+        and rise-time from the averaged and normalized
+        spike waveform (see minibrain.spike_kinetics()).
         """
         tmax = 4 # in ms
         spk_times = spk_times.astype(int) # cast to int
         phalf = int((tmax/2)/self.dt)
 
-        waveform = list()
-        half_width = list()
-        latency = list()
-        asymmetry = list()
         uvolt = self.channel(channel)
-        for p in spk_times:
-            myspike = spike_kinetics(uvolt[p-phalf : p+phalf], dt=self.dt)
-            waveform.append( myspike['waveform'] ) # normalized spike!
-            half_width.append( myspike['half_width'] )
-            latency.append( myspike['latency'] )
-            asymmetry.append( myspike['asymmetry'] )
+        uvolt -= np.median(uvolt) # correct for median
+        avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
+        mydict = spike_kinetics(avg, dt = self.dt) # will normalize spike
 
-        mydict={'waveform': waveform,
-                'half_width': half_width,
-                'latency' : latency,
-                'asymmetry' : asymmetry
-                }
         return mydict
 
 
