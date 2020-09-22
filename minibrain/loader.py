@@ -165,9 +165,16 @@ class EphysLoader(object):
         if date is None or birth is None:
             age = 0
         else:
-            myformat = '%Y-%m-%d_%H-%M-%S'
-            recdate = datetime.datetime.strptime(date, myformat) 
-            birthdate = datetime.datetime.strptime(birth, myformat) 
+            try:
+                myformat = '%Y-%m-%d_%H-%M-%S'
+                recdate = datetime.datetime.strptime(date, myformat) 
+            except ValueError: # if not hour:min:sec precission 
+                recdate = datetime.datetime.strptime(date,'%Y-%m-%d') 
+            try:
+                birthdate = datetime.datetime.strptime(birth, myformat) 
+            except ValueError: # if not hour:min:sec precission 
+                birthdate = datetime.datetime.strptime(birth,'%Y-%m-%d') 
+
             delta = recdate-birthdate
             age = delta.days + delta.seconds/(24*60*60)
 
