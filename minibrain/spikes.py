@@ -73,22 +73,22 @@ class Units(object):
     
         myfile = path + 'cluster_info.tsv'
         df = pd.read_csv(myfile, sep = '\t')
-        # map shank according to channel number 
-        df['sh'] = df['ch'].apply(lambda x: read_shank(x, shanktype))
         
         # make a copy with only good units
         df_unit = df[ (df['group']=='good') ].copy()
 
         # remove some unused terms from Kilosort2
-        del df_unit['group'] 
-        del df_unit['Amplitude'] 
-        del df_unit['amp'] 
-        del df_unit['KSLabel'] 
-        del df_unit['depth'] 
+        remove = ['sh', 'group', 'Amplitude', 'amp', 'KSLabel', 'depth']
+        df_unit.drop(remove, axis=1, inplace = True)
+
+        # map shank according to channel number 
+        df_unit['shank'] = df_unit['ch'].apply(lambda x: read_shank(x, shanktype))
 
         # old phy-devel uses simply 'id'
-        if 'id' in df.columns:
-            df.rename(columns = {'id':'cluster_id'}, inplace=True)
+        if 'id' in df_unit.columns:
+            df_unit.rename(columns = {'id':'cluster_id'}, inplace=True)
+
+        df_unit.rename(columns = {'ch':'channel'}, inplace=True)
 
         # read good units
         spike_times = np.load(path + 'spike_times.npy').flatten()
@@ -100,7 +100,7 @@ class Units(object):
             dict_unit[myid]  = spike_times[np.where(spike_clusters==myid)]
 
         # reorder by channel and set index to cluster_id 
-        df_unit.sort_values(by='ch', inplace=True)
+        df_unit.sort_values(by='channel', inplace=True)
         # recreate a new column index, without create it in the dataframe
         #df_unit.reset_index(drop = True, inplace = True)
         df_unit.set_index('cluster_id', inplace=True)
