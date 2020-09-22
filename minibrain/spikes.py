@@ -81,14 +81,16 @@ class Units(object):
         remove = ['sh', 'group', 'Amplitude', 'amp', 'KSLabel', 'depth']
         df_unit.drop(remove, axis=1, inplace = True)
 
-        # map shank according to channel number 
-        df_unit['shank'] = df_unit['ch'].apply(lambda x: read_shank(x, shanktype))
-
         # old phy-devel uses simply 'id'
         if 'id' in df_unit.columns:
             df_unit.rename(columns = {'id':'cluster_id'}, inplace=True)
 
+        # map shank according to channel number 
+        df_unit['shank'] = df_unit['ch'].apply(lambda x: read_shank(x, shanktype))
+
+        # use human-readable columns
         df_unit.rename(columns = {'ch':'channel'}, inplace=True)
+        df_unit.rename(columns = {'fr':'frequency'}, inplace=True)
 
         # read good units
         spike_times = np.load(path + 'spike_times.npy').flatten()
