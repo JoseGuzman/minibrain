@@ -93,7 +93,8 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
             spike_kinetics = myrec.waveform_kinetics(
                     spk_times = myspk, 
                     channel = df.loc[idx].channel)
-            spike_kinetics['uid'] = prefix + f'_{idx:03d}'
+            sh = df.loc[idx].shank
+            spike_kinetics['uid'] = prefix + f'_{idx:03d}' + sh
             # add relevant data from KiloSort2 clustering
             spike_kinetics['frequency'] = df.loc[idx].frequency
             spike_kinetics['n_spikes'] = df.loc[idx].n_spikes
