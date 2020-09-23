@@ -31,8 +31,8 @@ mycolors = {'TSCp5_30s':     '#FFA500', # orange
 class WaveformExtractor(BaseEstimator, TransformerMixin):
     """
     Reads a csv file to create the paths for the binaries 
-    and the clustering file (cluster_info.csv), to later
-    transform them into waveforms and spike files.
+    and the clustering file (cluster_info.csv), to create 
+    a pandas DataFrame with spike waveforms and kinetics.
 
     The csv file must contain: expID, binarypath, experiment
     recording, Channel_Map, EB, nchan and organoid.
