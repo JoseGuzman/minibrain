@@ -169,7 +169,9 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
             rec_path = os.path.join(binary, experiment, \
                     recording,'continuous', channelmap)
             params['fname']=os.path.join(rec_path,'continuous.dat')
-            mydate = df.loc[idx].binarypath.split('_')[1] 
+            day = df.loc[idx].binarypath.split('_')[1]
+            time = df.loc[idx].binarypath.split('_')[2]
+            mydate = day + '_' + time
             params['date'] = mydate.replace('/', '-')
             params['birth'] = df.loc[idx, 'EB'].replace('/','-')
             params['nchan'] = df.loc[idx].nchan
