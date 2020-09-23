@@ -133,9 +133,17 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
 
         """
 
-        df = pd.read_csv(fname, index_col = 'expID')
+        df = pd.read_csv(fname)
+        mycols = ['expID', 'binarypath', 'experiment','recording',
+                'Channel_Map', 'EB', 'nchan', 'organoid']
 
+        for val in mycols:
+            if val not in df.columns:
+                raise ValueError(f'{val} not found in {fname}')
+
+        # set index to 'expID'
         # transform recording and experiment number to strings
+        df.set_index('expID', inplace = True)
         df.recording = df.recording.astype(str) 
         df.experiment = df.experiment.astype(str) 
         
