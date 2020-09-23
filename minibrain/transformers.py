@@ -45,8 +45,12 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
     """
     def __init__(self):
         """
-        Reads csv file containing expID, binarypath, filename, 
-        experiment, recording, Channel_Map, EB, nchan and organoid.
+        Reads csv file containing the following columns:
+        'expID', 'binarypath', 'experiment', 'recording', 
+        'Channel_Map', 'EB', 'nchan' and 'organoid'.
+
+        Columns are case-sensitive
+
         """
 
     def __get_units(self,prefix,organoid,spk_path,**loader_params):
@@ -118,7 +122,7 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
         return self
         
 
-    def transform(self, fname, **transform_params):
+    def transform(self, df, **transform_params):
         """
         Merge the columns in a single path to load 
         both the binary file and the location of 
@@ -130,23 +134,27 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
 
         Parameter
         ---------
-        fname - the csv file  
+        df - a DataFrame pandas object
 
         """
 
-        df = pd.read_csv(fname)
+        #df = pd.read_csv(fname)
         mycols = ['expID', 'binarypath', 'experiment','recording',
                 'Channel_Map', 'EB', 'nchan', 'organoid']
 
         for val in mycols:
             if val not in df.columns:
-                raise ValueError(f'{val} not found in {fname}')
+                raise ValueError(f'{val} column not found')
 
+        # dataframe accomodation to EphysLoader and Units objects
         # set index to 'expID'
         # transform recording and experiment number to strings
         df.set_index('expID', inplace = True)
-        df.recording = df.recording.astype(str) 
-        df.experiment = df.experiment.astype(str) 
+        df.recording = pd.to_numeric(df.recording, \
+                downcast = 'integer').astype(str)
+        df.experiment = pd.to_numeric(df.experiment, \
+                downcast = 'integer').astype(str) 
+        df.nchan = pd.to_numeric(df.nchan, downcast='integer') 
         
         # read every line of the csv file to get units
         myhome = os.environ['HOME']
@@ -161,8 +169,9 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
             rec_path = os.path.join(binary, experiment, \
                     recording,'continuous', channelmap)
             params['fname']=os.path.join(rec_path,'continuous.dat')
-            params['date']= df.loc[idx].binarypath.split('_')[1] 
-            params['birth'] = df.loc[idx, 'EB']
+            mydate = df.loc[idx].binarypath.split('_')[1] 
+            params['date'] = mydate.replace('/', '-')
+            params['birth'] = df.loc[idx, 'EB'].replace('/','-')
             params['nchan'] = df.loc[idx].nchan
 
 
