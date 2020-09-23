@@ -34,7 +34,7 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
     and the clustering file (cluster_info.csv), to later
     transform them into waveforms and spike files.
 
-    The csv file must contain: fileID, binarypath, experiment
+    The csv file must contain: expID, binarypath, experiment
     recording, Channel_Map, EB, nchan and organoid.
 
     Usage
@@ -45,7 +45,7 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
     """
     def __init__(self):
         """
-        Reads csv file containing fileID, binarypath, filename, 
+        Reads csv file containing expID, binarypath, filename, 
         experiment, recording, Channel_Map, EB, nchan and organoid.
         """
 
@@ -77,7 +77,7 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
         -------
         A list of dictionaries with all spike waveform kinetics
         together with an unique identifier (uid) corresponding
-        to the fileID + cluster_id.
+        to the expID + cluster_id.
         
         """
         # first load Units and Ephysloader objects
@@ -133,7 +133,7 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
 
         """
 
-        df = pd.read_csv(fname, index_col = 'fileID')
+        df = pd.read_csv(fname, index_col = 'expID')
 
         # transform recording and experiment number to strings
         df.recording = df.recording.astype(str) 
