@@ -146,7 +146,7 @@ class Units(object):
         count   = list()  # number of spikes during the pulse
         duration = list() # number of samples between 1st and last spike
         isi = list() # average inter-spike interval (in samples)
-        n_zeros, n_ones = 0, 0
+        n_zeros, n_ones, n_more = (0, 0, 0)
         for p in pulse:
             start, end = p
             idx = np.logical_and( myunit>start, myunit< end )
@@ -167,6 +167,7 @@ class Units(object):
                 duration.append(0)
                 isi.append( np.nan )
             elif len(spk_times) >1: # more than 1 spike
+                n_more +=1
                 duration.append(  np.max(spk_times) - np.min(spk_times) )
                 isi.append( np.diff(spk_times).mean() )
             
@@ -181,6 +182,7 @@ class Units(object):
         mydict['isi']      = np.nanmean( isi     )
         mydict['prop_zeros'] =  n_zeros/len(pulse)
         mydict['prop_ones']  =  n_ones/len(pulse)
+        mydict['prop_more']  =  n_more/len(pulse)
         # flatten all spikes in 1D array
         mydict['spk_times'] = list(np.array([elem for trace in myspikes for elem in trace]))
         #mydict['raw'] = myspikes
