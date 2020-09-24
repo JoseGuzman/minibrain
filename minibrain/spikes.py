@@ -135,6 +135,8 @@ class Units(object):
         'count ' : number of spikes during the pulse
         'duration' : number of sampling points between the first and last spike
         'isi'    : number of samples of the average inter-spike-interval (isi) 
+        'prop_zeros': proportion of pulses without respones
+        'prop_ones':  proportion of pulses with one single spike
         """
         myunit = self.unit[cluster_id]
 
@@ -144,6 +146,7 @@ class Units(object):
         count   = list()  # number of spikes during the pulse
         duration = list() # number of samples between 1st and last spike
         isi = list() # average inter-spike interval (in samples)
+        n_zeros, n_ones = 0, 0
         for p in pulse:
             start, end = p
             idx = np.logical_and( myunit>start, myunit< end )
@@ -153,9 +156,15 @@ class Units(object):
             if spk_times: # not empty spikes
                 latency.append(spk_times[0])
                 count.append( len(spk_times) )
+            else:
+                n_zeros +=1
+                latency.append( np.nan )
+                count.append( np.nan  )
+
 
             if len(spk_times) == 1: # one spike gives nan
-                duration.append( np.nan)
+                n_ones +=1
+                duration.append(0)
                 isi.append( np.nan )
             elif len(spk_times) >1: # more than 1 spike
                 duration.append(  np.max(spk_times) - np.min(spk_times) )
@@ -170,6 +179,8 @@ class Units(object):
         mydict['count']    = np.nanmean( count   )
         mydict['duration'] = np.nanmean( duration)
         mydict['isi']      = np.nanmean( isi     )
+        mydict['prop_zeros'] =  n_zeros/len(pulse)
+        mydict['prop_ones']  =  n_ones/len(pulse)
         # flatten all spikes in 1D array
         mydict['spk_times'] = list(np.array([elem for trace in myspikes for elem in trace]))
         #mydict['raw'] = myspikes
