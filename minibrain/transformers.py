@@ -43,15 +43,23 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
     >>> mywaveforms = WaveforExtractor()
     >>> mywaveforms.fit_transform(fname = 'filelist.csv')
     """
-    def __init__(self):
+    def __init__(self, split_waveforms = False):
         """
         Reads csv file containing the following columns:
         'expID', 'binarypath', 'experiment', 'recording', 
         'Channel_Map', 'EB', 'nchan' and 'organoid'.
 
-        Columns are case-sensitive
+        Columns are all necessary and case-sensitive!
 
+        Arguments
+        ---------
+
+        split_waveforms (bool)
+
+            True if returns the sampling points of the 
+        normalized waveforms as a second panda DataSet.
         """
+        self.split_waveforms = split_waveforms
 
     def __get_units(self,prefix,organoid,spk_path,**loader_params):
         """
@@ -190,7 +198,17 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
         # set unique identifier based on cluster_id
         mydf.set_index('uid', inplace=True)
 
-        return mydf
+        if self.split_waveforms:
+            dfspikes = mydf.loc[:, mydf.columns !='waveform']
+            dfwaveforms = pd.DataFrame(mydf['waveform'].tolist(), 
+                    index = mydf.index)
+            dfwaveforms['organoid'] = mydf.organoid 
+
+            mytuple = (dfspikes, dfwaveforms)
+        else:
+            mytuple = (mydf,None)
+
+        return mytuple
 
 class ColumnsDelete(BaseEstimator, TransformerMixin):
     """
