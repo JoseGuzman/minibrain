@@ -126,17 +126,54 @@ class Units(object):
 
         cluster_id (int)
             the ID of the unit in the cluster.
-        """
 
+        Returns
+        -------
+
+        a dictionary containing properties of the burst during the pulse:
+        'latency': number of sampling points from the beginning of the pulse
+        'count ' : number of spikes during the pulse
+        'duration' : number of sampling points between the first and last spike
+        'isi'    : number of samples of the average inter-spike-interval (isi) 
+        """
         myunit = self.unit[cluster_id]
 
-        myspikes = list() # containter
+        myspikes = list() # collects spike times for every pulse
+
+        latency = list()  # latency from the beginning of pulse
+        count   = list()  # number of spikes during the pulse
+        duration = list() # number of samples between 1st and last spike
+        isi = list() # average inter-spike interval (in samples)
         for p in pulse:
             start, end = p
             idx = np.logical_and( myunit>start, myunit< end )
-            myspikes.append( list(myunit[idx] - start ) ) # remove beginning of pulse
+            spk_times = list(myunit[idx] - start) # remove beginning of pulse
 
-        return myspikes
+            # get latency, count, duration and isi
+            if spk_times: # not empty spikes
+                latency.append(spk_times[0])
+                count.append( len(spk_times) )
+
+            if len(spk_times) == 1: # one spike gives nan
+                duration.append( np.nan)
+                isi.append( np.nan )
+            elif len(spk_times) >1: # more than 1 spike
+                duration.append(  np.max(spk_times) - np.min(spk_times) )
+                isi.append( np.diff(spk_times).mean() )
+            
+            myspikes.append( spk_times ) # remove beginning of pulse
+
+        mydict = dict()
+        # use masked arrays to avoid missing values
+        # will return RuntimeWarning if arrays contain only np.nan 
+        mydict['latency']  = np.nanmean( latency ) 
+        mydict['count']    = np.nanmean( count   )
+        mydict['duration'] = np.nanmean( duration)
+        mydict['isi']      = np.nanmean( isi     )
+        # flatten all spikes in 1D array
+        mydict['spk_times'] = list(np.array([elem for trace in myspikes for elem in trace]))
+        #mydict['raw'] = myspikes
+        return mydict
 
     def pulsecopy(self, pulse):
         """
