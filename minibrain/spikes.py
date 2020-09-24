@@ -113,34 +113,28 @@ class Units(object):
         n_units = len(self.df)
         print('{0:2d} units found in {1}'.format(n_units, myfile))
 
-    def get_spikes(self, pulse, unitID, lag = 30000):
+    def get_spiketrain(self, pulse, cluster_id):
         """
-        Returns a list of spike times of a unit after the beginning of 
-        the pulse. Times are substracted from the beginning of the 
+        Returns a list of spike times of a unit between the beginning 
+        and the end of a pulse. Times are substracted from the beginning of the 
         pulse.
 
         Arguments
         ---------
         pulse (list)
-            a list of two values start and end values
+            a list of two start and end values (e.g., [(50,100),(150,200)]
 
-        unitID (int)
+        cluster_id (int)
             the ID of the unit in the cluster.
-
-        lag (int)
-            number of sampling points after the beginning of pulse.
-        Default is 30000 (1 sec).
         """
 
-        CONST = 150 # 5 ms delay to avoid artefact
-        myunit = self.unit[unitID]
+        myunit = self.unit[cluster_id]
 
         myspikes = list() # containter
         for p in pulse:
             start, end = p
-            idx = np.logical_and( myunit>start+CONST, myunit< end + lag)
-            spk_times = list(myunit[idx] - start) # remove beginning of pulse
-            myspikes.extend ( list(myunit[idx]-start ) ) #
+            idx = np.logical_and( myunit>start, myunit< end )
+            myspikes.append( list(myunit[idx] - start ) ) # remove beginning of pulse
 
         return myspikes
 
