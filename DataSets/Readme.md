@@ -26,11 +26,11 @@ Contains kinetic measurements for normalized spikes.
 | asymmetry  | --     | ratio between the second and the first maxima (relates to rate of fall of action potential repolarization)    |
 | latency    | ms     | trought to right peak latency (relates to repolariation of an action potential)                   |
 | rise       | ms     | rise-time of the spike (relates to max. number of Sodium channels active during an action potential)                          |
-| organoid   | --     | organoid type (as described in the table above)                                |
+| frequency  | Hz     |average frequency of spike firing                 |
 | n_spikes   | --     |number of extrallular spikes detected in a session            |
-| fr         | Hz     |average frequency of spike firing                 |
 | ISI.median | Hz     |median frequency of the inter-spike interval      |
 | age        | months | after embryonic body formation                   |
+| organoid   | --     | organoid type (as described in the table above)                                |
 
 
 To load it:
