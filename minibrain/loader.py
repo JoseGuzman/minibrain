@@ -19,7 +19,6 @@ Example:
 
 import os
 import datetime
-import copy
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -211,20 +210,6 @@ class EphysLoader():
                 shape = (nsamples, nchan))
 
         fp.close()
-
-    def __copy__(self):
-        """
-        makes a copy of the current object
-        """
-        myparams = dict(
-                fname = self._fname ,
-                date  = self._date  ,
-                birth = self._birth ,
-                nchan = self._nchan ,
-                srate = self.srate  ,
-                openephys_binary = self._oephys
-                )
-        return EphysLoader(**myparams)
 
     def __add__(self, obj):
         """
