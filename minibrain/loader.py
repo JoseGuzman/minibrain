@@ -210,11 +210,6 @@ class EphysLoader():
         self._memmap = np.memmap(fp, np.dtype(btype), mode = 'r', 
                 shape = (nsamples, nchan))
 
-        # we transpose the map to handle 1D NumPy decently 
-        # e.g., to use self._data[0] for channel zero.
-        # this is the data we will use in the object
-        self._data = np.transpose( self._memmap )
-
         fp.close()
 
     def __copy__(self):
@@ -255,7 +250,6 @@ class EphysLoader():
         # update memory access
         
         myrec._memmap = np.concatenate(( myrec._memmap, obj._memmap ))
-        myrec._data = np.transpose( self._memmap )
 
         return myrec
 
@@ -358,8 +352,7 @@ class EphysLoader():
         --------
         A 1D Numpy array with voltage in microVolts
         """
-        # return self.gain*self._data[channel].T 
-        return self._data[channel]*self.gain 
+        return self._memmap[:,channel]*self.gain 
 
     def waveform_kinetics(self, spk_times, channel):
         """
