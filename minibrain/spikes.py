@@ -29,9 +29,11 @@ def read_shank(channel, shanktype='P'):
         The number of the channel in the shank
 
     shanktype (str):
-        the type of probe used 'P' is ASSY-P from Cambridge Neurotech
+        the type of probe used: 
+        the 'P' from Cambridge Neurotech has the same electrode organization
+        as the 'E', but different geometry.
     """
-    if shanktype == 'P':
+    if shanktype == 'P' or shanktype == 'E':
         rules = [range( 0,16), range(16,32), range(32,48), range(48,64),
                 range(64,80), range(80,96), range(96,112), range(112,128)]
         shank = 'ABCDEFGH'
