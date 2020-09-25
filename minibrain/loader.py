@@ -482,4 +482,4 @@ class EphysLoader():
     # getter for the ADC channels
     channel = property(lambda self: self.get_channel)
     # getter for the number of samples channels
-    nsamples = property(lambda self: self._memmap.shap[0])
+    nsamples = property(lambda self: self._memmap.shape[0])
