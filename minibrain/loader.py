@@ -19,6 +19,8 @@ Example:
 
 import os
 import datetime
+import copy
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -95,7 +97,7 @@ def spike_kinetics(waveform, dt = 1):
 
     return mydict
 
-class EphysLoader(object):
+class EphysLoader():
     """
     A class to load extracellular recordings acquired
     with the silicon probes from Cambridge Neurotech 
@@ -159,8 +161,13 @@ class EphysLoader(object):
             if acquisition was with Open Ephys GUI (default True) 
         """
 
+        self._fname = fname
+        self._date = date
+        self._birth = birth
         self._nchan = nchan
         self.srate = srate      # number of samples per second
+        self._oephys = openephys_binary
+
         self.dt = 1/(srate/1000) # sampling interval in ms
         if date is None or birth is None:
             age = 0
@@ -209,6 +216,55 @@ class EphysLoader(object):
         self._data = np.transpose( self._memmap )
 
         fp.close()
+
+    def __copy__(self):
+        """
+        makes a copy of the current object
+        """
+        myparams = dict(
+                fname = self._fname ,
+                date  = self._date  ,
+                birth = self._birth ,
+                nchan = self._nchan ,
+                srate = self.srate  ,
+                openephys_binary = self._oephys
+                )
+        return EphysLoader(**myparams)
+
+    def __add__(self, obj):
+        """
+        Adds EphysLoader objects together by simply
+        adding the binaries together. The resulting object 
+        will take the attributes of first object (e.g., age)
+        with the exception of nsamples
+        """
+        # only add objects with same sampling rate, channels
+        assert self.srate == obj.srate
+        assert self._nchan == obj._nchan
+
+        # own implementation of copy()
+        myparams = dict(
+                fname = self._fname ,
+                date  = self._date  ,
+                birth = self._birth ,
+                nchan = self._nchan ,
+                srate = self.srate  ,
+                openephys_binary = self._oephys
+                )
+        myrec = EphysLoader(**myparams)
+        # update memory access
+        
+        myrec._memmap = np.concatenate(( myrec._memmap, obj._memmap ))
+        myrec._data = np.transpose( self._memmap )
+
+        return myrec
+
+    def tofile(self, fname):
+        """
+        Saves the current recording as a binary file
+        """
+
+        self._memmap.tofile( fname )
 
     def get_rms_shank(self, shankID, pstart, pend):
         """
@@ -448,4 +504,4 @@ class EphysLoader(object):
     # getter for the ADC channels
     channel = property(lambda self: self.get_channel)
     # getter for the number of samples channels
-    nsamples = property(lambda self: self._nsamples)
+    nsamples = property(lambda self: self._memmap.shap[0])
