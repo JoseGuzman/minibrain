@@ -434,7 +434,7 @@ class EphysLoader():
         shankID (char)  
             'A', 'B', 'C', or 'D'
         shanktype (char)
-            If P or F-type probes from Cambridge Neurotech
+            If P/E or F-type probes from Cambridge Neurotech
         ax (axis object)
 
         Returns the figure to plot
@@ -448,7 +448,7 @@ class EphysLoader():
         phalf = int(2.5/self.dt) # 2.5 before and after peak
 
         yoffset = 0 # y-offset to plot traces (will go negative)
-        if shanktype == 'P':
+        if shanktype == 'P' or shanktype == 'E':
             myshank = self.shank
         elif shanktype ==  'F':
             myshank = self.shankF
