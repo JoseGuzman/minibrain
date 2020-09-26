@@ -1,6 +1,6 @@
 # Datasets
 
-Every measurement contains a unique prefix with two letters + three digits number + that follows a 2-alphanumeric identifier for the individual experiment (e.g. VT014_9F, meaning a DLX_Cheriff organoid). This code servers as a unique identifier (uid) in the datasets. You can see which kind of organoid correspond to every recording in the 'organoid' column of every dataset.
+Every measurement contains a unique prefix with two letters + three digits number + that follows a 3-number  + 1 alphanumeric identifier for the individual experiment (e.g. VT014_009F, meaning a DLX_Cheriff organoid). This code servers as a unique identifier (uid) in the datasets. You can see which kind of organoid correspond to every recording in the 'organoid' column of every dataset.
 
 To see the description of the organoid, check the table below.
 
@@ -21,7 +21,7 @@ Contains kinetic measurements for normalized spikes.
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier for the spike (e.g., use it as a pandas index) |
+| uid        | --     | unique idenfier for the spike (e.g., VT014_009F). Use it as a pandas index) |
 | half_width | ms     | width of spike at half-maximal amplitude (relates to rates of depolarization/repolarisation)                  |
 | asymmetry  | --     | ratio between the second and the first maxima (relates to rate of fall of action potential repolarization)    |
 | latency    | ms     | trought to right peak latency (relates to repolariation of an action potential)                   |
@@ -46,7 +46,7 @@ Contains normalized spike waveforms.
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier for the spike (e.g., use it as a pandas index) |
+| uid        | --     | unique idenfier for the spike (e.g., VT014_009F). Use it as a pandas index) |
 | 0-120      | --     | voltage sample (33.3 uS) normalized to the trought of the spike. Total time is 4 ms |
 | organoid   | --     | organoid type (as described in the table above)                                |
 
@@ -64,13 +64,32 @@ After it, you see which organoids types we have:
 waveforms.organoid.value_counts()
 ```
 
+## trains.csv
+
+Contain properties of spike trains upon optogenetic stimulation.
+
+| key        | units  | Description |
+|------------|--------|------------ |
+| uid        | --     | unique idenfier for the organoid (e.g.,AP009_002A) use it as a pandas index) |
+| age        | months | after embryonic body formation                   |
+| latency    | ms     | mean time until the beginning of the stimulation |
+| duration   | ms     | mean time between the first and last spike upon photo-stimulation|
+| isi        | ms     | average inter-spike-interval upon the stimulation |
+| prop_zeros | prop.  | the proportion of failures |
+| prop_ones  | prop.  | the proportion of single spikes |
+| prop_more  | prop.  | the proportion of multiple spikes |
+| frequency  | Hz     | average spike frequency upon stimulation |
+| organoid   | --     | organoid type (as described in organoID.csv)                                   |
+
+
+
 ## bursts.csv
 
 Contains properties of burst.
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier for the organoid (e.g., use it as a pandas index) |
+| uid        | --     | unique idenfier for the organoid (e.g.,X) use it as a pandas index) |
 | age        | months | after embryonic body formation                   |
 | EB         | date   | date of embryonic body formation (relates to organoid batch |
 | Burst dur  | sec    | duration of the burst |
