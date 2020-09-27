@@ -66,7 +66,7 @@ waveforms.organoid.value_counts()
 
 ## trains.csv
 
-Contain properties of spike trains upon optogenetic stimulation.
+Contain properties of spike trains upon optogenetic stimulation. Properies are derived from [this function](https://github.com/JoseGuzman/minibrain/blob/753458042d0a2e9ff52592f3578cdc0d32b77be9/minibrain/spikes.py#L118)
 
 | key        | units  | Description |
 |------------|--------|------------ |
