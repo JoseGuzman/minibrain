@@ -17,7 +17,7 @@ To see the description of the organoid, check the table below.
 
 ## spikes.csv
 
-Contains kinetic measurements for normalized spikes. 
+Contains kinetic measurements for normalized spikes. Implementation details are [here]( https://github.com/JoseGuzman/minibrain/blob/7a5c6d4f8413b39490bfa370a13cff7c25c2a8f9/minibrain/loader.py#L30)
 
 | key        | units  | Description |
 |------------|--------|------------ |
@@ -70,7 +70,7 @@ Contain properties of spike trains upon optogenetic stimulation.
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier for the organoid (e.g.,AP009_002A) use it as a pandas index) |
+| uid        | --     | unique idenfier for the organoid (e.g.,AP009_002A). Use it as a pandas index) |
 | age        | months | after embryonic body formation                   |
 | latency    | ms     | mean time until the beginning of the stimulation |
 | duration   | ms     | mean time between the first and last spike upon photo-stimulation|
@@ -89,7 +89,7 @@ Contains properties of burst.
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier for the organoid (e.g.,X) use it as a pandas index) |
+| uid        | --     | unique idenfier for the organoid (e.g., X). Use it as a pandas index) |
 | age        | months | after embryonic body formation                   |
 | EB         | date   | date of embryonic body formation (relates to organoid batch |
 | Burst dur  | sec    | duration of the burst |
