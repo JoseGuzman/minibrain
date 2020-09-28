@@ -101,7 +101,38 @@ class TTLLoader(object):
     A class to load TTL signals acquired with Open-ephys gui
     It reads syn_messages.txt and files within events folder.
     """
-    def __init__(self, path, ttl=1):
+    def __init__(self, path=None, ttl=1):
+        """
+        TTL construction object
+
+        Arguments:
+        ----------
+        path (str) 
+            path to syn_messages.txt, e.g., under 
+            under experiment1/recording1/. If None
+
+        ttl (int)
+            the TTL signal to read (0 to 3). 
+
+        """
+        self.ttl = ttl
+
+        if path is None:
+            self.start_time = None
+            self.time = np.nan
+            self.channel = np.nan
+            self.start_time = np.nan
+        else:
+            self.path = path
+            self.time, self.channel = self._read_path(path, ttl)
+
+    def __call__(self, path = None, ttl =1):
+        """
+        Execution of object creates a new object
+        """
+        return TTLLoader(path, ttl)
+
+    def _read_path(self, path, ttl):
         """
         Reads sync_messages.txt, timestamps.npy and channels.npy
         from the location of the binary file acquired with 
@@ -111,14 +142,17 @@ class TTLLoader(object):
         ----------
         path (str) 
             path to syn_messages.txt, e.g., under 
-            under experiment1/recording1/
+            under experiment1/recording1/. If None
 
         ttl (int)
-            The TTL signal to read (0 to 3). Default 1.
+            the TTL signal to read (0 to 3). 
 
+        Returns
+        -------
+        two NumPy arrays with values from timestamps.npy
+        and channels.npy
         """
         mysynfile = os.path.join(path, 'sync_messages.txt')
-        self.ttl = ttl
 
         # get information from syn_messages.txt
         with open(mysynfile) as fp:
@@ -128,21 +162,25 @@ class TTLLoader(object):
 
         # 1) read starting acquisition time
         start = myinfo.pop(-1)
+        # UPDATE start_time
         self.start_time = int(start.split('@')[0])
 
         # 2) read Intan Controller
         myid = 'Intan_Rec._Controller-'
         processor = myinfo[2].split(' ')[1]
         subprocessor = myinfo[3].split(' ')[1]
-        self.intan = myid + processor + '.' + subprocessor
+        intan = myid + processor + '.' + subprocessor
 
         # 3) read TTL
-        ttl_path = os.path.join(path, 'events', self.intan, f'TTL_{ttl}')
+        TTLdir = 'TTL_{:1d}'.format(self.ttl)
+        ttl_path = os.path.join(path, 'events', intan, TTLdir)
         time_path = os.path.join(ttl_path, 'timestamps.npy')
         channel_path = os.path.join(ttl_path, 'channels.npy')
 
-        self.time = np.load(time_path) - self.start_time # remove
-        self.channel = np.load(channel_path)
+        time = np.load(time_path) - self.start_time # remove
+        channel = np.load(channel_path)
+
+        return (time, channel)
 
     def get_pulse(self):
         """
@@ -151,17 +189,21 @@ class TTLLoader(object):
         of the TTL signal.
         """
 
-        time = self.time[self.channel==self.ttl+1]
+        if self.path is None:
+            pulse = np.nan
+        else:
+            time = self.time[self.channel==self.ttl+1]
+            pulse = np.split(time, len(time)/2)
 
-        pulse = np.split(time, len(time)/2)
         return( np.array(pulse))
 
-
     # getter for pulse
-    pulse = property(lambda self: self.get_pulse)
+    pulse = property(lambda self: self.get_pulse())
 
+# object ready to use
+ttl_info = TTLLoader(path = None, ttl = 1)
 
-class EphysLoader():
+class EphysLoader(object):
     """
     A class to load extracellular recordings acquired
     with the silicon probes from Cambridge Neurotech 
