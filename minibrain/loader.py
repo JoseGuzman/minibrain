@@ -132,6 +132,12 @@ class TTLLoader(object):
         """
         return TTLLoader(path, ttl)
 
+    def __len__(self):
+        """
+        will call self._get_pulse()
+        """
+        return self.pulse.shape[0]
+
     def _read_path(self, path, ttl):
         """
         Reads sync_messages.txt, timestamps.npy and channels.npy
