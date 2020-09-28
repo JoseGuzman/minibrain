@@ -65,7 +65,7 @@ def spike_kinetics(waveform, dt = 1):
 
     p_idx = mytrace.argmin() # peak index to calculate half-width
     a_idx = mytrace[:p_idx].argmax() # peak index the left part 
-#from minibrain.extracellular import Burst as burst 
+    #from minibrain.extracellular import Burst as burst 
     b_idx = p_idx + mytrace[p_idx:].argmax() # peak index the right part 
 
     mydict = dict()
@@ -119,23 +119,21 @@ class TTLLoader(object):
 
         if path is None:
             self.path = None
-            self.start_time = None
             self.time = np.nan
-            self.channel = np.nan
-            self.start_time = np.nan
         else:
             self.path = path
-            self.time, self.channel = self._read_path(path, ttl)
+            self.time = self._read_path(path, ttl)
 
     def __call__(self, path = None, ttl =1):
         """
-        Execution of object creates a new object
+        Execution of object creates a new object. 
+        By default, the TTL signal to read is 1.
         """
         return TTLLoader(path, ttl)
 
     def __len__(self):
         """
-        will call self._get_pulse()
+        Count the pair of pulses. It will call self._get_pulse()
         """
         if self.path is None:
             mysize =  0
@@ -164,18 +162,23 @@ class TTLLoader(object):
         two NumPy arrays with values from timestamps.npy
         and channels.npy
         """
-        mysynfile = os.path.join(path, 'sync_messages.txt')
+        # first read timestamps.npy from /continuous
+        binarypath = os.path.join(path, 'timestamps.npy')
+        t0 = np.load(binarypath)[0] # only first sample
+
+        # then, read sync_messages from root by
+        # removing last two directories
+        path_list =  os.path.split(binarypath)[0].split('/')[1:-2]
+        mypath = os.path.join('/', *path_list)
+        print(mypath)
+
+        mysynfile = os.path.join(mypath, 'sync_messages.txt')
 
         # get information from syn_messages.txt
         with open(mysynfile) as fp:
             lines = fp.readlines()
 
         myinfo = lines[1].split(':') # read only second line
-
-        # 1) read starting acquisition time
-        start = myinfo.pop(-1)
-        # UPDATE start_time
-        self.start_time = int(start.split('@')[0])
 
         # 2) read Intan Controller
         myid = 'Intan_Rec._Controller-'
@@ -184,15 +187,16 @@ class TTLLoader(object):
         intan = myid + processor + '.' + subprocessor
 
         # 3) read TTL
-        TTLdir = 'TTL_{:1d}'.format(self.ttl)
-        ttl_path = os.path.join(path, 'events', intan, TTLdir)
+        TTLdir = 'TTL_{:1d}'.format(ttl)
+        ttl_path = os.path.join(mypath, 'events', intan, TTLdir)
         time_path = os.path.join(ttl_path, 'timestamps.npy')
         channel_path = os.path.join(ttl_path, 'channels.npy')
 
-        time = np.load(time_path) - self.start_time # remove
-        channel = np.load(channel_path)
+        ttl_time = np.load(time_path) 
+        channel = np.load(channel_path) 
+        time = ttl_time[channel==ttl+1]
 
-        return (time, channel)
+        return time
 
     def get_pulse(self):
         """
@@ -204,8 +208,8 @@ class TTLLoader(object):
         if self.path is None:
             pulse = np.nan
         else:
-            time = self.time[self.channel==self.ttl+1]
-            pulse = np.split(time, len(time)/2)
+            mytime = self.time
+            pulse = np.split(mytime, len(mytime)/2)
 
         return( np.array(pulse))
 
