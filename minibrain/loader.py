@@ -118,6 +118,7 @@ class TTLLoader(object):
         self.ttl = ttl
 
         if path is None:
+            self.path = None
             self.start_time = None
             self.time = np.nan
             self.channel = np.nan
@@ -136,7 +137,12 @@ class TTLLoader(object):
         """
         will call self._get_pulse()
         """
-        return self.pulse.shape[0]
+        if self.path is None:
+            mysize =  0
+        else:
+            mysize = self.pulse.shape[0]
+
+        return mysize
 
     def _read_path(self, path, ttl):
         """
@@ -304,7 +310,7 @@ class EphysLoader(object):
         self._nsamples = nsamples
         self.seconds = nsamples/self.srate # duration in seconds
         # prompt info: duration in minutes, age in months
-        print('Binary location {}'.format(fname))
+        # print('Binary location {}'.format(fname))
         print('Recording duration = {:2.4f} min.'.format(self.seconds/60) )
         print('Recording age      = {:2.4f} months.'.format(age/30) ) 
 

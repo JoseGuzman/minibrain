@@ -25,7 +25,9 @@ mycolors = {'TSCp5_30s':     '#FFA500', # orange
           'TSCp5_32s':       '#4169E1', # royalblue
           'DLX_bluered':     '#00BFFF', # deepskyblue
           'DLX_Cheriff':     '#006400', # darkgreen
-          'DLX_Cheriff_AS' : '#4B0082'  # indigo
+          'DLX_Cheriff_AS' : '#4B0082',  # indigo
+          'AP_ctrl':         '#1E90FF', 
+          'AP_drug':         '#DC143C' # crimson
     }
 
 class WaveformExtractor(BaseEstimator, TransformerMixin):
