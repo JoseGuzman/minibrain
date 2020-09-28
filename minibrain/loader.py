@@ -164,13 +164,12 @@ class TTLLoader(object):
         """
         # first read timestamps.npy from /continuous
         binarypath = os.path.join(path, 'timestamps.npy')
-        t0 = np.load(binarypath)[0] # only first sample
+        tstart = np.load(binarypath)[0] # only first sample
 
         # then, read sync_messages from root by
         # removing last two directories
         path_list =  os.path.split(binarypath)[0].split('/')[1:-2]
         mypath = os.path.join('/', *path_list)
-        print(mypath)
 
         mysynfile = os.path.join(mypath, 'sync_messages.txt')
 
@@ -189,10 +188,10 @@ class TTLLoader(object):
         # 3) read TTL
         TTLdir = 'TTL_{:1d}'.format(ttl)
         ttl_path = os.path.join(mypath, 'events', intan, TTLdir)
-        time_path = os.path.join(ttl_path, 'timestamps.npy')
+        time_path = os.path.join(ttl_path, 'timestamps.npy') 
         channel_path = os.path.join(ttl_path, 'channels.npy')
 
-        ttl_time = np.load(time_path) 
+        ttl_time = np.load(time_path) - tstart 
         channel = np.load(channel_path) 
         time = ttl_time[channel==ttl+1]
 
