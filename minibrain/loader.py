@@ -317,7 +317,7 @@ class EphysLoader(object):
         print('Recording duration = {:2.4f} min.'.format(self.seconds/60) )
         print('Recording age      = {:2.4f} months.'.format(age/30) ) 
 
-        if openephys_binary:
+        if openephys_binary: # open-ephys GUI
             btype = '<i2'
         else: # Intan software
             btype = 'int16'
@@ -363,6 +363,12 @@ class EphysLoader(object):
     def tofile(self, fname):
         """
         Saves the current recording as a binary file
+
+        Arguments
+        ---------
+
+        fname (str)
+            The filename to be saved (e.g., 'continuous.dat')
         """
 
         self._memmap.tofile( fname )
@@ -396,57 +402,44 @@ class EphysLoader(object):
         return myshank
         
 
-    def savemove(self, ch_list = None, height = 1000, distance = 5):
+    def blank(self, sample_list, nshift = 15, fname = None):
         """
-        Creates a new binary file when removing 
-        the artifacts from the file. Artifacts are positive 
-        deflections within a distance entered by the user.
+        Blanks the recording at the sampling point given
+        in 'sample_list'. It copies the previous 'nshift'
+        sampling points around the sampling point to be
+        removed.
 
         Arguments
         ---------
-        ch_list (list) the channels to be cleaned.
-        height (float) -- threshold for deleting artifacts (default 1000 uV)
+        sample_list (list) 
+            the samples to be blanked (in sampling points)
     
-        distance (float) -- minimal distance (default 5 ms)
+        nshift (int) 
+            number of sampling points copied around sample
+        to remove. Default 15, meaning that 15 samples 
+        before and after the point are to be removed. We
+        will take the 30 samples before the substitution
+        (i.e., sample - 30)
 
-        Returns
-        -------
-        A raw binary file (prefix cl_) with cleaned artefacts. The 
-        artifacts are removed 2x the enter distance (10 ms by default).
+        fname (str)
+            The filename to be saved (e.g., 'continuous.dat')
         """
 
-        # transform uV into bits (0.195 uV/bit from Intan)
-        myheight   = int( height/self.gain )
-        mydist = int( distance/self.dt ) # distance in sampling points 
+        # access a copy of memory-mapped array 
+        fp = self._memmap.copy() 
 
-        mydata = np.transpose( self._memmap )
+        for p in sample_list:
+            # x[ samples , channels]
+            fp[ p-nshift:p+nshift, : ] = fp[ p-(2*nshift):p, : ]
 
-        if ch_list is None:
-            mychannel = range(self._nchan)
-        else:
-            mychannel = ch_list
+        self._memmap = fp # realocate
+        del fp # just in case
+
+        # if not saved, we can use it like that to plot
+        if fname:
+            self._memmap.tofile (fname) 
+            
         
-        for channel in mychannel:
-            trace = mydata[channel].T # now reads bytes from memory
-            peaks = signal.find_peaks(trace,height=myheight,distance = mydist)[0]
-            print('%3d artifacts found in channel %3d'
-                %(peaks.size, channel))
-
-            if peaks.size >=1:
-                shift = np.arange(len(peaks))*mydist*2
-                peaks = peaks - shift
-                for p in peaks:
-                    pstart, pend = p - mydist, p + mydist
-                    print('Remove t = %2.4f sec.'%(pstart/self.srate))
-                    # rewrite mydata
-                    mydata = np.delete(mydata, np.s_[pstart: pend], axis=1)
-        
-        # save new binary (in bytes)
-        newdata = mydata.T
-        myfname = 'cl_' + self._fname
-        newdata.astype('int16').tofile( myfname )
-        print('new raw binary saved as %s '%myfname )
-
     def get_channel(self, channel):
         """
         Returns a NumPy with the voltages (in microvolts)
