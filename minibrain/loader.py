@@ -347,7 +347,7 @@ class EphysLoader(object):
         assert self.srate == obj.srate
         assert self.nchannels == obj.nchannels
 
-        # own implementation of copy()
+        # IMPLEMENT copy() to account for memmaps!
         myparams = dict(
                 fname = self._fname ,
                 date  = self._date  ,
@@ -357,6 +357,7 @@ class EphysLoader(object):
                 openephys_binary = self._oephys
                 )
         myrec = EphysLoader(**myparams)
+        myrec._memmap = self._memmap
 
         # update memory access
         myrec._memmap = np.concatenate(( myrec._memmap, obj._memmap ))
