@@ -345,20 +345,20 @@ class EphysLoader(object):
         """
         # only add objects with same sampling rate, channels
         assert self.srate == obj.srate
-        assert self._nchan == obj._nchan
+        assert self.nchannels == obj.nchannels
 
         # own implementation of copy()
         myparams = dict(
                 fname = self._fname ,
                 date  = self._date  ,
                 birth = self._birth ,
-                nchan = self._nchan ,
+                nchan = self.nchannels ,
                 srate = self.srate  ,
                 openephys_binary = self._oephys
                 )
         myrec = EphysLoader(**myparams)
+
         # update memory access
-        
         myrec._memmap = np.concatenate(( myrec._memmap, obj._memmap ))
 
         return myrec
@@ -601,3 +601,4 @@ class EphysLoader(object):
     channel = property(lambda self: self.get_channel)
     # getter for the number of samples channels
     nsamples = property(lambda self: self._memmap.shape[0])
+    nchannels = property(lambda self: self._memmap.shape[1])
