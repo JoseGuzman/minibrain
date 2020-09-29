@@ -409,9 +409,11 @@ class EphysLoader(object):
     def blank(self, sample_list, nshift = 15, fname = None):
         """
         Blanks the recording at the sampling point given
-        in 'sample_list'. It copies the previous 'nshift'
-        sampling points around the sampling point to be
-        removed.
+        in 'sample_list'. For nshift=15, it will move
+        15 sampling points to the left of the sample to blank
+        After that, read the previous 15x2 samples before
+        that sample to copy it -15 and +15 samples around
+        the value we want to blank.
 
         Arguments
         ---------
@@ -434,7 +436,7 @@ class EphysLoader(object):
 
         for p in sample_list:
             # x[ samples , channels]
-            fp[ p-nshift:p+nshift, : ] = fp[ p-(2*nshift):p, : ]
+            fp[ p-nshift:p+nshift, : ] = fp[ p-(2*nshift)-nshift:p-nshift, : ]
 
         self._memmap = fp # realocate
         del fp # just in case
