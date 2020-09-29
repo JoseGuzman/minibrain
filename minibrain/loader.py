@@ -333,6 +333,9 @@ class EphysLoader(object):
 
         fp.close()
 
+    def __len__(self):
+        return self._memmap.shape[0]
+
     def __add__(self, obj):
         """
         Adds EphysLoader objects together by simply
