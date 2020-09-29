@@ -117,10 +117,10 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
     bp = ax.boxplot(data, widths = 0.45, patch_artist=1, sym='')
     # add sample size to labels
 
-    xlabels = list()
-    for i in enumerate(data):
-        xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
-    ax.set_xticklabels(xlabels)
+    #xlabels = list()
+    #for i in enumerate(data):
+    #    xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
+    #ax.set_xticklabels(labels)
 
     for patch, color in zip(bp['boxes'], colors):
         patch.set_facecolor(color)
@@ -152,9 +152,9 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
     ax.get_yaxis().tick_left()
 
     # xlabels
-    xlabels = list()
-    for i in enumerate(data):
-        xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
+    #xlabels = list()
+    #for i in enumerate(data):
+    #    xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
     #ax.set_xticklabels(xlabels, fontsize = 14)
     ax.set_xticks([1,2])
     ax.xaxis.set_ticks_position('none')
