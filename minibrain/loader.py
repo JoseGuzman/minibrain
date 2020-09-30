@@ -31,12 +31,16 @@ def spike_kinetics(waveform, dt = 1):
     """
     Calculates the following kinetic parameters from the spike waveform.
 
-    * half-width:  the width of the spike at half-maximal amplitude of the related to rates of depolarization/repolarization.
+    * half-width:  the width of the spike at half-maximal amplitude. 
+    It is related to rates of depolarization/repolarization.
+    
     * latency : the trough to right (late) peak latency. It related to 
     the repolarization of an action potential.
+    
     * asymmetry: the ratio of the amplitude of the second maximun (b) to 
     the amplitude of the first maximum (a). It reflects the differences in 
     the rate of fall of spike repolarization.
+    
     * rise-time: the 10-90% rise-time of the spike, related to the number of Na channels
 
     Parameters
