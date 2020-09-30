@@ -314,7 +314,6 @@ class EphysLoader(object):
 
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
-        self._nsamples = nsamples
         self.seconds = nsamples/self.srate # duration in seconds
         # prompt info: duration in minutes, age in months
         # print('Binary location {}'.format(fname))
