@@ -13,7 +13,7 @@ To see the description of the organoid, check the table below.
 | DLX_bluered | FS     | -- |
 | AP_ctrl     | AP     | -- |
 | AP_drug     | AP     | -- |
-| DS_Chrismon | DS     | -- |
+| DS_Chrimson | DS     | -- |
 
 
 ## spikes.csv
