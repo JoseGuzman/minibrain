@@ -93,6 +93,6 @@ Contains properties of burst.
 | uid        | --     | unique idenfier for the organoid (e.g., X). Use it as a pandas index) |
 | age        | months | after embryonic body formation                   |
 | EB         | date   | date of embryonic body formation (relates to organoid batch |
-| Burst dur  | sec    | duration of the burst |
+| duration   | sec    | duration of the burst |
 | IBI        | sec    | average of inter-burst-interval in organoid |
 | organoid   | --     | organoid type (as described in organoID.csv)                                   |
