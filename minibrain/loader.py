@@ -147,11 +147,6 @@ class TTLLoader(object):
 
         return mysize
 
-    def __copy__(self):
-        """
-        Copy the object
-        """
-
     def _read_path(self, path, ttl):
         """
         Reads sync_messages.txt, timestamps.npy and channels.npy
@@ -296,7 +291,7 @@ class EphysLoader(object):
         self._date = date
         self._birth = birth
         self._nchan = nchan
-        self.srate = srate      # number of samples per second
+        self._srate = srate      # number of samples per second
         self._oephys = openephys_binary
 
         self.dt = 1/(srate/1000) # sampling interval in ms
@@ -358,9 +353,9 @@ class EphysLoader(object):
 
         # IMPLEMENT copy() to account for memmaps!
         myparams = dict(
-                fname = self._fname ,
-                date  = self._date  ,
-                birth = self._birth ,
+                fname = self.fname ,
+                date  = self.date  ,
+                birth = self.birth ,
                 nchan = self.nchannels ,
                 srate = self.srate  ,
                 openephys_binary = self._oephys
@@ -372,6 +367,24 @@ class EphysLoader(object):
         myrec._memmap = np.concatenate(( myrec._memmap, obj._memmap ))
 
         return myrec
+
+    def __copy__(self):
+        """ 
+        Shallow copy of EphysLoader object
+        """
+        myparams = dict(
+                fname = self.fname ,
+                date  = self.date  ,
+                birth = self.birth ,
+                nchan = self.nchannels ,
+                srate = self.srate  ,
+                openephys_binary = self._oephys
+                )
+        myrec._memmap = self._memmap.copy() 
+
+        return (myrec)
+
+
 
     def tofile(self, fname):
         """
@@ -452,7 +465,7 @@ class EphysLoader(object):
 
         # if not saved, we can use it like that to plot
         if fname:
-            self._memmap.tofile (fname) 
+            self._memmap.tofile(fname) 
             
         
     def get_channel(self, channel):
@@ -611,6 +624,13 @@ class EphysLoader(object):
     
     # getter for the ADC channels
     channel = property(lambda self: self.get_channel)
+
+    # getter only attributes
+    fname = property(lambda self: self._fname)
+    date = property(lambda self: self._date)
+    birth = property(lambda self: self._birth)
+    srate = property(lambda self: self._srate)
+    openephys_binary = property(lambda self: self._oephys)
     # getter for the number of samples channels
     nsamples = property(lambda self: self._memmap.shape[0])
     nchannels = property(lambda self: self._memmap.shape[1])
