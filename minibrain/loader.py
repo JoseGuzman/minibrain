@@ -19,6 +19,7 @@ Example:
 
 import os
 import datetime
+import copy
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -145,6 +146,11 @@ class TTLLoader(object):
             mysize = self.pulse.shape[0]
 
         return mysize
+
+    def __copy__(self):
+        """
+        Copy the object
+        """
 
     def _read_path(self, path, ttl):
         """
