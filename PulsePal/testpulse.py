@@ -20,7 +20,7 @@ from PulsePal import PulsePalObject as pulse
 
 def loadpulse(args):
     """
-    Create a 500 ms pulse delivered every 'sec' and load its
+    Create a 'dur' pulse delivered every 'sec' and load its
     in PulsePal v2.0
     """
     mypulse = pulse()
@@ -36,6 +36,7 @@ def loadpulse(args):
     mypulse.isBiphasic[output] = 0 # monophasic
     mypulse.restingVoltage[output] = 0 # in volts
     mypulse.phase1Duration[output] = 0.5 # in volts
+    mypulse.phase1Duration[output] = float(args['dur'])/1000 # in sec 
     mypulse.phase1Voltage[output] = 5 # in volts
     mypulse.interPulseInterval[output] = args['sec']-0.5 # every 5 sec.
     mypulse.setContinuousLoop(output,1) # repeatedly
@@ -56,8 +57,11 @@ if __name__ == '__main__':
     # --sec repetition interval 
     parser.add_argument('--sec', '-s', type = int, 
         help = 'repetition interval', required = True)
+    # --dur  duration of the pulse )
+    parser.add_argument('--dur', '-d', type = int, default = 500,
+        help = 'duration (ms) of the pulse (default 500)', required = False)
     # --dir  directory to save log (default /data)
-    parser.add_argument('--dir', '-d', type = str, default = '.',
+    parser.add_argument('--log', '-l', type = str, default = '.',
         help = 'directory to save log (default current)', required = False)
     myargs = vars(parser.parse_args())
 
@@ -66,13 +70,13 @@ if __name__ == '__main__':
     lognow = mytime.strftime('%Y-%m-%d_%H-%M-%S')
     logdate = mytime.strftime('%Y-%m-%d')
     logtime = mytime.strftime('%H-%M-%S')
-    myfname = myargs['dir'] + '/testpulse_' + lognow + '.log'
+    myfname = myargs['log'] + '/testpulse_' + lognow + '.log'
     logging.basicConfig(filename = myfname, level = logging.DEBUG)
     logging.info(' Loading testpulse.py in PulsePal v2.0')
     logging.info(' Date: %s'%logdate)
     logging.info(' Time: %s'%logtime)
     
-    output = (myargs['out'], myargs['sec'])
-    logging.info(' OUT[%d] delivered 500 ms every %d sec'%(output))
+    output = (myargs['out'], myargs['sec'], myargs['dur'])
+    logging.info(' OUT[%d] delivered %d ms every %d sec'%(output))
 
     loadpulse(args = myargs)
