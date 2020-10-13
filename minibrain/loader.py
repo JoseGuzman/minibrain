@@ -142,6 +142,8 @@ class TTLLoader(object):
         """
         if self.path is None:
             mysize =  0
+        elif self.time is np.nan:
+            mysize =  0
         else:
             mysize = self.pulse.shape[0]
 
@@ -196,9 +198,13 @@ class TTLLoader(object):
         time_path = os.path.join(ttl_path, 'timestamps.npy') 
         channel_path = os.path.join(ttl_path, 'channels.npy')
 
-        ttl_time = np.load(time_path) - tstart 
-        channel = np.load(channel_path) 
-        time = ttl_time[channel==ttl+1]
+        # check if TTL signals exists
+        if np.load(time_path).size > 0:
+            ttl_time = np.load(time_path) - tstart 
+            channel = np.load(channel_path) 
+            time = ttl_time[channel==ttl+1]
+        else:
+            time = np.nan
 
         return time
 
@@ -210,6 +216,8 @@ class TTLLoader(object):
         """
 
         if self.path is None:
+            pulse = np.nan
+        elif self.time is np.nan:
             pulse = np.nan
         else:
             mytime = self.time
