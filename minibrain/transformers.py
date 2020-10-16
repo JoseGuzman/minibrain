@@ -39,8 +39,8 @@ class PandasReader(BaseEstimator, TransformerMixin):
     Usage
     -----
     >>> from transformers import PandasReader
-    >>> mypandas = PandasReader(extension = 'df')
-    >>> mypandas.fit_transform(dir = 'waveforms/')
+    >>> myreader = PandasReader(extension = 'df')
+    >>> df = myreader.transform(dir = 'waveforms/')
     """
 
     def __init__(self, extension = '*df'):
@@ -49,23 +49,24 @@ class PandasReader(BaseEstimator, TransformerMixin):
         Dataframes (by default *.df).
         """
         self.extension = extension
+        self._nfiles = 0 # number of files loaded
 
-    def fit(self, X, y = None, **fit_params):
+    def fit(self, X, y = None):
         """
-        Set the directory to read panda DataFrames.
+        Nothing to do here
         """
         return self
    
     def transform(self, directory = './', **transform_params):
         """
         Returns a pandas DataFrame with all the DataFrame
-        files found in the directory (e.g. ./waveforms/).
+        files found in the directory (e.g. 'waveforms/').
 
         Parameter
         ---------
         directory - the directory to read extension file
         """
-        flist = glob.glob(directory+self.extension)
+        flist = glob.glob(directory + self.extension)
         self._nfiles = len(flist)
         frames = [pd.read_pickle(df) for df in flist]
         df = pd.concat(frames, sort=False, ignore_index=True)
