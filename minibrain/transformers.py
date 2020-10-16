@@ -15,6 +15,7 @@ to be tested with different machine learning methods.
 
 """
 import os
+import glob
 import pandas as pd
 
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -30,6 +31,54 @@ mycolors = {'TSCp5_30s':     '#FFA500', # orange
           'AP_drug':         '#DC143C' # crimson
     }
 
+class PandasReader(BaseEstimator, TransformerMixin):
+    """
+    Reads the list of pandas files (eg., *df) in a directory 
+    and creates a unique pandas DataFrame
+
+    Usage
+    -----
+    >>> from transformers import PandasReader
+    >>> mypandas = PandasReader(extension = 'df')
+    >>> mypandas.fit_transform(dir = 'waveforms/')
+    """
+
+    def __init__(self, extension = '*df'):
+        """
+        Select which extesion will be used to load pandas
+        Dataframes (by default *.df).
+        """
+        self.extension = extension
+
+    def fit(self, X, y = None, **fit_params):
+        """
+        Set the directory to read panda DataFrames.
+        """
+        return self
+   
+    def transform(self, directory = './', **transform_params):
+        """
+        Returns a pandas DataFrame with all the DataFrame
+        files found in the directory (e.g. ./waveforms/).
+
+        Parameter
+        ---------
+        directory - the directory to read extension file
+        """
+        flist = glob.glob(directory+self.extension)
+        self._nfiles = len(flist)
+        frames = [pd.read_pickle(df) for df in flist]
+        df = pd.concat(frames, sort=False, ignore_index=True)
+        df.set_index('uid', inplace=True)
+
+        return df 
+
+    def __len__(self):
+        """
+        Count the number of files loaded
+        """
+        return self._nfiles
+
 class WaveformExtractor(BaseEstimator, TransformerMixin):
     """
     Reads a csv file to create the paths for the binaries 
@@ -43,7 +92,7 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
     -----
     >>> from transformers impor WaveformExtractor
     >>> mywaveforms = WaveforExtractor()
-    >>> mywaveforms.fit_transform(fname = 'filelist.csv')
+    >>> mydf = mywaveforms.fit_transform(fname = 'filelist.csv')
     """
     def __init__(self, split_waveforms = False):
         """
