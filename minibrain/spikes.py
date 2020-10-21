@@ -14,6 +14,9 @@ Example:
 """
 
 import copy 
+
+from pathlib import Path
+
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
@@ -73,7 +76,8 @@ class Units(object):
             A dictionary with the spike times of all good units
         """
     
-        myfile = path + 'cluster_info.tsv'
+        #myfile = path + 'cluster_info.tsv'
+        myfile = Path(path, 'cluster_info.tsv')
         df = pd.read_csv(myfile, sep = '\t')
         
         # make a copy with only good units
