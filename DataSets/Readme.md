@@ -11,6 +11,7 @@ To see the description of the organoid, check the table below.
 | DLX_Cheriff | VT     | -- |
 | DLX_H9      | FH     | -- |
 | DLX_bluered | FS     | -- |
+| DLX_H9_H9   | FW     | -- |
 | AP_ctrl     | AP     | -- |
 | AP_drug     | AP     | -- |
 | DS_Chrimson | DS     | -- |
