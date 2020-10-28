@@ -70,7 +70,6 @@ def spike_kinetics(waveform, dt = 1):
 
     p_idx = mytrace.argmin() # peak index to calculate half-width
     a_idx = mytrace[:p_idx].argmax() # peak index the left part 
-    #from minibrain.extracellular import Burst as burst 
     b_idx = p_idx + mytrace[p_idx:].argmax() # peak index the right part 
 
     mydict = dict()
@@ -494,7 +493,7 @@ class EphysLoader(object):
         """
         gets kinetic parameters from the normalized average
         spike obtained by summing all spikes in the  channel 
-        4 ms around the times given.
+        2 ms around the times given.
 
         Parameters
         ----------
@@ -517,7 +516,9 @@ class EphysLoader(object):
 
         uvolt = self.channel(channel)
         uvolt -= np.median(uvolt) # correct for median
-        avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
+        start = p - phalf # 2 ms before the peak
+        end   = p + phalf + 15 # 2.5 ms after the peak
+        avg = np.mean([uvolt[start:end] for p in spk_times],0)
         mydict = spike_kinetics(avg, dt = self.dt) # will normalize spike
 
         return mydict
