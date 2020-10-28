@@ -58,7 +58,7 @@ To load it:
 import pandas as pd
 waveforms = pd.read_csv('waveforms.csv', index_col = 'uid')
 waveforms.info()
-waveforms.iloc[0, :].plot() # plot the first waveform
+waveforms.iloc[0, :-1,].plot() # plot the first waveform (last column is organoid)
 
 ```
 After it, you see which organoids types we have:
@@ -91,7 +91,7 @@ Contains properties of burst.
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier for the organoid (e.g., X). Use it as a pandas index) |
+| uid        | --     | unique idenfier for the organoid (e.g., X). Use it as a pandas index |
 | age        | months | after embryonic body formation                   |
 | EB         | date   | date of embryonic body formation (relates to organoid batch |
 | duration   | sec    | duration of the burst |
