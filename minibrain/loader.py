@@ -61,9 +61,9 @@ def spike_kinetics(waveform, dt = 1):
     A dictionary with the parameters and the spike waveform normalized.
     """
     if dt == 1:
-        mybase = 15 # take at least 15 samples (0.5 ms)
+        mybase = 30 # take at least 30 samples (1 ms)
     else:
-        mybase = int(0.5/dt) # 0.5 ms
+        mybase = int(1/dt) # 1 ms
     baseline = waveform[:mybase].mean()
     # substract baseline
     waveform -=baseline
@@ -88,17 +88,23 @@ def spike_kinetics(waveform, dt = 1):
         mydict['asymmetry']   = np.nan
         mydict['latency'] = np.nan
         mydict['rise'] = np.nan
+        mydict['repo_duration'] = np.nan 
     else:
         mydict['half_width'] = half_width*dt # in sampling points
-        a = mytrace[a_idx] # baseline substracted 
-        b = mytrace[b_idx] # baseline substracted
+        a = mytrace[a_idx] # left peak, baseline substracted 
+        b = mytrace[b_idx] # right peak, baseline substracted
 
         mydict['asymmetry'] = a-b#(b-a)/(a+b) #(a-b)/(a+b)
         mydict['latency'] = (b_idx - p_idx)*dt # in sampling points
-        #myrise = p_idx - a_idx
-
-        #mydict['rise'] = (t90-t10)*dt # in sampling points
         mydict['rise'] = (p10-p90)*dt # in sampling points
+
+        if b <= 0: # below baseline => no repolarization
+            mydict['repo_duration'] = 0.0 
+            print(b)
+        else:
+            duration = signal.peak_widths(mytrace, [b_idx], rel_height =1) 
+            duration = float(duration[0])
+            mydict['repo_duration'] = duration * dt 
 
     mydict['waveform'] = mytrace # normalized to peak
 
