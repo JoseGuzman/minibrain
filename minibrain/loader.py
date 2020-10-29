@@ -42,7 +42,10 @@ def spike_kinetics(waveform, dt = 1):
     the amplitude of the first maximum (a). It reflects the differences in 
     the rate of fall of spike repolarization.
     
-    * rise-time: the 10-90% rise-time of the spike, related to the number of Na channels
+    * rise-time: the 10-90% rise-time of the spike, related to the number of 
+    Na channels
+
+    * repo_duration: the duration of the repolarization phase.
 
     Parameters
     ----------
@@ -76,6 +79,7 @@ def spike_kinetics(waveform, dt = 1):
     # Half-width from the min found
     half_width = signal.peak_widths(-mytrace, [p_idx], rel_height = 0.5)
     half_width = float(half_width[0])
+
     p90 = float(signal.peak_widths(-mytrace, [p_idx], rel_height = 0.9)[2])
     p10 = float(signal.peak_widths(-mytrace, [p_idx], rel_height = 0.1)[2])
 
@@ -493,7 +497,7 @@ class EphysLoader(object):
         """
         gets kinetic parameters from the normalized average
         spike obtained by summing all spikes in the  channel 
-        2 ms around the times given.
+        2.5 ms around the times given.
 
         Parameters
         ----------
@@ -510,15 +514,13 @@ class EphysLoader(object):
         and rise-time from the averaged and normalized
         spike waveform (see minibrain.spike_kinetics()).
         """
-        tmax = 4 # in ms
+        tmax = 5 # in ms
         spk_times = spk_times.astype(int) # cast to int
         phalf = int((tmax/2)/self.dt)
 
         uvolt = self.channel(channel)
         uvolt -= np.median(uvolt) # correct for median
-        start = p - phalf # 2 ms before the peak
-        end   = p + phalf + 15 # 2.5 ms after the peak
-        avg = np.mean([uvolt[start:end] for p in spk_times],0)
+        avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
         mydict = spike_kinetics(avg, dt = self.dt) # will normalize spike
 
         return mydict
@@ -526,7 +528,7 @@ class EphysLoader(object):
 
     def fig_waveform(self, spk_times, nrandom, channel, ax=None):
         """
-        Plots 4 ms of average voltage of the channel at the times given.
+        Plots 5 ms of average voltage of the channel at the times given.
 
         Arguments:
         ----------
@@ -542,19 +544,21 @@ class EphysLoader(object):
         if ax is None:
             ax = plt.gca()
 
-        tmax = 4 # in ms
+        tmax = 5 # in ms
         spk_times = spk_times.astype(int) # cast to int
         time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
         phalf = int((tmax/2)/self.dt)
 
         uvolt = self.channel(channel)
         uvolt -= np.median(uvolt) # correct for median
-        avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
+        # move left 5 sampling points (0.5 ms) to get all repolarization
+        avg = np.mean([uvolt[p-phalf+15:p+phalf+15] for p in spk_times],0)
         mydict = spike_kinetics(avg, dt = self.dt) # will normalize spike
 
         # take n random waveforms
         for peak in np.random.choice(spk_times, nrandom):
-            wave = uvolt[peak-phalf:peak+phalf]
+            # move left 5 sampling points (0.5 ms) to get all repolarization
+            wave = uvolt[peak-phalf+15:peak+phalf+15]
             # remove 0.5 ms baseline to plot
             mybase = wave[:int(0.5/self.dt)].mean()
             wave -=mybase
@@ -566,11 +570,11 @@ class EphysLoader(object):
 
         # plot scalebar
         # horizontal (time)
-        ax.hlines(y=-50, xmin=2.2, xmax=3.2, lw=2, color='k') # 2 ms
-        ax.text(s='1 ms', y=-60, x=2.7, horizontalalignment='center')
+        ax.hlines(y=-50, xmin=3.2, xmax=4.2, lw=2, color='k') # 2 ms
+        ax.text(s='1 ms', y=-60, x=3.7, horizontalalignment='center')
         # vertical (voltage)
-        ax.vlines(x = 3.2, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
-        ax.text(s='50 $\mu$V', y= -25, x=3.5, verticalalignment='center')
+        ax.vlines(x = 4.2, ymin = -50, ymax=0, lw=2, color='k')  # 50 uV
+        ax.text(s='50 $\mu$V', y= -25, x=4.5, verticalalignment='center')
 
         return( ax, mydict )
         
@@ -595,9 +599,10 @@ class EphysLoader(object):
         if ax is None:
             ax = plt.gca()
 
+        tmax = 5 # in ms
         spk_times = spk_times.astype(int) # cast to int
-        time = np.linspace(start = 0, stop = 5, num = 5/self.dt)
-        phalf = int(2.5/self.dt) # 2.5 before and after peak
+        time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
+        phalf = int((tmax/2)/self.dt) # 2.5 before and after peak
 
         yoffset = 0 # y-offset to plot traces (will go negative)
         if shanktype == 'P' or shanktype == 'E':
@@ -610,7 +615,8 @@ class EphysLoader(object):
         for ch in myshank[shankID]:
             uvolt = self.channel(ch)
             uvolt -= np.median(uvolt)
-            avg = np.mean([uvolt[p-phalf:p+phalf] for p in spk_times],0)
+            # move left 5 sampling points (0.5 ms) to get all repolarization
+            avg = np.mean([uvolt[p-phalf+15:p+phalf+15] for p in spk_times],0)
 
             avg +=yoffset
             if not ch%2: # even (e.g., 0, 2, 4, etc...)
