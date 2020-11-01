@@ -36,19 +36,20 @@ setup(
     name = 'minibrain', # application name
     version = myversion,# application version
     license = 'LICENSE',
-    description = 'minibrain analysis module',
+    description = 'minibrain is a Python module to analyze
+    electrical signals and calcium fluorescence in brain organoids',
     long_description = myreadme,
     author ='Jose Guzman',
-    author_email = 'jguzman at guzman-lab.com',
+    author_email = 'jguzman<at>guzman-lab.com',
     url = 'https://github.com/JoseGuzman/minibrain.git',
     packages = ['minibrain'],
-    python_requires='>=2.7',
+    python_requires='>=3.5',
     include_package_data = True,# include additional data
     package_data={
         # If any package contains *.txt files, include them:
         '': ['*.txt'],
         # And include any *.csv files in the 'datasets' subdirectory
         # of the 'minibrain' package, also:
-        'minibrain': ['datasets/*.csv'],
+        'minibrain': ['DataSets/*.csv'],
     },
 )
