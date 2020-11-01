@@ -1,6 +1,7 @@
 """
 setup.py
 
+Author: Jose Guzman, jose.guzman<at>guzman-lab.com
 Created: Sun Jun 30 15:16:05 CEST 2019
 
 Installation file required for the minibrain module

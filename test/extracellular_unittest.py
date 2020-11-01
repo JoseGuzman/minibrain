@@ -1,8 +1,12 @@
 """
 extracellular_unittest.py
 
-Author: Jose Guzman, jose.guzman@guzman-lab.com
+Author: Jose Guzman, jose.guzman<at>guzman-lab.com
 Created: Thu Feb 20 13:31:16 CET 2020
+
+Test local field potential analysis (i.e., Welch's
+method and discrete Fourier transform) with
+simulated waveforms.
 """
 
 import unittest
