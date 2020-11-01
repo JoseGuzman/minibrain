@@ -37,7 +37,7 @@ setup(
     name = 'minibrain', # application name
     version = myversion,# application version
     license = 'LICENSE',
-    description = 'minibrain is a Python module to analyze
+    description = 'minibrain is a Python module to analyze\
     electrical signals and calcium fluorescence in brain organoids',
     long_description = myreadme,
     author ='Jose Guzman',
