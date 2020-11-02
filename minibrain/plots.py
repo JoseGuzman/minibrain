@@ -1,7 +1,7 @@
 """
 plots.py
 
-Jose Guzman, sjm.guzman@gmail.com
+Author: Jose Guzman, jose.guzman<at>guzman-lab.com
 
 Created: Tue Sep 25 15:02:38 CEST 2018
 
@@ -268,3 +268,43 @@ def plot_histogram(data, mybins, myYmax=None, mycolor = None):
     ax2.set_xticks(mybins)
     ax2.set_ylim(ymin=0.99)
     ax2.axis('off')
+
+
+def plot_spike_waveforms(wavelist, color = 'k', ax = None):
+    """
+    Plots spike waveforms and the resulted averaged
+    
+    Arguments
+    ---------
+    wavelist : 2D array
+        The array with the waveforms collected 
+        (e.g. waveforms.values)
+
+    """
+    if wavelist.ndim != 2:
+        raise TypeError('wavelist is not 2D array')
+
+    if ax is None:
+        ax = plt.gca()
+
+    for wave in wavelist:
+        ax.plot(wave, lw = 0.5, color = 'k', alpha = 0.2)
+    
+    # compute average waveform
+    ax.plot(np.mean(wavelist, axis=0), lw = 2, color = color)
+
+    # scalebar and number of waveforms
+    ax.text(x = 5 , y = 0.25, s = f'n = {wavelist.shape[0]}' , fontsize = 14)
+    ax.hlines(y = -1.1, xmin = 75, xmax = 105, lw = 2 , color='k') 
+    ax.text(x = 75, y = -1, s = '1 ms', fontsize = 14)
+
+    # remove axis
+    ax.axis('off')
+
+    # set limits
+    ax.set_ylim(-1.3, 1.1)
+
+    return ax
+
+
+
