@@ -53,7 +53,7 @@ Contains normalized spike waveforms.
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier for the spike (e.g., VT014_009F). Use it as a pandas index) |
+| uid        | --     | unique idenfier for the spike (e.g., VT014_009F). Use it as a pandas index |
 | 0-150      | --     | voltage sample (33.3 uS) normalized to the trought of the spike. Total time is 5 ms |
 | organoid   | --     | organoid type (as described in the table above)                                |
 
