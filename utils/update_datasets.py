@@ -18,6 +18,28 @@ In addition, it will update the minibrain repository
 import logging
 import pandas as pd
 
+def write_readme(path, mystr):
+    """
+    updates Readme.md with new data
+
+    Arguments
+    ---------
+
+    path: pathlib object (e.g. Path('minibrain')
+    mystr: message to add the the beginning of the file
+    """
+    lines = list()
+    with open(path, 'r') as fp:
+#        fp.seek(12) # write after # DataSets
+        for line in fp:
+            if line.startswith('This dataset'):
+                line = mystr
+            lines.append(line)
+
+    with open(path, 'r+') as fp:
+        fp.writelines(lines)
+        
+
 if __name__ == '__main__':
     from pathlib import Path
     from minibrain.transformers import PandasReader
@@ -76,5 +98,9 @@ if __name__ == '__main__':
     dfspikes.to_csv(Path(GIT ,'spikes.csv'), index = True)
     dfwaveforms.to_csv(Path(GIT, 'waveforms.csv'), index = True)
     dforganoid.to_csv(Path(GIT, 'organoID.csv'), index = True)
-    print(f'Total: {dfspikes.shape[0]:3d} spikes in {nsamples} samples')
+    mytotal = f'The dataset contains a total of {dfspikes.shape[0]:3d} spikes in {nsamples} samples.\n'
+    print(mytotal)
+    write_readme(path = Path(GIT, 'Readme.md'), mystr = mytotal)
+    
+
 
