@@ -76,6 +76,8 @@ if __name__ == '__main__':
         nsamples +=len(dfreader)
         dfwaveforms = pd.DataFrame(dfspikes['waveform'].tolist(),
                 index = dfspikes.index)
+        dfwaveforms['organoid'] = dfspikes['organoid'] # copy organoid type
+
         dfspikes.drop('waveform', axis = 1, inplace = True)
         dforganoid = pd.DataFrame(dfspikes['organoid'].tolist(),
                 columns = ['organoid'], index = dfspikes.index)
