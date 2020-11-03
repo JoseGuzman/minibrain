@@ -30,7 +30,6 @@ def write_readme(path, mystr):
     """
     lines = list()
     with open(path, 'r') as fp:
-#        fp.seek(12) # write after # DataSets
         for line in fp:
             if line.startswith('This dataset'):
                 line = mystr
@@ -81,6 +80,7 @@ if __name__ == '__main__':
         dforganoid = pd.DataFrame(dfspikes['organoid'].tolist(),
                 columns = ['organoid'], index = dfspikes.index)
 
+        # both dfspikes and dfwaveforms maintain 'organoid' column
         dfspikes_list.append(dfspikes)
         dfwaveforms_list.append(dfwaveforms)
         dforganoid_list.append(dforganoid)

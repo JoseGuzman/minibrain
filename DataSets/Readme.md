@@ -27,11 +27,12 @@ Contains kinetic measurements for normalized spikes. Implementation details are 
 
 | key        | units  | Description |
 |------------|--------|------------ |
-| uid        | --     | unique idenfier for the spike (e.g., VT014_009F). Use it as a pandas index) |
+| uid        | --     | unique idenfier for the spike (e.g., VT014_009F). Use it as a pandas index |
 | half_width | ms     | width of spike at half-maximal amplitude (relates to rates of depolarization/repolarisation)                  |
 | asymmetry  | --     | ratio between the second and the first maxima (relates to rate of fall of action potential repolarization)    |
 | latency    | ms     | trought-to-right peak latency (relates to speed of depolariation of an action potential)                   |
-| rise       | ms     | rise-time of the spike (relates to max. number of Sodium channels active during an action potential)                          |
+| rise       | ms     | 10-90% rise-time of the spike  |
+| repo_duration    | ms     | duration of repolarization 
 | frequency  | Hz     |average frequency of spike firing                 |
 | n_spikes   | --     |number of extrallular spikes detected in a session            |
 | ISI.median | Hz     |median frequency of the inter-spike interval      |
@@ -42,7 +43,7 @@ Contains kinetic measurements for normalized spikes. Implementation details are 
 To load it:
 ```python
 import pandas as pd
-spikes = pd.read_csv('waveforms.csv', index_col = 'uid')
+spikes = pd.read_csv('spikes.csv', index_col = 'uid')
 spikes.info()
 spikes.organoid.value_counts()
 ```
