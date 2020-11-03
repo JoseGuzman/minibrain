@@ -216,7 +216,7 @@ def plot_linregress(xdata, ydata, color = None, label = None, ax = None):
     upper_conf = yfit + abs(confs)
     
     ax.set_title(label, color = color)
-    ax.plot(xdata, ydata, 'o', color = color, markersize=5)
+    ax.plot(xdata, ydata, 'o', color = color, markersize=4)
     ax.plot(xfit, yfit, lw=2, color = color)
     ax.plot(xfit, upper_conf, '--', lw=1, color = color)
     ax.plot(xfit, lower_conf, '--', lw=1, color = color)
