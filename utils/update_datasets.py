@@ -79,7 +79,7 @@ if __name__ == '__main__':
                 index = dfspikes.index)
         dfspikes.drop('waveform', axis = 1, inplace = True)
         dforganoid = pd.DataFrame(dfspikes['organoid'].tolist(),
-                index = dfspikes.index)
+                columns = ['organoid'], index = dfspikes.index)
 
         dfspikes_list.append(dfspikes)
         dfwaveforms_list.append(dfwaveforms)
