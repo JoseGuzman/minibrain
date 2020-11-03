@@ -15,7 +15,7 @@ to be tested with different machine learning methods.
 
 """
 import os
-import glob
+from pathlib import Path
 import pandas as pd
 
 from sklearn.base import BaseEstimator, TransformerMixin
@@ -41,15 +41,30 @@ class PandasReader(BaseEstimator, TransformerMixin):
     >>> from transformers import PandasReader
     >>> myreader = PandasReader(extension = 'df')
     >>> df = myreader.transform(dir = 'waveforms/')
+    >>> len(myreader) # returns the number of files (i.e. organoids)
+    >>> myreader.nrecords # returns the number of recordings
     """
 
-    def __init__(self, extension = '*df'):
+    def __init__(self, extension = '*df', path = None):
         """
         Select which extesion will be used to load pandas
         Dataframes (by default *.df).
+
+        Parameter
+        ---------
+        extension: str
+            The extension of DataFrame object (by default
+            df).
+        path:  a pathlib object 
+            containing the directory to read extension file 
+            (e.g., Path('waveforms'))
         """
         self.extension = extension
+        if path is None:
+           self.path = Path()
+
         self._nfiles = 0 # number of files loaded
+        self._nrecords = 0 # number of recordings made
 
     def fit(self, X, y = None):
         """
@@ -57,20 +72,34 @@ class PandasReader(BaseEstimator, TransformerMixin):
         """
         return self
    
-    def transform(self, directory = './', **transform_params):
+    def transform(self, extension = None, path = None):
         """
         Returns a pandas DataFrame with all the DataFrame
         files found in the directory (e.g. 'waveforms/').
 
         Parameter
         ---------
-        directory - the directory to read extension file
+        extension: str
+            The extension of DataFrame object (by default
+            df).
+        path:  a pathlib object 
+            containing the directory to read extension file 
+            (e.g., Path('waveforms'))
         """
-        flist = glob.glob(directory + self.extension)
-        self._nfiles = len(flist)
+        # if we change the values defined at construction
+        if extension is not None:
+            self.extension = extension
+        if path is not None:
+            self.path = path
+
+        flist = self.path.glob( self.extension )
+
         frames = [pd.read_pickle(df) for df in flist]
+        self._nfiles = len(frames)
         df = pd.concat(frames, sort=False, ignore_index=True)
         df.set_index('uid', inplace=True)
+
+        self._nrecords = df.shape[0]
 
         return df 
 
@@ -79,6 +108,8 @@ class PandasReader(BaseEstimator, TransformerMixin):
         Count the number of files loaded
         """
         return self._nfiles
+
+    nrecords = property(lambda self: self._nrecords)
 
 class WaveformExtractor(BaseEstimator, TransformerMixin):
     """
