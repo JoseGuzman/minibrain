@@ -101,6 +101,3 @@ if __name__ == '__main__':
     mytotal = f'The dataset contains a total of {dfspikes.shape[0]:3d} spikes in {nsamples} samples.\n'
     print(mytotal)
     write_readme(path = Path(GIT, 'Readme.md'), mystr = mytotal)
-    
-
-
