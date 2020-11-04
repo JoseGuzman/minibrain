@@ -33,7 +33,7 @@ def write_readme(path, mystr):
     lines = list()
     with open(path, 'r') as fp:
         for line in fp:
-            if line.startswith('This dataset'):
+            if line.startswith('The dataset'):
                 line = mystr
             lines.append(line)
 
