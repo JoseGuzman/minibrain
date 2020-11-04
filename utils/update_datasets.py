@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """
 update_datasets.py
 
@@ -14,6 +14,8 @@ In addition, it will update the minibrain repository
     2. spikes.csv : spike kinetic properties from organoids.
     3. organoID.csv: the type of of organoid for every unique identifier.
 
+Requirements:
+minibrain 
 """
 import logging
 import pandas as pd
