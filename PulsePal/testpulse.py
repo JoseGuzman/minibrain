@@ -50,7 +50,7 @@ if __name__ == '__main__':
     from datetime import datetime
 
     # Parser
-    parser = argparse.ArgumentParser(description='repeats a 500 ms pulse')
+    parser = argparse.ArgumentParser(description='repeats a pulse')
     # --out output channel
     parser.add_argument('--out', '-o', type = int, 
         help = 'Output channel', required = True)
