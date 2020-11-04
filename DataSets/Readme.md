@@ -1,6 +1,6 @@
 # Datasets
 
-The dataset contains a total of 345 spikes in 55 samples.
+The dataset contains a total of 332 spikes in 56 samples.
 
 ## organoID.csv
 
@@ -102,3 +102,4 @@ Contains properties of burst.
 | duration   | sec    | duration of the burst |
 | IBI        | sec    | average of inter-burst-interval in organoid |
 | organoid   | --     | organoid type (as described in organoID.csv)                                   |
+
