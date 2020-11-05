@@ -246,6 +246,22 @@ class EphysLoader(object):
     with the silicon probes from Cambridge Neurotech 
     """
     # A dictionary with shanks ID and colors
+    color = {'A': '#0080FF',
+             'B': '#FF0000',
+             'C': '#FF9933',
+             'D': '#00AA00',
+
+             'E': '#FF55FF',
+             'F': '#DAA520', # goldenrod
+             'G': '#000080', # navy
+             'H': '#2E8B57', # seagreen
+
+             'I': '#0080FF',
+             'H': '#FF0000',
+             'J': '#FF9933',
+             'K': '#00AA00',
+            }
+
     shank = {'A': range(16),
              'B': range(16,32),
              'C': range(32,48),
@@ -257,16 +273,6 @@ class EphysLoader(object):
              'H': range(112,128)
             }
 
-    color = {'A': '#0080FF',
-             'B': '#FF0000',
-             'C': '#FF9933',
-             'D': '#00AA00',
-
-             'E': '#FF55FF',
-             'F': '#DAA520', # goldenrod
-             'G': '#000080', # navy
-             'H': '#2E8B57' # seagreen
-            }
     
     shankF = {'A': range(10),
              'B': range(10,21),
@@ -274,6 +280,12 @@ class EphysLoader(object):
              'D': range(32,43),
              'E': range(43,54),
              'F': range(54,64),
+             'G': range(64,74),
+             'H': range(74,85),
+             'I': range(85,96),
+             'J': range(96,107),
+             'K': range(107,118),
+             'L': range(118,129)
             }
 
     # read "bit_volts" in structure.oebin
