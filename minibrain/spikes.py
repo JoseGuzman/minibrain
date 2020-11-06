@@ -45,13 +45,20 @@ def read_shank(channel, shanktype='P'):
         rules = [range( 0,10), range(10,21), range(21,32), range(32,43),
                 range(43,54), range(54,64)]
         shank = 'ABCDEF'
+
     elif shanktype == 'FF':
         rules = [range( 0,10), range(10,21), range(21,32), range(32,43),
                 range(43,54), range(54,64), 
                 range(64,74), range(74,85), range(85,96), range(96,107),
                 range(107,118), range(118, 129)]
         shank = 'ABCDEFGHIJKL'
-    else:
+
+    elif shanktype == 'PP' or shanktype == 'EE':
+        rules = [range( 0,16), range(16,32), range(32,48), range(48,64),
+                range(64,80), range(80,96), range(96,112), range(112,128)]
+        shank = 'ABCDEFGH'
+
+    else: # this is like PP or EE
         rules = [range( 0,16), range(16,32), range(32,48), range(48,64),
                 range(64,80), range(80,96), range(96,112), range(112,128)]
         shank = 'ABCDEFGH'

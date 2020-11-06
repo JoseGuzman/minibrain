@@ -257,9 +257,9 @@ class EphysLoader(object):
              'H': '#2E8B57', # seagreen
 
              'I': '#0080FF',
-             'H': '#FF0000',
-             'J': '#FF9933',
-             'K': '#00AA00',
+             'J': '#FF0000',
+             'K': '#FF9933',
+             'L': '#00AA00',
             }
 
     shank = {'A': range(16),
@@ -625,10 +625,11 @@ class EphysLoader(object):
         yoffset = 0 # y-offset to plot traces (will go negative)
         if shanktype == 'P' or shanktype == 'E':
             myshank = self.shank
-        elif shanktype ==  'F':
+        elif shanktype ==  'F' or shanktype == 'FF':
             myshank = self.shankF
         else:
             myshank = self.shank
+
 
         for ch in myshank[shankID]:
             uvolt = self.channel(ch)
