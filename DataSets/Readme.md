@@ -4,7 +4,7 @@ The dataset contains a total of 332 spikes in 57 samples.
 
 ## organoID.csv
 
-Every measurement contains a unique prefix with two letters + three digits number + that follows a 3-number  + 1 alphanumeric identifier for the individual experiment (e.g. VT014_009F, meaning a DLX_Cheriff organoid). This code servers as a unique identifier (uid) in the datasets. You can see which kind of organoid correspond to every recording in the 'organoid' column.
+Every measurement contains a unique prefix with two letters + three digits number + that follows a 3-number  + 1 alphanumeric identifier for the individual experiment (e.g. VT014_009F, meaning a DLX_Cheriff organoid). This code servers as a unique identifier (**uid**) in the datasets. You can see which kind of organoid correspond to every recording in the 'organoid' column.
 
 To see a description of the organoid, check the table below.
 
