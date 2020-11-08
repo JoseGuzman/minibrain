@@ -22,14 +22,15 @@ from sklearn.base import BaseEstimator, TransformerMixin
 
 from minibrain import EphysLoader, Units
 
+# custom matplotlib colors for different organoids
 mycolors = {'TSCp5_30s':     '#FFA500', # orange
           'TSCp5_32s':       '#4169E1', # royalblue
-          'DLX_bluered':     '#00BFFF', # deepskyblue
-          'DLX_Cheriff':     '#006400', # darkgreen
-          'DLX_Cheriff_AS' : '#4B0082',  # indigo
-          'DLX_H9' :          '#A0522D' # siena
-          'AP_ctrl':         '#1E90FF', 
-          'AP_drug':         '#DC143C' # crimson
+          'DLX_bluered':     '#DAA520', # goldenrod 
+          'DLX_Cheriff':     '#228B22', # forestgreen
+          'DLX_Cheriff_AS':  '#32CD32', # limegreen
+          'DLX_H9' :         '#006400', # darkgreen 
+          'AP_ctrl':         '#EE82EE', # violet 
+          'AP_drug':         '#DC143C'  # crimson
     }
 
 class PandasReader(BaseEstimator, TransformerMixin):
