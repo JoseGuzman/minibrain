@@ -27,6 +27,7 @@ mycolors = {'TSCp5_30s':     '#FFA500', # orange
           'DLX_bluered':     '#00BFFF', # deepskyblue
           'DLX_Cheriff':     '#006400', # darkgreen
           'DLX_Cheriff_AS' : '#4B0082',  # indigo
+          'DLX_H9' :          '#A0522D' # siena
           'AP_ctrl':         '#1E90FF', 
           'AP_drug':         '#DC143C' # crimson
     }
