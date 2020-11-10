@@ -29,7 +29,7 @@ mycolors = {'TSCp5_30s':     '#FFA500', # orange
           'DLX_Cheriff':     '#228B22', # forestgreen
           'DLX_Cheriff_AS':  '#32CD32', # limegreen
           'DLX_H9' :         '#006400', # darkgreen 
-          'AP_ctrl':         '#EE82EE', # violet 
+          'AP_ctrl':         '#00BFFF', # deepskyblue 
           'AP_drug':         '#DC143C'  # crimson
     }
 
