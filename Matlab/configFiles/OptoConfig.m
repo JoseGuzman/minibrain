@@ -4,7 +4,7 @@
 % Jose Guzman, jose.guzman<at>guzman-lab.com
 % Created: Thu May 14 16:41:48 CEST 2020
 %
-% this is the config file for sorting spikes files with KiloSort2
+% this is the config file for sorting spikes files with KiloSort2.5
 % for optogenetic stimulation
 % use a filed called main_kilosort.m to run it. 
 % To see default values check git/Kilosort2/configfiles/configFile384.m
@@ -42,7 +42,7 @@ ops.minFR = 1/600; % (600, 10 min) default 1/50
 % number of spike detection counts.
 % it shouldn't be necessary to adjust
 % (https://github.com/MouseLand/Kilosort2/issues/156)
-ops.momentum = [20 400]; % default [20 400]6
+ops.momentum = [20 400]; % default [20 400]
 
 
 % spatial constant in um for computing residual variance of spike6
