@@ -274,18 +274,19 @@ class EphysLoader(object):
             }
 
     
-    shankF = {'A': range(10),
+    shankF = {'A':range(0 ,10),
              'B': range(10,21),
              'C': range(21,32),
              'D': range(32,43),
              'E': range(43,54),
              'F': range(54,64),
+
              'G': range(64,74),
              'H': range(74,85),
              'I': range(85,96),
              'J': range(96,107),
              'K': range(107,118),
-             'L': range(118,129)
+             'L': range(118,128)
             }
 
     # read "bit_volts" in structure.oebin

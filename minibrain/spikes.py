@@ -50,7 +50,7 @@ def read_shank(channel, shanktype='P'):
         rules = [range( 0,10), range(10,21), range(21,32), range(32,43),
                 range(43,54), range(54,64), 
                 range(64,74), range(74,85), range(85,96), range(96,107),
-                range(107,118), range(118, 129)]
+                range(107,118), range(118, 128)]
         shank = 'ABCDEFGHIJKL'
 
     elif shanktype == 'PP' or shanktype == 'EE':
