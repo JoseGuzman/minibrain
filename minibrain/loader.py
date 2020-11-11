@@ -328,10 +328,10 @@ class EphysLoader(object):
         self._date = date
         self._birth = birth
         self._nchan = nchan
-        self._srate = srate      # number of samples per second
+        self._srate = srate # number of samples per second
         self._oephys = openephys_binary
 
-        self.dt = 1/(srate/1000) # sampling interval in ms
+        self._dt = 1/(srate/1000) # sampling interval in ms
         if date is None or birth is None:
             age = 0
         else:
@@ -348,11 +348,11 @@ class EphysLoader(object):
             delta = recdate-birthdate
             age = delta.days + delta.seconds/(24*60*60)
 
-        self.age = age
+        self._age = age
 
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
-        self.seconds = nsamples/self.srate # duration in seconds
+        myseconds = nsamples/srate # duration in seconds
 
         if openephys_binary: # open-ephys GUI
             btype = '<i2'
@@ -372,7 +372,7 @@ class EphysLoader(object):
 
         # prompt info: duration in minutes, age in months
         if show_info:
-            print('Recording duration = {:2.4f} min.'.format(self.seconds/60) )
+            print('Recording duration = {:2.4f} min.'.format(myseconds/60) )
             print('Recording age      = {:2.4f} months.'.format(age/30) ) 
 
     def __len__(self):
@@ -396,7 +396,8 @@ class EphysLoader(object):
                 birth = self.birth ,
                 nchan = self.nchannels ,
                 srate = self.srate  ,
-                openephys_binary = self._oephys
+                openephys_binary = self._oephys,
+                show_info = False,
                 )
         myrec = EphysLoader(**myparams)
         myrec._memmap = self._memmap
@@ -670,10 +671,12 @@ class EphysLoader(object):
 
     # getter only attributes
     fname = property(lambda self: self._fname)
-    date = property(lambda self: self._date)
+    date  = property(lambda self: self._date)
     birth = property(lambda self: self._birth)
     srate = property(lambda self: self._srate)
     openephys_binary = property(lambda self: self._oephys)
+    dt    = property(lambda self: self._dt)
+    age   = property(lambda self: self._age)
     # getter for the number of samples channels
     nsamples = property(lambda self: self._memmap.shape[0])
     nchannels = property(lambda self: self._memmap.shape[1])
