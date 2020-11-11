@@ -292,7 +292,14 @@ class EphysLoader(object):
     # read "bit_volts" in structure.oebin
     gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
 
-    def __init__(self,fname,date=None,birth=None,nchan=67,srate=30000, openephys_binary = True):
+    def __init__(self,
+            fname,
+            date = None,
+            birth = None,
+            nchan = 67,
+            srate = 30000, 
+            openephys_binary = True,
+            show_info = True):
         """
         Reads binary data from Open Ephys acquired with
         the Intan 512ch Recording controller.
@@ -346,10 +353,6 @@ class EphysLoader(object):
         fp = open(fname, 'rb')
         nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
         self.seconds = nsamples/self.srate # duration in seconds
-        # prompt info: duration in minutes, age in months
-        # print('Binary location {}'.format(fname))
-        print('Recording duration = {:2.4f} min.'.format(self.seconds/60) )
-        print('Recording age      = {:2.4f} months.'.format(age/30) ) 
 
         if openephys_binary: # open-ephys GUI
             btype = '<i2'
@@ -366,6 +369,11 @@ class EphysLoader(object):
                 shape = (nsamples, nchan))
 
         fp.close()
+
+        # prompt info: duration in minutes, age in months
+        if show_info:
+            print('Recording duration = {:2.4f} min.'.format(self.seconds/60) )
+            print('Recording age      = {:2.4f} months.'.format(age/30) ) 
 
     def __len__(self):
         return self._memmap.shape[0]
