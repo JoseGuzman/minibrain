@@ -9,13 +9,13 @@
 % it will not affect the sorting, since the probes are independent.
 %=======================================================================
 
-%%=========================================================================
+%%=======================================================================
 %% 64F
 %% 6 shanks named A, B, C, D, E, and F. 
 %% (A,F) with 10 electrodes,
 %% (B,C,D,E) contains 11 electrodes.
 %% three auxiliary channels 
-%%=========================================================================
+%%=======================================================================
 fname = '~/SiliconProbes/Kilosort2/configFiles/64F.mat';
 Nchannels = 67; % Total number of channels
 connected = true(Nchannels,1); % zero if bad channel 
@@ -61,16 +61,16 @@ save(fname, ...
 'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
 
 fprintf('Creating  %s \n', fname)
-%%
+%%=======================================================================
 
 
-%%=========================================================================
+%%=======================================================================
 %% 64F_64F.mat
 %% 12 shanks named (A,B,C,D,E,F) and (G,H,I,J,K)
 %% (A,F,G,K) with 10 electrodes
 %% (B,C,D,E,H,I,K) with 11 electrodes
 %% six auxiliary channels
-%%=========================================================================
+%%=======================================================================
 fname = '~/SiliconProbes/Kilosort2/configFiles/64F_64F.mat';
 Nchannels = 134; % Total number of channels
 connected = true(Nchannels,1); % zero if bad channel
@@ -130,4 +130,4 @@ save(fname, ...
 'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
 
 fprintf('Creating  %s \n', fname)
-%%
+%%=======================================================================

@@ -9,7 +9,6 @@
 % from master_kilosort.m . To see the default values check
 % git/Kilosort2/configfiles/configFile384.m
 %=========================================================================
-ops.chanMap = '~/SiliconProbes/Kilosort2/configFiles/64ASSY77E2.mat';
 
 % sample rate
 ops.fs = 30000;  
@@ -45,7 +44,6 @@ ops.minFR = 1/600; % (600, 10 min) default 1/50
 % (https://github.com/MouseLand/Kilosort2/issues/156)
 ops.momentum = [20 400]; % default [20 400]
 
-
 % spatial constant in um for computing residual variance of spike
 % range of detectins spikes based on summed power of PCA projections
 % has no effect on template shape. 
@@ -60,7 +58,7 @@ ops.ThPre = 8; % default 8
 % of all templates to span more channel groups, so that they can capture shared 
 % noise across all channels. This option is
 
-ops.criterionNoiseChannels = 0.02; 
+%ops.criterionNoiseChannels = 0.02; 
 
 %% danger, changing these settings can lead to fatal errors
 % options for determining PCs
