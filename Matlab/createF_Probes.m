@@ -16,7 +16,7 @@
 %% (B,C,D,E) contains 11 electrodes.
 %% three auxiliary channels 
 %%=======================================================================
-fname = '~/SiliconProbes/Kilosort2/configFiles/64F.mat';
+fname = '~/SiliconProbes/Kilosort2/configFiles/Fprobes/64F.mat';
 Nchannels = 67; % Total number of channels
 connected = true(Nchannels,1); % zero if bad channel 
 connected(65:67) = 0; % AUX channels
@@ -71,7 +71,7 @@ fprintf('Creating  %s \n', fname)
 %% (B,C,D,E,H,I,K) with 11 electrodes
 %% six auxiliary channels
 %%=======================================================================
-fname = '~/SiliconProbes/Kilosort2/configFiles/64F_64F.mat';
+fname = '~/SiliconProbes/Kilosort2/configFiles/Fprobes/64F_64F.mat';
 Nchannels = 134; % Total number of channels
 connected = true(Nchannels,1); % zero if bad channel
 
