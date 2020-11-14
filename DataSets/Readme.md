@@ -103,3 +103,10 @@ Contains properties of burst.
 | IBI        | sec    | average of inter-burst-interval in organoid |
 | organoid   | --     | organoid type (as described in organoID.csv)                                   |
 
+To load it:
+```python
+import pandas as pd
+spikes = pd.read_csv('bursts.csv', index_col = 'uid')
+spikes.info()
+spikes.organoid.value_counts()
+```
