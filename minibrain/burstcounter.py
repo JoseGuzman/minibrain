@@ -207,6 +207,8 @@ class Burst(object):
     def __getitem__(self, index):
         """
         get the beginning and the end of the burst in sampling points
+        To use it in a burst simply type:
+        >>> myburst[4] # return beginning and end of 5th bursts
         """
         try:
             return self._burst[index]
@@ -216,6 +218,8 @@ class Burst(object):
     def __setitem__(self, index, pair):
         """
         set the beginning and the end of the burst in sampling points
+        To use it in a burst simply type:
+        >>> myburst[4] = (10, 320)# return beginning and end of 5th bursts
         """
         self._burst[index] = pair 
 
