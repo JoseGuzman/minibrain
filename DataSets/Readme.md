@@ -8,7 +8,7 @@ Every measurement contains a unique prefix with two letters + three digits numbe
 
 To see a description of the organoid, check the table below.
 
-| organoid    | prefix | Description |
+| organoid    | Experiment prefix | Description |
 |-------------|------- |------------ |
 | TSCp5_30s   | TC     | -- |
 | TSCp5_32s   | TC     | -- |
