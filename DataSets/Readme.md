@@ -28,14 +28,14 @@ Contains kinetic measurements for normalized spikes. Implementation details are 
 | key        | units  | Description |
 |------------|--------|------------ |
 | uid        | --     | Unique idenfier for the spike (e.g., VT014_009F). Use it as a pandas index |
-| half_width | ms     | Width of spike at half-maximal amplitude (relates to rates of depolarization/repolarisation)                  |
+| half_width | miliseconds     | Width of spike at half-maximal amplitude (relates to rates of depolarization/repolarisation)                  |
 | asymmetry  | --     | Ratio between the second and the first maxima (relates to rate of fall of action potential repolarization)    |
-| latency    | ms     | Trought-to-right peak latency (relates to speed of depolariation of an action potential)                   |
-| rise       | ms     | 10-90% rise-time of the spike  |
-| repo_duration    | ms     | Duration of repolarization 
-| frequency  | Hz     |Average frequency of spike firing                 |
+| latency    | miliseconds     | Trought-to-right peak latency (relates to speed of depolariation of an action potential)                   |
+| rise       | miliseconds     | 10-90% rise-time of the spike  |
+| repo_duration    | miliseconds     | Duration of repolarization 
+| frequency  | Herz     |Average frequency of spike firing                 |
 | n_spikes   | --     |Number of extrallular spikes detected in a session            |
-| ISI.median | Hz     |Median frequency of the inter-spike interval      |
+| ISI.median | Herz     |Median frequency of the inter-spike interval      |
 | age        | months | Age after embryonic body formation                   |
 | organoid   | --     | Organoid type (described in organoID.csv, see the table above)                                |
 
@@ -79,13 +79,13 @@ Contain properties of spike trains upon optogenetic stimulation. Properies are d
 |------------|--------|------------ |
 | uid        | --     | Unique idenfier for the organoid (e.g.,AP009_002A). Use it as a pandas index) |
 | age        | months | After embryonic body formation                   |
-| latency    | ms     | Mean time until the beginning of the stimulation |
-| duration   | ms     | Mean time between the first and last spike upon photo-stimulation|
-| isi        | ms     | Average inter-spike-interval upon the stimulation |
-| prop_zeros | prop.  | Proportion of failures |
-| prop_ones  | prop.  | Proportion of single spikes |
-| prop_more  | prop.  | Proportion of multiple spikes |
-| frequency  | Hz     | Average spike frequency upon stimulation |
+| latency    | miliseconds     | Mean time until the beginning of the stimulation |
+| duration   | miliseconds     | Mean time between the first and last spike upon photo-stimulation|
+| isi        | miliseconds     | Average inter-spike-interval upon the stimulation |
+| prop_zeros | proportion  | Proportion of failures |
+| prop_ones  | proportion  | Proportion of single spikes |
+| prop_more  | proportion  | Proportion of multiple spikes |
+| frequency  | Herz     | Average spike frequency upon stimulation |
 | organoid   | --     | Organoid type (described in organoID.csv, see the table above)                                    |
 
 
@@ -99,8 +99,8 @@ Contains properties of burst.
 | uid        | --     | Unique idenfier for the organoid (e.g., X). Use it as a pandas index |
 | age        | months | Age after embryonic body formation                   |
 | EB         | date   | Date of embryonic body formation (relates to organoid batch |
-| duration   | sec    | Duration of the burst |
-| IBI        | sec    | Average of inter-burst-interval in organoid |
+| duration   | seconds    | Duration of the burst |
+| IBI        | seconds    | Average of inter-burst-interval in organoid |
 | organoid   | --     | Organoid type (described in organoID.csv, see the table above)                                   |
 
 To load it:
