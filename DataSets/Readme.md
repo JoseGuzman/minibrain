@@ -37,7 +37,7 @@ Contains kinetic measurements for normalized spikes. Implementation details are 
 | n_spikes   | --     |Number of extrallular spikes detected in a session            |
 | ISI.median | Herz     |Median frequency of the inter-spike interval      |
 | age        | months | Age after embryonic body formation                   |
-| organoid   | --     | Organoid type (described in organoID.csv, see the table above)                                |
+| organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                                |
 
 
 To load it:
@@ -55,7 +55,7 @@ Contains normalized spike waveforms.
 |------------|--------|------------ |
 | uid        | --     | Unique idenfier for the spike (e.g., VT014_009F). Use it as a pandas index |
 | 0-150      | --     | Voltage sample (33.3 uS) normalized to the trought of the spike. Total time is 5 ms |
-| organoid   | --     | Organoid type (described in organoID.csv, see the table above)                             |
+| organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                             |
 
 To load it:
 
@@ -86,7 +86,7 @@ Contain properties of spike trains upon optogenetic stimulation. Properies are d
 | prop_ones  | proportion  | Proportion of single spikes |
 | prop_more  | proportion  | Proportion of multiple spikes |
 | frequency  | Herz     | Average spike frequency upon stimulation |
-| organoid   | --     | Organoid type (described in organoID.csv, see the table above)                                    |
+| organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                                    |
 
 
 
@@ -101,7 +101,7 @@ Contains properties of burst.
 | EB         | date   | Date of embryonic body formation (relates to organoid batch |
 | duration   | seconds    | Duration of the burst |
 | IBI        | seconds    | Average of inter-burst-interval in organoid |
-| organoid   | --     | Organoid type (described in organoID.csv, see the table above)                                   |
+| organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                                   |
 
 To load it:
 ```python
