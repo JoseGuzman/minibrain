@@ -103,5 +103,6 @@ if __name__ == '__main__':
     dfwaveforms.to_csv(Path(GIT, 'waveforms.csv'), index = True)
     dforganoid.to_csv(Path(GIT, 'organoID.csv'), index = True)
     mytotal = f'The dataset contains a total of {dfspikes.shape[0]:3d} spikes in {nsamples} samples.\n'
+
     print(mytotal)
     write_readme(path = Path(GIT, 'Readme.md'), mystr = mytotal)
