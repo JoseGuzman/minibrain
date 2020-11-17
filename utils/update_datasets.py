@@ -40,6 +40,24 @@ def write_readme(path, mystr):
     with open(path, 'r+') as fp:
         fp.writelines(lines)
         
+def write_line(path, line, mystr):
+    """
+    writes Readme.md in line 
+
+    Arguments
+    ---------
+
+    path: pathlib object (e.g. Path('minibrain')
+    line: (int) the line to write
+    mystr: message to add to Readme.md in the line
+    """
+    # read file in a list (fp.readlines()
+    with open(path, 'r') as fp:
+        lines = fp.readlines()
+
+    lines[line] = mystr + '\n'
+    with open(path, 'r+') as fp:
+        fp.writelines(lines)
 
 if __name__ == '__main__':
     from pathlib import Path
@@ -49,14 +67,14 @@ if __name__ == '__main__':
     HOME = Path.home()
     GIT = Path(HOME, 'git', 'minibrain', 'DataSets')
     # directories where recordings are located
-    VT = Path(HOME, 'Guzman.VCB', 'DLXi56', 'Analysis' , 'SiliconProbes',
-        'VT', 'waveforms')
-    FS = Path(HOME, 'Guzman.VCB', 'DLXi56', 'Analysis' , 'SiliconProbes',
-        'FS', 'waveforms')
-    FH = Path(HOME, 'Guzman.VCB', 'DLXi56', 'Analysis' , 'SiliconProbes',
-        'FH', 'waveforms')
     TC = Path(HOME, 'Guzman.VCB', 'TSC2', 'Analysis' , 'SiliconProbes',
         'waveforms')
+    VT = Path(HOME, 'Guzman.VCB', 'DLXi56', 'Analysis' , 'SiliconProbes',
+        'VT', 'waveforms')
+    FH = Path(HOME, 'Guzman.VCB', 'DLXi56', 'Analysis' , 'SiliconProbes',
+        'FH', 'waveforms')
+    FS = Path(HOME, 'Guzman.VCB', 'DLXi56', 'Analysis' , 'SiliconProbes',
+        'FS', 'waveforms')
     AP = Path(HOME, 'Guzman.VCB', 'AP', 'Analysis' , 'SiliconProbes',
         'waveforms')
 
@@ -105,4 +123,6 @@ if __name__ == '__main__':
     mytotal = f'The dataset contains a total of {dfspikes.shape[0]:3d} spikes in {nsamples} samples.\n'
 
     print(mytotal)
-    write_readme(path = Path(GIT, 'Readme.md'), mystr = mytotal)
+    myreadme = Path(GIT, 'Readme.md')
+    write_line(myreadme, line = 3, mystr = mytotal)
+    #write_readme(path = Path(GIT, 'Readme.md'), mystr = mytotal)
