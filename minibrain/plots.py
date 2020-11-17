@@ -69,10 +69,10 @@ def plot_bars(xdata, ydata, labels, colors, ax = None):
     ax.spines['bottom'].set_visible(False)
 
     # xlabels
-    xlabels = list()
-    for i in enumerate(data):
-        xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
-    ax.set_xticklabels(xlabels, fontsize=14)
+    #xlabels = list()
+    #for i in enumerate(data):
+    #    xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
+    ax.set_xticklabels(labels, fontsize=14)
     ax.set_xticks([1,2])
     ax.xaxis.set_ticks_position('none')
 
@@ -155,7 +155,7 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
     #xlabels = list()
     #for i in enumerate(data):
     #    xlabels.append(labels[i] + '\n(n=' + str(len(data[i])) + ')')
-    #ax.set_xticklabels(xlabels, fontsize = 14)
+    ax.set_xticklabels(labels, fontsize = 14)
     ax.set_xticks([1,2])
     ax.xaxis.set_ticks_position('none')
 
