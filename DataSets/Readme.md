@@ -1,6 +1,7 @@
 # Datasets
 
 The dataset contains a total of 344 spikes in 62 samples.
+The dataset contains a total of 356 spikes in 63 samples.
 
 ## organoID.csv
 
