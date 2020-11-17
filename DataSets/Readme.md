@@ -8,6 +8,7 @@ The dataset contains a total of 356 spikes in 63 samples.
 Every measurement contains a unique experiment identifier (**uid**). The identifier unique prefix with two letters + three digits number + that follows a 3-number  + 1 alphanumeric identifier for the individual experiment. For example, the uid VT014_009F, has a VT prefix, meaning it is an experiment in a DLX_Cheriff type of organoid. This code servers as a unique identifier of the recording in a datasets. You can see which kind of organoid correspond to every recording in the 'organoid' column.
 
 To see a description of the organoid, check this table.
+| Organoid type    | Experiment prefix | Description |
 |-------------|------- |------------ |
 | TSCp5_30s   | TC     | -- |
 | TSCp5_32s   | TC     | -- |
