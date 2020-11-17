@@ -1,15 +1,13 @@
 # Datasets
 
-The dataset contains a total of 344 spikes in 62 samples.
 The dataset contains a total of 356 spikes in 63 samples.
+
 
 ## organoID.csv
 
 Every measurement contains a unique experiment identifier (**uid**). The identifier unique prefix with two letters + three digits number + that follows a 3-number  + 1 alphanumeric identifier for the individual experiment. For example, the uid VT014_009F, has a VT prefix, meaning it is an experiment in a DLX_Cheriff type of organoid. This code servers as a unique identifier of the recording in a datasets. You can see which kind of organoid correspond to every recording in the 'organoid' column.
 
 To see a description of the organoid, check this table.
-
-| Organoid type    | Experiment prefix | Description |
 |-------------|------- |------------ |
 | TSCp5_30s   | TC     | -- |
 | TSCp5_32s   | TC     | -- |
@@ -101,6 +99,17 @@ Contains properties of burst.
 | age        | months | Age after embryonic body formation                   |
 | EB         | date   | Date of embryonic body formation (relates to organoid batch |
 | duration   | seconds    | Duration of the burst |
+| IBI        | seconds    | Average of inter-burst-interval in organoid |
+| organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                                   |
+
+To load it:
+```python
+import pandas as pd
+spikes = pd.read_csv('bursts.csv', index_col = 'uid')
+spikes.info()
+spikes.organoid.value_counts()
+```
+ation of the burst |
 | IBI        | seconds    | Average of inter-burst-interval in organoid |
 | organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                                   |
 

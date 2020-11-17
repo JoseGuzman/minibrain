@@ -55,7 +55,7 @@ def write_line(path, line, mystr):
     with open(path, 'r') as fp:
         lines = fp.readlines()
 
-    lines[line] = mystr + '\n'
+    lines[line] = mystr 
     with open(path, 'r+') as fp:
         fp.writelines(lines)
 
@@ -124,5 +124,5 @@ if __name__ == '__main__':
 
     print(mytotal)
     myreadme = Path(GIT, 'Readme.md')
-    write_line(myreadme, line = 3, mystr = mytotal)
+    write_line(myreadme, line = 2, mystr = mytotal)
     #write_readme(path = Path(GIT, 'Readme.md'), mystr = mytotal)
