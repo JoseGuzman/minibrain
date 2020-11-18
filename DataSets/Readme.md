@@ -88,6 +88,13 @@ Contain properties of spike trains upon optogenetic stimulation. Properies are d
 | frequency  | Herz     | Average spike frequency upon stimulation |
 | organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                                    |
 
+To load it:
+```python
+import pandas as pd
+trains = pd.read_csv('trains.csv', index_col = 'uid')
+trains.info()
+trains.organoid.value_counts()
+```
 
 
 ## bursts.csv
@@ -106,18 +113,7 @@ Contains properties of burst.
 To load it:
 ```python
 import pandas as pd
-spikes = pd.read_csv('bursts.csv', index_col = 'uid')
-spikes.info()
-spikes.organoid.value_counts()
-```
-ation of the burst |
-| IBI        | seconds    | Average of inter-burst-interval in organoid |
-| organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                                   |
-
-To load it:
-```python
-import pandas as pd
-spikes = pd.read_csv('bursts.csv', index_col = 'uid')
-spikes.info()
-spikes.organoid.value_counts()
+bursts = pd.read_csv('bursts.csv', index_col = 'uid')
+bursts.info()
+bursts.organoid.value_counts()
 ```
