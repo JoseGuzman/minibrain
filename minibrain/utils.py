@@ -10,7 +10,7 @@ Various useful objects
 # custom matplotlib colors for different organoids
 mycolors = {'TSCp5_30s':     '#FFA500', # orange
           'TSCp5_32s':       '#4169E1', # royalblue
-          'DLX_bluered':     '#DAA520', # goldenrod 
+          'DLX_bluered':     '#32CD32', # limegreen 
           'DLX_Cheriff':     '#228B22', # forestgreen
 #          'DLX_Cheriff_AS':  '#32CD32', # limegreen
           'DLX_H9' :         '#006400', # darkgreen 
