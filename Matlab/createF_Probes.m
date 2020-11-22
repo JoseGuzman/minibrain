@@ -42,12 +42,12 @@ xcoords = horzcat(xlocA, xlocB, xlocC, xlocD, xlocE, xlocF, xlocAUX);
 yloc_10 = [  -15 -30 -45 -60 -75 -90 -105 -120 -135 -150]; % 10 electrodes
 yloc_11 = [0 -15 -30 -45 -60 -75 -90 -105 -120 -135 -150]; % 11 electrodes
 
-ylocA = yloc_10 - 1500;
-ylocB = yloc_11 - 3000;% - 1500;
-ylocC = yloc_11 - 4500;% - 3000;
-ylocD = yloc_11 - 6000;% - 4500;
-ylocE = yloc_11 - 7500;% - 6000;
-ylocF = yloc_10 - 9000;% - 7500;
+ylocA = yloc_10 - 300;
+ylocB = yloc_11 - 600;% - 1500;
+ylocC = yloc_11 - 900;% - 3000;
+ylocD = yloc_11 - 1200;% - 4500;
+ylocE = yloc_11 - 1500;% - 6000;
+ylocF = yloc_10 - 1800;% - 7500;
 
 ylocAUX = [500 500 500;]; % AUX far away
 ycoords = horzcat(ylocA, ylocB, ylocC, ylocD, ylocE, ylocF, ylocAUX);
@@ -104,19 +104,19 @@ xcoords = horzcat(xlocA, xlocB, xlocC, xlocD, xlocE, xlocF, xlocG, xlocH, xlocI,
 yloc_10 = [  -15 -30 -45 -60 -75 -90 -105 -120 -135 -150]; % 10 electrodes
 yloc_11 = [0 -15 -30 -45 -60 -75 -90 -105 -120 -135 -150]; % 11 electrodes
 
-ylocA = yloc_10 - 1500;
-ylocB = yloc_11 - 3000;% - 1500;
-ylocC = yloc_11 - 4500;% - 3000;
-ylocD = yloc_11 - 6000;% - 4500;
-ylocE = yloc_11 - 7500;% - 6000;
-ylocF = yloc_10 - 9000;% - 7500;
+ylocA = yloc_10 - 300;
+ylocB = yloc_11 - 600;% - 1500;
+ylocC = yloc_11 - 900;% - 3000;
+ylocD = yloc_11 - 1200;% - 4500;
+ylocE = yloc_11 - 1500;% - 6000;
+ylocF = yloc_10 - 1800;% - 7500;
 
-ylocG = yloc_10 - 11500;
-ylocH = yloc_11 - 13000;% - 1500;
-ylocI = yloc_11 - 14500;% - 3000;
-ylocJ = yloc_11 - 16000;% - 4500;
-ylocK = yloc_11 - 17500;% - 6000;
-ylocL = yloc_10 - 19000;% - 7500;
+ylocG = yloc_10 - 2100;
+ylocH = yloc_11 - 2400;% - 1500;
+ylocI = yloc_11 - 2700;% - 3000;
+ylocJ = yloc_11 - 3000;% - 4500;
+ylocK = yloc_11 - 3300;% - 6000;
+ylocL = yloc_10 - 3600;% - 7500;
 
 ylocAUX = [4600 4650 4700 4750 4800 4850]; % AUX far away
 ycoords = horzcat(ylocA, ylocB, ylocC, ylocD, ylocE, ylocF, ylocG, ylocH, ylocI, ylocJ, ylocK, ylocL, ylocAUX);
