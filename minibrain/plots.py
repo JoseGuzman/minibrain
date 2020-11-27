@@ -12,11 +12,71 @@ import numpy as np
 
 from scipy.stats import kruskal
 from scipy.stats import mannwhitneyu as mwu
+from scipy.stats import wilcoxon
 
 from scipy.stats import linregress, norm, sem
 from scipy.stats import t as T
 
 import matplotlib.pyplot as plt
+
+def plot_pairs(xdata, ydata, labels, colors, ax = None):
+    """
+    Generate a bar plot from a list containing the data
+    perform a Wilcoxon rank-test to test for paired differences.
+
+    Arguments
+    ----------
+    xdata   -- a list containing data to plot
+    ydata   -- a list containing data to plot
+    labels -- a list of string containig the variable names
+    colors -- a list of strings containgin colors to plot the bars
+
+    Returns:
+    ax: a bar plot with the means, error bars with the standard error
+    of the mean, and single data points.
+    info: the mean and standard error of the samples, together with the
+    the probability that the means are the same.
+    """
+    ax = ax or plt.gca()
+
+    # single data points and error bars
+    mycaps = dict(capsize = 10, elinewidth = 3, markeredgewidth = 3)
+
+    ax.plot(0, np.mean(xdata), 'o', color= colors[0])
+    ax.errorbar(0, np.mean(xdata), sem(xdata), **mycaps, color = colors[0])
+
+    ax.plot(1, np.mean(ydata), 'o', color= colors[1])
+    ax.errorbar(1, np.mean(ydata), sem(ydata), **mycaps, color = colors[1])
+
+    # single data
+    ax.plot(np.ones(len(xdata))*.25, xdata, 'o', color = colors[0])
+    ax.plot(np.ones(len(ydata))*.75, ydata, 'o', color = colors[1])
+
+    for i in zip(xdata, ydata):
+        ax.plot( [0.25, 0.75], i, color = 'gray', alpha = 0.4)
+
+    # remove axis and adjust
+    # remove axis and adjust
+    ax.spines['right'].set_visible(False)
+    ax.spines['top'].set_visible(False)
+    ax.spines['bottom'].set_visible(False)
+    ax.get_yaxis().tick_left()
+
+    ax.set_xticklabels(labels, fontsize = 14)
+    ax.set_xticks([0,1])
+    ax.xaxis.set_ticks_position('none')
+    ax.set_xlim(-.5,1.5)
+
+    # statistics
+    stats_0 =  ( labels[0],np.mean(xdata), sem(xdata), len(xdata) )
+    stats_1 =  ( labels[1],np.mean(ydata), sem(ydata), len(ydata) )
+    print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
+    print('%s = %2.4f +/- %2.4f, n = %d' %stats_1)
+    w_test = wilcoxon(xdata, ydata, alternative = 'two-sided')[1]
+    print(f'P = {w_test:2.4}, Wilcoxon signed-rank test (two-sided W test)\n')
+    infostats = {'P-value': w_test}
+
+    return ax, infostats
 
 def plot_bars(xdata, ydata, labels, colors, ax = None):
     """
