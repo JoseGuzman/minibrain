@@ -56,7 +56,6 @@ def plot_pairs(xdata, ydata, labels, colors, ax = None):
         ax.plot( [0.25, 0.75], i, color = 'gray', alpha = 0.4)
 
     # remove axis and adjust
-    # remove axis and adjust
     ax.spines['right'].set_visible(False)
     ax.spines['top'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
