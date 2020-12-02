@@ -389,6 +389,3 @@ def plot_spike_waveforms(wavelist, color = 'k', ax = None):
     ax.set_ylim(-1.3, 1.1)
 
     return ax
-
-
-
