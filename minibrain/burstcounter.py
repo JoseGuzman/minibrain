@@ -84,6 +84,25 @@ class Burst(object):
         """
         self._burst = np.delete(self._burst, index, axis = 0)
 
+    def save_pulse(self, fname):
+        """
+        saves the beginning and end of the pulses as a 2D Numpy
+
+        Arguments:
+        fname (str)
+            filename to be saved (as *.npy)
+
+        Example:
+        myburst.save('burst_times.npy')
+        """
+
+        n_bursts = len(self._burst)
+        burst_time = np.empty( (2, n_bursts), dtype = np.int)
+        for pulse in range(n_bursts):
+            burst_time[pulse] = self.__getitem__(pulse)
+
+        np.save(fname, burst_time) # saves as NumPy binary
+
     def save(self, fname):
         """
         Save a hdf5 file with a list of burst obtained in the 
@@ -147,7 +166,7 @@ class Burst(object):
 
         return ax
 
-    def plot_time(self, tstart, tend):
+    def plot_time(self, tstart, tend ,ax = None):
         """
         Return three axis with wide-band, band-pass (90-250 Hz) and
         rms from the burst.
@@ -162,6 +181,8 @@ class Burst(object):
         ax (array)
             An array of axis
         """
+        ax = ax or plt.gca()
+
         time = np.arange(len(self.wband))/self.srate # time vector
         pstart = int(tstart*self.srate)
         pend   = int(tend*self.srate)
