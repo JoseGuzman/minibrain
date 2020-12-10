@@ -56,6 +56,8 @@ legend.frameon : False
 #legend.markersize: 2
 
 savefig.dpi : 600
+savefig.bbox_inches : 'tight'
+savefig.pad_inches : 0 
 
 
 pdf.fonttype : 42 # Text in Illustrator
