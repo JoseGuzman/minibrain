@@ -3,14 +3,14 @@
 """
 minibrain: 
 
-A python module to analyze electrophysiology and calcium imaging in minibrains
+A python module to analyze electrophysiology and calcium imaging in brain organoids.
 
 """
 
 #-------------------------------------------------------------------------
 # Global variables
 #-------------------------------------------------------------------------
-__version__ = 'v0.8alpha'
+__version__ = 'v0.9alpha'
 __author__ = 'Jose Guzman'
 __email__ = 'jose.guzman at guzman-lab.com'
 
