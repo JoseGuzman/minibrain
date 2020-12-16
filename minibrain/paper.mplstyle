@@ -56,7 +56,7 @@ legend.frameon : False
 #legend.markersize: 2
 
 savefig.dpi : 600
-savefig.bbox_inches : 'tight'
+#savefig.bbox_inches : 'tight'
 savefig.pad_inches : 0 
 
 
