@@ -125,7 +125,7 @@ class Burst(object):
         Argument
         --------
         index (int)
-            the burst nubmer
+            the burst number
 
         Return
         ------
