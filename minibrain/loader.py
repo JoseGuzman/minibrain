@@ -574,7 +574,7 @@ class EphysLoader(object):
 
         tmax = 5 # in ms
         spk_times = spk_times.astype(int) # cast to int
-        time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
+        time = np.linspace(start = 0, stop = tmax, num = int(tmax/self.dt))
         phalf = int((tmax/2)/self.dt)
 
         uvolt = self.channel(channel)
@@ -629,7 +629,7 @@ class EphysLoader(object):
 
         tmax = 5 # in ms
         spk_times = spk_times.astype(int) # cast to int
-        time = np.linspace(start = 0, stop = tmax, num = tmax/self.dt)
+        time = np.linspace(start = 0, stop = tmax, num = int(tmax/self.dt))
         phalf = int((tmax/2)/self.dt) # 2.5 before and after peak
 
         yoffset = 0 # y-offset to plot traces (will go negative)
