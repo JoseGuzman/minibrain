@@ -637,7 +637,7 @@ class EphysLoader(object):
             myshank = self.shank
         elif shanktype ==  'F' or shanktype == 'FF':
             myshank = self.shankF
-        else:
+        else: # default is P
             myshank = self.shank
 
 
