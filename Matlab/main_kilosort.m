@@ -16,7 +16,7 @@ outDir = './sorting'; % output directory
 rootH = '/data/tmp'; % path to temporary binary file ( on fast SSD)
 pathToYourConfigFile = '~/SiliconProbes/Kilosort2/configFiles'; 
 
-chanMapFile = '64F_7021.mat';
+chanMapFile = '64F_64F.mat';
 
 ops.trange = [0 inf]; % time range to sort
 ops.NchanTOT = 134; % total number of channels in your recording
