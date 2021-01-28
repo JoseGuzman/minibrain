@@ -12,13 +12,13 @@
 addpath(genpath('~/git/Kilosort2')) % path to KiloSort2 folder
 addpath('~/git/npy-matlab/npy-matlab/') % for converting to python
 rootZ = './'; % the raw data binary file is in current directory
-outDir = './sorting2'; % output directory
+outDir = './sorting'; % output directory
 rootH = '/data/tmp'; % path to temporary binary file ( on fast SSD)
 pathToYourConfigFile = '~/SiliconProbes/Kilosort2/configFiles'; 
 
 chanMapFile = '64F_64F.mat';
 
-ops.trange = [0 40*60]; % time range to sort
+ops.trange = [0 inf]; % time range to sort
 ops.NchanTOT = 134; % total number of channels in your recording
 
 run(fullfile(pathToYourConfigFile, 'OptoConfig.m'))
