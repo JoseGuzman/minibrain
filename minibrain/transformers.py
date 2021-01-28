@@ -375,7 +375,8 @@ class PCATransformer(BaseEstimator):
         X = df.values[:, self.baseline:] # remove baseline
         PC = self.pca.transform(X) # would need fit before
         for i in range(self.n_components):
-            mydf[f'PC{i}'] = PC[:,i]
+            n = i+1
+            mydf[f'PC{n}'] = PC[:,i]
 
         return mydf
 
@@ -394,7 +395,8 @@ class PCATransformer(BaseEstimator):
         PC = self.pca.fit_transform(X)
 
         for i in range(self.n_components):
-            mydf[f'PC{i}'] = PC[:,i]
+            n = i + 1
+            mydf[f'PC{n}'] = PC[:,i]
 
         return mydf
 
