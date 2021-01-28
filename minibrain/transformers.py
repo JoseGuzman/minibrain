@@ -21,6 +21,7 @@ from pathlib import Path
 import pandas as pd
 
 from sklearn.base import BaseEstimator, TransformerMixin
+from sklearn.decomposition import PCA
 
 from minibrain import EphysLoader, Units
 
@@ -334,6 +335,8 @@ class PCATransformer(BaseEstimator):
     Usage:
     >>> from minibrain.transformers import PCATransformer
     >>> mypca = PCATransfomer(baseline=30, n_components=2)
+    >>> df = pd.read_csv('waveforms.csv', index_col='uid')
+    >>> df.drop('organoid', axis=1, inplace=True)
     >>> mypca.fit_transform(df)
     """
     def __init__(self, baseline =  30, n_components=2):
