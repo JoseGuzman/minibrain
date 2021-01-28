@@ -324,4 +324,75 @@ class ColumnsDelete(BaseEstimator, TransformerMixin):
 
         return df
 
+class PCATransformer(BaseEstimator):
+    """
+    Reads the panda waveform DataFrame and adds 
+    the columns of principal components (e.g., PC1, PCA2) 
+    to the normalized waveforms. The DataFrame contains
+    only sampling points.
+
+    Usage:
+    >>> from minibrain.transformers import PCATransformer
+    >>> mypca = PCATransfomer(baseline=30, n_components=2)
+    >>> mypca.fit_transform(df)
+    """
+    def __init__(self, baseline =  30, n_components=2):
+        """
+        sets the beginning of the spike in the
+        waveforms
+
+        Arguments:
+        baseline: int
+            number of samples to avoid (default 30)
+        """
+        self.baseline = baseline
+        self.n_components = n_components
+        self.pca = PCA(n_components, svd_solver = 'auto')
+    
+    def fit(self, df, y = None):
+        """
+        Computes the n_components of the DataFrame. 
+        It will update pca attributes, like 
+        the explained_variance_ratio_
+        """
+        X = df.values[:, self.baseline:] # remove baseline
+        return self.pca.fit(X)
+
+    def transform(self, df):
+        """
+        Returns a pandas DataFrame with the waveforms
+        and the first principal components of every  
+        waveform as columns (e.g., PC1 and PC2).
+
+        Parameters
+        ----------
+        df - a DataFrame pandas object
+        """
+        mydf = df.copy()
+        X = df.values[:, self.baseline:] # remove baseline
+        PC = self.pca.transform(X) # would need fit before
+        for i in range(self.n_components):
+            mydf[f'PC{i}'] = PC[:,i]
+
+        return mydf
+
+    def fit_transform(self, df):
+        """
+        Returns a pandas DataFrame with the waveforms
+        and the first principal components of every  
+        waveform as columns (e.g., PC1 and PC2).
+
+        Parameters
+        ----------
+        df - a DataFrame pandas object
+        """
+        mydf = df.copy()
+        X = df.values[:, self.baseline:] # remove baseline
+        PC = self.pca.fit_transform(X)
+
+        for i in range(self.n_components):
+            mydf[f'PC{i}'] = PC[:,i]
+
+        return mydf
+
 #Pipeline( steps = [])
