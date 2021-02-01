@@ -363,15 +363,15 @@ class PCATransformer(BaseEstimator):
 
     def transform(self, df):
         """
-        Returns a pandas DataFrame with the waveforms
-        and the first principal components of every  
+        Returns a pandas DataFrame with the 
+        principal components of every  
         waveform as columns (e.g., PC1 and PC2).
 
         Parameters
         ----------
         df - a DataFrame pandas object
         """
-        mydf = df.copy()
+        mydf = pd.DataFrame()
         X = df.values[:, self.baseline:] # remove baseline
         PC = self.pca.transform(X) # would need fit before
         for i in range(self.n_components):
@@ -390,7 +390,7 @@ class PCATransformer(BaseEstimator):
         ----------
         df - a DataFrame pandas object
         """
-        mydf = df.copy()
+        mydf = pd.DataFrame()
         X = df.values[:, self.baseline:] # remove baseline
         PC = self.pca.fit_transform(X)
 
