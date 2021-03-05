@@ -371,7 +371,7 @@ class PCATransformer(BaseEstimator):
         ----------
         df - a DataFrame pandas object
         """
-        mydf = pd.DataFrame()
+        mydf = pd.DataFrame(index = df.index)
         X = df.values[:, self.baseline:] # remove baseline
         PC = self.pca.transform(X) # would need fit before
         for i in range(self.n_components):
@@ -390,7 +390,7 @@ class PCATransformer(BaseEstimator):
         ----------
         df - a DataFrame pandas object
         """
-        mydf = pd.DataFrame()
+        mydf = pd.DataFrame(index=df.index)
         X = df.values[:, self.baseline:] # remove baseline
         PC = self.pca.fit_transform(X)
 
