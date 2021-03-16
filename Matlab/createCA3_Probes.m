@@ -3,12 +3,19 @@
 %
 % Created: Thu Nov 12 11:11:47 CET 2020
 %
-% Creates the coordinates of ASSY-77-E1 and E2 CambridgeNeurotech probes
+% Magdalena Picher, magdalena.picher<at>ist.ac.at
+% Alois Schloegl, alois.schloegl@ist.ac.at
+% Jose Guzman, jose.guzman<at>guzman-lab.com
+%
+% Creates the coordinates for CA3 recordings
 % It will design it as a linear probe (one probe after each other)
+% It contains 9 patch-clamp recordings + 32 extracellular recordings
 % because both KiloSort2 and Phy are designed better for linear probes.
 % it will not affect the sorting, since the probes are independent.
 %=======================================================================
 
+%%=======================================================================
+%% 41_CA3probe.mat
 %%=======================================================================
 fname2 = './Kilosort2/configFiles/41_CA3probe.mat';
 fname3 = './Kilosort3/configFiles/41_CA3probe.mat';
@@ -28,7 +35,7 @@ fs = 25000;
 % Saving in Kilosort2 folder
 save(fname2, ...
 'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
-fprintf('Creating  %s \n', fname)
+fprintf('Creating  %s \n', fname2)
 
 % Saving in Kilosort3 folder
 save(fname3, ...
