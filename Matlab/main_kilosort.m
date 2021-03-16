@@ -21,7 +21,7 @@ chanMapFile = '64F_64F.mat';
 ops.trange = [0 inf]; % time range to sort
 ops.NchanTOT = 134; % total number of channels in your recording
 
-run(fullfile(pathToYourConfigFile, 'OptoConfig.m'))
+run(fullfile(pathToYourConfigFile, 'OptoConfig.m')
 %ops.spkTh           = -7;
 %ops.fshigh = 300;  % default 150
 %ops.nskip = 10;
@@ -33,7 +33,7 @@ ops.chanMap = fullfile(pathToYourConfigFile, chanMapFile);
 %% this block runs all the steps of the algorithmO
 fprintf('Looking for data inside %s \n', rootZ)
 
-% is there a channel map file in this folder?
+% use geometry in this folder if there is is map file
 fs = dir(fullfile(rootZ, 'chan*.mat'));
 if ~isempty(fs)
     ops.chanMap = fullfile(rootZ, fs(1).name);
