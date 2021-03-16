@@ -11,7 +11,7 @@
 % this script will execute Kilosort3 by first reading a configFile called
 % 'CA3Config.m' and the probe created with 'CreateCA3_Probes.m'
 % 
-% Sorting results will be saves in a subdirectory called 'sorting'
+% Sorting results will be saves in a subdirectory called 'sorting3'
 %=========================================================================
 
 addpath(genpath('~/git/Kilosort/')) % path to KiloSort3 folder
@@ -22,11 +22,10 @@ pathToYourConfigFile = '~/git/minibrain/Matlab/Kilosort3/configFiles';
 chanMapFile = '41_CA3probe.mat';
 %chanMapFile = 'MP_WTM220_15w_1_201002.gdf.chanMap.mat'
 
-ops.trange    = [9 600]; % time range to sort (in sec.)
+ops.trange    = [0 inf]; % time range to sort (in sec.)
 ops.NchanTOT  = 41; % total number of channels in your recording
 
 run(fullfile(pathToYourConfigFile, 'CA3Config.m'))
-
 
 ops.fproc   = fullfile(rootH, 'temp_wh.dat'); % proc file on a fast SSD
 ops.chanMap = fullfile(pathToYourConfigFile, chanMapFile);
@@ -58,7 +57,7 @@ rez                = final_clustering(rez, tF, st3);
 rez                = find_merges(rez, 1);
 
 % Save results
-rootZ = fullfile(rootZ, 'sorting');
+rootZ = fullfile(rootZ, 'sorting3');
 mkdir(rootZ)
 rezToPhy2(rez, rootZ);
 
