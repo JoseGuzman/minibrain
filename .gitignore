@@ -27,3 +27,9 @@ minibrain.egg-info/
 #=========================================================================
 *.pyc
 .ipynb_checkpoints
+
+#=========================================================================
+# Kilosort (matlab) probe configuration files 
+# will be created with createXX_probes.m in ~/minibrain/Matlab/
+#=========================================================================
+*.mat
