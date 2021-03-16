@@ -41,7 +41,7 @@ ops.AUCsplit = 0.9; % default is 0.9
 
 % minimum spike rate (Hz), if a cluster falls below 
 % this for too long it gets removed
-ops.minFR = 1/300; % (600, 10 min) default 1/50
+ops.minFR = 1/50; % (600, 10 min) default 1/50
 
 % number of samples to average over (annealed from first to second value)
 % number of spike detection counts.

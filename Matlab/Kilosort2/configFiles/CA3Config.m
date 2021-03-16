@@ -3,15 +3,14 @@
 % 
 % Authors:
 % Magdalena Picher, magdalena.picher<at>ist.ac.at
-% Alois Schloegl, alois.schloegl@ist.ac.at
+% Alois Schloegl, alois.schloegl<at>ist.ac.at
 % Jose Guzman, jose.guzman<at>guzman-lab.com
 %
 % Created: Mon 15 Mar 2021 11:29:36 AM CET
 %
-% this is the config file for sorting spikes files with KiloSort2.5
+% this is the config file for sorting spikes files with KiloSort3
 % for simulatenous patch-clamp and extracellular recordings in CA3.
-% use a filed called main_kilosort.m to run it. 
-% To see default values check git/Kilosort2/configfiles/configFile384.m
+% use a filed called main_kilosort3.m to run it. 
 %=========================================================================
 
 % sample rate
@@ -65,16 +64,16 @@ ops.ThPre = 8; % default 8
 
 %ops.criterionNoiseChannels = 0.2; 
 
-% main parameter changes from Kilosort2 to v2.5
+% main parameter changes from Kilosort2 to v2.5 now in configfile
 ops.sig        = 20;  % spatial smoothness constant for registration
 %ops.fshigh     = 150; % high-pass more aggresively
-ops.nblocks    = 0; % blocks for registration. 0 turns it off, 1 does rigid registration. Replaces "datashift" option. 
+ops.nblocks    = 5; % blocks for registration. 0 turns it off, 1 does rigid registration. Replaces "datashift" option. 
 
 %% danger, changing these settings can lead to fatal errors
 % options for determining PCs
 ops.spkTh           = -6;      % spike threshold in standard deviations (-6)
 ops.reorder         = 1;       % whether to reorder batches for drift correction. 
-ops.nskip           = 10;  % how many batches to skip for determining spike PCs (default 25)
+ops.nskip           = 25;  % how many batches to skip for determining spike PCs (default 25)
 
 ops.GPU                 = 1; % has to be 1, no CPU version yet, sorry
 % ops.Nfilt               = 1024; % max number of clusters

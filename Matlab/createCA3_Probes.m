@@ -17,8 +17,8 @@
 %%=======================================================================
 %% 41_CA3probe.mat
 %%=======================================================================
-fname2 = './Kilosort2/configFiles/41_CA3probe.mat';
-fname3 = './Kilosort3/configFiles/41_CA3probe.mat';
+fname2 = '~/git/minibrain/Matlab/Kilosort2/configFiles/41_CA3probe.mat';
+fname3 = '~/git/minibrain/Matlab/Kilosort3/configFiles/41_CA3probe.mat';
 Nchannels = 41; % Total number of channels
 connected = true(Nchannels,1); % zero if bad channel 
 connected(1:9) = 0; % patch-clamp channels
@@ -34,12 +34,12 @@ kcoords = ones(Nchannels,1);
 fs = 25000;
 % Saving in Kilosort2 folder
 save(fname2, ...
-'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
+    'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
 fprintf('Creating  %s \n', fname2)
 
 % Saving in Kilosort3 folder
 save(fname3, ...
-'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
+    'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
 fprintf('Creating  %s \n', fname3)
 
 %%=======================================================================
