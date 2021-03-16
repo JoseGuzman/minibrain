@@ -4,7 +4,7 @@
 % Created: Thu Nov 12 11:11:47 CET 2020
 %
 % Magdalena Picher, magdalena.picher<at>ist.ac.at
-% Alois Schloegl, alois.schloegl@ist.ac.at
+% Alois Schloegl, alois.schloegl<at>ist.ac.at
 % Jose Guzman, jose.guzman<at>guzman-lab.com
 %
 % Creates the coordinates for CA3 recordings
