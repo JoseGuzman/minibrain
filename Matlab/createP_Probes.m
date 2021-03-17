@@ -1,6 +1,10 @@
 %=========================================================================
 % createP_Probes.m
 %
+% Jose Guzman, jose.guzman<at>guzman-lab.com
+% 
+% Created: Wed 17 Mar 2021 12:24:39 PM CET
+%
 % Creates the coordinates of the ASSY77_P probes of Cambridge Neurotech 
 % It will design it as a linear probe (one probe after each other)
 % because both KiloSort2 and Phy are designed better for linear probes.
@@ -11,7 +15,8 @@
 %%=======================================================================
 %% 64_P.mat
 %%=======================================================================
-fname = '~/git/minibrain/Matlab/Kilosort3/configFiles/64P.mat';
+fname2 = '~/git/minibrain/Matlab/Kilosort2/configFiles/64P.mat';
+fname3 = '~/git/minibrain/Matlab/Kilosort3/configFiles/64P.mat';
 Nchannels = 67; % Total number of channels
 connected = true(Nchannels,1); % zero if bad channel 
 connected(65:67) = 0; % AUX channels
@@ -29,22 +34,26 @@ xcoords = vertcat(xlocA, xlocA, xlocA, xlocA, xlocAUX);
 
 % ylocation of 16 electrodes shanks
 ylocA = [0;-12.5;-25;-37.5;-50;-62.5;-75;-87.5;-100;-112.5;-125;-137.5;-150;-162.5;-175;-187.5];
-ylocB = ylocA - 600;
-ylocC = ylocB - 600;
-ylocD = ylocC - 600;
+ylocB = ylocA - 300;
+ylocC = ylocB - 300;
+ylocD = ylocC - 300;
 
 % Auxiliary channels far away
-ylocAUX = [-500;-500;-500;];
+ylocAUX = [500;500;500;];
 ycoords = vertcat(ylocA, ylocB, ylocC, ylocD, ylocAUX);
 
 % not used in Kilosort2 (see https://github.com/MouseLand/Kilosort2/issues/155)
 kcoords = ones(Nchannels,1);
 
 fs = 30000;
-save(fname, ...
+save(fname2, ...
+    'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
+fprintf('Creating  %s \n', fname2)
+
+save(fname3, ...
     'chanMap','connected','xcoords','ycoords','kcoords','chanMap0ind','fs')
 
-fprintf('Creating  %s \n', fname)
+fprintf('Creating  %s \n', fname3)
 %%
 
 % kcoords is used to forcefully restrict templates to channels in the same
