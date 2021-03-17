@@ -2,14 +2,11 @@
 % CA3Config.m
 % 
 % Authors:
-% Magdalena Picher, magdalena.picher<at>ist.ac.at
-% Alois Schloegl, alois.schloegl<at>ist.ac.at
 % Jose Guzman, jose.guzman<at>guzman-lab.com
-%
 % Created: Mon 15 Mar 2021 11:29:36 AM CET
 %
 % this is the config file for sorting spikes files with KiloSort3
-% for simulatenous patch-clamp and extracellular recordings in CA3.
+% for recordings in brain organoids
 % use a filed called main_kilosort3.m to run it. 
 %=========================================================================
 
