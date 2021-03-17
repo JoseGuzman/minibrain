@@ -5,7 +5,8 @@
 % Jose Guzman, jose.guzman<at>guzman-lab.com
 % Created: Sun Dec 22 21:29:20 CET 2019
 %
-% this is a config file for spike sorting with KiloSort2 called 
+% this is a config file for spike sorting with KiloSort2.5 to
+% sort spikes in brain organoids with driffting correction
 %=========================================================================
 
 % sample rate
