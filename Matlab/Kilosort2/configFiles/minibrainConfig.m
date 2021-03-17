@@ -1,12 +1,13 @@
 %=========================================================================
-% OptoConfig.m
+%
+% minibrainConfig.m
 % 
 % Jose Guzman, jose.guzman<at>guzman-lab.com
-% Created: Thu May 14 16:41:48 CEST 2020
+% Created: Sun Dec 22 21:29:20 CET 2019
 %
-% this is the config file for sorting spikes files with KiloSort2.5
-% for optogenetic stimulation
+% this is a config file for spike sorting with KiloSort2 called 
 %=========================================================================
+%ops.chanMap = '~/SiliconProbes/Kilosort2/configFiles/64E1x7.mat';
 
 % sample rate
 ops.fs = 30000;  
@@ -43,10 +44,10 @@ ops.minFR = 1/600; % (600, 10 min) default 1/50
 ops.momentum = [20 400]; % default [20 400]
 
 
-% spatial constant in um for computing residual variance of spike6
+% spatial constant in um for computing residual variance of spike
 % range of detectins spikes based on summed power of PCA projections
 % has no effect on template shape. 
-% (https://github.com/MouseLa6nd/Kilosort2/issues/156
+% (https://github.com/MouseLand/Kilosort2/issues/156
 ops.sigmaMask = 30; 
 
 % threshold crossings for pre-clustering (in PCA projection space)
@@ -57,12 +58,13 @@ ops.ThPre = 8; % default 8
 % of all templates to span more channel groups, so that they can capture shared 
 % noise across all channels. This option is
 
-ops.criterionNoiseChannels = 0.1; 
+%ops.criterionNoiseChannels = 0.2; 
 
-% main parameter changes from Kilosort2 to v2.5
+% main parameter changes from Kilosort2 to v2.5 are in OptoConfig.m
 ops.sig        = 20;  % spatial smoothness constant for registration
 %ops.fshigh     = 300; % high-pass more aggresively
-ops.nblocks    = 0; % blocks for registration. 0 turns it off, 1 does rigid registration. Replaces "datashift" option. 
+ops.nblocks    = 5; % blocks for registration. 0 turns it off, 1 does rigid registration. Replaces "datashift" option. 
+
 
 %% danger, changing these settings can lead to fatal errors
 % options for determining PCs
@@ -74,8 +76,7 @@ ops.GPU                 = 1; % has to be 1, no CPU version yet, sorry
 % ops.Nfilt               = 1024; % max number of clusters
 ops.nfilt_factor        = 4; % max number of clusters per good channel (even temporary ones)
 ops.ntbuff              = 64;    % samples of symmetrical buffer for whitening and spike detection
-%ops.NT                 = 64*1024+ ops.ntbuff; see https://github.com/MouseLand/Kilosort2/issues/204
-ops.NT                  = 2*64*1024+ ops.ntbuff; % must be multiple of 32 + ntbuff.Batch duration in samples (try decreasing if out of memory). 
+ops.NT                  = 2*64*1024+ ops.ntbuff; % must be multiple of 32 + ntbuff. This is the batch size (try decreasing if out of memory). 
 ops.whiteningRange      = 32; % number of channels to use for whitening each channel
 ops.nSkipCov            = 25; % compute whitening matrix from every N-th batch
 ops.scaleproc           = 200;   % int16 scaling of whitened data
