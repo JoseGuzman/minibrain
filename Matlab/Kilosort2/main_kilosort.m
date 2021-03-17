@@ -5,8 +5,8 @@
 % Jose Guzman, jose.guzman<at>guzman-lab.com
 % Created: Fri 05 Mar 2021 04:15:43 PM CET
 %
-% this script will execute Kilosort2.5 by first reading a configFile called
-% 'OptoConfig.m' and the probe created with 'CreateE_Probes.m'
+% this script will execute Kilosort2.5 by first reading a configFile e.g.,
+% 'minibrainConfig.m' and the probe created with 'CreateP_Probes.m'
 %=========================================================================
 
 addpath(genpath('~/git/Kilosort-2.5')) % path to KiloSort2 folder
@@ -21,7 +21,7 @@ chanMapFile = '64P.mat';
 ops.trange    = [0 Inf]; % time range to sort
 ops.NchanTOT  = 67; % total number of channels in your recording
 
-run(fullfile(pathToYourConfigFile, 'MinibrainConfig.m'))
+run(fullfile(pathToYourConfigFile, 'minibrainConfig.m'))
 
 ops.fproc       = fullfile(rootH, 'temp_wh.dat'); % proc file on a fast SSD
 ops.chanMap = fullfile(pathToYourConfigFile, chanMapFile);
