@@ -1,5 +1,5 @@
 %=========================================================================
-% CA3Config.m
+% MinibrainConfig.m
 % 
 % Authors:
 % Jose Guzman, jose.guzman<at>guzman-lab.com
