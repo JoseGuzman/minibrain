@@ -7,7 +7,7 @@
 %
 % Creates the coordinates of the ASSY77_P probes of Cambridge Neurotech 
 % It will design it as a linear probe (one probe after each other)
-% because both KiloSort2 and Phy are designed better for linear probes.
+% because both KiloSort and Phy are designed better for linear probes.
 % it will not affect the sorting, since the probes are independent.
 %=======================================================================
 
@@ -17,6 +17,7 @@
 %%=======================================================================
 fname2 = '~/git/minibrain/Matlab/Kilosort2/configFiles/64P.mat';
 fname3 = '~/git/minibrain/Matlab/Kilosort3/configFiles/64P.mat';
+
 Nchannels = 67; % Total number of channels
 connected = true(Nchannels,1); % zero if bad channel 
 connected(65:67) = 0; % AUX channels
