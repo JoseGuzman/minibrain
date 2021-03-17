@@ -1,5 +1,5 @@
 %=========================================================================
-% main_kilosort3.m
+% main_kilosortCA3.m
 %
 % For in vivo patch-clamp CA3 recordings together with extracellular probes
 % 

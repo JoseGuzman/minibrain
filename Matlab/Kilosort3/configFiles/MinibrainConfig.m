@@ -14,7 +14,7 @@
 ops.fs = 30000;  
 
 % frequency for high pass filtering (150)
-ops.fshigh = 300;  % default 150
+ops.fshigh = 150;  % default 150
 
 % minimum firing rate on a "good" channel (0 to skip)
 % set to zero to see  all channels in Phy
