@@ -11,7 +11,7 @@
 % this script will execute Kilosort3 by first reading a configFile called
 % 'CA3Config.m' and the probe created with 'CreateCA3_Probes.m'
 % 
-% Sorting results will be saves in a subdirectory called 'sorting3'
+% Sorting results will be saved in a subdirectory called 'sorting3'
 %=========================================================================
 
 addpath(genpath('~/git/Kilosort/')) % path to KiloSort3 folder
