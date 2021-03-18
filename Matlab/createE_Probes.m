@@ -36,7 +36,7 @@ ylocB = ylocA - 600;
 ylocC = ylocB - 600;
 ylocD = ylocC - 600;
 
-ylocAUX = [-4600;-4650;-4700;]; % AUX far away
+ylocAUX = [-4600;-4650;-4700]; % AUX far away
 ycoords = vertcat(ylocA, ylocB, ylocC, ylocD, ylocAUX);
 
 % not used in Kilosort2 

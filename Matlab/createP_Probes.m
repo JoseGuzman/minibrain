@@ -40,7 +40,7 @@ ylocC = ylocB - 300;
 ylocD = ylocC - 300;
 
 % Auxiliary channels far away
-ylocAUX = [500;500;500;];
+ylocAUX = [500;500;500];
 ycoords = vertcat(ylocA, ylocB, ylocC, ylocD, ylocAUX);
 
 % not used in Kilosort2 (see https://github.com/MouseLand/Kilosort2/issues/155)
