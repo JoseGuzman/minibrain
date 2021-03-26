@@ -13,7 +13,7 @@
 
 
 %%=======================================================================
-%% 64_P.mat
+%% 64P.mat
 %%=======================================================================
 fname2 = '~/git/minibrain/Matlab/Kilosort2/configFiles/64P.mat';
 fname3 = '~/git/minibrain/Matlab/Kilosort3/configFiles/64P.mat';

@@ -57,7 +57,7 @@ ops.ThPre = 8; % default 8
 % of all templates to span more channel groups, so that they can capture shared 
 % noise across all channels. This option is
 
-ops.criterionNoiseChannels = 0.1; 
+ops.criterionNoiseChannels = 0.2; 
 
 % main parameter changes from Kilosort2 to v2.5
 ops.sig        = 20;  % spatial smoothness constant for registration

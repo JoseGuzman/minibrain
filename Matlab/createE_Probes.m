@@ -1,5 +1,5 @@
 %=========================================================================
-% createLinear_Probes.m
+% createE_Probes.m
 %
 % Created: Thu Nov 12 11:11:47 CET 2020
 %
