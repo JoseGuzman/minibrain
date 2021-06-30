@@ -66,7 +66,7 @@ ops.ThPre = 8; % default 8
 % main parameter changes from Kilosort2 to v2.5 now in configfile
 ops.sig        = 20;  % spatial smoothness constant for registration
 %ops.fshigh     = 150; % high-pass more aggresively
-ops.nblocks    = 5; % blocks for registration. 0 turns it off, 1 does rigid registration. Replaces "datashift" option. 
+ops.nblocks    = 0; % blocks for registration. 0 turns it off, 1 does rigid registration. Replaces "datashift" option. 
 
 %% danger, changing these settings can lead to fatal errors
 % options for determining PCs
@@ -79,7 +79,7 @@ ops.GPU                 = 1; % has to be 1, no CPU version yet, sorry
 ops.nfilt_factor        = 4; % max number of clusters per good channel (even temporary ones)
 ops.ntbuff              = 64;    % samples of symmetrical buffer for whitening and spike detection
 %ops.NT                 = 64*1024+ ops.ntbuff; see https://github.com/MouseLand/Kilosort2/issues/204
-ops.NT                  = 2*64*1024+ ops.ntbuff; % must be multiple of 32 + ntbuff.Batch duration in samples (try decreasing if out of memory). 
+ops.NT                  = 10*64*1024+ ops.ntbuff; % must be multiple of 32 + ntbuff.Batch duration in samples (try decreasing if out of memory). 
 ops.whiteningRange      = 32; % number of channels to use for whitening each channel
 ops.nSkipCov            = 25; % compute whitening matrix from every N-th batch
 ops.scaleproc           = 200;   % int16 scaling of whitened data
