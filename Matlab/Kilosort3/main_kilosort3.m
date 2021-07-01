@@ -67,7 +67,15 @@ fprintf('found %d good units \n', sum(rez.good>0))
 %rezToPhy(rez, rootZ);
 %fprintf('Saving results to Phy %s \n', outDir)
 %rezToPhy(rez, outDir);
+%rez=correct_time(rez);
+%rewrite_temp_wh(ops);
 
 rootZ = fullfile(rootZ, 'kilosort3');
-mkdir(rootZ)
+if ~isempty(rootZ)
+    mkdir(rootZ);
+end
+
 rezToPhy2(rez, rootZ);
+
+
+
