@@ -1,16 +1,3 @@
-<a href="https://twitter.com/GuZman_Lab">
-  <img align="left" alt="Jose's Twitter" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/twitter.svg" />
-</a>
-<a href="https://www.linkedin.com/in/sjmguzman/">
-  <img align="left" alt="Jose's Linkdein" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/linkedin.svg" />
-</a>
-<a href="https://github.com/JoseGuzman">
-  <img align="left" alt="Jose's Github" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/github.svg" />
-</a>
-<a href="https://www.kaggle.com/joseguzman">
-  <img align="left" alt="Jose's Kaggle" width="22px" src="https://cdn.jsdelivr.net/npm/simple-icons@v3/icons/kaggle.svg" />
-</a>
-
 # minibrain
 
  ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JoseGuzman/minibrain)  [![Build Status](https://travis-ci.com/JoseGuzman/minibrain.svg?branch=master)](https://travis-ci.com/JoseGuzman/minibrain) ![minibrain](https://github.com/JoseGuzman/minibrain/workflows/minibrain_unittest/badge.svg) [![CodeFactor](https://www.codefactor.io/repository/github/joseguzman/minibrain/badge)](https://www.codefactor.io/repository/github/joseguzman/minibrain)  [![GitHub license](https://img.shields.io/github/license/JoseGuzman/minibrain)](https://github.com/JoseGuzman/minibrain/blob/master/LICENSE) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJoseGuzman%2Fminibrain&count_bg=%233DC8C7&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
