@@ -15,6 +15,7 @@ The module has been extensively tested on Python >= 3.5. We recommend to have a 
 1. Standard scientific modules for data handling ([IPython and Jupyter](https://ipython.org/) , [pandas](https://pandas.pydata.org/)), 
 2. Modules for scientific analysis ([Scipy](https://scipy.org/), [NumPy](https://numpy.org/) and machine learning [Scikit-learn](https://scikit-learn.org/)) 
 3. The scientific library for data visualization ([matplotlib](https://matplotlib.org/)). 
+4. Deep Learning platform ([PyTorch](https://pytorch.org))
 
 You can create a conda environment with necessary packages
 
