@@ -306,7 +306,7 @@ class Burst(object):
         """
         Reads the array and returns the number of burst. A burst
         is detected by taking the wide-band signal and band-pass 
-        filter to 150-250 Hz. The squared root of the mean squared 
+        filter to 90-250 Hz. The squared root of the mean squared 
         (RMS) in segments of 10 ms is calculated and a burst is 
         detected if the RMS > 7 standard deviations 
         
@@ -314,7 +314,7 @@ class Burst(object):
         if data is not None:
             Nyquist = srate/2
         
-            # 1) 150-250 Hz band-pass filter
+            # 1) 90-250 Hz band-pass filter
             low, high = 90/Nyquist, 250/Nyquist
             myrecBP = band_pass(data, low, high)
 
