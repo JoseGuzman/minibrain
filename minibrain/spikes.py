@@ -15,7 +15,7 @@ Example:
 
 import copy 
 
-from pathlib import Path
+import pathlib 
 
 import pandas as pd
 import numpy as np
@@ -90,7 +90,7 @@ class Units(object):
         """
     
         #myfile = path + 'cluster_info.tsv'
-        myfile = Path(path, 'cluster_info.tsv')
+        myfile = pathlib.PurePath(path, 'cluster_info.tsv')
         df = pd.read_csv(myfile, sep = '\t')
         
         # make a copy with only good units
@@ -112,8 +112,12 @@ class Units(object):
         df_unit.rename(columns = {'fr':'frequency'}, inplace=True)
 
         # read good units
-        spike_times = np.load(path + 'spike_times.npy').flatten()
-        spike_clusters = np.load(path + 'spike_clusters.npy')
+        if isinstance(path,str):
+            spike_times = np.load(path + 'spike_times.npy').flatten()
+            spike_clusters = np.load(path + 'spike_clusters.npy')
+        else:
+            spike_times = np.load(pathlib.PurePath(path,'spike_times.npy')).flatten()
+            spike_clusters = np.load(pathlib.PurePath(path,'spike_clusters.npy'))
         
         # read spikes from units
         dict_unit = dict() # a dictionary with all units
