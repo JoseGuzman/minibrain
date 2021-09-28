@@ -110,7 +110,9 @@ Contains properties of burst.
 | EB         | date   | Date of embryonic body formation (relates to organoid batch |
 | duration   | seconds    | Duration of the burst |
 | IBI        | seconds    | Average of inter-burst-interval in organoid |
+| variation  | % | % of variance of duration from the mean duration |
 | organoid   | --     | Organoid type (described in [organoID.csv](https://github.com/JoseGuzman/minibrain/blob/master/DataSets/organoID.csv), see the table above)                                   |
+| channel | integer | recording channel were the burst was acquired 
 
 To load it:
 ```python
