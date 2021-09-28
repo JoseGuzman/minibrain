@@ -51,7 +51,6 @@ class MultipleRegression(nn.Module):
         self.b = torch.rand(1,
             requires_grad = True)
 
-
     def forward(self, X:torch.Tensor):
         """
         Forward pass to calculate prediction following this form:
