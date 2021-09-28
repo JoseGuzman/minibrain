@@ -12,6 +12,8 @@ To see a description of the organoid, check this table.
 |-------------|------- |------------ |
 | TSCp5_30s   | TC     | TSC2(+/+) iPSC |
 | TSCp5_32s   | TC     | TSC2(-/+) iPSC |
+| TSCp24_4_R2C4| TC     | TSC2(+/+) iPSC |
+| TSCp24_4     | TC     | TSC2(-/+) iPSC |
 | DLX_Cheriff | VT     | Ventral only iPSC |
 | DLX_H9      | FH     | Ventral-dorsal H9/iPSC |
 | DLX_bluered | FS     | Ventral-dorsal iPSC |
