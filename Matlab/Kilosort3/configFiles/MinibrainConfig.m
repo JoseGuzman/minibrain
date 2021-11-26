@@ -30,7 +30,7 @@ ops.Th = [9 9];
  
 % how important is the amplitude penalty 0 means not used, 10 is average,
 % 50 is a lot. How the amplitude are biased towards the mean of a cluster
-ops.lam = 10; % default is 10
+ops.lam = 20; % default is 10
 
 % splitting a cluster at the end requires at least this much isolation 
 % for each sub-cluster (max = 1)
@@ -66,7 +66,7 @@ ops.ThPre = 8; % default 8
 % main parameter changes from Kilosort2 to v2.5 now in configfile
 ops.sig        = 20;  % spatial smoothness constant for registration
 %ops.fshigh     = 150; % high-pass more aggresively
-ops.nblocks    = 0; % blocks for registration. 0 turns it off, 1 does rigid registration. Replaces "datashift" option. 
+ops.nblocks    = 1; % blocks for registration. 0 turns it off, 1 does rigid registration. Replaces "datashift" option. 
 
 %% danger, changing these settings can lead to fatal errors
 % options for determining PCs
