@@ -1,0 +1,2505 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SETTINGS>
+  <INFO>
+    <VERSION>0.4.4.1</VERSION>
+    <PLUGIN_API_VERSION>5</PLUGIN_API_VERSION>
+    <DATE>9 Oct 2020 11:33:12</DATE>
+    <OS>Linux</OS>
+    <MACHINE>pcl-imba-3</MACHINE>
+  </INFO>
+  <SIGNALCHAIN>
+    <PROCESSOR name="Sources/Intan Rec. Controller" insertionPoint="1" pluginName="Intan Rec. Controller"
+               pluginType="4" pluginIndex="1" libraryName="Intan Recording Controller"
+               libraryVersion="1" isSource="1" isSink="0" NodeId="101">
+      <CHANNEL_INFO>
+        <CHANNEL name="CH1" number="0" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH2" number="1" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH3" number="2" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH4" number="3" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH5" number="4" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH6" number="5" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH7" number="6" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH8" number="7" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH9" number="8" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH10" number="9" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH11" number="10" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH12" number="11" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH13" number="12" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH14" number="13" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH15" number="14" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH16" number="15" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH17" number="16" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH18" number="17" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH19" number="18" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH20" number="19" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH21" number="20" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH22" number="21" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH23" number="22" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH24" number="23" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH25" number="24" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH26" number="25" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH27" number="26" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH28" number="27" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH29" number="28" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH30" number="29" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH31" number="30" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH32" number="31" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH33" number="32" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH34" number="33" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH35" number="34" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH36" number="35" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH37" number="36" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH38" number="37" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH39" number="38" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH40" number="39" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH41" number="40" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH42" number="41" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH43" number="42" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH44" number="43" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH45" number="44" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH46" number="45" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH47" number="46" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH48" number="47" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH49" number="48" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH50" number="49" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH51" number="50" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH52" number="51" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH53" number="52" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH54" number="53" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH55" number="54" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH56" number="55" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH57" number="56" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH58" number="57" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH59" number="58" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH60" number="59" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH61" number="60" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH62" number="61" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH63" number="62" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH64" number="63" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH65" number="64" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH66" number="65" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH67" number="66" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH68" number="67" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH69" number="68" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH70" number="69" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH71" number="70" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH72" number="71" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH73" number="72" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH74" number="73" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH75" number="74" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH76" number="75" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH77" number="76" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH78" number="77" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH79" number="78" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH80" number="79" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH81" number="80" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH82" number="81" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH83" number="82" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH84" number="83" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH85" number="84" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH86" number="85" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH87" number="86" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH88" number="87" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH89" number="88" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH90" number="89" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH91" number="90" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH92" number="91" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH93" number="92" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH94" number="93" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH95" number="94" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH96" number="95" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH97" number="96" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH98" number="97" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH99" number="98" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH100" number="99" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH101" number="100" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH102" number="101" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH103" number="102" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH104" number="103" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH105" number="104" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH106" number="105" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH107" number="106" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH108" number="107" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH109" number="108" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH110" number="109" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH111" number="110" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH112" number="111" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH113" number="112" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH114" number="113" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH115" number="114" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH116" number="115" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH117" number="116" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH118" number="117" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH119" number="118" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH120" number="119" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH121" number="120" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH122" number="121" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH123" number="122" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH124" number="123" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH125" number="124" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH126" number="125" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH127" number="126" gain="0.19499999284744262695"/>
+        <CHANNEL name="CH128" number="127" gain="0.19499999284744262695"/>
+        <CHANNEL name="AUX1" number="128" gain="3.7400001019705086946e-05"/>
+        <CHANNEL name="AUX2" number="129" gain="3.7400001019705086946e-05"/>
+        <CHANNEL name="AUX3" number="130" gain="3.7400001019705086946e-05"/>
+        <CHANNEL name="AUX4" number="131" gain="3.7400001019705086946e-05"/>
+        <CHANNEL name="AUX5" number="132" gain="3.7400001019705086946e-05"/>
+        <CHANNEL name="AUX6" number="133" gain="3.7400001019705086946e-05"/>
+      </CHANNEL_INFO>
+      <CHANNEL name="0" number="0">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="1" number="1">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="2" number="2">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="3" number="3">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="4" number="4">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="5" number="5">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="6" number="6">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="7" number="7">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="8" number="8">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="9" number="9">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="10" number="10">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="11" number="11">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="12" number="12">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="13" number="13">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="14" number="14">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="15" number="15">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="16" number="16">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="17" number="17">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="18" number="18">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="19" number="19">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="20" number="20">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="21" number="21">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="22" number="22">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="23" number="23">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="24" number="24">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="25" number="25">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="26" number="26">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="27" number="27">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="28" number="28">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="29" number="29">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="30" number="30">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="31" number="31">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="32" number="32">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="33" number="33">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="34" number="34">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="35" number="35">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="36" number="36">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="37" number="37">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="38" number="38">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="39" number="39">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="40" number="40">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="41" number="41">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="42" number="42">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="43" number="43">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="44" number="44">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="45" number="45">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="46" number="46">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="47" number="47">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="48" number="48">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="49" number="49">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="50" number="50">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="51" number="51">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="52" number="52">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="53" number="53">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="54" number="54">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="55" number="55">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="56" number="56">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="57" number="57">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="58" number="58">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="59" number="59">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="60" number="60">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="61" number="61">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="62" number="62">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="63" number="63">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="64" number="64">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="65" number="65">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="66" number="66">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="67" number="67">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="68" number="68">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="69" number="69">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="70" number="70">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="71" number="71">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="72" number="72">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="73" number="73">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="74" number="74">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="75" number="75">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="76" number="76">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="77" number="77">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="78" number="78">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="79" number="79">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="80" number="80">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="81" number="81">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="82" number="82">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="83" number="83">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="84" number="84">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="85" number="85">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="86" number="86">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="87" number="87">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="88" number="88">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="89" number="89">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="90" number="90">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="91" number="91">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="92" number="92">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="93" number="93">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="94" number="94">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="95" number="95">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="96" number="96">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="97" number="97">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="98" number="98">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="99" number="99">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="100" number="100">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="101" number="101">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="102" number="102">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="103" number="103">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="104" number="104">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="105" number="105">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="106" number="106">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="107" number="107">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="108" number="108">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="109" number="109">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="110" number="110">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="111" number="111">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="112" number="112">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="113" number="113">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="114" number="114">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="115" number="115">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="116" number="116">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="117" number="117">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="118" number="118">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="119" number="119">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="120" number="120">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="121" number="121">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="122" number="122">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="123" number="123">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="124" number="124">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="125" number="125">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="126" number="126">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="127" number="127">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="128" number="128">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="129" number="129">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="130" number="130">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="131" number="131">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="132" number="132">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="133" number="133">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <EVENTCHANNEL name="0" number="0"/>
+      <EDITOR isCollapsed="0" displayName="Intan Rec. Controller" SampleRate="17"
+              LowCut="1.2048456838797458879" HighCut="7603.7651218333558063"
+              ADCsOn="0" AudioOutputL="-1" AudioOutputR="-1" NoiseSlicer="0"
+              TTLFastSettle="1" DAC_TTL="1" DAC_HPF="1" DSPOffset="1" DSPCutoffFreq="0.14571292570770724706"
+              save_impedance_measurements="0" auto_measure_impedances="0"/>
+    </PROCESSOR>
+    <PROCESSOR name="Utilities/Record Control" insertionPoint="1" pluginName="Record Control"
+               pluginType="1" pluginIndex="9" libraryName="Record Control" libraryVersion="1"
+               isSource="0" isSink="0" NodeId="102">
+      <CHANNEL name="0" number="0">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="1" number="1">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="2" number="2">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="3" number="3">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="4" number="4">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="5" number="5">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="6" number="6">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="7" number="7">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="8" number="8">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="9" number="9">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="10" number="10">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="11" number="11">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="12" number="12">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="13" number="13">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="14" number="14">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="15" number="15">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="16" number="16">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="17" number="17">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="18" number="18">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="19" number="19">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="20" number="20">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="21" number="21">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="22" number="22">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="23" number="23">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="24" number="24">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="25" number="25">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="26" number="26">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="27" number="27">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="28" number="28">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="29" number="29">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="30" number="30">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="31" number="31">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="32" number="32">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="33" number="33">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="34" number="34">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="35" number="35">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="36" number="36">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="37" number="37">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="38" number="38">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="39" number="39">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="40" number="40">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="41" number="41">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="42" number="42">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="43" number="43">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="44" number="44">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="45" number="45">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="46" number="46">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="47" number="47">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="48" number="48">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="49" number="49">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="50" number="50">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="51" number="51">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="52" number="52">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="53" number="53">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="54" number="54">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="55" number="55">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="56" number="56">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="57" number="57">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="58" number="58">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="59" number="59">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="60" number="60">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="61" number="61">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="62" number="62">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="63" number="63">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="64" number="64">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="65" number="65">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="66" number="66">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="67" number="67">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="68" number="68">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="69" number="69">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="70" number="70">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="71" number="71">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="72" number="72">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="73" number="73">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="74" number="74">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="75" number="75">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="76" number="76">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="77" number="77">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="78" number="78">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="79" number="79">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="80" number="80">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="81" number="81">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="82" number="82">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="83" number="83">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="84" number="84">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="85" number="85">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="86" number="86">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="87" number="87">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="88" number="88">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="89" number="89">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="90" number="90">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="91" number="91">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="92" number="92">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="93" number="93">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="94" number="94">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="95" number="95">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="96" number="96">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="97" number="97">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="98" number="98">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="99" number="99">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="100" number="100">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="101" number="101">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="102" number="102">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="103" number="103">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="104" number="104">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="105" number="105">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="106" number="106">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="107" number="107">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="108" number="108">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="109" number="109">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="110" number="110">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="111" number="111">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="112" number="112">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="113" number="113">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="114" number="114">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="115" number="115">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="116" number="116">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="117" number="117">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="118" number="118">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="119" number="119">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="120" number="120">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="121" number="121">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="122" number="122">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="123" number="123">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="124" number="124">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="125" number="125">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="126" number="126">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="127" number="127">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="128" number="128">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="129" number="129">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="130" number="130">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="131" number="131">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="132" number="132">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="133" number="133">
+        <SELECTIONSTATE param="0" record="0" audio="0"/>
+      </CHANNEL>
+      <EVENTCHANNEL name="0" number="0"/>
+      <EDITOR isCollapsed="0" displayName="Record Control">
+        <PARAMETERS Type="RecordControlEditor" Channel="2" Mode="2" Edge="1"/>
+      </EDITOR>
+    </PROCESSOR>
+    <PROCESSOR name="Filters/Channel Map" insertionPoint="1" pluginName="Channel Map"
+               pluginType="1" pluginIndex="0" libraryName="Channel Mapper" libraryVersion="1"
+               isSource="0" isSink="0" NodeId="103">
+      <CHANNEL name="0" number="0">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="1" number="1">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="2" number="2">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="3" number="3">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="4" number="4">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="5" number="5">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="6" number="6">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="7" number="7">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="8" number="8">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="9" number="9">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="10" number="10">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="11" number="11">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="12" number="12">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="13" number="13">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="14" number="14">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="15" number="15">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="16" number="16">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="17" number="17">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="18" number="18">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="19" number="19">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="20" number="20">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="21" number="21">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="22" number="22">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="23" number="23">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="24" number="24">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="25" number="25">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="26" number="26">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="27" number="27">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="28" number="28">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="29" number="29">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="30" number="30">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="31" number="31">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="32" number="32">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="33" number="33">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="34" number="34">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="35" number="35">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="36" number="36">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="37" number="37">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="38" number="38">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="39" number="39">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="40" number="40">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="41" number="41">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="42" number="42">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="43" number="43">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="44" number="44">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="45" number="45">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="46" number="46">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="47" number="47">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="48" number="48">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="49" number="49">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="50" number="50">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="51" number="51">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="52" number="52">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="53" number="53">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="54" number="54">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="55" number="55">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="56" number="56">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="57" number="57">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="58" number="58">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="59" number="59">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="60" number="60">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="61" number="61">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="62" number="62">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="63" number="63">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="64" number="64">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="65" number="65">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="66" number="66">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="67" number="67">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="68" number="68">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="69" number="69">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="70" number="70">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="71" number="71">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="72" number="72">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="73" number="73">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="74" number="74">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="75" number="75">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="76" number="76">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="77" number="77">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="78" number="78">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="79" number="79">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="80" number="80">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="81" number="81">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="82" number="82">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="83" number="83">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="84" number="84">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="85" number="85">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="86" number="86">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="87" number="87">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="88" number="88">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="89" number="89">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="90" number="90">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="91" number="91">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="92" number="92">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="93" number="93">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="94" number="94">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="95" number="95">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="96" number="96">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="97" number="97">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="98" number="98">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="99" number="99">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="100" number="100">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="101" number="101">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="102" number="102">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="103" number="103">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="104" number="104">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="105" number="105">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="106" number="106">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="107" number="107">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="108" number="108">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="109" number="109">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="110" number="110">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="111" number="111">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="112" number="112">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="113" number="113">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="114" number="114">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="115" number="115">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="116" number="116">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="117" number="117">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="118" number="118">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="119" number="119">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="120" number="120">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="121" number="121">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="122" number="122">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="123" number="123">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="124" number="124">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="125" number="125">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="126" number="126">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="127" number="127">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="128" number="128">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="129" number="129">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="130" number="130">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="131" number="131">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="132" number="132">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="133" number="133">
+        <SELECTIONSTATE param="0" record="1" audio="0"/>
+      </CHANNEL>
+      <EVENTCHANNEL name="0" number="0"/>
+      <EDITOR isCollapsed="0" displayName="Channel Map" Type="ChannelMappingEditor">
+        <SETTING Type="visibleChannels" Value="134"/>
+        <CHANNEL Number="0" Mapping="38" Reference="0" Enabled="1"/>
+        <CHANNEL Number="1" Mapping="37" Reference="0" Enabled="1"/>
+        <CHANNEL Number="2" Mapping="40" Reference="0" Enabled="1"/>
+        <CHANNEL Number="3" Mapping="39" Reference="0" Enabled="1"/>
+        <CHANNEL Number="4" Mapping="42" Reference="0" Enabled="1"/>
+        <CHANNEL Number="5" Mapping="41" Reference="0" Enabled="1"/>
+        <CHANNEL Number="6" Mapping="45" Reference="0" Enabled="1"/>
+        <CHANNEL Number="7" Mapping="46" Reference="0" Enabled="1"/>
+        <CHANNEL Number="8" Mapping="43" Reference="0" Enabled="1"/>
+        <CHANNEL Number="9" Mapping="44" Reference="0" Enabled="1"/>
+        <CHANNEL Number="10" Mapping="49" Reference="0" Enabled="1"/>
+        <CHANNEL Number="11" Mapping="33" Reference="0" Enabled="1"/>
+        <CHANNEL Number="12" Mapping="34" Reference="0" Enabled="1"/>
+        <CHANNEL Number="13" Mapping="35" Reference="0" Enabled="1"/>
+        <CHANNEL Number="14" Mapping="36" Reference="0" Enabled="1"/>
+        <CHANNEL Number="15" Mapping="48" Reference="0" Enabled="1"/>
+        <CHANNEL Number="16" Mapping="63" Reference="0" Enabled="1"/>
+        <CHANNEL Number="17" Mapping="64" Reference="0" Enabled="1"/>
+        <CHANNEL Number="18" Mapping="61" Reference="0" Enabled="1"/>
+        <CHANNEL Number="19" Mapping="62" Reference="0" Enabled="1"/>
+        <CHANNEL Number="20" Mapping="60" Reference="0" Enabled="1"/>
+        <CHANNEL Number="21" Mapping="59" Reference="0" Enabled="1"/>
+        <CHANNEL Number="22" Mapping="58" Reference="0" Enabled="1"/>
+        <CHANNEL Number="23" Mapping="57" Reference="0" Enabled="1"/>
+        <CHANNEL Number="24" Mapping="56" Reference="0" Enabled="1"/>
+        <CHANNEL Number="25" Mapping="55" Reference="0" Enabled="1"/>
+        <CHANNEL Number="26" Mapping="54" Reference="0" Enabled="1"/>
+        <CHANNEL Number="27" Mapping="53" Reference="0" Enabled="1"/>
+        <CHANNEL Number="28" Mapping="52" Reference="0" Enabled="1"/>
+        <CHANNEL Number="29" Mapping="51" Reference="0" Enabled="1"/>
+        <CHANNEL Number="30" Mapping="50" Reference="0" Enabled="1"/>
+        <CHANNEL Number="31" Mapping="47" Reference="0" Enabled="1"/>
+        <CHANNEL Number="32" Mapping="1" Reference="0" Enabled="1"/>
+        <CHANNEL Number="33" Mapping="2" Reference="0" Enabled="1"/>
+        <CHANNEL Number="34" Mapping="3" Reference="0" Enabled="1"/>
+        <CHANNEL Number="35" Mapping="4" Reference="0" Enabled="1"/>
+        <CHANNEL Number="36" Mapping="6" Reference="0" Enabled="1"/>
+        <CHANNEL Number="37" Mapping="5" Reference="0" Enabled="1"/>
+        <CHANNEL Number="38" Mapping="8" Reference="0" Enabled="1"/>
+        <CHANNEL Number="39" Mapping="7" Reference="0" Enabled="1"/>
+        <CHANNEL Number="40" Mapping="10" Reference="0" Enabled="1"/>
+        <CHANNEL Number="41" Mapping="9" Reference="0" Enabled="1"/>
+        <CHANNEL Number="42" Mapping="12" Reference="0" Enabled="1"/>
+        <CHANNEL Number="43" Mapping="11" Reference="0" Enabled="1"/>
+        <CHANNEL Number="44" Mapping="14" Reference="0" Enabled="1"/>
+        <CHANNEL Number="45" Mapping="13" Reference="0" Enabled="1"/>
+        <CHANNEL Number="46" Mapping="16" Reference="0" Enabled="1"/>
+        <CHANNEL Number="47" Mapping="17" Reference="0" Enabled="1"/>
+        <CHANNEL Number="48" Mapping="28" Reference="0" Enabled="1"/>
+        <CHANNEL Number="49" Mapping="27" Reference="0" Enabled="1"/>
+        <CHANNEL Number="50" Mapping="26" Reference="0" Enabled="1"/>
+        <CHANNEL Number="51" Mapping="25" Reference="0" Enabled="1"/>
+        <CHANNEL Number="52" Mapping="24" Reference="0" Enabled="1"/>
+        <CHANNEL Number="53" Mapping="23" Reference="0" Enabled="1"/>
+        <CHANNEL Number="54" Mapping="19" Reference="0" Enabled="1"/>
+        <CHANNEL Number="55" Mapping="20" Reference="0" Enabled="1"/>
+        <CHANNEL Number="56" Mapping="21" Reference="0" Enabled="1"/>
+        <CHANNEL Number="57" Mapping="22" Reference="0" Enabled="1"/>
+        <CHANNEL Number="58" Mapping="15" Reference="0" Enabled="1"/>
+        <CHANNEL Number="59" Mapping="31" Reference="0" Enabled="1"/>
+        <CHANNEL Number="60" Mapping="32" Reference="0" Enabled="1"/>
+        <CHANNEL Number="61" Mapping="29" Reference="0" Enabled="1"/>
+        <CHANNEL Number="62" Mapping="30" Reference="0" Enabled="1"/>
+        <CHANNEL Number="63" Mapping="18" Reference="0" Enabled="1"/>
+        <CHANNEL Number="64" Mapping="102" Reference="0" Enabled="1"/>
+        <CHANNEL Number="65" Mapping="101" Reference="0" Enabled="1"/>
+        <CHANNEL Number="66" Mapping="104" Reference="0" Enabled="1"/>
+        <CHANNEL Number="67" Mapping="103" Reference="0" Enabled="1"/>
+        <CHANNEL Number="68" Mapping="106" Reference="0" Enabled="1"/>
+        <CHANNEL Number="69" Mapping="105" Reference="0" Enabled="1"/>
+        <CHANNEL Number="70" Mapping="109" Reference="0" Enabled="1"/>
+        <CHANNEL Number="71" Mapping="110" Reference="0" Enabled="1"/>
+        <CHANNEL Number="72" Mapping="107" Reference="0" Enabled="1"/>
+        <CHANNEL Number="73" Mapping="108" Reference="0" Enabled="1"/>
+        <CHANNEL Number="74" Mapping="113" Reference="0" Enabled="1"/>
+        <CHANNEL Number="75" Mapping="97" Reference="0" Enabled="1"/>
+        <CHANNEL Number="76" Mapping="98" Reference="0" Enabled="1"/>
+        <CHANNEL Number="77" Mapping="99" Reference="0" Enabled="1"/>
+        <CHANNEL Number="78" Mapping="100" Reference="0" Enabled="1"/>
+        <CHANNEL Number="79" Mapping="112" Reference="0" Enabled="1"/>
+        <CHANNEL Number="80" Mapping="127" Reference="0" Enabled="1"/>
+        <CHANNEL Number="81" Mapping="128" Reference="0" Enabled="1"/>
+        <CHANNEL Number="82" Mapping="125" Reference="0" Enabled="1"/>
+        <CHANNEL Number="83" Mapping="126" Reference="0" Enabled="1"/>
+        <CHANNEL Number="84" Mapping="124" Reference="0" Enabled="1"/>
+        <CHANNEL Number="85" Mapping="123" Reference="0" Enabled="1"/>
+        <CHANNEL Number="86" Mapping="122" Reference="0" Enabled="1"/>
+        <CHANNEL Number="87" Mapping="121" Reference="0" Enabled="1"/>
+        <CHANNEL Number="88" Mapping="120" Reference="0" Enabled="1"/>
+        <CHANNEL Number="89" Mapping="119" Reference="0" Enabled="1"/>
+        <CHANNEL Number="90" Mapping="118" Reference="0" Enabled="1"/>
+        <CHANNEL Number="91" Mapping="117" Reference="0" Enabled="1"/>
+        <CHANNEL Number="92" Mapping="116" Reference="0" Enabled="1"/>
+        <CHANNEL Number="93" Mapping="115" Reference="0" Enabled="1"/>
+        <CHANNEL Number="94" Mapping="114" Reference="0" Enabled="1"/>
+        <CHANNEL Number="95" Mapping="111" Reference="0" Enabled="1"/>
+        <CHANNEL Number="96" Mapping="65" Reference="0" Enabled="1"/>
+        <CHANNEL Number="97" Mapping="66" Reference="0" Enabled="1"/>
+        <CHANNEL Number="98" Mapping="67" Reference="0" Enabled="1"/>
+        <CHANNEL Number="99" Mapping="68" Reference="0" Enabled="1"/>
+        <CHANNEL Number="100" Mapping="70" Reference="0" Enabled="1"/>
+        <CHANNEL Number="101" Mapping="69" Reference="0" Enabled="1"/>
+        <CHANNEL Number="102" Mapping="72" Reference="0" Enabled="1"/>
+        <CHANNEL Number="103" Mapping="71" Reference="0" Enabled="1"/>
+        <CHANNEL Number="104" Mapping="74" Reference="0" Enabled="1"/>
+        <CHANNEL Number="105" Mapping="73" Reference="0" Enabled="1"/>
+        <CHANNEL Number="106" Mapping="76" Reference="0" Enabled="1"/>
+        <CHANNEL Number="107" Mapping="75" Reference="0" Enabled="1"/>
+        <CHANNEL Number="108" Mapping="78" Reference="0" Enabled="1"/>
+        <CHANNEL Number="109" Mapping="77" Reference="0" Enabled="1"/>
+        <CHANNEL Number="110" Mapping="80" Reference="0" Enabled="1"/>
+        <CHANNEL Number="111" Mapping="81" Reference="0" Enabled="1"/>
+        <CHANNEL Number="112" Mapping="92" Reference="0" Enabled="1"/>
+        <CHANNEL Number="113" Mapping="91" Reference="0" Enabled="1"/>
+        <CHANNEL Number="114" Mapping="90" Reference="0" Enabled="1"/>
+        <CHANNEL Number="115" Mapping="89" Reference="0" Enabled="1"/>
+        <CHANNEL Number="116" Mapping="88" Reference="0" Enabled="1"/>
+        <CHANNEL Number="117" Mapping="87" Reference="0" Enabled="1"/>
+        <CHANNEL Number="118" Mapping="83" Reference="0" Enabled="1"/>
+        <CHANNEL Number="119" Mapping="84" Reference="0" Enabled="1"/>
+        <CHANNEL Number="120" Mapping="85" Reference="0" Enabled="1"/>
+        <CHANNEL Number="121" Mapping="86" Reference="0" Enabled="1"/>
+        <CHANNEL Number="122" Mapping="79" Reference="0" Enabled="1"/>
+        <CHANNEL Number="123" Mapping="95" Reference="0" Enabled="1"/>
+        <CHANNEL Number="124" Mapping="96" Reference="0" Enabled="1"/>
+        <CHANNEL Number="125" Mapping="93" Reference="0" Enabled="1"/>
+        <CHANNEL Number="126" Mapping="94" Reference="0" Enabled="1"/>
+        <CHANNEL Number="127" Mapping="82" Reference="0" Enabled="1"/>
+        <CHANNEL Number="128" Mapping="129" Reference="0" Enabled="1"/>
+        <CHANNEL Number="129" Mapping="130" Reference="0" Enabled="1"/>
+        <CHANNEL Number="130" Mapping="131" Reference="0" Enabled="1"/>
+        <CHANNEL Number="131" Mapping="132" Reference="0" Enabled="1"/>
+        <CHANNEL Number="132" Mapping="133" Reference="0" Enabled="1"/>
+        <CHANNEL Number="133" Mapping="134" Reference="0" Enabled="1"/>
+        <REFERENCE Number="0" Channel="128"/>
+        <REFERENCE Number="1" Channel="129"/>
+        <REFERENCE Number="2" Channel="130"/>
+        <REFERENCE Number="3" Channel="131"/>
+      </EDITOR>
+    </PROCESSOR>
+    <PROCESSOR name="Filters/Bandpass Filter" insertionPoint="1" pluginName="Bandpass Filter"
+               pluginType="1" pluginIndex="13" libraryName="Bandpass Filter"
+               libraryVersion="1" isSource="0" isSink="0" NodeId="104">
+      <CHANNEL name="0" number="0">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="1" number="1">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="2" number="2">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="3" number="3">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="4" number="4">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="5" number="5">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="6" number="6">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="7" number="7">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="8" number="8">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="9" number="9">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="10" number="10">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="11" number="11">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="12" number="12">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="13" number="13">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="14" number="14">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="15" number="15">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="16" number="16">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="17" number="17">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="18" number="18">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="19" number="19">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="20" number="20">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="21" number="21">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="22" number="22">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="23" number="23">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="24" number="24">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="25" number="25">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="26" number="26">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="27" number="27">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="28" number="28">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="29" number="29">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="30" number="30">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="31" number="31">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="32" number="32">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="33" number="33">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="34" number="34">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="35" number="35">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="36" number="36">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="37" number="37">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="38" number="38">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="39" number="39">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="40" number="40">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="41" number="41">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="42" number="42">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="43" number="43">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="44" number="44">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="45" number="45">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="46" number="46">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="47" number="47">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="48" number="48">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="49" number="49">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="50" number="50">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="51" number="51">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="52" number="52">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="53" number="53">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="54" number="54">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="55" number="55">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="56" number="56">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="57" number="57">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="58" number="58">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="59" number="59">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="60" number="60">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="61" number="61">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="62" number="62">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="63" number="63">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="64" number="64">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="65" number="65">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="66" number="66">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="67" number="67">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="68" number="68">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="69" number="69">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="70" number="70">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="71" number="71">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="72" number="72">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="73" number="73">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="74" number="74">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="75" number="75">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="76" number="76">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="77" number="77">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="78" number="78">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="79" number="79">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="80" number="80">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="81" number="81">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="82" number="82">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="83" number="83">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="84" number="84">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="85" number="85">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="86" number="86">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="87" number="87">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="88" number="88">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="89" number="89">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="90" number="90">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="91" number="91">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="92" number="92">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="93" number="93">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="94" number="94">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="95" number="95">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="96" number="96">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="97" number="97">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="98" number="98">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="99" number="99">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="100" number="100">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="101" number="101">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="102" number="102">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="103" number="103">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="104" number="104">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="105" number="105">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="106" number="106">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="107" number="107">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="108" number="108">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="109" number="109">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="110" number="110">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="111" number="111">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="112" number="112">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="113" number="113">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="114" number="114">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="115" number="115">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="116" number="116">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="117" number="117">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="118" number="118">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="119" number="119">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="120" number="120">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="121" number="121">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="122" number="122">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="123" number="123">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="124" number="124">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="125" number="125">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="126" number="126">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="127" number="127">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="1"/>
+      </CHANNEL>
+      <CHANNEL name="128" number="128">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="0"/>
+      </CHANNEL>
+      <CHANNEL name="129" number="129">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="0"/>
+      </CHANNEL>
+      <CHANNEL name="130" number="130">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="0"/>
+      </CHANNEL>
+      <CHANNEL name="131" number="131">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="0"/>
+      </CHANNEL>
+      <CHANNEL name="132" number="132">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="0"/>
+      </CHANNEL>
+      <CHANNEL name="133" number="133">
+        <SELECTIONSTATE param="1" record="1" audio="0"/>
+        <PARAMETERS highcut="5000" lowcut="150" shouldFilter="0"/>
+      </CHANNEL>
+      <EVENTCHANNEL name="0" number="0"/>
+      <EDITOR isCollapsed="0" displayName="Bandpass Filter" Type="FilterEditor">
+        <VALUES HighCut="5000" LowCut="150" ApplyToADC="0"/>
+      </EDITOR>
+    </PROCESSOR>
+    <PROCESSOR name="Sinks/LFP Viewer" insertionPoint="1" pluginName="LFP Viewer"
+               pluginType="1" pluginIndex="16" libraryName="LFP viewer" libraryVersion="1"
+               isSource="0" isSink="1" NodeId="105">
+      <CHANNEL name="0" number="0">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="1" number="1">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="2" number="2">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="3" number="3">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="4" number="4">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="5" number="5">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="6" number="6">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="7" number="7">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="8" number="8">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="9" number="9">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="10" number="10">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="11" number="11">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="12" number="12">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="13" number="13">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="14" number="14">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="15" number="15">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="16" number="16">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="17" number="17">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="18" number="18">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="19" number="19">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="20" number="20">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="21" number="21">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="22" number="22">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="23" number="23">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="24" number="24">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="25" number="25">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="26" number="26">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="27" number="27">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="28" number="28">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="29" number="29">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="30" number="30">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="31" number="31">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="32" number="32">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="33" number="33">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="34" number="34">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="35" number="35">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="36" number="36">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="37" number="37">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="38" number="38">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="39" number="39">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="40" number="40">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="41" number="41">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="42" number="42">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="43" number="43">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="44" number="44">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="45" number="45">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="46" number="46">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="47" number="47">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="48" number="48">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="49" number="49">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="50" number="50">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="51" number="51">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="52" number="52">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="53" number="53">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="54" number="54">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="55" number="55">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="56" number="56">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="57" number="57">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="58" number="58">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="59" number="59">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="60" number="60">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="61" number="61">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="62" number="62">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="63" number="63">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="64" number="64">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="65" number="65">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="66" number="66">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="67" number="67">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="68" number="68">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="69" number="69">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="70" number="70">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="71" number="71">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="72" number="72">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="73" number="73">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="74" number="74">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="75" number="75">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="76" number="76">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="77" number="77">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="78" number="78">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="79" number="79">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="80" number="80">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="81" number="81">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="82" number="82">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="83" number="83">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="84" number="84">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="85" number="85">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="86" number="86">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="87" number="87">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="88" number="88">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="89" number="89">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="90" number="90">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="91" number="91">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="92" number="92">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="93" number="93">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="94" number="94">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="95" number="95">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="96" number="96">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="97" number="97">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="98" number="98">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="99" number="99">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="100" number="100">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="101" number="101">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="102" number="102">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="103" number="103">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="104" number="104">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="105" number="105">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="106" number="106">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="107" number="107">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="108" number="108">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="109" number="109">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="110" number="110">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="111" number="111">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="112" number="112">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="113" number="113">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="114" number="114">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="115" number="115">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="116" number="116">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="117" number="117">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="118" number="118">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="119" number="119">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="120" number="120">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="121" number="121">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="122" number="122">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="123" number="123">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="124" number="124">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="125" number="125">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="126" number="126">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="127" number="127">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="128" number="128">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="129" number="129">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="130" number="130">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="131" number="131">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="132" number="132">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <CHANNEL name="133" number="133">
+        <SELECTIONSTATE param="1" record="0" audio="0"/>
+      </CHANNEL>
+      <EVENTCHANNEL name="0" number="0"/>
+      <EDITOR isCollapsed="0" displayName="LFP Viewer" Type="LfpDisplayEditor">
+        <TAB Active="1"/>
+        <WINDOW Active="0"/>
+        <LFPDISPLAY Range="250,2000,10.0" Timebase="10.0" Spread="40" colorGrouping="1"
+                    isInverted="0" drawMethod="0" EventButtonState="3" ChannelDisplayState="11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111"
+                    ScrollX="0" ScrollY="0"/>
+        <VALUES SubprocessorId="0"/>
+      </EDITOR>
+    </PROCESSOR>
+  </SIGNALCHAIN>
+  <AUDIO bufferSize="1024"/>
+  <GLOBAL_TIMESTAMP selected_index="0" selected_sub_index="0"/>
+  <CONTROLPANEL isOpen="1" recordPath="/home/segundo.martinez/SiliconProbes/Data"
+                prependText="XX001" appendText="128EE" recordEngine="RAWBINARY"/>
+  <AUDIOEDITOR isMuted="0" volume="0" noiseGate="0"/>
+  <RECORDENGINES>
+    <ENGINE id="OPENEPHYS" name="Open Ephys">
+      <PARAMETER id="0" type="bool" value="0"/>
+      <PARAMETER id="1" type="bool" value="0"/>
+      <PARAMETER id="2" type="string" value="CH"/>
+    </ENGINE>
+    <ENGINE id="NWB" name="NWB">
+      <PARAMETER id="0" type="string" value=""/>
+    </ENGINE>
+    <ENGINE id="KWIK" name="Kwik"/>
+    <ENGINE id="RAWBINARY" name="Binary">
+      <PARAMETER id="0" type="bool" value="1"/>
+    </ENGINE>
+  </RECORDENGINES>
+  <PROCESSORLIST>
+    <COLOR ID="801" R="59" G="59" B="59"/>
+    <COLOR ID="804" R="241" G="90" B="41"/>
+    <COLOR ID="802" R="0" G="174" B="239"/>
+    <COLOR ID="803" R="0" G="166" B="81"/>
+    <COLOR ID="805" R="147" G="149" B="152"/>
+  </PROCESSORLIST>
+  <UICOMPONENT isProcessorListOpen="1" isEditorViewportOpen="1"/>
+</SETTINGS>
