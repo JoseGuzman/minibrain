@@ -27,11 +27,11 @@ def proportion_bar(prop, label, colors, ax = None):
     ax = ax or plt.gca()
 
     shift = 0
-    for prop, color  in zip(prop, colors):
-        ax.barh(y = 0.5, width = prop, left = shift, color = color)
-        ax.text(x = shift, y = 0.5, s = f'{prop:2.1f} %', color = 'white',\
+    for propt, color  in zip(prop, colors):
+        ax.barh(y = 0.5, width = propt, left = shift, color = color)
+        ax.text(x = shift, y = 0.5, s = f'{propt:2.1f} %', color = 'white',\
                 fontsize = 14, verticalalignment = 'center')
-        shift += prop
+        shift += propt
         ax.set_xlim(0,100)
         ax.set_ylim(0,1)
 
