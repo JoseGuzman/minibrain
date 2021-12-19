@@ -32,7 +32,8 @@ def proportion_bar(prop, label, colors, ax = None):
         ax.text(x = shift, y = 0.5, s = f'{prop:2.1f} %', color = 'white',\
                 fontsize = 14, verticalalignment = 'center')
         shift += prop
-        ax.set_xlim(0,100), ax.set_ylim(0,1)
+        ax.set_xlim(0,100)
+        ax.set_ylim(0,1)
 
     ax.set_ylabel(label, verticalalignment = 'center', horizontalalignment = 'right',\
             rotation = 'horizontal')
@@ -40,7 +41,8 @@ def proportion_bar(prop, label, colors, ax = None):
     ax.spines['bottom'].set_visible(False)
     ax.spines['left'].set_visible(False)
     ax.spines['right'].set_visible(False)
-    ax.set_xticks([]), ax.set_yticks([])
+    ax.set_xticks([])
+    ax.set_yticks([])
 
     return ax
 
