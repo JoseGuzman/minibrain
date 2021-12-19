@@ -15,4 +15,3 @@ dependencies:
   - jupyter=1.0.0
   - pytorch=1.1.0
   - torchvision=0.2.2
-  
