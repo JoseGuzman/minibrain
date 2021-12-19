@@ -10,7 +10,7 @@ A python module to analyze electrophysiology and calcium imaging in brain organo
 #-------------------------------------------------------------------------
 # Global variables
 #-------------------------------------------------------------------------
-__version__ = 'v0.9alpha'
+__version__ = 'v0.10'
 __author__ = 'Jose Guzman'
 __email__ = 'jose.guzman at guzman-lab.com'
 
