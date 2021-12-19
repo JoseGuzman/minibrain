@@ -49,7 +49,7 @@ setup(
     package_data={
         # If any package contains *.txt files, include them:
         '': ['*.txt'],
-        # And include any *.csv files in the 'datasets' subdirectory
+        # And include any *.csv files in the 'DataSets' subdirectory
         # of the 'minibrain' package, also:
         'minibrain': ['DataSets/*.csv'],
     },
