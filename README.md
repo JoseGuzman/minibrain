@@ -3,7 +3,7 @@
  ![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/JoseGuzman/minibrain)  [![Build Status](https://travis-ci.com/JoseGuzman/minibrain.svg?branch=master)](https://travis-ci.com/JoseGuzman/minibrain) ![minibrain](https://github.com/JoseGuzman/minibrain/workflows/minibrain_unittest/badge.svg) [![CodeFactor](https://www.codefactor.io/repository/github/joseguzman/minibrain/badge)](https://www.codefactor.io/repository/github/joseguzman/minibrain)  [![GitHub license](https://img.shields.io/github/license/JoseGuzman/minibrain)](https://github.com/JoseGuzman/minibrain/blob/master/LICENSE) [![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FJoseGuzman%2Fminibrain&count_bg=%233DC8C7&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=views&edge_flat=false)](https://hits.seeyoufarm.com)
 
 
-![minibrain](https://github.com/JoseGuzman/minibrain/blob/master/img/spikes.png)
+![minibrain](https://github.com/JoseGuzman/minibrain/blob/master/misc/img/spikes.png)
 
 A Python module to analyze electrical signals and calcium fluorescence in brain organoids. For personal use only.
 
