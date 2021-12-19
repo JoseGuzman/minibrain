@@ -11,7 +11,7 @@ Example:
 >>> from loader import DataLoader
 >>> myrec = DataLoader('continuous.dat')
 # to get one sec array at 30 kHz
->>> myrec.get_channel(channel = 25)[:30000] 
+>>> myrec.get_channel(channel = 25)[:30000]
 # to plot shankB on given times
 >>> myrec.plot_insets(spk_times = [496,7161,16206,24804]'B')
 
@@ -19,7 +19,6 @@ Example:
 
 import os
 import datetime
-import copy
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -34,17 +33,13 @@ def spike_kinetics(waveform, dt = 1):
 
     * half-width:  the width of the spike at half-maximal amplitude. 
     It is related to rates of depolarization/repolarization.
-    
     * latency : the trough to right (late) peak latency. It related to 
     the repolarization of an action potential.
-    
     * asymmetry: the ratio of the amplitude of the second maximun (b) to 
     the amplitude of the first maximum (a). It reflects the differences in 
     the rate of fall of spike repolarization.
-    
     * rise-time: the 10-90% rise-time of the spike, related to the number of 
     Na channels
-
     * repo_duration: the duration of the repolarization phase.
 
     Parameters
@@ -72,7 +67,7 @@ def spike_kinetics(waveform, dt = 1):
     mytrace = waveform/-waveform.min() # peak in y=1
 
     p_idx = mytrace.argmin() # peak index to calculate half-width
-    a_idx = mytrace[:p_idx].argmax() # peak index the left part 
+    #a_idx = mytrace[:p_idx].argmax() # peak index the left part 
     b_idx = p_idx + mytrace[p_idx:].argmax() # peak index the right part 
 
     mydict = dict()
@@ -91,7 +86,7 @@ def spike_kinetics(waveform, dt = 1):
         mydict['repo_duration'] = np.nan 
     else:
         mydict['half_width'] = half_width*dt # in sampling points
-        a = mytrace[a_idx] # left peak, baseline substracted 
+        #a = mytrace[a_idx] # left peak, baseline substracted 
         b = mytrace[b_idx] # right peak, baseline substracted
 
         mydict['asymmetry'] = b # b/peak
@@ -110,7 +105,7 @@ def spike_kinetics(waveform, dt = 1):
 
     return mydict
 
-class TTLLoader(object):
+class TTLLoader():
     """
     A class to load TTL signals acquired with Open-ephys gui
     It reads syn_messages.txt and files within events folder.
@@ -232,7 +227,7 @@ class TTLLoader(object):
             mytime = self.time
             pulse = np.split(mytime, len(mytime)/2)
 
-        return( np.array(pulse))
+        return np.array(pulse)
 
     # getter for pulse
     pulse = property(lambda self: self.get_pulse())
@@ -240,7 +235,7 @@ class TTLLoader(object):
 # object ready to use
 ttl_info = TTLLoader(path = None, ttl = 1)
 
-class EphysLoader(object):
+class EphysLoader():
     """
     A class to load extracellular recordings acquired
     with the silicon probes from Cambridge Neurotech 
@@ -421,7 +416,7 @@ class EphysLoader(object):
                 )
         myrec._memmap = self._memmap.copy() 
 
-        return (myrec)
+        return myrec
 
 
 
