@@ -7,7 +7,7 @@ Fri Feb 18 21:52:57 CET 2022
 
 Streamlit script to build the data app,
 To test it run:
-$> streamlit run test.py
+$> streamlit run scripts/test.py
 """
 
 import streamlit as st
@@ -36,7 +36,7 @@ right_col.subheader("UMAP projection")
 st.sidebar.title("Control Panel")
 tissue = st.sidebar.radio("Select tissue", mycolors.keys())
 st.sidebar.write('---')
-k = st.sidebar.slider('Number of k-clusters',2,10,3)  #  
+k = st.sidebar.slider('Number of spike clusters',2,10,3)  #  
 st.sidebar.write(k, 'squared is', k * k)
 
 # Dimensionality reduction by PCA
@@ -44,7 +44,7 @@ st.sidebar.write(k, 'squared is', k * k)
 def pca_reduction(n_components):
     """
     """
-    mypath = 'DataSets/waveforms.csv'
+    mypath = './DataSets/waveforms.csv'
     waveforms = pd.read_csv(mypath, index_col = 'uid')
     df = waveforms.drop(['organoid'], axis = 1)
     trace = df.values[:, 30:] # remove first 30 samples (1 ms) of waveform baseline
