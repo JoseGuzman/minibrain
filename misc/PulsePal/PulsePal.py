@@ -28,26 +28,26 @@ class PulsePalObject(object):
         self.OpMenuByte = 213
         self.firmwareVersion = 0
         self.model = 0
-        self.dac_bitMax = 0;
-        self.cycleFrequency = 20000;
-        self.isBiphasic = [float('nan'), 0, 0, 0, 0];
-        self.phase1Voltage = [float('nan'), 5, 5, 5, 5];
-        self.phase2Voltage = [float('nan'), -5, -5, -5, -5];
-        self.restingVoltage = [float('nan'), 0, 0, 0, 0];
-        self.phase1Duration = [float('nan'), 0.001, 0.001, 0.001, 0.001];
-        self.interPhaseInterval = [float('nan'), 0.001, 0.001, 0.001, 0.001];
-        self.phase2Duration = [float('nan'), 0.001, 0.001, 0.001, 0.001];
-        self.interPulseInterval = [float('nan'), 0.01, 0.01, 0.01, 0.01];
-        self.burstDuration = [float('nan'), 0, 0, 0, 0];
-        self.interBurstInterval = [float('nan'), 0, 0, 0, 0];
-        self.pulseTrainDuration = [float('nan'), 1, 1, 1, 1];
-        self.pulseTrainDelay = [float('nan'), 0, 0, 0, 0];
-        self.linkTriggerChannel1 = [float('nan'), 1, 1, 1, 1];
-        self.linkTriggerChannel2 = [float('nan'), 0, 0, 0, 0];
-        self.customTrainID = [float('nan'), 0, 0, 0, 0];
-        self.customTrainTarget = [float('nan'), 0, 0, 0, 0];
-        self.customTrainLoop = [float('nan'), 0, 0, 0, 0];
-        self.triggerMode = [float('nan'), 0, 0];
+        self.dac_bitMax = 0
+        self.cycleFrequency = 20000
+        self.isBiphasic = [float('nan'), 0, 0, 0, 0]
+        self.phase1Voltage = [float('nan'), 5, 5, 5, 5]
+        self.phase2Voltage = [float('nan'), -5, -5, -5, -5]
+        self.restingVoltage = [float('nan'), 0, 0, 0, 0]
+        self.phase1Duration = [float('nan'), 0.001, 0.001, 0.001, 0.001]
+        self.interPhaseInterval = [float('nan'), 0.001, 0.001, 0.001, 0.001]
+        self.phase2Duration = [float('nan'), 0.001, 0.001, 0.001, 0.001]
+        self.interPulseInterval = [float('nan'), 0.01, 0.01, 0.01, 0.01]
+        self.burstDuration = [float('nan'), 0, 0, 0, 0]
+        self.interBurstInterval = [float('nan'), 0, 0, 0, 0]
+        self.pulseTrainDuration = [float('nan'), 1, 1, 1, 1]
+        self.pulseTrainDelay = [float('nan'), 0, 0, 0, 0]
+        self.linkTriggerChannel1 = [float('nan'), 1, 1, 1, 1]
+        self.linkTriggerChannel2 = [float('nan'), 0, 0, 0, 0]
+        self.customTrainID = [float('nan'), 0, 0, 0, 0]
+        self.customTrainTarget = [float('nan'), 0, 0, 0, 0]
+        self.customTrainLoop = [float('nan'), 0, 0, 0, 0]
+        self.triggerMode = [float('nan'), 0, 0]
         self.outputParameterNames = ['isBiphasic', 'phase1Voltage','phase2Voltage', 'phase1Duration', 'interPhaseInterval',
                                'phase2Duration','interPulseInterval', 'burstDuration', 'interBurstInterval', 'pulseTrainDuration',
                                'pulseTrainDelay', 'linkTriggerChannel1', 'linkTriggerChannel2', 'customTrainID',
@@ -63,11 +63,11 @@ class PulsePalObject(object):
         fvBytes = Response[1:5]
         self.firmwareVersion = struct.unpack('<I',fvBytes)[0]
         if self.firmwareVersion < 20:
-            self.model = 1;
-            self.dac_bitMax = 255;
+            self.model = 1
+            self.dac_bitMax = 255
         else:
-            self.model = 2;
-            self.dac_bitMax = 65535;
+            self.model = 2
+            self.dac_bitMax = 65535
         if self.firmwareVersion == 20:
             print "Notice: NOTE: A firmware update is available. It fixes a bug in Pulse Gated trigger mode when used with multiple inputs."
             print "To update, follow the instructions at https://sites.google.com/site/pulsepalwiki/updating-firmware"
@@ -163,7 +163,8 @@ class PulsePalObject(object):
         programByteString = struct.pack('BB',self.OpMenuByte, 73)
 
         # Add 32-bit time params
-        programValues = [0]*32; pos = 0
+        programValues = [0]*32
+        pos = 0
         for i in range(1,5):
             programValues[pos] = self.phase1Duration[i]*self.cycleFrequency
             pos+=1
@@ -203,7 +204,7 @@ class PulsePalObject(object):
         if self.model == 1:
             programValues = [0]*28
         else:
-            programValues = [0]*16;
+            programValues = [0]*16
         pos = 0
         for i in range(1,5):
             programValues[pos] = self.isBiphasic[i]
