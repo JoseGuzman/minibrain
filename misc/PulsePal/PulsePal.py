@@ -333,32 +333,44 @@ class PulsePalObject(object):
             ind = 0
             cFreq = float(self.cycleFrequency)
             for i in range(1,5):
-                self.phase1Duration[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq; ind+=4;
-                self.interPhaseInterval[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq; ind+=4;
-                self.phase2Duration[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq; ind+=4;
-                self.interPulseInterval[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq; ind+=4;
-                self.burstDuration[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq; ind+=4;
-                self.interBurstInterval[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq; ind+=4;
-                self.pulseTrainDuration[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq; ind+=4;
-                self.pulseTrainDelay[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq; ind+=4;
+                self.phase1Duration[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq
+                ind+=4
+                self.interPhaseInterval[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq
+                ind+=4
+                self.phase2Duration[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq
+                ind+=4
+                self.interPulseInterval[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq
+                ind+=4
+                self.burstDuration[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq
+                ind+=4
+                self.interBurstInterval[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq
+                ind+=4
+                self.pulseTrainDuration[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq
+                ind+=4
+                self.pulseTrainDelay[i] = struct.unpack("<L",response[ind:ind+4])[0]/cFreq
+                ind+=4
             for i in range(1,5):
-                voltageBits = struct.unpack("<H",response[ind:ind+2])[0]; ind+=2;
+                voltageBits = struct.unpack("<H",response[ind:ind+2])[0]
+                ind+=2
                 self.phase1Voltage[i] = round((((voltageBits/float(self.dac_bitMax))*20)-10)*100)/100
-                voltageBits = struct.unpack("<H",response[ind:ind+2])[0]; ind+=2;
+                voltageBits = struct.unpack("<H",response[ind:ind+2])[0]
+                ind+=2
                 self.phase2Voltage[i] = round((((voltageBits/float(self.dac_bitMax))*20)-10)*100)/100
-                voltageBits = struct.unpack("<H",response[ind:ind+2])[0]; ind+=2;
+                voltageBits = struct.unpack("<H",response[ind:ind+2])[0]
+                ind+=2
                 self.restingVoltage[i] = round((((voltageBits/float(self.dac_bitMax))*20)-10)*100)/100
             for i in range(1,5):
-                self.isBiphasic[i] = struct.unpack("B",response[ind])[0]; ind+=1;
-                self.customTrainID[i] = struct.unpack("B",response[ind])[0]; ind+=1;
-                self.customTrainTarget[i] = struct.unpack("B",response[ind])[0]; ind+=1;
-                self.customTrainLoop[i] = struct.unpack("B",response[ind])[0]; ind+=1;
+                self.isBiphasic[i] = struct.unpack("B",response[ind])[0]; ind+=1
+                self.customTrainID[i] = struct.unpack("B",response[ind])[0]; ind+=1
+                self.customTrainTarget[i] = struct.unpack("B",response[ind])[0]; ind+=1
+                self.customTrainLoop[i] = struct.unpack("B",response[ind])[0]; ind+=1
             for i in range(1,5):
-                self.linkTriggerChannel1[i] = struct.unpack("B",response[ind])[0]; ind+=1;
+                self.linkTriggerChannel1[i] = struct.unpack("B",response[ind])[0]; ind+=1
             for i in range(1,5):
-                self.linkTriggerChannel2[i] = struct.unpack("B",response[ind])[0]; ind+=1;
-            self.triggerMode[1] = struct.unpack("B",response[ind])[0]; ind+=1;
-            self.triggerMode[2] = struct.unpack("B",response[ind])[0];
+                self.linkTriggerChannel2[i] = struct.unpack("B",response[ind])[0]; ind+=1
+            self.triggerMode[1] = struct.unpack("B",response[ind])[0]
+            ind+=1
+            self.triggerMode[2] = struct.unpack("B",response[ind])[0]
     def __str__(self):
         sb = []
         for key in self.__dict__:
