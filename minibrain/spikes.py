@@ -122,7 +122,7 @@ class Units(object):
         # read spikes from units
         dict_unit = dict() # a dictionary with all units
         for myid in df_unit['cluster_id'].values:
-            dict_unit[myid]  = spike_times[np.where(spike_clusters==myid)]
+            dict_unit[myid] = spike_times[np.where(spike_clusters==myid)]
 
         # reorder by channel and set index to cluster_id 
         df_unit.sort_values(by='channel', inplace=True)
@@ -166,7 +166,7 @@ class Units(object):
         myspikes = list() # collects spike times for every pulse
 
         latency = list()  # latency from the beginning of pulse
-        count   = list()  # number of spikes during the pulse
+        count = list()  # number of spikes during the pulse
         duration = list() # number of samples between 1st and last spike
         isi = list() # average inter-spike interval (in samples)
         n_zeros, n_ones, n_more = (0, 0, 0)
@@ -199,13 +199,13 @@ class Units(object):
         mydict = dict()
         # use masked arrays to avoid missing values
         # will return RuntimeWarning if arrays contain only np.nan 
-        mydict['latency']  = np.nanmean( latency ) 
-        mydict['count']    = np.nanmean( count   )
+        mydict['latency'] = np.nanmean( latency ) 
+        mydict['count'] = np.nanmean( count   )
         mydict['duration'] = np.nanmean( duration)
-        mydict['isi']      = np.nanmean( isi     )
-        mydict['prop_zeros'] =  n_zeros/len(pulse)
-        mydict['prop_ones']  =  n_ones/len(pulse)
-        mydict['prop_more']  =  n_more/len(pulse)
+        mydict['isi'] = np.nanmean( isi     )
+        mydict['prop_zeros'] = n_zeros/len(pulse)
+        mydict['prop_ones'] = n_ones/len(pulse)
+        mydict['prop_more'] = n_more/len(pulse)
         # flatten all spikes in 1D array
         mydict['spk_times'] = list(np.array([elem for trace in myspikes for elem in trace]))
         #mydict['raw'] = myspikes
@@ -228,7 +228,7 @@ class Units(object):
         mydict = copy.deepcopy( self.unit )
         mydf = copy.deepcopy(self.df)
         
-        for key, values  in mydict.items():
+        for key, values in mydict.items():
             mytimes = list()
             for p in pulse:
                 start, end = p
@@ -240,7 +240,7 @@ class Units(object):
             mydict[key] = np.array(mytimes)
             
             index = mydf.index[ mydf['cluster_id']==key]
-            mydf.loc[index, 'n_spikes'] =  int(len(mytimes))
+            mydf.loc[index, 'n_spikes'] = int(len(mytimes))
 
         # set attributes of new object 
         setattr(myunit, 'unit', copy.deepcopy(mydict))
