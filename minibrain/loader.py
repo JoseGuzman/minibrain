@@ -80,7 +80,7 @@ def spike_kinetics(waveform, dt = 1):
 
     if half_width <=0: # if half-width is zero
         mydict['half_width'] = np.nan
-        mydict['asymmetry']   = np.nan
+        mydict['asymmetry'] = np.nan
         mydict['latency'] = np.nan
         mydict['rise'] = np.nan
         mydict['repo_duration'] = np.nan 
@@ -145,9 +145,9 @@ class TTLLoader():
         Count the pair of pulses. It will call self._get_pulse()
         """
         if self.path is None:
-            mysize =  0
+            mysize = 0
         elif self.time is np.nan:
-            mysize =  0
+            mysize = 0
         else:
             mysize = self.pulse.shape[0]
 
@@ -179,7 +179,7 @@ class TTLLoader():
 
         # then, read sync_messages from root by
         # removing last two directories
-        path_list =  os.path.split(binarypath)[0].split('/')[1:-2]
+        path_list = os.path.split(binarypath)[0].split('/')[1:-2]
         mypath = os.path.join('/', *path_list)
 
         mysynfile = os.path.join(mypath, 'sync_messages.txt')
@@ -285,7 +285,7 @@ class EphysLoader():
             }
 
     # read "bit_volts" in structure.oebin
-    gain =  0.19499999284744262695   # uVolts per bit (from Intant) 
+    gain = 0.19499999284744262695   # uVolts per bit (from Intant) 
 
     def __init__(self,
             fname,
@@ -387,7 +387,7 @@ class EphysLoader():
         # IMPLEMENT copy() to account for memmaps!
         myparams = dict(
                 fname = self.fname ,
-                date  = self.date  ,
+                date = self.date  ,
                 birth = self.birth ,
                 nchan = self.nchannels ,
                 srate = self.srate  ,
@@ -408,7 +408,7 @@ class EphysLoader():
         """
         myparams = dict(
                 fname = self.fname ,
-                date  = self.date  ,
+                date = self.date  ,
                 birth = self.birth ,
                 nchan = self.nchannels ,
                 srate = self.srate  ,
@@ -630,7 +630,7 @@ class EphysLoader():
         yoffset = 0 # y-offset to plot traces (will go negative)
         if shanktype == 'P' or shanktype == 'E':
             myshank = self.shank
-        elif shanktype ==  'F' or shanktype == 'FF':
+        elif shanktype == 'F' or shanktype == 'FF':
             myshank = self.shankF
         else: # default is P
             myshank = self.shank
@@ -666,12 +666,12 @@ class EphysLoader():
 
     # getter only attributes
     fname = property(lambda self: self._fname)
-    date  = property(lambda self: self._date)
+    date = property(lambda self: self._date)
     birth = property(lambda self: self._birth)
     srate = property(lambda self: self._srate)
     openephys_binary = property(lambda self: self._oephys)
-    dt    = property(lambda self: self._dt)
-    age   = property(lambda self: self._age)
+    dt = property(lambda self: self._dt)
+    age = property(lambda self: self._age)
     # getter for the number of samples channels
     nsamples = property(lambda self: self._memmap.shape[0])
     nchannels = property(lambda self: self._memmap.shape[1])
