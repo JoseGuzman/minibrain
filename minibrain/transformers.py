@@ -236,9 +236,9 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
         # set index to 'expID'
         # transform recording and experiment number to strings
         df.set_index('expID', inplace = True)
-        df.recording = pd.to_numeric(df.recording, \
+        df.recording = pd.to_numeric(df.recording, 
                 downcast = 'integer').astype(str)
-        df.experiment = pd.to_numeric(df.experiment, \
+        df.experiment = pd.to_numeric(df.experiment, 
                 downcast = 'integer').astype(str) 
         df.nchan = pd.to_numeric(df.nchan, downcast='integer') 
         
@@ -248,11 +248,11 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
         for idx in df.index:
             binary = os.path.join(myhome, df.loc[idx].binarypath)
             experiment = 'experiment' + df.loc[idx].experiment
-            recording  = 'recording'  + df.loc[idx].recording  
+            recording = 'recording' + df.loc[idx].recording  
             channelmap = 'Channel_Map-' + df.loc[idx].Channel_Map
             # dictionary of parameter for EphysLoader
             params = dict()
-            rec_path = os.path.join(binary, experiment, \
+            rec_path = os.path.join(binary, experiment, 
                     recording,'continuous', channelmap)
             params['fname']=os.path.join(rec_path,'continuous.dat')
             day = df.loc[idx].binarypath.split('_')[1]
@@ -267,7 +267,7 @@ class WaveformExtractor(BaseEstimator, TransformerMixin):
             organoid = df.loc[idx].organoid
             spk_path = os.path.join(rec_path, 'sorting/')
             # will return a list of units
-            mylist =self.__get_units(prefix=idx,organoid=organoid,\
+            mylist =self.__get_units(prefix=idx,organoid=organoid, 
                     spk_path = spk_path, **params)
             units_list.extend( mylist )
             #units.extend( df )
@@ -339,7 +339,7 @@ class PCATransformer(BaseEstimator):
     >>> df.drop('organoid', axis=1, inplace=True)
     >>> mypca.fit_transform(df)
     """
-    def __init__(self, baseline =  30, n_components=2):
+    def __init__(self, baseline = 30, n_components = 2):
         """
         sets the beginning of the spike in the
         waveforms
