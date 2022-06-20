@@ -17,15 +17,15 @@ The module has been extensively tested on Python >= 3.6. We recommend to have a 
 3. The scientific library for data visualization ([matplotlib](https://matplotlib.org/)). 
 4. Deep Learning platform ([PyTorch](https://pytorch.org))
 
-You can create a conda environment with necessary packages
+You can create a conda environment with necessary packages with the following command
 
 ```bash
-conda env create -f environment.yml
+conda env create --name minibrain --file environment.yml
 ```
 
 ## How to install it
 
-To download and install the minibrain package:
+If you prefer installing directly the minibrain package in one of your environments, just type this:
 
 ```bash
 git clone https://github.com/JoseGuzman/minibrain.git
