@@ -27,16 +27,16 @@ def proportion_bar(prop, label, colors, ax = None):
     ax = ax or plt.gca()
 
     shift = 0
-    for propt, color  in zip(prop, colors):
+    for propt, color in zip(prop, colors):
         ax.barh(y = 0.5, width = propt, left = shift, color = color)
-        ax.text(x = shift, y = 0.5, s = f'{propt:2.1f} %', color = 'white',\
+        ax.text(x = shift, y = 0.5, s = f'{propt:2.1f} %', color = 'white',
                 fontsize = 14, verticalalignment = 'center')
         shift += propt
         ax.set_xlim(0,100)
         ax.set_ylim(0,1)
 
-    ax.set_ylabel(label, verticalalignment = 'center', horizontalalignment = 'right',\
-            rotation = 'horizontal')
+    ax.set_ylabel(label, verticalalignment = 'center', 
+        horizontalalignment = 'right', rotation = 'horizontal')
     ax.spines['top'].set_visible(False)
     ax.spines['bottom'].set_visible(False)
     ax.spines['left'].set_visible(False)
@@ -94,8 +94,8 @@ def plot_pairs(xdata, ydata, labels, colors, ax = None):
     ax.set_xlim(-.5,1.5)
 
     # statistics
-    stats_0 =  ( labels[0],np.mean(xdata), sem(xdata), len(xdata) )
-    stats_1 =  ( labels[1],np.mean(ydata), sem(ydata), len(ydata) )
+    stats_0 = ( labels[0],np.mean(xdata), sem(xdata), len(xdata) )
+    stats_1 = ( labels[1],np.mean(ydata), sem(ydata), len(ydata) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_1)
     w_test = wilcoxon(xdata, ydata, alternative = 'two-sided')[1]
@@ -163,8 +163,8 @@ def plot_bars(xdata, ydata, labels, colors, ax = None):
     ax.xaxis.set_ticks_position('none')
 
     # statistics
-    stats_0 =  ( labels[0],np.mean(data[0]), sem(data[0]), len(data[0]) )
-    stats_1 =  ( labels[1],np.mean(data[1]), sem(data[1]), len(data[1]) )
+    stats_0 = ( labels[0],np.mean(data[0]), sem(data[0]), len(data[0]) )
+    stats_1 = ( labels[1],np.mean(data[1]), sem(data[1]), len(data[1]) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
     print('%s = %2.4f +/- %2.4f, n = %d\n' %stats_1)
     u_test = mwu(data[0], data[1], alternative = 'two-sided')[1]
@@ -246,8 +246,8 @@ def plot_boxes(xdata, ydata, labels, colors, ax = None):
     ax.xaxis.set_ticks_position('none')
 
     # statistics
-    stats_0 =  ( labels[0],np.mean(data[0]), sem(data[0]), len(data[0]) )
-    stats_1 =  ( labels[1],np.mean(data[1]), sem(data[1]), len(data[1]) )
+    stats_0 = ( labels[0],np.mean(data[0]), sem(data[0]), len(data[0]) )
+    stats_1 = ( labels[1],np.mean(data[1]), sem(data[1]), len(data[1]) )
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_0)
     print('%s = %2.4f +/- %2.4f, n = %d' %stats_1)
     u_test = mwu(data[0], data[1], alternative = 'two-sided')[1]
@@ -294,7 +294,7 @@ def plot_linregress(xdata, ydata, color = None, label = None, ax = None):
     tstat = T.ppf(0.975, n-1) 
 
     pow2 = lambda x: np.power(x,2)
-    confs = tstat*np.sqrt( (SSE/(n-2)) * (1.0/n +\
+    confs = tstat*np.sqrt( (SSE/(n-2)) * (1.0/n +
         (pow2(xfit-mu)/ ((np.sum(pow2(xdata)) -
         n*(pow2(mu)))))))
 
@@ -306,7 +306,7 @@ def plot_linregress(xdata, ydata, color = None, label = None, ax = None):
     ax.plot(xfit, yfit, lw=2, color = color)
     ax.plot(xfit, upper_conf, '--', lw=1, color = color)
     ax.plot(xfit, lower_conf, '--', lw=1, color = color)
-    ax.fill_between(xfit, upper_conf, lower_conf, color = color,  alpha =.1)
+    ax.fill_between(xfit, upper_conf, lower_conf, color = color, alpha =.1)
 
     # axis
     ax.spines['right'].set_visible(False)
