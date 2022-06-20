@@ -65,10 +65,10 @@ waveforms, var = pca_reduction(n_components = 2 )
 fig, ax = plt.subplots(1,1, figsize=(4,3))
 
 ax.scatter(x = waveforms.PC1, y = waveforms.PC2, s=6, c='gray')
-ax.set_xlabel(f'PC$_1$ = {var[0]:2.1f} %');
-ax.set_ylabel(f'PC$_2$ = {var[1]:2.1f} %');
-ax.set_xlim(-3,3); 
-ax.set_ylim(-3,3);
+ax.set_xlabel(f'PC$_1$ = {var[0]:2.1f} %')
+ax.set_ylabel(f'PC$_2$ = {var[1]:2.1f} %')
+ax.set_xlim(-3,3) 
+ax.set_ylim(-3,3)
 ax.set_yticks([-2,0,2])
 ax.set_xticks([-2,0,2])
 

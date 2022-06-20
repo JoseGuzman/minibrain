@@ -4,6 +4,6 @@ channels:
   - defaults
 dependencies:
   - python=3.6
-  - pip 
+  - pip
   - pip:
     - git+https://github.com/JoseGuzman/minibrain.git
