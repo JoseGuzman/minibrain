@@ -165,59 +165,80 @@ class PulsePalObject(object):
         # Add 32-bit time params
         programValues = [0]*32; pos = 0
         for i in range(1,5):
-            programValues[pos] = self.phase1Duration[i]*self.cycleFrequency; pos+=1
-            programValues[pos] = self.interPhaseInterval[i]*self.cycleFrequency; pos+=1
-            programValues[pos] = self.phase2Duration[i]*self.cycleFrequency; pos+=1
-            programValues[pos] = self.interPulseInterval[i]*self.cycleFrequency; pos+=1
-            programValues[pos] = self.burstDuration[i]*self.cycleFrequency; pos+=1
-            programValues[pos] = self.interBurstInterval[i]*self.cycleFrequency; pos+=1
-            programValues[pos] = self.pulseTrainDuration[i]*self.cycleFrequency; pos+=1
-            programValues[pos] = self.pulseTrainDelay[i]*self.cycleFrequency; pos+=1
+            programValues[pos] = self.phase1Duration[i]*self.cycleFrequency
+            pos+=1
+            programValues[pos] = self.interPhaseInterval[i]*self.cycleFrequency         
+            pos+=1
+            programValues[pos] = self.phase2Duration[i]*self.cycleFrequency
+            pos+=1
+            programValues[pos] = self.interPulseInterval[i]*self.cycleFrequency
+            pos+=1
+            programValues[pos] = self.burstDuration[i]*self.cycleFrequency
+            pos+=1
+            programValues[pos] = self.interBurstInterval[i]*self.cycleFrequency
+            pos+=1
+            programValues[pos] = self.pulseTrainDuration[i]*self.cycleFrequency
+            pos+=1
+            programValues[pos] = self.pulseTrainDelay[i]*self.cycleFrequency
+            pos+=1
         # Pack 32-bit times to bytes and append to program byte-string
         programByteString = programByteString + struct.pack('<LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL' , *programValues)
 
         # Add 16-bit voltages
         if self.model == 2:
-            programValues = [0]*12;
+            programValues = [0]*12
             pos = 0
             for i in range(1,5):
                 value = math.ceil(((self.phase1Voltage[i]+10)/float(20))*self.dac_bitMax) # Convert volts to bits
-                programValues[pos] = value; pos+=1
+                programValues[pos] = value
+                pos+=1
                 value = math.ceil(((self.phase2Voltage[i]+10)/float(20))*self.dac_bitMax) # Convert volts to bits
-                programValues[pos] = value; pos+=1
+                programValues[pos] = value
+                pos+=1
                 value = math.ceil(((self.restingVoltage[i]+10)/float(20))*self.dac_bitMax) # Convert volts to bits
-                programValues[pos] = value; pos+=1
+                programValues[pos] = value
+                pos+=1
             programByteString = programByteString + struct.pack('<HHHHHHHHHHHH' , *programValues)
         # Add 8-bit params
         if self.model == 1:
-            programValues = [0]*28;
+            programValues = [0]*28
         else:
             programValues = [0]*16;
         pos = 0
         for i in range(1,5):
-            programValues[pos] = self.isBiphasic[i]; pos+=1
+            programValues[pos] = self.isBiphasic[i]
+            pos+=1
             if self.model == 1:
                 value = math.ceil(((self.phase1Voltage[i]+10)/float(20))*self.dac_bitMax) # Convert volts to bits
-                programValues[pos] = value; pos+=1
+                programValues[pos] = value
+                pos+=1
                 value = math.ceil(((self.phase2Voltage[i]+10)/float(20))*self.dac_bitMax) # Convert volts to bits
-                programValues[pos] = value; pos+=1
-            programValues[pos] = self.customTrainID[i]; pos+=1
-            programValues[pos] = self.customTrainTarget[i]; pos+=1
-            programValues[pos] = self.customTrainLoop[i]; pos+=1
+                programValues[pos] = value
+                pos+=1
+            programValues[pos] = self.customTrainID[i]
+            pos+=1
+            programValues[pos] = self.customTrainTarget[i]
+            pos+=1
+            programValues[pos] = self.customTrainLoop[i]
+            pos+=1
             if self.model == 1:
                 value = math.ceil(((self.restingVoltage[i]+10)/float(20))*self.dac_bitMax) # Convert volts to bits
-                programValues[pos] = value; pos+=1
+                programValues[pos] = value
+                pos+=1
         # Pack 8-bit params to bytes and append to program byte-string
         if self.model == 1:
             programByteString = programByteString + struct.pack('BBBBBBBBBBBBBBBBBBBBBBBBBBBB', *programValues)
         else:
             programByteString = programByteString + struct.pack('BBBBBBBBBBBBBBBB', *programValues)
         # Add trigger channel link params
-        programValues = [0]*8; pos = 0
+        programValues = [0]*8
+        pos = 0
         for i in range(1,5):
-            programValues[pos] = self.linkTriggerChannel1[i]; pos+=1
+            programValues[pos] = self.linkTriggerChannel1[i]
+            pos+=1
         for i in range(1,5):
-            programValues[pos] = self.linkTriggerChannel2[i]; pos+=1
+            programValues[pos] = self.linkTriggerChannel2[i]
+            pos+=1
         # Pack 8-bit params to bytes and append to program byte-string
         programByteString = programByteString + struct.pack('BBBBBBBB', *programValues)
 
