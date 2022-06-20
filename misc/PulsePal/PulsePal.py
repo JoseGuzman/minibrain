@@ -360,14 +360,20 @@ class PulsePalObject(object):
                 ind+=2
                 self.restingVoltage[i] = round((((voltageBits/float(self.dac_bitMax))*20)-10)*100)/100
             for i in range(1,5):
-                self.isBiphasic[i] = struct.unpack("B",response[ind])[0]; ind+=1
-                self.customTrainID[i] = struct.unpack("B",response[ind])[0]; ind+=1
-                self.customTrainTarget[i] = struct.unpack("B",response[ind])[0]; ind+=1
-                self.customTrainLoop[i] = struct.unpack("B",response[ind])[0]; ind+=1
+                self.isBiphasic[i] = struct.unpack("B",response[ind])[0]
+                ind+=1
+                self.customTrainID[i] = struct.unpack("B",response[ind])[0]
+                ind+=1
+                self.customTrainTarget[i] = struct.unpack("B",response[ind])[0]
+                ind+=1
+                self.customTrainLoop[i] = struct.unpack("B",response[ind])[0]
+                ind+=1
             for i in range(1,5):
-                self.linkTriggerChannel1[i] = struct.unpack("B",response[ind])[0]; ind+=1
+                self.linkTriggerChannel1[i] = struct.unpack("B",response[ind])[0]
+                ind+=1
             for i in range(1,5):
-                self.linkTriggerChannel2[i] = struct.unpack("B",response[ind])[0]; ind+=1
+                self.linkTriggerChannel2[i] = struct.unpack("B",response[ind])[0]
+                ind+=1
             self.triggerMode[1] = struct.unpack("B",response[ind])[0]
             ind+=1
             self.triggerMode[2] = struct.unpack("B",response[ind])[0]
