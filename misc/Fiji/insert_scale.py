@@ -17,13 +17,15 @@ from ij.io import OpenDialog
 op = OpenDialog("Select an image")
 
 img = IJ.openImage(op.getPath())
-
+print(image.width)
+"""
 mytitle = op.getFileName()[:-4] + '_2mm.tiff'
 # Reduce size 50%
-myimg = IJ.run(img, "Scale...", "x=0.5 y=0.5 width=1024 height=768 interpolation=Bilinear average create title=" + str(mytitle))
+#myimg = IJ.run(img, "Scale...", "x=0.5 y=0.5 width=1024 height=768 interpolation=Bilinear average create title=" + str(mytitle))
 IJ.run(myimg, "Set Scale...", "distance=65 known=1 unit=mm")
 IJ.run(myimg, "Scale Bar...", "width=2 height=6 font=20 color=White background=None location=[Lower Right]") # 2 mm
 
+"""
 if __name__ in ['__builtin__', '__main__']:
 	pass
 	

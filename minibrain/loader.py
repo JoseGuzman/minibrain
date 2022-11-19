@@ -420,7 +420,7 @@ class EphysLoader():
 
 
 
-    def tofile(self, fname):
+    def tofile(self, fname, channels=False):
         """
         Saves the current recording as a binary file
 
@@ -429,9 +429,33 @@ class EphysLoader():
 
         fname (str)
             The filename to be saved (e.g., 'continuous.dat')
-        """
+        channels (sequence)
 
-        self._memmap.tofile( fname )
+        Example:
+        --------
+        To save every 8th channel in a 256 recording
+        >>> myrec.tofile('./data/temp.dat', channels=(0,256,8) )
+        To save every 8th channel in a 256 recording
+        >>> myrec.tofile('./data/temp.dat', channels=[0,8,12] )
+        To ave every channels 0, 8 and 12
+
+        """
+        if isinstance(channels, tuple):
+            myslice = slice(*channels)
+            self._memmap[:,myslice].tofile( fname )
+
+        elif isinstance(channels, (list, np.array)):
+            mylist = list(channels)
+            self._memmap[:,mylist].tofile( fname )
+
+        elif insinstance(channels, bool):
+            if channels:
+                self._memmap.tofile( fname )
+
+        else:
+            raise TypeError('Need a channel sequence')
+
+
 
     def get_rms_shank(self, shankID, pstart, pend):
         """
