@@ -345,14 +345,6 @@ class EphysLoader():
 
         self._age = age
 
-        fp = open(fname, 'rb')
-        nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
-        myseconds = nsamples/srate # duration in seconds
-
-        if openephys_binary: # open-ephys GUI
-            btype = '<i2'
-        else: # Intan software
-            btype = 'int16'
         # accesss without reading the whole file 
         # np.int16 is 16-bits integer 
         # signed means that the (2**16 values) are between -32768 to 32767
@@ -360,10 +352,14 @@ class EphysLoader():
         # '<' means little-endian
         #self._memmap = np.memmap(fp, np.dtype('<i2'), mode = 'r', 
         #    shape = (nsamples, nchan))
-        self._memmap = np.memmap(fp, np.dtype(btype), mode = 'r', 
-                shape = (nsamples, nchan))
-
-        fp.close()
+        with open(fname, 'rb') as fp:
+            nsamples = os.fstat(fp.fileno()).st_size // (nchan*2)
+            myseconds = nsamples/srate # duration in seconds
+            if openephys_binary: # open-ephys GUI
+                btype = '<i2'
+            else: # Intan software
+                btype = 'int16'
+            self._memmap = np.memmap(fp, np.dtype(btype), mode = 'r', shape = (nsamples, nchan))
 
         # prompt info: duration in minutes, age in months
         if show_info:
